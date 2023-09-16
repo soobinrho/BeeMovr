@@ -1,0 +1,66 @@
+.map-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.5; /* Set the opacity to 50% */
+    backdrop-filter: blur(10px); /* Apply a blur effect */
+    pointer-events: none; /* Allow interaction with elements behind this container */
+}
+
+.big-text h1 {
+    font-family: 'CloudyFont', sans-serif;
+    position: absolute;
+    top: 14%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: 8rem;
+    color: #ffffff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional text shadow */
+}
+
+/* Center and style the text input */
+.big-input {
+    position: absolute;
+    top: 50%; /* Center vertically in the viewport */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* Style for the round input (adjust as needed) */
+.big-input input {
+    width: 300px; /* Adjust the width as needed */
+    padding: 10px;
+    border: 2px solid #ddd; /* Border color */
+    border-radius: 10px; /* Rounded corners */
+    font-family: 'CloudyFont', sans-serif; /* Use your selected cloudy font */
+    font-size: 24px; /* Adjust the font size as needed */
+    text-align: center; /* Center text horizontally */
+    background: #f7f7f7; /* Background color */
+    color: #333; /* Text color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Box shadow */
+    transition: all 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Highlight the input on focus */
+.big-input input:focus {
+    border-color: #ff6b6b; /* Highlight border on focus */
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.5); /* Highlight box shadow on focus */
+}
+
+/* Style for the search button */
+.search-button {
+    background-color: rgb(62, 201, 247, 1);
+    color: white;
+    border: none;
+    top: 50%; /* Center vertically in the viewport */
+    left: 10%;
+    border-radius: 30px; /* Make it round */
+    font-size: 2rem; /* Adjust font size */
+    padding: 0.5rem 2rem; /* Adjust padding for button size */
+    cursor: pointer;
+}

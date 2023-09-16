@@ -1,0 +1,15 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  
+  .TicTacToe {
+    border-collapse: collapse;
+  }
+  
+  .TicTacToe td {
+    border: 1px solid black;
+    width: 30px;
+    height: 30px;
+  }
+  
