@@ -4,16 +4,17 @@ import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import './BeeMovrMap.css';
 
 class BeeMovrMap extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        lat: 36.77271,
-        lng: -2.81361,
-        beeValue: null, // To store the value from the API
-        };
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      lat: 36.77271,
+      lng: -2.81361,
+      beeValue: null, // To store the value from the API
+    };
+  }
   componentDidMount() {
-    mapboxgl.accessToken = 'pk.eyJ1Ijoic2lrYXlsciIsImEiOiJjbG1tc29qNW4wbjM5Mm9wYjZkeTlnNTF6In0.WSjDXDdATCobQdLasaH0pw';
+    mapboxgl.accessToken =
+      'pk.eyJ1Ijoic2lrYXlsciIsImEiOiJjbG1tc29qNW4wbjM5Mm9wYjZkeTlnNTF6In0.WSjDXDdATCobQdLasaH0pw';
 
     // Creates map of the Earth with default view
     const map = new mapboxgl.Map({
@@ -22,7 +23,6 @@ class BeeMovrMap extends Component {
       style: 'mapbox://styles/mapbox/satellite-streets-v12', // style URL
       center: [this.props.lng, this.props.lat], // starting position [lng, lat]
       zoom: 7,
-
     });
 
     // Creates marker for wanted yield location
@@ -46,37 +46,51 @@ class BeeMovrMap extends Component {
     });
 
     // Calculates honey yield
-    function getYield(lng, lat) {
-        // Replace with the actual URL of your Flask server
-        const apiUrl = `http://localhost:5000/getBeeValue?lat=${lat}&lng=${lng}`;
+    const getYield = (lng, lat) => {
+      // Replace with the actual URL of your Flask server
+      const apiUrl = `http://localhost:5000/getBeeValue?lat=${lat}&lng=${lng}`;
 
-        fetch(apiUrl)
+      fetch(apiUrl)
         .then((response) => response.json())
         .then((data) => {
-            // Log the received beeValue for debugging
-            console.log('Received beeValue:', data);
-            alert(`Estimated Honey Production Value (lbs/colony): ${data.value}`);
+          this.setState({
+            beeValue: data.value,
+          });
+
+          // Update the marker popup with the bee value
+          marker
+            .setPopup(
+              new mapboxgl.Popup({ offset: 25 }).setText(
+                'Estimated Honey Production Value (lbs/colony): ' +
+                  this.state.beeValue
+              )
+            )
+            .addTo(map);
+
+          // Log the received beeValue for debugging
+          console.log('Received beeValue:', data);
+
         })
         .catch((error) => {
-            console.error('Error fetching bee value:', error);
+          console.error('Error fetching bee value:', error);
         });
-    }
+    };
 
     /**
      * Gets latitude and longitude when marker is released from drag over the desired location. Then, the estimated honey yield is calculated.
      **/
-    function onDragEnd() {
+    const onDragEnd = () => {
       const lngLat = marker.getLngLat();
       getYield(lngLat.lng, lngLat.lat);
-    }
+    };
 
     /**
      * Moves the marker to the desired latitude and longitude, then calculates the honey yield estimate.
      **/
-    function moveMarker(lat, lng) {
+    const moveMarker = (lat, lng) => {
       marker.setLngLat([lng, lat]);
       getYield(lng, lat);
-    }
+    };
 
     // Calculates the yield at the initial marker location when the website starts up.
     onDragEnd();
