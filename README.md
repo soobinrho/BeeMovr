@@ -8,7 +8,9 @@
   </b>
 </p>
 
+Google Maps, but for Beekeepers.
 Our project seeks to give beekeepers increased information about ideal pollinator conditions near them to improve efficiency and decrease uncertainty about insufficient honey production by using precipitation and temperature models.
+We allow beekeepers to see which area or region has the most amount of potential honey yield.
 
 <br>
 
