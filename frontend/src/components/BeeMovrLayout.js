@@ -73,15 +73,6 @@ class BeeMovrLayout extends Component {
         // Trigger the transition to MapboxLayer
         this.setState({ showMap: true });
     });
-
-    // Reset Position button click event handler
-    document.getElementById('resetPositionButton').addEventListener('click', () => {
-        // Set the map center and zoom to focus on the USA
-        map.flyTo({
-        center: [-95.7129, 37.0902], // USA's approximate center coordinates
-        zoom: 3, // Appropriate zoom level to show the USA
-        });
-    });
   }
 
   render() {
@@ -91,11 +82,6 @@ class BeeMovrLayout extends Component {
           <MapboxLayer lat={this.state.lat} lng={this.state.lng}/>
         ) : (
           <div>
-            {/* Reset Position button */}
-            <button id="resetPositionButton" className="reset-button">
-              Reset Position
-            </button>
-
             {/* Map container with reduced opacity */}
             <div id="map" className="map-container">
               <div id="menu">
@@ -106,12 +92,6 @@ class BeeMovrLayout extends Component {
             {/* Big fluffy text "BeeMovr" */}
             <div className="big-text">
               <h1>BeeMovr</h1>
-            </div>
-
-            {/* Display the latitude and longitude */}
-            <div className="coordinates">
-              <p>Latitude: {this.state.lat.toFixed(6)}</p>
-              <p>Longitude: {this.state.lng.toFixed(6)}</p>
             </div>
           </div>
         )}

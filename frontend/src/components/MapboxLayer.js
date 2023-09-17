@@ -61,7 +61,7 @@ class MapboxLayer extends Component {
         const beeValue = await this.fetchBeeValue(e.result.center[1], e.result.center[0]);
       
         // Display the marker with the beeValue
-        this.displayMarker(beeValue);
+        //this.displayMarker(this.state.beeValue);
       });
 
     // Function to reset the map to focus on the USA
@@ -75,23 +75,7 @@ class MapboxLayer extends Component {
     // Add an event listener to the reset button
     const resetButton = document.getElementById('resetButton');
     resetButton.addEventListener('click', resetMapToUSA);
-  }
-
-displayMarker(beeValue) {
-  // Log the received beeValue for debugging
-  console.log('Received beeValue:', beeValue);
-
-  // Create a new marker element
-  const marker = new mapboxgl.Marker()
-    .setLngLat([this.props.lng, this.props.lat]) // Set the marker's position
-    .setPopup(new mapboxgl.Popup().setHTML(`Bee Value: ${beeValue}`)) // Set the popup content
-    .addTo(this.map); // Add the marker to the map
-
-  // Store the marker as an instance variable if you need to interact with it later
-  this.marker = marker;
-}
-
-  
+  } 
 
   // Function to make an API call to get the bee value
   fetchBeeValue(lat, lng) {
@@ -104,7 +88,8 @@ displayMarker(beeValue) {
         // Update the beeValue state with the response
         this.setState({ beeValue: data.value });
 
-        console.log('Bee value:', this.state.beeValue);
+        // Log the received beeValue for debugging
+        console.log('Received beeValue:', this.state.beeValue);
       })
       .catch((error) => {
         console.error('Error fetching bee value:', error);

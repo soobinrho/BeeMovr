@@ -46,6 +46,7 @@ def calculate_bee_value(lat, lng):
     # TODO: For prototyping purposes, call API each time. However, for prod,
     # Create a PostGIS database, with the latitude / longitude a the key.
     daily_precipitation = getOpenMeteo(
+        api_url_precipitation,
         api_param_latitude, api_value_latitude,
         api_param_longitude, api_value_longitude,
         api_param_start_date, api_value_start_date,
@@ -62,6 +63,7 @@ def calculate_bee_value(lat, lng):
     )
 
     daily_temp_max = getOpenMeteo(
+        api_url_precipitation,
         api_param_latitude, api_value_latitude,
         api_param_longitude, api_value_longitude,
         api_param_start_date, api_value_start_date,
@@ -78,6 +80,7 @@ def calculate_bee_value(lat, lng):
     )
 
     daily_temp_min = getOpenMeteo(
+        api_url_precipitation,
         api_param_latitude, api_value_latitude,
         api_param_longitude, api_value_longitude,
         api_param_start_date, api_value_start_date,
@@ -147,7 +150,8 @@ def get_bee_value():
     except ValueError:
         return jsonify({'error': 'Invalid input'}), 400
 
-def getOpenMeteo (api_param_latitude: str, api_value_latitude: str,
+def getOpenMeteo (api_url_precipitation: str,
+                  api_param_latitude: str, api_value_latitude: str,
                   api_param_longitude: str, api_value_longitude: str,
                   api_param_start_date: str, api_value_start_date: str,
                   api_param_end_date: str, api_value_end_date: str,
