@@ -121,7 +121,7 @@ def calculate_bee_value(lat, lng):
         (0.465 * 0.074 + 2.28 * 0.012 + 9.679 * 0.04)
     )
 
-    return honey_production_prediction
+    return str(round(honey_production_prediction, 3))
 
     # TODO: Implement Flask caching to improve performance and minimize API
     # calls to Open-Meteo.
