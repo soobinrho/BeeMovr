@@ -124,6 +124,22 @@ def parseOpenMeteo (dates: list, values: list, api_value_type: str) -> dict:
                 value_previous = value
         return parsed
 
+def fillOpenMeteoMonthlyEmptyValues (monthly_values):
+    """If the past three months of data doesn't exist, fill in with average.
+    
+        It's possible to have the past two or just one months of data.
+        In that case, use an average of the existing values.
+    """
+    if len(monthly_values)==2:
+        monthly_values.append(
+            monthly_values[0] +
+            monthly_values[1] / 2
+        )
+    elif len(monthly_values)==1:
+        monthly_values.append(monthly_values[0])
+        monthly_values.append(monthly_values[0])
+
+
 # TODO: For prototyping purposes, call API each time. However, for prod,
 # Create a PostGIS database, with the latitude / longitude a the key.
 daily_precipitation = getOpenMeteo(
@@ -177,21 +193,6 @@ monthly_temp_min = parseOpenMeteo(
 monthly_precipitation_values = list(monthly_precipitation.values())
 monthly_temp_max_values = list(monthly_temp_max.values())
 monthly_temp_min_values = list(monthly_temp_min.values())
-
-def fillOpenMeteoMonthlyEmptyValues (monthly_values):
-    """If the past three months of data doesn't exist, fill in with average.
-    
-        It's possible to have the past two or just one months of data.
-        In that case, use an average of the existing values.
-    """
-    if len(monthly_values)==2:
-        monthly_values.append(
-            monthly_values[0] +
-            monthly_values[1] / 2
-        )
-    elif len(monthly_values)==1:
-        monthly_values.append(monthly_values[0])
-        monthly_values.append(monthly_values[0])
 
 fillOpenMeteoMonthlyEmptyValues(monthly_precipitation_values)
 fillOpenMeteoMonthlyEmptyValues(monthly_temp_max_values)
