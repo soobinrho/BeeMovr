@@ -23,6 +23,10 @@ class MapboxLayer extends Component {
       zoom: 5 // starting zoom
     });
 
+    if(this.props.lat !== 36.77271 && this.props.lng !== -2.81361){
+      this.fetchBeeValue(this.props.lat, this.props.lng);
+    }
+
     const layerList = document.getElementById('menu');
     const inputs = layerList.getElementsByTagName('input');
 
