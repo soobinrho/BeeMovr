@@ -15,9 +15,9 @@ We allow beekeepers to see which area or region has the most amount of potential
 <br>
 
 ## Getting Started
-[1.](#1-how-to-spin-up-a-developmental-server) How to spin up a development server<br>
-[2.](#2-how-to-set-up-a-production-server) How does this work?<br>
-[3.](#3-open-source-projects-we-rely-on) Future Roadmap
+[1.](#1-how-to-spin-up-a-development-server) How to spin up a development server<br>
+[2.](#2-how-does-this-work) How does this work?<br>
+[3.](#3-future-roadmap) Future Roadmap
 
 <br>
 
