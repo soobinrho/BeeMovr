@@ -23,7 +23,9 @@ We allow beekeepers to see which area or region has the most amount of potential
 
 ## Acknowledgement
 
-Our work would not have been possible without the paper "[The Impact of Precipitation and Temperature on Honey Yield in the United States](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf?sequence=2)" (Hayes Kent Grogan, 2020, Auburn University). The paper provided the BeeMovr team with the prediction formula for the relationship between monthly precipitation / maximum temperature / minimum temperature and honey yield, and this is exactly what made our core functionality possible.
+Special thakns to Beekeeper Keith Roberts from [The Valley Hive](https://www.thevalleyhive.com/) for being kind and patient to us when we called him out of nowhere and asked, "We want to help bees. What can we do for you to help you? We can program." Keith is the one who provided us with the original problem statement.
+
+Also, our work would not have been possible without the paper "[The Impact of Precipitation and Temperature on Honey Yield in the United States](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf?sequence=2)" (Hayes Kent Grogan, 2020, Auburn University). The paper provided the BeeMovr team with the prediction formula for the relationship between monthly precipitation / maximum temperature / minimum temperature and honey yield, and this is exactly what made our core functionality possible.
 
 <br>
 
