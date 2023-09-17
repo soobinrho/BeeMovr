@@ -53,11 +53,17 @@ temp_b_0 = 0
 #     (0.001 * )
 # )
 
-def getOpenMeteo_precipitation ():
-    """Get Open-Meteo precipitation data.
+def getOpenMeteo (api_param_latitude: str, api_value_latitude: str,
+                  api_param_longitude: str, api_value_longitude: str,
+                  api_param_start_date: str, api_value_start_date: str,
+                  api_param_end_date: str, api_value_end_date: str,
+                  api_param_type: str, api_value_type: str) -> dict:
+    """Get Open-Meteo precipitation or max/min temp data.
     
     Data Unit:
-        Sum of daily precipitation. (millimeters)
+        Sum of daily precipitation = millimeters
+        Max air temperature at 2 meters above the ground = Celsius
+        Min air temperature at 2 meters above the ground.= Celsius
     """
     api_url = (
         api_url_precipitation +
@@ -65,94 +71,52 @@ def getOpenMeteo_precipitation ():
         '&' + api_param_longitude + '=' + api_value_longitude +
         '&' + api_param_start_date + '=' + api_value_start_date +
         '&' + api_param_end_date + '=' + api_value_end_date +
-        '&' + api_param_type + '=' +  api_value_type_precipitation
-    )
-    api_response = requests.get(api_url)
-    return api_response.json()
-              
-def getOpenMeteo_temp_max ():
-    """Get Open-Meteo maximum temperature data.
-    
-    Data Unit:
-        Air temperature at 2 meters above the ground. (millimeters)
-    """
-    api_url = (
-        api_url_precipitation +
-        '?' + api_param_latitude + '=' + api_value_latitude +
-        '&' + api_param_longitude + '=' + api_value_longitude +
-        '&' + api_param_start_date + '=' + api_value_start_date +
-        '&' + api_param_end_date + '=' + api_value_end_date +
-        '&' + api_param_type + '=' +  api_value_type_temp_max
+        '&' + api_param_type + '=' +  api_value_type
     )
     api_response = requests.get(api_url)
     return api_response.json()
 
-def getOpenMeteo_temp_min ():
-    """Get Open-Meteo minimum temperature data.
-    
-    Data Unit:
-        Air temperature at 2 meters above the ground. (millimeters)
-    """
-    api_url = (
-        api_url_precipitation +
-        '?' + api_param_latitude + '=' + api_value_latitude +
-        '&' + api_param_longitude + '=' + api_value_longitude +
-        '&' + api_param_start_date + '=' + api_value_start_date +
-        '&' + api_param_end_date + '=' + api_value_end_date +
-        '&' + api_param_type + '=' +  api_value_type_temp_min
-    )
-
-    api_response = requests.get(api_url)
-    return api_response.json()
-
-def parseOpenMeteo_temp_min (api_response):
-    """Strip unnecessary data from Open-Meteo minimum temperature data.
+def stripOpenMeteo (api_response: dict, api_value_type: str) -> list:
+    """Strip unnecessary data from precipitation or max/min temp data.
     
     Strips unnecessary data and returns two arrays (date and temp) for
     faster iteration.
-    Example:
-        parseOpenMeteo_temp_min(getOpenMeteo_temp_min())
     """
     return (
         api_response[api_param_type]['time'],
-        api_response[api_param_type][api_value_type_temp_min]
+        api_response[api_param_type][api_value_type]
     )
 
-# TODO: Delete this notes
-# api_param_type = "daily"
-# api_value_type_precipitation = "precipitation_sum"
-# api_value_type_temp_max = "temperature_2m_max"
-# api_value_type_temp_min= "temperature_2m_min"
+def parseOpenMeteo (dates: list, values: list, api_value_type: str) -> list:
+    """Calculate monthly values from daily values."""
+    if api_value_type==api_value_type_precipitation:
+        # Parse monthly precipitation by summing the values.
+            for i in range(len(dates)):
+                date = datetime.strptime(dates[i], "%Y-%m-%d")
+                print(date.month)
+        
+    # elif api_value_type==api_value_type_temp_max:
+    #     # Parse monthly max temperature by finding the local max.
+    # elif api_value_type==api_value_type_temp_min:
+    #     # Parse monthly min temperature by finding the local min.
 
 
-def getOpenMeteo_max (api_response):
-    """Strip unnecessary data from Open-Meteo maximum temperature data.
-    
-    Strips unnecessary data and returns two arrays (date and temp) for
-    faster iteration.
-    Example:
-        parseOpenMeteo_temp_max(getOpenMeteo_temp_max()))
-    """
-    return (
-        api_response[api_param_type]['time'],
-        api_response[api_param_type][api_value_type_temp_max]
-    )
+daily_precipitation = getOpenMeteo(
+    api_param_latitude, api_value_latitude,
+    api_param_longitude, api_value_longitude,
+    api_param_start_date, api_value_start_date,
+    api_param_end_date, api_value_end_date,
+    api_param_type, api_value_type_precipitation
+)
+daily_precipitation_dates, daily_precipitation_values = stripOpenMeteo(
+    daily_precipitation, api_value_type_precipitation
+)
+monthly_precipitation = parseOpenMeteo(
+    daily_precipitation_dates,
+    daily_precipitation_values,
 
-def getOpenMeteo_sum (api_response):
-    """Strip unnecessary data from Open-Meteo precipitation data.
-    
-    Strips unnecessary data and returns two arrays (date and
-    precipitation) for faster iteration.
-    Example:
-        parseOpenMeteo_sum(getOpenMeteo_precipitation())
-    """
-    return (
-        api_response[api_param_type]['time'],
-        api_response[api_param_type][api_value_type_precipitation]
-    )
+)
 
-# print(type(getOpenMeteo_temp_min()))
-print(parseOpenMeteo_temp_min(getOpenMeteo_temp_min()))
 
 # TODO: Implement Flask caching to improve performance and minimize API
 # calls to Open-Meteo.
