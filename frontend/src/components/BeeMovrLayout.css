@@ -64,3 +64,28 @@
     padding: 0.5rem 2rem; /* Adjust padding for button size */
     cursor: pointer;
 }
+
+.mapboxgl-ctrl-geocoder {
+    position: sticky;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 300px; /* Adjust the width as needed */
+    padding: 10px;
+    border: 2px solid #ddd; /* Border color */
+    border-radius: 10px; /* Rounded corners */
+    font-family: 'CloudyFont', sans-serif; /* Use your selected cloudy font */
+    font-size: 24px; /* Adjust the font size as needed */
+    text-align: center; /* Center text horizontally */
+    background: #f7f7f7; /* Background color */
+    color: #333; /* Text color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Box shadow */
+    transition: all 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Highlight the geocoder input on focus */
+.mapboxgl-ctrl-geocoder:focus {
+    border-color: #ff6b6b; /* Highlight border on focus */
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.5); /* Highlight box shadow on focus */
+}

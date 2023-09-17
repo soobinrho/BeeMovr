@@ -9,8 +9,8 @@ class MapboxLayer extends Component {
     const map = new mapboxgl.Map({
       container: 'map', // container ID
       style: 'mapbox://styles/mapbox/satellite-streets-v12', // Initial style URL
-      center: [-2.81361, 36.77271], // starting position [lng, lat]
-      zoom: 2 // starting zoom
+      center: [this.props.lng, this.props.lat], // starting position [lng, lat]
+      zoom: 6 // starting zoom
     });
 
     const layerList = document.getElementById('menu');
@@ -22,21 +22,6 @@ class MapboxLayer extends Component {
         map.setStyle('mapbox://styles/mapbox/' + layerId);
       };
     }
-
-    // Function to rotate the map by a specified angle
-    const rotateMap = () => {
-      const currentBearing = map.getBearing();
-      const newBearing = (currentBearing + 1) % 360; // Increment the bearing angle
-      map.easeTo({ bearing: newBearing }); // Rotate the map
-    };
-
-    // Start rotating the map continuously (adjust the interval as needed)
-    const rotationInterval = setInterval(rotateMap, 40); // Rotate every 100 milliseconds
-
-    // Stop the rotation when the component unmounts
-    this.componentWillUnmount = () => {
-      clearInterval(rotationInterval);
-    };
   }
 
   render() {
