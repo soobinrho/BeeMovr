@@ -25,9 +25,9 @@ temporary_today_minus_three_months = temporary_today + relativedelta(months=-2)
 # Source:
 #   https://open-meteo.com/en/docs/historical-weather-api 
 api_param_latitude = 'latitude'
-api_value_latitude = str(43.549975);
+api_value_latitude = str(42.360253)
 api_param_longitude = 'longitude'
-api_value_longitude = str(-96.70037);
+api_value_longitude = str(-71.058291);
 api_param_start_date = 'start_date'
 api_value_start_date = str(temporary_today_minus_three_months.date())
 api_param_end_date = 'end_date'
@@ -174,36 +174,9 @@ monthly_temp_min = parseOpenMeteo(
     api_value_type_temp_min
 )
 
-# Honey yield prediction model.
-# Source:
-#   "The Impact of Precipitation and Temperature on Honey Yield in
-#   the United States." 2020. Auburn University. Hayes Kent Grogan.
 monthly_precipitation_values = list(monthly_precipitation.values())
 monthly_temp_max_values = list(monthly_temp_max.values())
 monthly_temp_min_values = list(monthly_temp_min.values())
-
-
-if len(monthly_temp_max_values)==2:
-    monthly_temp_max_values.append(
-        monthly_temp_max_values[0] +
-        monthly_temp_max_values[1] / 2
-    )
-elif len(monthly_temp_max_values)==1:
-    monthly_temp_max_values.append([
-        monthly_temp_max_values[0],
-        monthly_temp_max_values[0]
-    ])
-
-if len(monthly_temp_max_values)==2:
-    monthly_temp_max_values.append(
-        monthly_temp_max_values[0] +
-        monthly_temp_max_values[1] / 2
-    )
-elif len(monthly_temp_max_values)==1:
-    monthly_temp_max_values.append([
-        monthly_temp_max_values[0],
-        monthly_temp_max_values[0]
-    ])
 
 def fillOpenMeteoMonthlyEmptyValues (monthly_values):
     """If the past three months of data doesn't exist, fill in with average.
@@ -220,30 +193,24 @@ def fillOpenMeteoMonthlyEmptyValues (monthly_values):
         monthly_values.append(monthly_values[0])
         monthly_values.append(monthly_values[0])
 
-print(monthly_precipitation_values)
-print(monthly_temp_max_values)
-print(monthly_temp_min_values)
-
-
 fillOpenMeteoMonthlyEmptyValues(monthly_precipitation_values)
 fillOpenMeteoMonthlyEmptyValues(monthly_temp_max_values)
 fillOpenMeteoMonthlyEmptyValues(monthly_temp_min_values)
 
-print(monthly_precipitation_values)
-print(monthly_temp_max_values)
-print(monthly_temp_min_values)
-
-
+# Honey yield prediction model.
+# Source:
+#   "The Impact of Precipitation and Temperature on Honey Yield in
+#   the United States." 2020. Auburn University. Hayes Kent Grogan.
 honey_production_prediction = (
     (60.596) +
-    (0.001 * monthly_precipitation_values[2]) +
-    (-0.001 * monthly_precipitation_values[1]) +
-    (0.056 * monthly_temp_min_values[2]) +
-    (0.027 * monthly_temp_min_values[1]) +
-    (-0.027 * monthly_temp_min_values[0]) +
-    (-0.034 * monthly_temp_max_values[2]) +
-    (0.012 * monthly_temp_max_values[1]) +
-    (0.032 * monthly_temp_max_values[0]) +
+    (0.001 * monthly_precipitation_values[2] * 10) +
+    (-0.001 * monthly_precipitation_values[1] * 10) +
+    (0.056 * monthly_temp_min_values[2] * 10) +
+    (0.027 * monthly_temp_min_values[1] * 10) +
+    (-0.027 * monthly_temp_min_values[0] * 10) +
+    (-0.034 * monthly_temp_max_values[2] * 10) +
+    # (0.012 * monthly_temp_max_values[1] * 10) +
+    # (0.032 * monthly_temp_max_values[0] * 10) +
     (0.465 * 0.074 + 2.28 * 0.012 + 9.679 * 0.04)
 )
 
