@@ -83,7 +83,6 @@
     color: #333; /* Text color */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Box shadow */
     transition: all 0.3s ease-in-out; /* Smooth transition */
-    
 }
 
 /* Highlight the geocoder input on focus */

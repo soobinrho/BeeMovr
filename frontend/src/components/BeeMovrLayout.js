@@ -3,6 +3,7 @@ import './BeeMovrLayout.css'; // Import your CSS file
 import mapboxgl from 'mapbox-gl'; // Import Mapbox GL
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 import MapboxLayer from './MapboxLayer';
+import BeeMovrMap from './BeeMovrMap ';
 
 class BeeMovrLayout extends Component {
   constructor(props) {
@@ -58,7 +59,7 @@ class BeeMovrLayout extends Component {
 
     // Add a class to the geocoder container div to apply styles
     const geocoderContainer = geocoder.onAdd(map);
-    geocoderContainer.classList.add('mapboxgl-ctrl-geocoder');
+    //geocoderContainer.classList.add('mapboxgl-ctrl-geocoder');
 
     // Add the geocoder to the map
     map.addControl(geocoder);
@@ -79,7 +80,7 @@ class BeeMovrLayout extends Component {
     return (
       <div>
         {this.state.showMap ? (
-          <MapboxLayer lat={this.state.lat} lng={this.state.lng}/>
+          <BeeMovrMap lat={this.state.lat} lng={this.state.lng}/>
         ) : (
           <div>
             {/* Map container with reduced opacity */}
