@@ -5,44 +5,44 @@ from flask_cors import CORS  # Import the CORS extension
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 
+# Open-Meteo API defaults.
+api_url_precipitation = 'https://archive-api.open-meteo.com/v1/archive'
+
+# TODO: This is temporary hard-coded data generation.
+# Replace this with proper input and calculations.
+
+# Our model for predicting honey production requires precipitation, max
+# temperature, and min temperature for the past three months.
+# Source:
+#   "The Impact of Precipitation and Temperature on Honey Yield in
+#   the United States." 2020. Auburn University. Hayes Kent Grogan.
+temporary_today = datetime.today()
+temporary_today = temporary_today + relativedelta(months=-1)
+temporary_today_minus_three_months = temporary_today + relativedelta(months=-2)
+
+# Open-Meteo API parameters.
+# The latitude and longitude must be in the WGS84 system.
+# Precipitation's unit is mm.
+# Date's unit is yyyy-mm-dd.
+# Source:
+#   https://open-meteo.com/en/docs/historical-weather-api 
+api_param_latitude = 'latitude'
+api_param_longitude = 'longitude'
+api_param_start_date = 'start_date'
+api_value_start_date = str(temporary_today_minus_three_months.date())
+api_param_end_date = 'end_date'
+api_value_end_date = str(temporary_today.date())
+api_param_type = 'daily'
+api_value_type_precipitation = 'precipitation_sum'
+api_value_type_temp_max = 'temperature_2m_max'
+api_value_type_temp_min= 'temperature_2m_min'
+
 app = Flask(__name__)
 CORS(app)  # Enable CORS for your Flask app
 # Replace this with your bee value calculation logic
 def calculate_bee_value(lat, lng):
-    # Open-Meteo API defaults.
-    api_url_precipitation = 'https://archive-api.open-meteo.com/v1/archive'
-
-    # TODO: This is temporary hard-coded data generation.
-    # Replace this with proper input and calculations.
-
-    # Our model for predicting honey production requires precipitation, max
-    # temperature, and min temperature for the past three months.
-    # Source:
-    #   "The Impact of Precipitation and Temperature on Honey Yield in
-    #   the United States." 2020. Auburn University. Hayes Kent Grogan.
-    temporary_today = datetime.today()
-    temporary_today = temporary_today + relativedelta(months=-1)
-    temporary_today_minus_three_months = temporary_today + relativedelta(months=-2)
-
-    # Open-Meteo API parameters.
-    # The latitude and longitude must be in the WGS84 system.
-    # Precipitation's unit is mm.
-    # Date's unit is yyyy-mm-dd.
-    # Source:
-    #   https://open-meteo.com/en/docs/historical-weather-api 
-    api_param_latitude = 'latitude'
     api_value_latitude = str(lat)
-    api_param_longitude = 'longitude'
-    api_value_longitude = str(lng);
-    api_param_start_date = 'start_date'
-    api_value_start_date = str(temporary_today_minus_three_months.date())
-    api_param_end_date = 'end_date'
-    api_value_end_date = str(temporary_today.date())
-    api_param_type = 'daily'
-    api_value_type_precipitation = 'precipitation_sum'
-    api_value_type_temp_max = 'temperature_2m_max'
-    api_value_type_temp_min= 'temperature_2m_min'
-
+    api_value_longitude = str(lng)
     # TODO: For prototyping purposes, call API each time. However, for prod,
     # Create a PostGIS database, with the latitude / longitude a the key.
     daily_precipitation = getOpenMeteo(
@@ -181,8 +181,8 @@ def stripOpenMeteo (api_response: dict, api_value_type: str) -> list:
     faster iteration.
     """
     return (
-        api_response[api_param_type]['time'],
-        api_response[api_param_type][api_value_type]
+        api_response['daily']['time'],
+        api_response['daily'][api_value_type]
     )
 
 def parseOpenMeteo (dates: list, values: list, api_value_type: str) -> dict:

@@ -90,6 +90,7 @@ class MapboxLayer extends Component {
 
         // Log the received beeValue for debugging
         console.log('Received beeValue:', this.state.beeValue);
+        alert(`Bee Value updated: ${this.state.beeValue}`);
       })
       .catch((error) => {
         console.error('Error fetching bee value:', error);
