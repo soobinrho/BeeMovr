@@ -1,4 +1,5 @@
 <br>
+<br>
 
 <p align="center">
   <b>
@@ -10,7 +11,6 @@
 Our project seeks to give beekeepers increased information about ideal pollinator conditions near them to improve efficiency and decrease uncertainty about insufficient honey production by using precipitation and temperature models.
 
 <br>
-<br>
 
 ## Getting Started
 [1.](#1-how-to-spin-up-a-developmental-server) How to spin up a development server<br>
@@ -18,13 +18,11 @@ Our project seeks to give beekeepers increased information about ideal pollinato
 [3.](#3-open-source-projects-we-rely-on) Future Roadmap
 
 <br>
-<br>
 
 ## Acknowledgement
 
 Our work would not have been possible without the paper "[The Impact of Precipitation and Temperature on Honey Yield in the United States](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf?sequence=2)" (Hayes Kent Grogan, 2020, Auburn University). The paper provided the BeeMovr team with the prediction formula for the relationship between monthly precipitation / maximum temperature / minimum temperature and honey yield, and this is exactly what made our core functionality possible.
 
-<br>
 <br>
 
 ## 1. How to spin up a development server
@@ -62,13 +60,9 @@ Whenever the user clicks a point in the map, it calls for a function that calcul
 
 ## 3. Future Roadmap
 
-`Short Term Goal`: Add a drag functionality, where the user can get the honey production prediction value of a rectangle instead of just a single point.
-`Long Term Goal`: Now, we call the Open Meteo API's everytime the user clicks on a something to get the environmental values (precipitation and max/min temps). This will be replaced by a data storage / caching system. Whenever an API is called, the precipitation and max/min temp values 
-by calling API's. For production, however, implement PostGIS + Redis + Flask caching.
-    # Also, only save the average value (for precipitation), max value (for max temp), and min
-    # value (for min temp) to the database as only monthly values are required.
-    # That will be something along the line of ...(getOpenMeteo_sum(getOpenMeteo_precipitation))
-`Long Term Goal`: Create a
+- `Short Term Goal`: Add a drag functionality, where the user can get the honey production prediction value of a rectangle instead of just a single point.
+- `Long Term Goal`: Now, we call the Open Meteo API's everytime the user clicks on a something to get the environmental values (precipitation and max/min temps). This will be replaced by a data storage / caching system. Whenever an API is called, the precipitation and max/min temp values will be stored into either Elastic Stack or PostGIS. Flask caching will also prevent duplicate API calls.
+- `Long Term Goal`: Create a heatmap of the honey production potential of all areas based on the data stored on the database.
 
 <br>
 <br>
