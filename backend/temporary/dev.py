@@ -15,7 +15,8 @@ api_url_precipitation = 'https://archive-api.open-meteo.com/v1/archive'
 #   "The Impact of Precipitation and Temperature on Honey Yield in
 #   the United States." 2020. Auburn University. Hayes Kent Grogan.
 temporary_today = datetime.today()
-temporary_today_minus_three_months = temporary_today + relativedelta(months=-3)
+temporary_today = temporary_today + relativedelta(months=-1)
+temporary_today_minus_three_months = temporary_today + relativedelta(months=-2)
 
 # Open-Meteo API parameters.
 # The latitude and longitude must be in the WGS84 system.
@@ -24,9 +25,9 @@ temporary_today_minus_three_months = temporary_today + relativedelta(months=-3)
 # Source:
 #   https://open-meteo.com/en/docs/historical-weather-api 
 api_param_latitude = 'latitude'
-api_value_latitude = str(52.52);
+api_value_latitude = str(43.549975);
 api_param_longitude = 'longitude'
-api_value_longitude = str(13.41);
+api_value_longitude = str(-96.70037);
 api_param_start_date = 'start_date'
 api_value_start_date = str(temporary_today_minus_three_months.date())
 api_param_end_date = 'end_date'
@@ -181,15 +182,57 @@ monthly_precipitation_values = list(monthly_precipitation.values())
 monthly_temp_max_values = list(monthly_temp_max.values())
 monthly_temp_min_values = list(monthly_temp_min.values())
 
-# It's possible to have the past two or just one months of data.
-# In that case, use an average of the existing value.
-if len(monthly_precipitation_values)==2:
 
+if len(monthly_temp_max_values)==2:
+    monthly_temp_max_values.append(
+        monthly_temp_max_values[0] +
+        monthly_temp_max_values[1] / 2
+    )
+elif len(monthly_temp_max_values)==1:
+    monthly_temp_max_values.append([
+        monthly_temp_max_values[0],
+        monthly_temp_max_values[0]
+    ])
 
+if len(monthly_temp_max_values)==2:
+    monthly_temp_max_values.append(
+        monthly_temp_max_values[0] +
+        monthly_temp_max_values[1] / 2
+    )
+elif len(monthly_temp_max_values)==1:
+    monthly_temp_max_values.append([
+        monthly_temp_max_values[0],
+        monthly_temp_max_values[0]
+    ])
+
+def fillOpenMeteoMonthlyEmptyValues (monthly_values):
+    """If the past three months of data doesn't exist, fill in with average.
+    
+        It's possible to have the past two or just one months of data.
+        In that case, use an average of the existing values.
+    """
+    if len(monthly_values)==2:
+        monthly_values.append(
+            monthly_values[0] +
+            monthly_values[1] / 2
+        )
+    elif len(monthly_values)==1:
+        monthly_values.append(monthly_values[0])
+        monthly_values.append(monthly_values[0])
 
 print(monthly_precipitation_values)
 print(monthly_temp_max_values)
 print(monthly_temp_min_values)
+
+
+fillOpenMeteoMonthlyEmptyValues(monthly_precipitation_values)
+fillOpenMeteoMonthlyEmptyValues(monthly_temp_max_values)
+fillOpenMeteoMonthlyEmptyValues(monthly_temp_min_values)
+
+print(monthly_precipitation_values)
+print(monthly_temp_max_values)
+print(monthly_temp_min_values)
+
 
 honey_production_prediction = (
     (60.596) +
@@ -200,7 +243,8 @@ honey_production_prediction = (
     (-0.027 * monthly_temp_min_values[0]) +
     (-0.034 * monthly_temp_max_values[2]) +
     (0.012 * monthly_temp_max_values[1]) +
-    (0.032 * monthly_temp_max_values[0])
+    (0.032 * monthly_temp_max_values[0]) +
+    (0.465 * 0.074 + 2.28 * 0.012 + 9.679 * 0.04)
 )
 
 print(honey_production_prediction)
