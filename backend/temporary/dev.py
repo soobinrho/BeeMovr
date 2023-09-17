@@ -1,14 +1,10 @@
 import requests
+import numbers
 from datetime import datetime, timedelta
 from dateutil.relativedelta import relativedelta
 
-#
-# To predict honey production, we need precipitation, minimum temp, and
-# maximum temp of the past four months.
-#
-
 # Open-Meteo API defaults.
-api_url_precipitation = "https://archive-api.open-meteo.com/v1/archive"
+api_url_precipitation = 'https://archive-api.open-meteo.com/v1/archive'
 
 # TODO: This is temporary hard-coded data generation.
 # Replace this with proper input and calculations.
@@ -21,37 +17,24 @@ api_url_precipitation = "https://archive-api.open-meteo.com/v1/archive"
 temporary_today = datetime.today()
 temporary_today_minus_three_months = temporary_today + relativedelta(months=-3)
 
-print(temporary_today)
-print(temporary_today_minus_three_months)
-
 # Open-Meteo API parameters.
 # The latitude and longitude must be in the WGS84 system.
 # Precipitation's unit is mm.
 # Date's unit is yyyy-mm-dd.
 # Source:
 #   https://open-meteo.com/en/docs/historical-weather-api 
-api_param_latitude = "latitude"
+api_param_latitude = 'latitude'
 api_value_latitude = str(52.52);
-api_param_longitude = "longitude"
+api_param_longitude = 'longitude'
 api_value_longitude = str(13.41);
-api_param_start_date = "start_date"
+api_param_start_date = 'start_date'
 api_value_start_date = str(temporary_today_minus_three_months.date())
-api_param_end_date = "end_date"
+api_param_end_date = 'end_date'
 api_value_end_date = str(temporary_today.date())
-api_param_type = "daily"
-api_value_type_precipitation = "precipitation_sum"
-api_value_type_temp_max = "temperature_2m_max"
-api_value_type_temp_min= "temperature_2m_min"
-
-# Honey yield prediction model.
-# Source:
-#   "The Impact of Precipitation and Temperature on Honey Yield in
-#   the United States." 2020. Auburn University. Hayes Kent Grogan.
-temp_b_0 = 0
-# honey_production_prediction = (
-#     temp_b_0 +
-#     (0.001 * )
-# )
+api_param_type = 'daily'
+api_value_type_precipitation = 'precipitation_sum'
+api_value_type_temp_max = 'temperature_2m_max'
+api_value_type_temp_min= 'temperature_2m_min'
 
 def getOpenMeteo (api_param_latitude: str, api_value_latitude: str,
                   api_param_longitude: str, api_value_longitude: str,
@@ -87,20 +70,61 @@ def stripOpenMeteo (api_response: dict, api_value_type: str) -> list:
         api_response[api_param_type][api_value_type]
     )
 
-def parseOpenMeteo (dates: list, values: list, api_value_type: str) -> list:
+def parseOpenMeteo (dates: list, values: list, api_value_type: str) -> dict:
     """Calculate monthly values from daily values."""
-    if api_value_type==api_value_type_precipitation:
+    if len(dates)==0:
+        raise ValueError('[ERROR] OpenMeteo list length 0.')
+
+    elif api_value_type==api_value_type_precipitation:
         # Parse monthly precipitation by summing the values.
-            for i in range(len(dates)):
-                date = datetime.strptime(dates[i], "%Y-%m-%d")
-                print(date.month)
-        
-    # elif api_value_type==api_value_type_temp_max:
-    #     # Parse monthly max temperature by finding the local max.
-    # elif api_value_type==api_value_type_temp_min:
-    #     # Parse monthly min temperature by finding the local min.
+        parsed = {}
+        for i in range(len(dates)):
+            date = datetime.strptime(dates[i], '%Y-%m-%d')
+            value = values[i]
 
+            # Consolidate all precipitation daily values into the
+            # correct monthly value.
+            if isinstance(value, numbers.Number) and value>0:
+                date = date.strftime('%Y-%m')
+                parsed[date] = parsed.get(date, 0) + value
+        return parsed
 
+    elif api_value_type==api_value_type_temp_max:
+        # Parse monthly max temperature by finding the local max.
+        parsed = {}
+        value_previous = values[0]
+        month_previous = -1
+        for i in range(len(dates)):
+            date = datetime.strptime(dates[i], '%Y-%m-%d')
+            date = date.strftime('%Y-%m')
+            value = values[i]
+
+            # Consolidate all max temp daily values into the
+            # correct monthly vales.
+            if isinstance(value, numbers.Number) and value>=value_previous:
+                parsed[date] = value
+                value_previous = value
+        return parsed
+
+    elif api_value_type==api_value_type_temp_min:
+        # Parse monthly min temperature by finding the local min.
+        parsed = {}
+        value_previous = values[0]
+        month_previous = -1
+        for i in range(len(dates)):
+            date = datetime.strptime(dates[i], '%Y-%m-%d')
+            date = date.strftime('%Y-%m')
+            value = values[i]
+
+            # Consolidate all min temp daily values into the
+            # correct monthly vales.
+            if isinstance(value, numbers.Number) and value<=value_previous:
+                parsed[date] = value
+                value_previous = value
+        return parsed
+
+# TODO: For prototyping purposes, call API each time. However, for prod,
+# Create a PostGIS database, with the latitude / longitude a the key.
 daily_precipitation = getOpenMeteo(
     api_param_latitude, api_value_latitude,
     api_param_longitude, api_value_longitude,
@@ -114,9 +138,72 @@ daily_precipitation_dates, daily_precipitation_values = stripOpenMeteo(
 monthly_precipitation = parseOpenMeteo(
     daily_precipitation_dates,
     daily_precipitation_values,
-
+    api_value_type_precipitation
 )
 
+daily_temp_max = getOpenMeteo(
+    api_param_latitude, api_value_latitude,
+    api_param_longitude, api_value_longitude,
+    api_param_start_date, api_value_start_date,
+    api_param_end_date, api_value_end_date,
+    api_param_type, api_value_type_temp_max
+)
+daily_temp_max_dates, daily_temp_max_values = stripOpenMeteo(
+    daily_temp_max, api_value_type_temp_max
+)
+monthly_temp_max = parseOpenMeteo(
+    daily_temp_max_dates,
+    daily_temp_max_values,
+    api_value_type_temp_max
+)
+
+daily_temp_min = getOpenMeteo(
+    api_param_latitude, api_value_latitude,
+    api_param_longitude, api_value_longitude,
+    api_param_start_date, api_value_start_date,
+    api_param_end_date, api_value_end_date,
+    api_param_type, api_value_type_temp_min
+)
+daily_temp_min_dates, daily_temp_min_values = stripOpenMeteo(
+    daily_temp_min, api_value_type_temp_min
+)
+monthly_temp_min = parseOpenMeteo(
+    daily_temp_min_dates,
+    daily_temp_min_values,
+    api_value_type_temp_min
+)
+
+# Honey yield prediction model.
+# Source:
+#   "The Impact of Precipitation and Temperature on Honey Yield in
+#   the United States." 2020. Auburn University. Hayes Kent Grogan.
+monthly_precipitation_values = list(monthly_precipitation.values())
+monthly_temp_max_values = list(monthly_temp_max.values())
+monthly_temp_min_values = list(monthly_temp_min.values())
+
+# It's possible to have the past two or just one months of data.
+# In that case, use an average of the existing value.
+if len(monthly_precipitation_values)==2:
+
+
+
+print(monthly_precipitation_values)
+print(monthly_temp_max_values)
+print(monthly_temp_min_values)
+
+honey_production_prediction = (
+    (60.596) +
+    (0.001 * monthly_precipitation_values[2]) +
+    (-0.001 * monthly_precipitation_values[1]) +
+    (0.056 * monthly_temp_min_values[2]) +
+    (0.027 * monthly_temp_min_values[1]) +
+    (-0.027 * monthly_temp_min_values[0]) +
+    (-0.034 * monthly_temp_max_values[2]) +
+    (0.012 * monthly_temp_max_values[1]) +
+    (0.032 * monthly_temp_max_values[0])
+)
+
+print(honey_production_prediction)
 
 # TODO: Implement Flask caching to improve performance and minimize API
 # calls to Open-Meteo.
