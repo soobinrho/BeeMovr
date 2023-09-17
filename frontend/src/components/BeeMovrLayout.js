@@ -8,8 +8,8 @@ class BeeMovrLayout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lat: 36.77271,
-      lng: -2.81361,
+      lat: 0,
+      lng: 0,
     };
   }
 
