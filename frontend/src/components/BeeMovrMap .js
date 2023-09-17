@@ -12,6 +12,7 @@ class BeeMovrMap extends Component {
       beeValue: null, // To store the value from the API
     };
   }
+
   componentDidMount() {
     mapboxgl.accessToken =
       'pk.eyJ1Ijoic2lrYXlsciIsImEiOiJjbG1tc29qNW4wbjM5Mm9wYjZkeTlnNTF6In0.WSjDXDdATCobQdLasaH0pw';
@@ -69,15 +70,23 @@ class BeeMovrMap extends Component {
 
           // Log the received beeValue for debugging
           console.log('Received beeValue:', data);
-
+          this.updateBeeValueBox(data.value); // Update the beeValue box
         })
         .catch((error) => {
           console.error('Error fetching bee value:', error);
         });
     };
 
+    // Update the beeValue box content
+    const updateBeeValueBox = (value) => {
+      const beeValueBox = document.getElementById('bee-value-box');
+      if (beeValueBox) {
+        beeValueBox.textContent = `Estimated Honey Production Value (lbs/colony): ${value}`;
+      }
+    };
+
     /**
-     * Gets latitude and longitude when marker is released from drag over the desired location. Then, the estimated honey yield is calculated.
+     * Gets latitude and longitude when the marker is released from drag over the desired location. Then, the estimated honey yield is calculated.
      **/
     const onDragEnd = () => {
       const lngLat = marker.getLngLat();
@@ -108,6 +117,10 @@ class BeeMovrMap extends Component {
     return (
       <div>
         <div id="map"></div>
+        <div id="bee-value-box" className="bee-value-box">
+          {this.state.beeValue &&
+            `Estimated Honey Production Value (lbs/colony): ${this.state.beeValue}`}
+        </div>
       </div>
     );
   }
