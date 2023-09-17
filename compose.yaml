@@ -1,0 +1,17 @@
+version: "3.3"
+services:
+  beemovr:
+    build:
+      context: ./docker
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - 80:3000
+    expose:
+      - 5000  # Used by Flask
+    # Using this for prototyping purposes.
+    # Replace this with proper process handling.
+    stop_grace_period: 0.5s
+
+# TODO: Create two separate services of frontend and backend
+# for better scaling. Simplified into one just for now.
