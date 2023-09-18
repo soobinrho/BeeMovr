@@ -8,13 +8,15 @@
   </b>
 </p>
 
-Google Maps, but for Beekeepers.
-We wanted to do something beneficial for bees.
-So, we started calling beekeepers around the whole country and asked them, "We want to help you save bees. What can we do for you? We can program."
+Google Maps, but for beekeepers.
+We called around 50 beekeepers all over the country and asked them, "We care about bees, and we want to help you save bees. Is there anything techy you guys need help with? We can program."
 
-Thanks to Keith Robert from The Valley Hive in California, we found that whenever beekeepers want to expand or are forced to move out - e.g. California drought - they need to find a good area to move into, areas in which colony survival rate and honey yield is the highest.
+One major problem, Keith Robert from The Valley Hive in California explained, was that beekeepers are sometimes forced to move out and relocate their bee hives due to a variety of reasons - e.g. California drought - but they can't just move into any area. Rather, they need to find an area where the survival rate and honey yield is the highest.
 
-This process involves manually going to Google Maps, getting precipitation data, and doing the math for each of the area.
+What's more -- what this means is that they have to manually go through Google Maps with precipitation data and do the math for each area to find a candidate.
+BeeMovr aims to solve this problem.
+We do the same thing that the beekeepers had to do for many years, but 
+doing the math for each of the area.
 Now, we can do it for you with our program, so thay you don't have to.
 We open-sourced the entire codebase with MIT license, as we promised Keith that we'll make this available for all beekeepers for free forever.
 
