@@ -9,7 +9,7 @@
 </p>
 
 Google Maps, but for beekeepers.
-We called around 50 beekeepers all over the country and asked them, "We care about bees, and we want to help you save bees. Is there anything techy we can help you guys with? We can program."
+We called around 50 beekeepers all over the country and asked them, "We care about bees, and we want to help you save bees. Is there any techy thing we can help you guys with? We can program."
 
 One major problem, Keith Robert from The Valley Hive in California explained, was that beekeepers are sometimes forced to move out and relocate their bee hives due to a variety of reasons - e.g. California drought - but they can't just move into any area. Rather, they need to find an area where the survival rate and honey yield is the highest.
 
