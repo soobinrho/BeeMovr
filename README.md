@@ -9,8 +9,14 @@
 </p>
 
 Google Maps, but for Beekeepers.
-Our project seeks to give beekeepers increased information about ideal pollinator conditions near them to improve efficiency and decrease uncertainty about insufficient honey production by using precipitation and temperature models.
-We allow beekeepers to see which area or region has the most amount of potential honey yield.
+We wanted to do something beneficial for bees.
+So, we started calling beekeepers around the whole country and asked them, "We want to help you save bees. What can we do for you? We can program."
+
+Thanks to Keith Robert from The Valley Hive in California, we found that whenever beekeepers want to expand or are forced to move out - e.g. California drought - they need to find a good area to move into, areas in which colony survival rate and honey yield is the highest.
+
+This process involves manually going to Google Maps, getting precipitation data, and doing the math for each of the area.
+Now, we can do it for you with our program, so thay you don't have to.
+We promised Keith that we'll make this available for all programmers for free. Thus, we open sourced the entire codebase with MIT license.
 
 <br>
 
@@ -23,7 +29,7 @@ We allow beekeepers to see which area or region has the most amount of potential
 
 ## Acknowledgement
 
-Special thakns to Beekeeper Keith Roberts from [The Valley Hive](https://www.thevalleyhive.com/) for being kind and patient to us when we called him out of nowhere and asked, "We want to help bees. What can we do for you to help you? We can program." Keith is the one who provided us with the original problem statement.
+Special thanks to Keith Robert from [The Valley Hive](https://www.thevalleyhive.com/), our favorite beekeeper.
 
 Also, our work would not have been possible without the paper "[The Impact of Precipitation and Temperature on Honey Yield in the United States](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf?sequence=2)" (Hayes Kent Grogan, 2020, Auburn University). The paper provided the BeeMovr team with the prediction formula for the relationship between monthly precipitation / maximum temperature / minimum temperature and honey yield, and this is exactly what made our core functionality possible.
 
