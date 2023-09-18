@@ -16,7 +16,7 @@ Thanks to Keith Robert from The Valley Hive in California, we found that wheneve
 
 This process involves manually going to Google Maps, getting precipitation data, and doing the math for each of the area.
 Now, we can do it for you with our program, so thay you don't have to.
-We promised Keith that we'll make this available for all programmers for free. Thus, we open sourced the entire codebase with MIT license.
+We open-sourced the entire codebase with MIT license, as we promised Keith that we'll make this available for all beekeepers for free forever.
 
 <br>
 
