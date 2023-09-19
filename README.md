@@ -13,7 +13,7 @@ We called around 50 beekeepers all over the country and asked them, "We care abo
 
 One major problem, Keith Robert from The Valley Hive in California explained, was that beekeepers are sometimes forced to move out and relocate their bee hives due to a variety of reasons - e.g. California drought - but they can't just move into any area. Rather, they need to find an area where the survival rate and honey yield is the highest.
 
-What's more -- because of this they have to manually go through Google Maps (or any other map) with precipitation data and do the math for each area to find a candidate to move into.
+What's more -- because of this they have to manually go through Google Maps (or any other map) with precipitation data and do the math for each area to find a good candidate.
 BeeMovr was therefore created to address this problem by automating the process and thereby making it more efficient and more accurate.
 BeeMovr allows the user to click any point on the map.
 It then pulls real-time weather data and calculates the maximum potential honey yield of the given point.
