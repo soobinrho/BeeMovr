@@ -16,7 +16,7 @@ One major problem, Keith Robert from The Valley Hive in California explained, wa
 What's more -- because of this they have to manually go through Google Maps (or any other map) with precipitation data and do the math for each area to find a good candidate.
 BeeMovr was therefore created to address this problem by automating the process and thereby making it more efficient and more accurate.
 BeeMovr allows the user to click any point on the map.
-It then pulls real-time weather data and calculates the maximum potential honey yield of the given point.
+It then pulls real-time weather data and calculates the maximum potential honey yield of any given point.
 
 <br>
 
