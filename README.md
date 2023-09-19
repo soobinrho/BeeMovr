@@ -2,11 +2,19 @@
 <br>
 
 <p align="center">
+  <img alt="Logo" src="https://github.com/ericfly02/BeeMovr/assets/19341857/d5d670f3-1dd9-4ab2-bd86-db38221804a1" width="500">
+</p>
+
+<br>
+
+<p align="center">
   <b>
     Source code for
     <a href="https://beemovr.com">Beemovr.com</a>
   </b>
 </p>
+
+<br>
 
 Google Maps, but for beekeepers.
 We wanted to do something beneficial for bees.
