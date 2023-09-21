@@ -48,23 +48,23 @@ Also, our work would not have been possible without the paper "[The Impact of Pr
 
 ## BeeMovr & IBM Call for Code
 
-***IBM AI services used***<br>
+***IBM AI Services We Used***<br>
 Work in progres...
 
-***Other IBM technology used***<br>
+***Other IBM Technology We Used***<br>
 Work in progres...
 
-***Solution architecture diagram***<br>
+***Solution Architecture Diagram***<br>
 Work in progres...
 
-***The issue we are hoping to solve***<br>
-Whenever beekeepers need to relocate their colonies, they need to find an area that increases the chance of survival of their colonies, amd that area should also provide the maximum potential for honey yield.
+***The Issue We are Addressing***<br>
+Whenever beekeepers need to relocate their colonies, they need to find an area that not only increases the chance of survival of their colonies, but also provide the maximum potential for honey yield.
 Until BeeMovr was created, it was a long process involving a lot of manual work on the beekeeper's end.
 
-***How our technology solution can help***<br>
+***How BeeMovr will Help Beekeepers***<br>
 BeeMovr makes this process faster and easier by algorithmically calculating the maximum honey yield of any given point on the map by ingesting real-time Open Meteo data (monthly total precipitation, maximum temperature, and minimum temperature) into Hayes Kent Grogan's honey yield prediction model.
 
-***Our idea***<br>
+***The Idea Behind BeeMovr***<br>
 Our project seeks to give beekeepers increased information about ideal pollinator conditions near them to improve efficiency and decrease uncertainty about insufficient honey production by using precipitation and temperature models.
 
 <!-- TODO: Delete this after Call for Code submission
