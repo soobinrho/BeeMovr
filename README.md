@@ -59,10 +59,10 @@ Work in progres...
 
 ***The issue we are hoping to solve***<br>
 Whenever beekeepers need to relocate their colonies, they need to find an area that increases the chance of survival as well as the maximum potential honey yield.
-Until BeeMovr was created, it was a long maunal process involving a lot of manual work.
+Until BeeMovr was created, it was a long process involving a lot of manual work on the beekeeper's end.
 
 ***How our technology solution can help***<br>
-BeeMovr makes this process faster and easier by algorithmically calculating the maximum honey yield of any given point on the map by ingesting real-time Open Meteo data (monthly total precipitation, maximum temperature, and minimum temperature) into Hayes Kent Grogan's honey yield prediction model formula.
+BeeMovr makes this process faster and easier by algorithmically calculating the maximum honey yield of any given point on the map by ingesting real-time Open Meteo data (monthly total precipitation, maximum temperature, and minimum temperature) into Hayes Kent Grogan's honey yield prediction model.
 
 ***Our idea***<br>
 Our project seeks to give beekeepers increased information about ideal pollinator conditions near them to improve efficiency and decrease uncertainty about insufficient honey production by using precipitation and temperature models.
