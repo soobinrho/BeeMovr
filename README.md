@@ -67,6 +67,14 @@ BeeMovr makes this process faster and easier by algorithmically calculating the 
 ***The Idea Behind BeeMovr***<br>
 Our project seeks to give beekeepers increased information about ideal pollinator conditions near them to improve efficiency and decrease uncertainty about insufficient honey production by using precipitation and temperature models.
 
+We focused on researching the most accurate model possible to predict colony survival rate and maximum potential honey yield.
+Currently, the map uses a simple linear regression with the factors of max and min temperatures and precipitation, but it would be possible to use combined data from sources such as USDA and NASS to begin a machine learning algorithm to improve the prediction model.
+
+Other ways to increase accuracy would be to include colony-specific demographic data in our prediction model, as that was found to be a statistically significant factor in Grogan’s paper.
+
+We promised our beekeeper, Keith Robert, that we'll open-source our project and make it available for all beekeepers.
+Our priority has been, and will always be to focus on helping our beekeepers.
+
 <!-- TODO: Delete this after Call for Code submission
 ☐ Link to publicly accessible code repository that contains your working code
 Link should be to a GitHub repository (or other source control system such as GitLab or Bitbucket) where the judges can examine and evaluate the source code built for your solution as well as a README containing all of the technology and solution descriptions for your project. You should use the Call for Code Project Sample template to create your team's repository. This template will help you deliver all required components of your submission. See the instructions below for "Setting up your project GitHub repository".
