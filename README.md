@@ -46,6 +46,61 @@ Also, our work would not have been possible without the paper "[The Impact of Pr
 
 <br>
 
+## BeeMovr & IBM Call for Code
+
+***IBM AI services used***<br>
+Work in progres...
+
+***Other IBM technology used***<br>
+Work in progres...
+
+***Solution architecture diagram***<br>
+Work in progres...
+
+***The issue we are hoping to solve***<br>
+Work in progres...
+
+***How our technology solution can help***<br>
+Work in progres...
+
+***Our idea***<br>
+Work in progres...
+
+***Project development roadmap***<br>
+Work in progres...
+
+<!-- TODO: Delete this after Call for Code submission
+☐ Link to publicly accessible code repository that contains your working code
+Link should be to a GitHub repository (or other source control system such as GitLab or Bitbucket) where the judges can examine and evaluate the source code built for your solution as well as a README containing all of the technology and solution descriptions for your project. You should use the Call for Code Project Sample template to create your team's repository. This template will help you deliver all required components of your submission. See the instructions below for "Setting up your project GitHub repository".
+
+☐ Link to a three-minute solution demo video (Public YouTube or Vimeo link)
+Record a demo of your solution, upload it to YouTube or Vimeo, and share the URL. Three minutes is the maximum length. Judges will not watch more than 3 minutes of your video. You can link to additional or longer versions from your source code repository. It is recommended that you use this video to briefly introduce the problem you are trying to solve, but also leave at least 90 seconds to demonstrate your solution’s interface, architecture, and code. Keep in mind that non-technical judges may rely on the video more than technical documentation.
+
+☐ Listing of all IBM AI services used in your solution code and description of how they were used
+List all IBM AI services used in your solution code. Provide details on where and how you used each IBM AI service to help judges review your implementation.
+Note: Complete project submissions must make use of one or more IBM AI services, and will receive a "2023 Call for Code Global Challenge — IBM AI Services" digital badge for doing so, after the close of the Round.
+
+☐ Listing of any other IBM technology used in your solution code and description of how it was used
+List any other IBM technology used in your solution and describe how each component was used. If you can provide links to exactly where these were used in your code, that would help the judges review your submission.
+
+☐ Solution architecture diagram (.pdf, .png)
+Create a graphic diagram that show the user experience flow of your solution and highlights how and where technology comes into the overall solution architecture. See the example provided in the Project Sample README template. Also include numbered steps below the image to describe the flow in words.
+
+☐ Brief description of "The issue we are hoping to solve" (2-3 sentences)
+This should be a short description, 2-3 sentences in length, of the specific sustainability problem your solution is meant to address.
+
+☐ Description of "How our technology solution can help" (approximately 10 words)
+This is where you will give a short description of your team's technology solution, in about 10 words.
+
+☐ Long description of your team’s solution (approximately 500 words)
+This is a longer description of your solution. In about 500 words, describe your solution in more detail. Include the real-world problem you identified, describe the technological solution you have created, and explain how it's an improvement over existing solutions. You can supply additional documentation in this source code repository that you link to as well.
+
+☐ Project development roadmap (.pdf, .png, .docx)
+Create a document or image that shows how mature your solution is today and how you would like to improve it in the future. This can include information on the business model, funding needs, and a sustainability plan. Here's an example from the 2018 Call for Code winner Project OWL: https://github.com/Call-for-Code/Project-Sample/blob/main/images/roadmap.jpg
+-->
+
+<br>
+
 ## 1. How to spin up a development server
 
 ***How to run***<br>
