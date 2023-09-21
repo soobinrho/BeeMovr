@@ -51,7 +51,7 @@ Also, our work would not have been possible without the paper "[The Impact of Pr
 ***IBM AI Services We Used***<br>
 Work in progres...
 
-***Other IBM Technology We Used***<br>
+***IBM Cloud Services We Used***<br>
 Work in progres...
 
 ***Solution Architecture Diagram***<br>
