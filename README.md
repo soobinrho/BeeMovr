@@ -58,7 +58,7 @@ Work in progres...
 Work in progres...
 
 ***The issue we are hoping to solve***<br>
-Whenever beekeepers need to relocate their colonies, they need to find an area that increases the chance of survival as well as the maximum potential honey yield.
+Whenever beekeepers need to relocate their colonies, they need to find an area that increases the chance of survival of their colonies, amd that area should also provide the maximum potential for honey yield.
 Until BeeMovr was created, it was a long process involving a lot of manual work on the beekeeper's end.
 
 ***How our technology solution can help***<br>
