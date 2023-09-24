@@ -11,6 +11,9 @@ yarn create next-app
 
 # Start a development server.
 yarn dev
+
+# Create optimized production build
+yarn build
 ```
 
 [1] https://news.ycombinator.com/item?id=37003910 <br>
