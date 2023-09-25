@@ -6,24 +6,21 @@
 // the ISO date format, which is yyyy-mm-dd.
 // Source:
 //   https://open-meteo.com/en/docs/historical-weather-api
-export interface paramsOpenMeteo {
-  api_url_base: string;
-  api_param_lat: string;
-  api_value_lat: string;
-  api_param_lng: string;
-  api_value_lng: string;
-  api_param_start_date: string;
-  api_value_start_date: string;
-  api_param_end_date: string;
-  api_value_end_date: string;
-  api_param_type: string;
-  api_value_type: string;
+export interface params_openMeteo {
+  api_lat: string | null;
+  api_lng: string | null;
+  api_type: string;
+}
+
+export interface types_latLng {
+  lat: string | null;
+  lng: string | null;
 }
 
 // --------------------------------------------------------------------
 // Open Meteo API response types.
 // --------------------------------------------------------------------
-export interface Forecast {
+export interface types_api_request {
   latitude: number;
   longitude: number;
   generationtime_ms: number;
@@ -45,37 +42,54 @@ export interface DailyUnits {
   precipitation_sum: string;
 }
 
-function fetchOpenMeteo(params: paramsOpenMeteo) {
+export function isValidLatLng(params: types_latLng): boolean {
+  if (
+    params.lat == null ||
+    params.lat === "" ||
+    isNaN(Number(params.lat)) ||
+    params.lng == null ||
+    params.lng === "" ||
+    isNaN(Number(params.lng))
+  ) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+export async function fetchOpenMeteo(params: params_openMeteo) {
   /**
    * Calls the Open Meteo API and returns the json object.
    */
+  let start_date = new Date();
+  let end_date = new Date();
+  start_date.setMonth(start_date.getMonth() - 3);
+  end_date.setMonth(end_date.getMonth() - 1);
+  const api_start_date = start_date.toISOString().split("T")[0];
+  const api_end_date = end_date.toISOString().split("T")[0];
+
   const api_url =
-    params.api_url_base +
-    "?" +
-    params.api_param_lat +
+    "https://archive-api.open-meteo.com/v1/archive?" +
+    "latitude" +
     "=" +
-    params.api_value_lat +
+    params.api_lat +
     "&" +
-    params.api_param_lng +
+    "longitude" +
     "=" +
-    params.api_value_lng +
+    params.api_lng +
     "&" +
-    params.api_param_start_date +
+    "start_date" +
     "=" +
-    params.api_value_start_date +
+    api_start_date +
     "&" +
-    params.api_param_end_date +
+    "end_date" +
     "=" +
-    params.api_value_end_date +
+    api_end_date +
     "&" +
-    params.api_param_type +
+    "daily" +
     "=" +
-    params.api_value_type;
-  return fetch(api_url).then((response) => {
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    } else {
-      return response.json();
-    }
-  });
+    params.api_type;
+
+  const api_response = await fetch(api_url, { cache: "force-cache" });
+  return await api_response.json();
 }

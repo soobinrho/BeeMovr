@@ -1,23 +1,23 @@
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
+import { isValidLatLng } from "../../weather/open-meteo-api";
 import { calculateHoneyYield } from "./calculate-honey-yield";
 
 export async function GET(request: NextRequest) {
   const queryParams = request.nextUrl.searchParams;
-  const honeyYield = calculateHoneyYield(
-    queryParams.get("lat"),
-    queryParams.get("lng")
-  );
+  const lat = queryParams.get("lat");
+  const lng = queryParams.get("lng");
+  if (!isValidLatLng({ lat: lat, lng: lng })) {
+    return NextResponse.json({
+      "honey-yield":
+        "[ERROR] The latitude and longitude values must be a valid number.",
+    });
+  }
 
-  // const res = await fetch('https://...' {
-  //     headers: {
-  //         'Content-Type': 'application/json'
-  //     }
-  // })
-  // const data = await res.json()
-  // return NextResponse.json({ data })
-  return NextResponse.json({ honeyYield: honeyYield });
+  const api_response = calculateHoneyYield({
+    lat: queryParams.get("lat"),
+    lng: queryParams.get("lng"),
+  });
+
+  return NextResponse.json({ "honey-yield": api_response });
 }
-
-// TODO: Use querying to get honey yield prediction values.
-// e.g. https://beemovr.com/v1/honey?precipitation=123&max-temp=12&min-temp=0
