@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 import {
   isValidLatLng,
+  isValidReferenceDate,
   fetchOpenMeteo,
   stripOpenMeteo,
   parseOpenMeteo,
@@ -12,16 +13,25 @@ export async function GET(request: NextRequest) {
    * Returns the precipitation data from Open Meteo.
    *
    * @remarks
-   * "Sum of daily precipitation (including rain, showers and snowfall)." (millimeters)
+   * Sum of daily precipitation (including rain, showers and snowfall). (millimeters)
+   * Source:
    *   https://open-meteo.com/en/docs/historical-weather-api
    */
+  const returnName = "precipitation";
   const queryParams = request.nextUrl.searchParams;
   const lat = queryParams.get("lat");
   const lng = queryParams.get("lng");
-  if (!isValidLatLng({ lat: lat, lng: lng })) {
+  const referenceDate = queryParams.get("reference-date");
+  if (!isValidLatLng({ api_lat: lat, api_lng: lng })) {
     return NextResponse.json({
-      precipitation:
-        "[ERROR] The latitude and longitude values must be a valid number.",
+      [returnName]:
+        "[ERROR] The latitude 'lat' and longitude 'lng' values must be a valid number.",
+    });
+  }
+  if (!isValidReferenceDate(referenceDate)) {
+    return NextResponse.json({
+      [returnName]:
+        "[ERROR] The reference date 'reference-date' must be in the form of YYYY-MM",
     });
   }
 
@@ -29,6 +39,7 @@ export async function GET(request: NextRequest) {
   const api_response = await fetchOpenMeteo({
     api_lat: lat,
     api_lng: lng,
+    api_referenceDate: referenceDate,
     api_type: api_type,
   });
 
@@ -36,4 +47,5 @@ export async function GET(request: NextRequest) {
   const parsed_api_response = parseOpenMeteo(stripped_api_response, api_type);
 
   return NextResponse.json(parsed_api_response);
-  return NextResponse.json({ "min-temp": api_response });
+  return NextResponse.json({ [returnName]: api_response });
+}

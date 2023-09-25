@@ -6,18 +6,25 @@
 // the ISO date format, which is yyyy-mm-dd.
 // Source:
 //   https://open-meteo.com/en/docs/historical-weather-api
-export interface params_openMeteo {
+export interface types_OpenMeteo {
   api_lat: string | null;
   api_lng: string | null;
+  api_referenceDate: string | null;
   api_type: string;
 }
 
-export interface types_latLng {
-  lat: string | null;
-  lng: string | null;
+export interface types_latLngReferenceDate {
+  api_lat: string | null;
+  api_lng: string | null;
+  api_referenceDate: string | null;
 }
 
-export interface types_api_request {
+export interface types_latLng {
+  api_lat: string | null;
+  api_lng: string | null;
+}
+
+export interface types_api_response {
   latitude: number;
   longitude: number;
   generationtime_ms: number;
@@ -26,17 +33,20 @@ export interface types_api_request {
   timezone_abbreviation: string;
   elevation: number;
   daily_units: DailyUnits;
-  daily: Daily;
+  daily: any;
 }
 
-export async function fetchOpenMeteo(params: params_openMeteo) {
+export async function fetchOpenMeteo(params: types_OpenMeteo) {
   /**
    * Calls the Open Meteo API and returns the json object.
    */
-  let start_date = new Date();
-  let end_date = new Date();
+  let start_date =
+    (params.api_referenceDate && new Date(params.api_referenceDate)) ||
+    new Date();
+  let end_date =
+    (params.api_referenceDate && new Date(params.api_referenceDate)) ||
+    new Date();
   start_date.setMonth(start_date.getMonth() - 3);
-  end_date.setMonth(end_date.getMonth() - 1);
   const api_start_date = start_date.toISOString().split("T")[0];
   const api_end_date = end_date.toISOString().split("T")[0];
 
@@ -95,19 +105,25 @@ export function parseOpenMeteo(
    * have to go through some processing.
    */
   if (api_type === "temperature_2m_max") {
+    // TODO:
+    return "todo";
   } else if (api_type === "temperature_2m_min") {
+    return "todo";
   } else if (api_type === "precipitation_sum") {
+    return "todo";
+  } else {
+    return "todo";
   }
 }
 
 export function isValidLatLng(params: types_latLng): boolean {
   if (
-    params.lat == null ||
-    params.lat === "" ||
-    isNaN(Number(params.lat)) ||
-    params.lng == null ||
-    params.lng === "" ||
-    isNaN(Number(params.lng))
+    params.api_lat == null ||
+    params.api_lat === "" ||
+    isNaN(Number(params.api_lat)) ||
+    params.api_lng == null ||
+    params.api_lng === "" ||
+    isNaN(Number(params.api_lng))
   ) {
     return false;
   } else {
@@ -115,16 +131,12 @@ export function isValidLatLng(params: types_latLng): boolean {
   }
 }
 
-export interface types_api_response {
-  latitude: number;
-  longitude: number;
-  generationtime_ms: number;
-  utc_offset_seconds: number;
-  timezone: string;
-  timezone_abbreviation: string;
-  elevation: number;
-  daily_units: DailyUnits;
-  daily: any;
+export function isValidReferenceDate(referenceDate: string | null): boolean {
+  if (referenceDate == null) {
+    return false;
+  } else {
+    return /\d{4}-\d{2}/.test(referenceDate);
+  }
 }
 
 // --------------------------------------------------------------------
