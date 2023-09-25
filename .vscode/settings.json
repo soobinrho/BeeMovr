@@ -1,3 +1,9 @@
 {
-  "cSpell.words": ["everytime", "generationtime", "Grogan", "Meteo"]
+  "cSpell.words": [
+    "everytime",
+    "generationtime",
+    "Grogan",
+    "Meteo"
+  ],
+  "editor.formatOnSave": true
 }
