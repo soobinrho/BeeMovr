@@ -3,6 +3,14 @@ import { NextRequest } from "next/server";
 import { isValidLatLng, fetchOpenMeteo } from "../open-meteo-api";
 
 export async function GET(request: NextRequest) {
+  /**
+   * Returns the minimum temperature data from Open Meteo.
+   *
+   * @remarks
+   * "Minimum daily air temperature at 2 meters above ground."
+   * Source:
+   *   https://open-meteo.com/en/docs/historical-weather-api
+   */
   const queryParams = request.nextUrl.searchParams;
   const lat = queryParams.get("lat");
   const lng = queryParams.get("lng");
