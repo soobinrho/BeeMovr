@@ -17,9 +17,6 @@ export interface types_latLng {
   lng: string | null;
 }
 
-// --------------------------------------------------------------------
-// Open Meteo API response types.
-// --------------------------------------------------------------------
 export interface types_api_request {
   latitude: number;
   longitude: number;
@@ -30,31 +27,6 @@ export interface types_api_request {
   elevation: number;
   daily_units: DailyUnits;
   daily: Daily;
-}
-
-export interface Daily {
-  time: string[];
-  precipitation_sum: number[];
-}
-
-export interface DailyUnits {
-  time: string;
-  precipitation_sum: string;
-}
-
-export function isValidLatLng(params: types_latLng): boolean {
-  if (
-    params.lat == null ||
-    params.lat === "" ||
-    isNaN(Number(params.lat)) ||
-    params.lng == null ||
-    params.lng === "" ||
-    isNaN(Number(params.lng))
-  ) {
-    return false;
-  } else {
-    return true;
-  }
 }
 
 export async function fetchOpenMeteo(params: params_openMeteo) {
@@ -92,4 +64,152 @@ export async function fetchOpenMeteo(params: params_openMeteo) {
 
   const api_response = await fetch(api_url, { cache: "force-cache" });
   return await api_response.json();
+}
+
+export function stripOpenMeteo(
+  api_response: types_api_response,
+  api_type: string
+): object {
+  /**
+   * Discards unnecessary fields and returns only the relevant fields.
+   *
+   * @remarks
+   * Now, all of these precipitation and max / min temperature values
+   * are obtained by calling API's everytime. In the future roadmap,
+   * however, we plan to implement PostGIS to store all of these.
+   * This way, we can minimize API calls and improve performance.
+   */
+  return [api_response.daily.time, api_response.daily.api_type];
+}
+
+export function parseOpenMeteo(
+  stripped_api_response: object,
+  api_type: string
+): string {
+  /**
+   * Parses and calculates the required values.
+   *
+   * @remarks
+   * Since the data from Open Meteo are daily values, and since the
+   * honey yield prediction model requires monthly values, the data
+   * have to go through some processing.
+   */
+  if (api_type === "temperature_2m_max") {
+  } else if (api_type === "temperature_2m_min") {
+  } else if (api_type === "precipitation_sum") {
+  }
+}
+
+export function isValidLatLng(params: types_latLng): boolean {
+  if (
+    params.lat == null ||
+    params.lat === "" ||
+    isNaN(Number(params.lat)) ||
+    params.lng == null ||
+    params.lng === "" ||
+    isNaN(Number(params.lng))
+  ) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+export interface types_api_response {
+  latitude: number;
+  longitude: number;
+  generationtime_ms: number;
+  utc_offset_seconds: number;
+  timezone: string;
+  timezone_abbreviation: string;
+  elevation: number;
+  daily_units: DailyUnits;
+  daily: any;
+}
+
+// --------------------------------------------------------------------
+// Open Meteo API response types for max-temp.
+// --------------------------------------------------------------------
+export interface MaxTemp {
+  "max-temp": MaxTempClass;
+}
+
+export interface MaxTempClass {
+  latitude: number;
+  longitude: number;
+  generationtime_ms: number;
+  utc_offset_seconds: number;
+  timezone: string;
+  timezone_abbreviation: string;
+  elevation: number;
+  daily_units: DailyUnits;
+  daily: Daily;
+}
+
+export interface Daily {
+  time: string[];
+  temperature_2m_max: number[];
+}
+
+export interface DailyUnits {
+  time: string;
+  temperature_2m_max: string;
+}
+
+// --------------------------------------------------------------------
+// Open Meteo API response types for min-temp.
+// --------------------------------------------------------------------
+export interface MinTemp {
+  "min-temp": MinTempClass;
+}
+
+export interface MinTempClass {
+  latitude: number;
+  longitude: number;
+  generationtime_ms: number;
+  utc_offset_seconds: number;
+  timezone: string;
+  timezone_abbreviation: string;
+  elevation: number;
+  daily_units: DailyUnits;
+  daily: Daily;
+}
+
+export interface Daily {
+  time: string[];
+  temperature_2m_min: number[];
+}
+
+export interface DailyUnits {
+  time: string;
+  temperature_2m_min: string;
+}
+
+// --------------------------------------------------------------------
+// Open Meteo API response types for precipitation.
+// --------------------------------------------------------------------
+export interface Precipitation {
+  precipitation: PrecipitationClass;
+}
+
+export interface PrecipitationClass {
+  latitude: number;
+  longitude: number;
+  generationtime_ms: number;
+  utc_offset_seconds: number;
+  timezone: string;
+  timezone_abbreviation: string;
+  elevation: number;
+  daily_units: DailyUnits;
+  daily: Daily;
+}
+
+export interface Daily {
+  time: string[];
+  precipitation_sum: number[];
+}
+
+export interface DailyUnits {
+  time: string;
+  precipitation_sum: string;
 }

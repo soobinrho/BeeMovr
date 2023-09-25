@@ -1,13 +1,18 @@
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
-import { isValidLatLng, fetchOpenMeteo } from "../open-meteo-api";
+import {
+  isValidLatLng,
+  fetchOpenMeteo,
+  stripOpenMeteo,
+  parseOpenMeteo,
+} from "../open-meteo-api";
 
 export async function GET(request: NextRequest) {
   /**
    * Returns the precipitation data from Open Meteo.
    *
    * @remarks
-   * "Sum of daily precipitation (including rain, showers and snowfall)."
+   * "Sum of daily precipitation (including rain, showers and snowfall)." (millimeters)
    *   https://open-meteo.com/en/docs/historical-weather-api
    */
   const queryParams = request.nextUrl.searchParams;
@@ -20,11 +25,15 @@ export async function GET(request: NextRequest) {
     });
   }
 
+  const api_type = "precipitation_sum";
   const api_response = await fetchOpenMeteo({
     api_lat: lat,
     api_lng: lng,
-    api_type: "precipitation_sum",
+    api_type: api_type,
   });
 
-  return NextResponse.json({ precipitation: api_response });
-}
+  const stripped_api_response = stripOpenMeteo(api_response, api_type);
+  const parsed_api_response = parseOpenMeteo(stripped_api_response, api_type);
+
+  return NextResponse.json(parsed_api_response);
+  return NextResponse.json({ "min-temp": api_response });

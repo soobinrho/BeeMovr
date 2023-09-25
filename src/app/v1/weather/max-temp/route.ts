@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
    * Returns the maximum temperature data from Open Meteo.
    *
    * @remarks
-   * "Maximum ... daily air temperature at 2 meters above ground."
+   * "Maximum ... daily air temperature at 2 meters above ground." (Celsius)
    * Source:
    *   https://open-meteo.com/en/docs/historical-weather-api
    */
@@ -21,10 +21,11 @@ export async function GET(request: NextRequest) {
     });
   }
 
+  const api_type = "temperature_2m_max";
   const api_response = await fetchOpenMeteo({
     api_lat: lat,
     api_lng: lng,
-    api_type: "temperature_2m_max",
+    api_type: api_type,
   });
 
   return NextResponse.json({ "max-temp": api_response });
