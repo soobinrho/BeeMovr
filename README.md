@@ -17,17 +17,12 @@
 <br>
 
 Google Maps, but for beekeepers.
-We wanted to do something beneficial for bees.
-So, we found 50 beekeepers by googling; called them; and asked them, "We want to help you save bees. What can we do for you? We can program."
+We called 50 beekeepers by googling and asked them, "We want to help you save bees. What can we do for you? We can program."
 
-So, the problem that Keith Robert from The Valley Hive in California had is that whenever you have to expand your bee colonies or are forced to move out - e.g. California drought - he needs to find a good area to move into.
-He does it by manually going to Google Maps, getting precipitation data, and doing the math for each of the area himself.
+2023-02-23, 1:14PM is when it all of this began, with an one-hour call with Keith Robert from the Valley Hive in California. He explained that beekeepers need a way to see which area has the highest nectar availability because they're sometimes forced to relocate their beehives - e.g. California drought - and they can't just move into any location. Beekeepers currently have to go to Google Maps; find the precipitation data; and do the math themselves to figure out which area has the best chance for their colonies. He explained, "creating a map that can calculate the nectar availability of any given region will help beekeepers a lot."
 
-We created BeeMovr to address this problem.
-Basically, we do the same things that the beekeepers had to do, but more efficiently and more accurately.
-BeeMovr allows the user (beekeepers) to click any point on the map, and then pulls real-time weather data and calculates the maximum potential honey yield of any given point.
-
-If you're a beekeeper and want any new feature or modifications to the existing features, please email our co-founder Soobin Rho &lt;soobinrho@nsustain.com&gt;. We'll reply as soon as possible!
+That's why we created BeeMovr. 
+If you're a beekeeper and want any new feature or modifications to the existing features, please email our co-founder Soobin Rho &lt;soobinrho@nsustain.com&gt;. We'll reply as promptly as possible, and we'll do our best to make it happen (beware we're just volunteers!).
 
 <br>
 
