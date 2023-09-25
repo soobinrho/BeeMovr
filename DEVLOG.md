@@ -12,8 +12,17 @@ yarn create next-app
 # Start a development server.
 yarn dev
 
-# Create optimized production build
+# Create optimized production build.
 yarn build
+
+# Install ts-node to run TypeScript files mainly for testing purposes.
+yarn global add ts-node
+
+# Run a TypeScript file.
+ts-node <filename>
+
+# Add a development dependency.
+yarn add <package name> --dev
 ```
 
-Today, I read [Next.js routing fundamentals](https://nextjs.org/docs/app/building-your-application/routing), [REST API URI naming conventions](https://restfulapi.net/resource-naming/), ...
+Today, I read [Next.js routing fundamentals](https://nextjs.org/docs/app/building-your-application/routing), [REST API URI naming conventions](https://restfulapi.net/resource-naming/), [TSDoc specifications](https://tsdoc.org/), ...
