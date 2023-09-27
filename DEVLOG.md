@@ -133,6 +133,8 @@ I tried to get a deeper understanding of how Next.js works by reading:
 - [How rendering in Next.js works](https://nextjs.org/docs/app/building-your-application/rendering)
 - [API Route Handling, Response Headers, and CORS Headers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers)
 - [For fetching data from the client side, use SWR](https://nextjs.org/docs/app/building-your-application/deploying/static-exports#client-components)
+- [Next.js has a built-in font optimization](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts)
+- [For importing external libraries (in our case, it's Mapbox), use next/script](https://nextjs.org/docs/pages/building-your-application/optimizing/scripts)
 
 After that, I read about the specifics of how the actual code can look like:
 - [Client Components](https://nextjs.org/docs/app/building-your-application/rendering/client-components)
@@ -143,12 +145,15 @@ Plus, I read about meta data generation functions that will greatly improve SEO:
 - [sitemap.ts](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap#generate-a-sitemap)
 - [robots.ts](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/robots#generate-a-robots-file)
 - [Open Graph protocol support](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image#generate-images-using-code-js-ts-tsx)
+- [The 404 page and the 500 page](https://nextjs.org/docs/pages/building-your-application/routing/custom-error#customizing-the-404-page)
 
 Also, "to reduce the Client JavaScript bundle size, we recommend moving Client Components down your component tree." If a child component doesn't ready have a `'use client'` directive, create a separate `.tsx` fole wrapping around that component with the `'use client'` directive. [[Source](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#moving-client-components-down-the-tree)]
 
 `yarn build` (which by the way is short for `yarn run build` creates optimized deployment files:
 - [Next.js build directory overview](https://nextjs.org/docs/pages/building-your-application/deploying)
+- [SIGTERM handling in Next.js](https://nextjs.org/docs/pages/building-your-application/deploying#manual-graceful-shutdowns)
 - [How to deploy with `yarn run build` and `yarn run start`](https://nextjs.org/docs/pages/building-your-application/deploying#nodejs-server)
+- [Next.js production Dockerfile example](https://github.com/vercel/next.js/tree/canary/examples/with-docker#in-existing-projects)
 
 One remaining question I have is, since Next.js supports GET API routing, can we export BeeMovr with static build?
 This will have the advantage of not having to rent a server.
@@ -156,5 +161,10 @@ Services like GitHub Pages will be able to host our web app without any server c
 This will require experimentation.
 Let's keep in mind future roadmap includes implementation of geospatial database for more extensive functionality.
 We'll see...
+
+For security, I read:
+- [Content-Security-Policy HTTP response header](https://csp.withgoogle.com/docs/index.html)
+- [A Dev.to post on how to set up the CSP header](https://dev.to/snaka/securing-your-nextjs-application-with-strict-csp-4lie)
+- [Example code for CSP](https://nextjs.org/docs/pages/building-your-application/configuring/content-security-policy)
 
 -> "If you need to read dynamic values from the incoming request, you cannot use a static export." [[Source](https://nextjs.org/docs/app/building-your-application/deploying/static-exports#route-handlers)] So, never mind. We'll use a regular build instead.
