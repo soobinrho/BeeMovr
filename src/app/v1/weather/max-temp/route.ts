@@ -12,7 +12,7 @@ export async function GET(request: NextRequest) {
    *   https://open-meteo.com/en/docs/historical-weather-api
    */
   const api_type = "temperature_2m_max";
-  const returnName = "max-temp";
-  const parsed_api_response = await getWeather(request, api_type, returnName);
+  const api_response_key = "max-temp";
+  const parsed_api_response = await getWeather(request, api_type, api_response_key);
   return NextResponse.json(parsed_api_response);
 }

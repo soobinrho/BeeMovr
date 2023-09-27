@@ -31,24 +31,25 @@ export async function GET(request: NextRequest) {
   }
 
   const api_type_precipitation = "precipitation_sum";
-  const returnName_precipitation = "precipitation";
+  const api_response_key_precipitation = "precipitation";
   const api_type_max_temp = "temperature_2m_max";
-  const returnName_max_temp = "max-temp";
+  const api_response_key_max_temp = "max-temp";
   const api_type_min_temp = "temperature_2m_max";
-  const returnName_min_temp = "max-temp";
+  const api_response_key_min_temp = "max-temp";
+
   const precipitation = await getWeather(
     request,
     api_type_precipitation,
-    returnName_precipitation
+    api_response_key_precipitation
   );
   const max_temp = await getWeather(
     request,
     api_type_precipitation,
-    returnName_precipitation
+    api_response_key_precipitation
   );
   const min_temp = await getWeather(
     request,
     api_type_precipitation,
-    returnName_precipitation
+    api_response_key_precipitation
   );
 }

@@ -92,8 +92,15 @@ The MVP was good and all, but we decided to [throw away the first version](https
 Immediate todos I have to do right now are: finish recreating BeeMovr with Next.js; read Nginx documentation to set up the nginx.conf; and containerize with Docker and deploy with Docker Compose.
 
 ```bash
+#
+# Workflows I find using a lot
+#
+
 # Initialize Next.js
 yarn create next-app
+
+# Install all dependencies.
+yarn install
 
 # Start a development server.
 yarn dev

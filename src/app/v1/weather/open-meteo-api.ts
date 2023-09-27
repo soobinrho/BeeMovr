@@ -42,17 +42,17 @@ export interface types_api_response {
 export async function getWeather(
   request: NextRequest,
   api_type: string,
-  returnName: string
-): Promise<string> {
+  api_response_key: string
+): Promise<{[api_response_key: string]: string}> {
   const queryParams = request.nextUrl.searchParams;
   const lat = queryParams.get("lat");
   const lng = queryParams.get("lng");
   const referenceDate = queryParams.get("reference-date");
   if (!isValidLatLng({ api_lat: lat, api_lng: lng })) {
-    return "[ERROR] The latitude 'lat' and longitude 'lng' values must be a valid number.";
+    return {[api_response_key]: "[ERROR] The latitude 'lat' and longitude 'lng' values must be a valid number."};
   }
   if (!isValidReferenceDate(referenceDate)) {
-    return "[ERROR] The reference date 'reference-date' must be in the form of YYYY-MM";
+    return {[api_response_key]: "[ERROR] The reference date 'reference-date' must be in the form of YYYY-MM"};
   }
 
   const api_response = await fetchOpenMeteo({
@@ -69,7 +69,7 @@ export async function getWeather(
     api_type
   );
 
-  return parsed_api_response;
+  return {[api_response_key]: parsed_api_response};
 }
 
 export async function fetchOpenMeteo(params: types_OpenMeteo) {
