@@ -46,7 +46,7 @@ And yes, he built the majority of our MVP during the 48 hour of HackMIT, so he p
 <br>
 
 **2023-09-16 Jasper, Schaler, and Soobin** <br>
-Schaler and I were waiting patinetly at the MIT atheletic center for the HackMIT to begin.
+Schaler and I were waiting patiently at the MIT athletic center for the HackMIT to begin.
 It was going to start at 10AM, and it was around 9AM.
 I was making conversation with everyone around me, and Jasper caught my eye.
 He has done really cool stuff with robotic engineering.
@@ -95,6 +95,10 @@ Immediate todos I have to do right now are: finish recreating BeeMovr with Next.
 #
 # Workflows I find using a lot
 #
+
+# Open VS Code in the project directory.
+cd BeeMovr
+code .
 
 # Initialize Next.js
 yarn create next-app
