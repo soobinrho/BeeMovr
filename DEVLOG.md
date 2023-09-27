@@ -146,12 +146,15 @@ Plus, I read about meta data generation functions that will greatly improve SEO:
 
 Also, "to reduce the Client JavaScript bundle size, we recommend moving Client Components down your component tree." If a child component doesn't ready have a `'use client'` directive, create a separate `.tsx` fole wrapping around that component with the `'use client'` directive. [[Source](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#moving-client-components-down-the-tree)]
 
-`yarn build` creates optimized deployment files:
-- [Optimized files in a Next.js build](https://nextjs.org/docs/pages/building-your-application/deploying)
+`yarn build` (which by the way is short for `yarn run build` creates optimized deployment files:
+- [Next.js build directory overview](https://nextjs.org/docs/pages/building-your-application/deploying)
+- [How to deploy with `yarn run build` and `yarn run start`](https://nextjs.org/docs/pages/building-your-application/deploying#nodejs-server)
 
-One remaining question I have is, since Next.js supports [GET API routing](https://nextjs.org/docs/app/building-your-application/deploying/static-exports#route-handlers), can we export BeeMovr with static build?
+One remaining question I have is, since Next.js supports GET API routing, can we export BeeMovr with static build?
 This will have the advantage of not having to rent a server.
 Services like GitHub Pages will be able to host our web app without any server cost if so.
 This will require experimentation.
 Let's keep in mind future roadmap includes implementation of geospatial database for more extensive functionality.
 We'll see...
+
+-> "If you need to read dynamic values from the incoming request, you cannot use a static export." [[Source](https://nextjs.org/docs/app/building-your-application/deploying/static-exports#route-handlers)] So, never mind. We'll use a regular build instead.
