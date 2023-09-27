@@ -162,6 +162,7 @@ Also, "to reduce the Client JavaScript bundle size, we recommend moving Client C
 - [SIGTERM handling in Next.js](https://nextjs.org/docs/pages/building-your-application/deploying#manual-graceful-shutdowns)
 - [How to deploy with `yarn run build` and `yarn run start`](https://nextjs.org/docs/pages/building-your-application/deploying#nodejs-server)
 - [Next.js production Dockerfile example](https://github.com/vercel/next.js/tree/canary/examples/with-docker#in-existing-projects)
+- [Nginx as reverse proxy for Node](https://betterstack.com/community/guides/scaling-nodejs/nodejs-reverse-proxy-nginx/)
 
 One remaining question I have is, since Next.js supports GET API routing, can we export BeeMovr with static build?
 This will have the advantage of not having to rent a server.
