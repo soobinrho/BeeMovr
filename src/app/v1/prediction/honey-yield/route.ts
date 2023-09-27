@@ -1,13 +1,11 @@
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
+import { getWeather } from "../../weather/open-meteo-api";
+import { calculateHoneyYield } from "./calculate-honey-yield";
 import {
   isValidLatLng,
   isValidReferenceDate,
-  fetchOpenMeteo,
-  stripOpenMeteo,
-  parseOpenMeteo,
 } from "../../weather/open-meteo-api";
-import { calculateHoneyYield } from "./calculate-honey-yield";
 
 export async function GET(request: NextRequest) {
   /**
@@ -21,29 +19,36 @@ export async function GET(request: NextRequest) {
    * Source:
    *   https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf
    */
-  const returnName = "honey-yield";
   const queryParams = request.nextUrl.searchParams;
   const lat = queryParams.get("lat");
   const lng = queryParams.get("lng");
   const referenceDate = queryParams.get("reference-date");
   if (!isValidLatLng({ api_lat: lat, api_lng: lng })) {
-    return NextResponse.json({
-      [returnName]:
-        "[ERROR] The latitude 'lat' and longitude 'lng' values must be a valid number.",
-    });
+    // return "[ERROR] The latitude 'lat' and longitude 'lng' values must be a valid number.";
   }
   if (!isValidReferenceDate(referenceDate)) {
-    return NextResponse.json({
-      [returnName]:
-        "[ERROR] The reference date 'reference-date' must be in the form of YYYY-MM",
-    });
+    // return "[ERROR] The reference date 'reference-date' must be in the form of YYYY-MM";
   }
 
-  const api_response = calculateHoneyYield({
-    api_lat: lat,
-    api_lng: lng,
-    api_referenceDate: referenceDate,
-  });
-
-  return NextResponse.json({ [returnName]: api_response });
+  const api_type_precipitation = "precipitation_sum";
+  const returnName_precipitation = "precipitation";
+  const api_type_max_temp = "temperature_2m_max";
+  const returnName_max_temp = "max-temp";
+  const api_type_min_temp = "temperature_2m_max";
+  const returnName_min_temp = "max-temp";
+  const precipitation = await getWeather(
+    request,
+    api_type_precipitation,
+    returnName_precipitation
+  );
+  const max_temp = await getWeather(
+    request,
+    api_type_precipitation,
+    returnName_precipitation
+  );
+  const min_temp = await getWeather(
+    request,
+    api_type_precipitation,
+    returnName_precipitation
+  );
 }

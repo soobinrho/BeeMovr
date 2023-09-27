@@ -1,7 +1,5 @@
 import {
-  params_openMeteo,
-  types_latLng,
-  isValidLatLng,
+  getWeather,
   types_latLngReferenceDate,
 } from "../../weather/open-meteo-api";
 
