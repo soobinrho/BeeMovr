@@ -1,3 +1,6 @@
+import { NextResponse } from "next/server";
+import { NextRequest } from "next/server";
+
 // --------------------------------------------------------------------
 // Open Meteo API parameters.
 // --------------------------------------------------------------------
@@ -34,6 +37,39 @@ export interface types_api_response {
   elevation: number;
   daily_units: DailyUnits;
   daily: any;
+}
+
+export async function getWeather(
+  request: NextRequest,
+  api_type: string,
+  returnName: string
+): Promise<string> {
+  const queryParams = request.nextUrl.searchParams;
+  const lat = queryParams.get("lat");
+  const lng = queryParams.get("lng");
+  const referenceDate = queryParams.get("reference-date");
+  if (!isValidLatLng({ api_lat: lat, api_lng: lng })) {
+    return "[ERROR] The latitude 'lat' and longitude 'lng' values must be a valid number.";
+  }
+  if (!isValidReferenceDate(referenceDate)) {
+    return "[ERROR] The reference date 'reference-date' must be in the form of YYYY-MM";
+  }
+
+  const api_response = await fetchOpenMeteo({
+    api_lat: lat,
+    api_lng: lng,
+    api_referenceDate: referenceDate,
+    api_type: api_type,
+  });
+
+  const [stripped_api_response_time, stripped_api_response_value] =
+    stripOpenMeteo(api_response, api_type);
+  const parsed_api_response = parseOpenMeteo(
+    [stripped_api_response_time, stripped_api_response_value],
+    api_type
+  );
+
+  return parsed_api_response;
 }
 
 export async function fetchOpenMeteo(params: types_OpenMeteo) {
