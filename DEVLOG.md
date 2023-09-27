@@ -1,6 +1,7 @@
 ## Dev log
 
-**2023-02-23 Soobin** <br>
+**2023-02-23 Soobin**
+
 All of this began because of helplessness in a way.
 We wanted to help the environment in any way we can because - well, you know - the earth doesn't seem to be doing too well.
 We really wanted our future generations to be able to live.
@@ -18,7 +19,8 @@ He explained, "creating a map that can calculate the nectar availability of any 
 
 <br>
 
-**2023-07-31 Soobin and Schaler** <br>
+**2023-07-31 Soobin and Schaler**
+
 "[HackMIT] Welcome to HackMIT 2023! 🎈🎉"
 Both Schaler and I (Soobin) got into HackMIT.
 We decided this is the perfect time to create the beekeeper's map to address the problem Keith explained to us a few months ago.
@@ -28,7 +30,7 @@ We'll license it with MIT License, since we'll create it at HackMIT hahaha
 
 <br>
 
-**2023-08-21 Eric and Soobin** <br>
+**2023-08-21 Eric and Soobin**
 
 ```
 Hi Soobin,
@@ -45,7 +47,8 @@ And yes, he built the majority of our MVP during the 48 hour of HackMIT, so he p
 
 <br>
 
-**2023-09-16 Jasper, Schaler, and Soobin** <br>
+**2023-09-16 Jasper, Schaler, and Soobin**
+
 Schaler and I were waiting patiently at the MIT athletic center for the HackMIT to begin.
 It was going to start at 10AM, and it was around 9AM.
 I was making conversation with everyone around me, and Jasper caught my eye.
@@ -57,7 +60,8 @@ Schaler, Eric, Jasper, and I, all of us turn out to have the best team chemistry
 
 <br>
 
-**2023-09-17 Eric, Jasper, Schaler, and Soobin** <br>
+**2023-09-17 Eric, Jasper, Schaler, and Soobin**
+
 We worked hard for the weekend-long hackathon.
 We worked on our project, which by the way we named BeeMovr, until 1AM and continued til 5PM the next day.
 We won Grand Prize 3rd Prize.
@@ -86,7 +90,8 @@ Keith
 
 <br>
 
-**2023-09-24 Soobin** <br>
+**2023-09-24 Soobin**
+
 The MVP was good and all, but we decided to [throw away the first version](https://news.ycombinator.com/item?id=37003910) of BeeMovr and recreate.
 [Leigh Halliday's YouTube video on Next.js and Mapbox](https://youtu.be/sZfUXVSor-k?si=AFo9qOFzs4eH98fP) was incredibly helpful.
 Immediate todos I have to do right now are: finish recreating BeeMovr with Next.js; read Nginx documentation to set up the nginx.conf; and containerize with Docker and deploy with Docker Compose.
@@ -126,7 +131,7 @@ Today, I read [Next.js routing fundamentals](https://nextjs.org/docs/app/buildin
 
 <br>
 
-**2023-09-26 Soobin** <br>
+**2023-09-26 Soobin**
 
 I tried to get a deeper understanding of how Next.js works by reading:
 - [Don't be tempted to reach for an internal API route](https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props#getserversideprops-or-api-routes)
@@ -143,7 +148,7 @@ After that, I read about the specifics of how the actual code can look like:
 
 Plus, I read about meta data generation functions that will greatly improve SEO:
 - [metadata object](https://nextjs.org/docs/app/api-reference/functions/generate-metadata#the-metadata-object)
-- [metaData base URL](https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase)
+- [metaData base URL and `canonical: '/'`](https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase)
 - [sitemap.ts](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap#generate-a-sitemap)
 - [robots.ts](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/robots#generate-a-robots-file)
 - [Open Graph protocol support](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image#generate-images-using-code-js-ts-tsx)
