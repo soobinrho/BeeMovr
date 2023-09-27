@@ -142,10 +142,13 @@ After that, I read about the specifics of how the actual code can look like:
 - [Patterns for compositing client components and server components](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns)
 
 Plus, I read about meta data generation functions that will greatly improve SEO:
+- [metadata object](https://nextjs.org/docs/app/api-reference/functions/generate-metadata#the-metadata-object)
+- [metaData base URL](https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase)
 - [sitemap.ts](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap#generate-a-sitemap)
 - [robots.ts](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/robots#generate-a-robots-file)
 - [Open Graph protocol support](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image#generate-images-using-code-js-ts-tsx)
 - [The 404 page and the 500 page](https://nextjs.org/docs/pages/building-your-application/routing/custom-error#customizing-the-404-page)
+- [loading.ts](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming)
 
 Also, "to reduce the Client JavaScript bundle size, we recommend moving Client Components down your component tree." If a child component doesn't ready have a `'use client'` directive, create a separate `.tsx` fole wrapping around that component with the `'use client'` directive. [[Source](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#moving-client-components-down-the-tree)]
 
