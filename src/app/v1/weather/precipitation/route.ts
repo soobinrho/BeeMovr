@@ -43,9 +43,12 @@ export async function GET(request: NextRequest) {
     api_type: api_type,
   });
 
-  const stripped_api_response = stripOpenMeteo(api_response, api_type);
-  const parsed_api_response = parseOpenMeteo(stripped_api_response, api_type);
+  const [stripped_api_response_time, stripped_api_response_value] =
+    stripOpenMeteo(api_response, api_type);
+  const parsed_api_response = parseOpenMeteo(
+    [stripped_api_response_time, stripped_api_response_value],
+    api_type
+  );
 
   return NextResponse.json(parsed_api_response);
-  return NextResponse.json({ [returnName]: api_response });
 }

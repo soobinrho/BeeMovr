@@ -79,7 +79,7 @@ export async function fetchOpenMeteo(params: types_OpenMeteo) {
 export function stripOpenMeteo(
   api_response: types_api_response,
   api_type: string
-): object {
+): Array<object> {
   /**
    * Discards unnecessary fields and returns only the relevant fields.
    *
@@ -89,11 +89,11 @@ export function stripOpenMeteo(
    * however, we plan to implement PostGIS to store all of these.
    * This way, we can minimize API calls and improve performance.
    */
-  return [api_response.daily.time, api_response.daily.api_type];
+  return [api_response.daily.time, api_response.daily[api_type]];
 }
 
 export function parseOpenMeteo(
-  stripped_api_response: object,
+  [stripped_api_response_time, stripped_api_response_value]: Array<Object>,
   api_type: string
 ): string {
   /**
@@ -104,15 +104,44 @@ export function parseOpenMeteo(
    * honey yield prediction model requires monthly values, the data
    * have to go through some processing.
    */
-  if (api_type === "temperature_2m_max") {
-    // TODO:
-    return "todo";
-  } else if (api_type === "temperature_2m_min") {
-    return "todo";
-  } else if (api_type === "precipitation_sum") {
-    return "todo";
+  const array_api_response_time = Array.from(
+    Object.values(stripped_api_response_time)
+  );
+  const array_api_response_value = Array.from(
+    Object.values(stripped_api_response_value)
+  );
+  const SIZE = array_api_response_time.length;
+  if (api_type === "precipitation_sum") {
+    // For monthly precipitation, find the sum of all daily
+    // precipitation values.
+    let sum = 0;
+    for (let i = 0; i < SIZE; i++) {
+      sum += array_api_response_value[i];
+    }
+    return sum.toString();
+  } else if (api_type === "temperature_2m_max") {
+    // For monthly maximum temperature, find the maximum daily
+    // temperature value.
+    let max = array_api_response_value[0];
+    for (let i = 0; i < SIZE; i++) {
+      const value = array_api_response_value[i];
+      if (max < value) {
+        max = value;
+      }
+    }
+    return max.toString();
   } else {
-    return "todo";
+    // else if (api_type === "temperature_2m_min")
+    // For monthly minimum temperature, find the minimum daily
+    // temperature value.
+    let min = array_api_response_value[0];
+    for (let i = 0; i < SIZE; i++) {
+      const value = array_api_response_value[i];
+      if (min > value) {
+        min = value;
+      }
+    }
+    return min.toString();
   }
 }
 
