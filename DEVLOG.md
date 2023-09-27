@@ -124,17 +124,20 @@ yarn add <package name> --dev
 
 Today, I read [Next.js routing fundamentals](https://nextjs.org/docs/app/building-your-application/routing), [REST API URI naming conventions](https://restfulapi.net/resource-naming/), [TSDoc specifications](https://tsdoc.org/), and [JavaScript promises, async, and await](https://javascript.info/async).
 
+<br>
+
 **2023-09-26 Soobin** <br>
 
 I tried to get a deeper understanding of how Next.js works by reading:
-- [Don't be tempted to reach for an internal API route](https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props#getserversideprops-or-api-routes).
-- [How rendering in Next.js works](https://nextjs.org/docs/app/building-your-application/rendering).
-- [API Route Handling, Response Headers, and CORS Headers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers).
+- [Don't be tempted to reach for an internal API route](https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props#getserversideprops-or-api-routes)
+- [How rendering in Next.js works](https://nextjs.org/docs/app/building-your-application/rendering)
+- [API Route Handling, Response Headers, and CORS Headers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers)
+- [For fetching data from the client side, use SWR](https://nextjs.org/docs/app/building-your-application/deploying/static-exports#client-components)
 
 After that, I read about the specifics of how the actual code can look like:
-- [Client Components](https://nextjs.org/docs/app/building-your-application/rendering/client-components).
-- [Server Components](https://nextjs.org/docs/app/building-your-application/rendering/server-components).
-- [Patterns for compositing client components and server components](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns).
+- [Client Components](https://nextjs.org/docs/app/building-your-application/rendering/client-components)
+- [Server Components](https://nextjs.org/docs/app/building-your-application/rendering/server-components)
+- [Patterns for compositing client components and server components](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns)
 
 Plus, I read about meta data generation functions that will greatly improve SEO:
 - [sitemap.ts](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap#generate-a-sitemap)
@@ -142,3 +145,13 @@ Plus, I read about meta data generation functions that will greatly improve SEO:
 - [Open Graph protocol support](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image#generate-images-using-code-js-ts-tsx)
 
 Also, "to reduce the Client JavaScript bundle size, we recommend moving Client Components down your component tree." If a child component doesn't ready have a `'use client'` directive, create a separate `.tsx` fole wrapping around that component with the `'use client'` directive. [[Source](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#moving-client-components-down-the-tree)]
+
+`yarn build` creates optimized deployment files:
+- [Optimized files in a Next.js build](https://nextjs.org/docs/pages/building-your-application/deploying)
+
+One remaining question I have is, since Next.js supports [GET API routing](https://nextjs.org/docs/app/building-your-application/deploying/static-exports#route-handlers), can we export BeeMovr with static build?
+This will have the advantage of not having to rent a server.
+Services like GitHub Pages will be able to host our web app without any server cost if so.
+This will require experimentation.
+Let's keep in mind future roadmap includes implementation of geospatial database for more extensive functionality.
+We'll see...
