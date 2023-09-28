@@ -15,7 +15,7 @@ This is exactly what our open-source project BeeMovr started.
 2023-02-23, 1:14PM is when it all of this began, with an one-hour call with Keith Robert from the Valley Hive in California.
 He explained that beekeepers need a way to see which area has the highest nectar availability because they're sometimes forced to relocate their beehives - e.g. California drought - and they can't just move into any location.
 Beekeepers currently have to go to Google Maps; find the precipitation data; and do the math themselves to figure out which area has the best chance for their colonies.
-He explained, "creating a map that can calculate the nectar availability of any given region will help beekeepers a lot."
+He explained, "creating a map that can calculate the nectar availability of any given region will help us a lot."
 
 <br>
 
