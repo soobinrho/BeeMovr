@@ -42,17 +42,7 @@ This paper is what made our core prediction model possible.
 
 <br>
 
-## BeeMovr & IBM Call for Code
-
-***IBM AI Services We Used***<br>
-Work in progres...
-
-<br>
-
-***IBM Cloud Services We Used***<br>
-Work in progres...
-
-<br>
+## Call for Code
 
 ![Architecture diagram of BeeMovr](https://github.com/soobinrho/BeeMovr/assets/19341857/8f477951-6a82-437c-b705-3316671bbd8d)
 
@@ -67,7 +57,7 @@ Work in progres...
 
 <br>
 
-***The Issue We are Addressing***<br>
+***The issue we are addressing***<br>
 ```
 ☐ Brief description of "The issue we are hoping to solve" (2-3 sentences)
 This should be a short description, 2-3 sentences in length, of the specific sustainability problem your solution is meant to address.
@@ -77,7 +67,7 @@ BeeMovr allows the user (beekeepers) to do exactly that.
 
 <br>
 
-***How BeeMovr will Help Beekeepers***<br>
+***How we can help***<br>
 ```
 ☐ Description of "How our technology solution can help" (approximately 10 words)
 This is where you will give a short description of your team's technology solution, in about 10 words.
@@ -86,7 +76,7 @@ This is where you will give a short description of your team's technology soluti
 
 <br>
 
-***The Idea Behind BeeMovr***<br>
+***The idea behind BeeMovr***<br>
 ```
 ☐ Long description of your team’s solution (approximately 500 words)
 This is a longer description of your solution.
@@ -148,6 +138,8 @@ git clone https://github.com/ericfly02/BeeMovr.git
 cd BeeMovr
 docker compose up
 ```
+
+<br>
 
 ***How to stop running and clean up***<br>
 ```bash
