@@ -21,7 +21,7 @@ We called 50 beekeepers by googling and asked them, "We want to help you save be
 
 2023-02-23, 1:14PM is when it all of this began, with an one-hour call with Keith Robert from the Valley Hive in California. He explained that beekeepers need a way to see which area has the highest nectar availability because they're sometimes forced to relocate their beehives - e.g. California drought - and they can't just move into any location. Beekeepers currently have to go to Google Maps; find the precipitation data; and do the math themselves to figure out which area has the best chance for their colonies. He explained, "creating a map that can calculate the nectar availability of any given region will help beekeepers a lot."
 
-That's why we created BeeMovr. 
+That's why we created BeeMovr.
 If you're a beekeeper and want any new feature or modifications to the existing features, please email our co-founder Soobin Rho &lt;soobinrho@nsustain.com&gt;. We'll reply as promptly as possible, and we'll do our best to make it happen (beware we're just volunteers!).
 
 <br>
@@ -49,8 +49,11 @@ Work in progres...
 ***IBM Cloud Services We Used***<br>
 Work in progres...
 
-***Solution Architecture Diagram***<br>
-Work in progres...
+<br>
+
+![Architecture diagram of BeeMovr](https://github.com/soobinrho/BeeMovr/assets/19341857/8f477951-6a82-437c-b705-3316671bbd8d)
+
+<br>
 
 ***The Issue We are Addressing***<br>
 Whenever beekeepers need to relocate their colonies, they need to find an area that not only increases the chance of survival of their colonies, but also provide the maximum potential for honey yield.
