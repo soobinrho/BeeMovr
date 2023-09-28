@@ -69,21 +69,23 @@ Schaler, Eric, Jasper, and I, all of us turned out to have the best team chemist
 We worked hard for the weekend-long hackathon.
 We worked on our project, which by the way we named BeeMovr, until 1AM and continued til 5PM the next day.
 We won Grand Prize 3rd Prize.
-We let Keith know.
+We made sure to tell Keith right away:
 
 ```
 Hey Keith,
 
-Schaler, Eric, Jasper, and I started working on creating the beekeeper's map, the first feature of which is nectar availability prediction. As we iterate with you, we'll try to be as helpful for beekeepers as possible by tweaking / adding more features. [1] We spent the entire weekend coding it, and we won 3rd prize at HackMIT, so we believe we're at a great start.
+Schaler, Eric, Jasper, and I started working on creating the beekeeper's map, the first feature of which is nectar availability prediction.
+As we iterate with you, we'll try to be as helpful for beekeepers as possible by tweaking / adding more features. [1]
+We spent the entire weekend coding it, and we won 3rd prize at HackMIT, so we believe we're at a great start.
 
-We'll hopefully update you again with more great news on progress of the beekeeper's map. Spent many hours coding all night hahaha
+We'll hopefully update you again with more great news on progress of the beekeeper's map.
+Spent many hours coding all night hahaha
 
 [1] https://github.com/ericfly02/BeeMovr
 
 Best,
 Soobin
 ```
-
 ```
 Soobin,
 
