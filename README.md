@@ -46,14 +46,14 @@ Also, our work would not have been possible without the paper "[The Impact of Pr
 ***IBM AI Services We Used***<br>
 Work in progres...
 
+<br>
+
 ***IBM Cloud Services We Used***<br>
 Work in progres...
 
 <br>
 
 ![Architecture diagram of BeeMovr](https://github.com/soobinrho/BeeMovr/assets/19341857/8f477951-6a82-437c-b705-3316671bbd8d)
-
-<br>
 
 | Stack | Name |
 | ------- | ---- |
@@ -64,12 +64,18 @@ Work in progres...
 | **Back-end** | [Next.js server-side components](https://nextjs.org/docs/app/building-your-application/rendering/server-components) + real-time weather data from [Open Meteo API](https://open-meteo.com/) |
 | **Development in progress** | Machine learning with [IBM Cloud watsonx.data](https://www.ibm.com/products/watsonx-data) + data handling with [IBM Cloud PostgresSQL](https://www.ibm.com/cloud/databases-for-postgresql)
 
+<br>
+
 ***The Issue We are Addressing***<br>
 Whenever beekeepers need to relocate their colonies, they need to find an area that not only increases the chance of survival of their colonies, but also provide the maximum potential for honey yield.
 Until BeeMovr was created, it was a long process involving a lot of manual work on the beekeeper's end.
 
+<br>
+
 ***How BeeMovr will Help Beekeepers***<br>
 BeeMovr makes this process faster and easier by algorithmically calculating the maximum honey yield of any given point on the map by ingesting real-time Open Meteo data (monthly total precipitation, maximum temperature, and minimum temperature) into Hayes Kent Grogan's honey yield prediction model.
+
+<br>
 
 ***The Idea Behind BeeMovr***<br>
 Our project seeks to give beekeepers increased information about ideal pollinator conditions near them to improve efficiency and decrease uncertainty about insufficient honey production by using precipitation and temperature models.
