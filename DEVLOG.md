@@ -28,7 +28,7 @@ Both Schaler and I (Soobin) got into HackMIT.
 We decided this is the perfect time to create the beekeeper's map to address the problem Keith explained to us a few months ago.
 We will create a map that can calculate the nectar availability of any given point on the map.
 We promised Keith that we'll make it open source and therefore available for all beekeepers.
-We'll license it with MIT License, since we'll create it at HackMIT hahaha
+We'll license it with MIT License, since we'll create it at HackMIT hahaha (and later we made our project dual licnesed with Apache 2.0 and MIT License, since we decided to participate in IBM Call for Code).
 
 <br>
 
@@ -37,7 +37,9 @@ We'll license it with MIT License, since we'll create it at HackMIT hahaha
 ```
 Hi Soobin,
 
-I noticed on Discord that you're participating in HackMIT. Your profile caught my eye ... If you haven't already formed a team, how about teaming up?
+I noticed on Discord that you're participating in HackMIT.
+Your profile caught my eye ...
+If you haven't already formed a team, how about teaming up?
 
 Looking forward to your thoughts!
 ```
@@ -45,7 +47,7 @@ Looking forward to your thoughts!
 This is how our Eric joined our team.
 We welcomed Eric right away.
 He had the perfect experience that our team needed.
-And yes, he built the majority of our MVP during the 48 hour of HackMIT, so he proved himself very well.
+And yes, he built the majority of our MVP during the 48 hours of HackMIT, so he proved himself very well.
 
 <br>
 
@@ -56,9 +58,9 @@ It was going to start at 10AM, and it was around 9AM.
 I was making conversation with everyone around me, and Jasper caught my eye.
 He has done really cool stuff with robotic engineering.
 We figured Jasper would be the perfect addition to our team, so we invited him to join our team, and he said yes.
-As it turns out, it was the best decision we made as a team.
+As it turns out, we couldn't have found a better teammate.
 We worked great as a team.
-Schaler, Eric, Jasper, and I, all of us turn out to have the best team chemistry.
+Schaler, Eric, Jasper, and I, all of us turned out to have the best team chemistry.
 
 <br>
 
@@ -90,6 +92,13 @@ Very cool!!!
 Keith
 ```
 
+Plus, here are some pictures of us at HackMIT:
+
+<img src="https://github.com/soobinrho/soobinrho/assets/19341857/7ea0f7e6-112b-40a1-b37e-c78d49ae4143" width="500px">
+
+<img src="https://github.com/soobinrho/soobinrho/assets/19341857/89d9138e-761b-4edf-bd17-94d1852fafa8" width="500px">
+
+<br>
 <br>
 
 **2023-09-24 Soobin**
