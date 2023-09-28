@@ -132,9 +132,7 @@ docker compose down
 
 ## 2. How does this work?
 
-The UI was largely built with Mapbox.
-All of the internal API's were built with Flask.
-Whenever the user clicks a point in the map, it calls for a function that calculates the honey production prediction value based on the formula given by Hayes Kent Grogan's paper.
+We created a separte section for all of our [development logs](DEVLOG.md).
 
 <br>
 
