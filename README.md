@@ -63,7 +63,7 @@ Work in progres...
 | **Deployment** | Containerized with [Docker](https://www.docker.com/) + server runtime with [Node.js](https://nodejs.org/) |
 | **Front-end** | [Next.js client-side components](https://nextjs.org/docs/app/building-your-application/rendering/client-components) + OpenStreetMap interactivity from [Mapbox](https://www.mapbox.com/) |
 | **Back-end** | [Next.js server-side components](https://nextjs.org/docs/app/building-your-application/rendering/server-components) + real-time weather data from [Open Meteo API](https://open-meteo.com/) |
-| **Development in progress** | Machine learning with [IBM Cloud watsonx.data](https://www.ibm.com/products/watsonx-data) + data handling with [IBM Cloud PostgresSQL](https://www.ibm.com/cloud/databases-for-postgresql)
+| **Experimental** | Machine learning with [IBM Cloud watsonx.data](https://www.ibm.com/products/watsonx-data) + data handling with [IBM Cloud PostgresSQL](https://www.ibm.com/cloud/databases-for-postgresql)
 
 <br>
 
