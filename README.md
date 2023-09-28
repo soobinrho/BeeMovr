@@ -44,7 +44,7 @@ This paper is what made our core prediction model possible.
 
 ## Call for Code
 
-![Architecture diagram of BeeMovr](https://github.com/soobinrho/BeeMovr/assets/19341857/8f477951-6a82-437c-b705-3316671bbd8d)
+![Architecture diagram of BeeMovr](https://github.com/soobinrho/soobinrho/assets/19341857/9d493abd-887f-4b68-ae42-bb3a6e21d291)
 
 | Stack | Name |
 | ------- | ---- |
