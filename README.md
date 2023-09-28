@@ -84,7 +84,7 @@ In about 500 words, describe your solution in more detail.
 Include the real-world problem you identified, describe the technological solution you have created, and explain how it's an improvement over existing solutions.
 You can supply additional documentation in this source code repository that you link to as well.
 ```
-BeeMovr pulls in real-time precipitation, maximum temperature, and minimum temperature data from Open Meteo API's, and calculates a prediction of the maximum possible honey yield value based on [Hayes Kent Grogan's paper](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf).
+BeeMovr pulls in real-time precipitation, maximum temperature, and minimum temperature data from Open Meteo API's, and calculates a prediction of the maximum possible honey yield value of any given coordinates on the map based on [Hayes Kent Grogan's paper](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf).
 Our project seeks to give beekeepers increased information about ideal pollinator conditions near them to increase colony survival rate and reduce uncertainty.
 We envision BeeMovr to become the de-facto map for helping beekeepers make an informed decision about what's best for their bees.
 
