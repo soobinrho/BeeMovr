@@ -29,7 +29,7 @@ That's why we created BeeMovr.
 ## Getting Started
 [1.](#1-how-to-spin-up-a-development-server) How to spin up a development server<br>
 [2.](#2-how-does-this-work) How does this work?<br>
-[3.](#3-future-roadmap) Future Roadmap
+[3.](#3-roadmap) Roadmap
 
 <br>
 
@@ -37,7 +37,7 @@ That's why we created BeeMovr.
 
 Special thanks to Keith Robert from [The Valley Hive](https://www.thevalleyhive.com/), our favorite beekeeper.
 
-Also, our work would not have been possible without the paper "[The Impact of Precipitation and Temperature on Honey Yield in the United States](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf?sequence=2)" (Hayes Kent Grogan, 2020, Auburn University).
+Also, our work would not have been possible without the paper "[The Impact of Precipitation and Temperature on Honey Yield in the United States](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf)" (Hayes Kent Grogan, 2020, Auburn University).
 This paper is what made our core prediction model possible.
 
 <br>
@@ -82,7 +82,7 @@ BeeMovr allows the user (beekeepers) to do exactly that.
 ☐ Description of "How our technology solution can help" (approximately 10 words)
 This is where you will give a short description of your team's technology solution, in about 10 words.
 ```
-Beemovr.com calculates honey yield prediction value of any given point.
+[BeeMovr.com](https://BeeMovr.com) calculates honey yield prediction value of any given coordinates.
 
 <br>
 
@@ -94,17 +94,18 @@ In about 500 words, describe your solution in more detail.
 Include the real-world problem you identified, describe the technological solution you have created, and explain how it's an improvement over existing solutions.
 You can supply additional documentation in this source code repository that you link to as well.
 ```
-We pull in real-time precipitation, maximum temperature, and minimum temperature data from Open Meteo API's, and calculate the maximum possible honey yield value based on Hayes Kent Grogan's honey yield prediction model.
-Our project seeks to give beekeepers increased information about ideal pollinator conditions near them to improve efficiency and decrease uncertainty about insufficient honey production by using precipitation and temperature models.
+BeeMovr pulls in real-time precipitation, maximum temperature, and minimum temperature data from Open Meteo API's, and calculate a prediction of the maximum possible honey yield based on Hayes Kent Grogan's [honey yield prediction model](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf).
+Our project seeks to give beekeepers increased information about ideal pollinator conditions near them.
 
-We focused on researching the most accurate model possible to predict colony survival rate and maximum potential honey yield.
-Currently, the map uses a simple linear regression with the factors of max and min temperatures and precipitation, but we are in the process of integrating [IBM watsonx.data](https://cloud.ibm.com/docs/watsonxdata?topic=watsonxdata-getting-started) to use combined data from sources such as USDA and NASS to begin a machine learning algorithm to improve the prediction model.
+We focused on researching the most accurate model possible.
+Currently, we use a linear regression with the factors of maximum and minimum temperatures and precipitation data.
+We plan to use [IBM watsonx.data](https://cloud.ibm.com/docs/watsonxdata?topic=watsonxdata-getting-started) to pull combined data from [USDA (U.S. Department of Agriculture)](https://www.usda.gov/) and [NASS (National Agricultural Statistics Service)](https://www.nass.usda.gov/) for to improve our prediction models.
 
-Other ways to increase accuracy would be to include colony-specific demographic data in our prediction model, as that was found to be a statistically significant factor in Grogan’s paper.
+We're also trying to increase prediction accuracy by ingesting colony-specific demographic data in our prediction model, as that was found to be a statistically significant factor in Grogan’s paper.
 
-As we promised our beekeeper, Keith Robert, BeeMovr has been and will always be an open-source project available for all beekeepers.
+As we promised our beekeeper, Keith Robert, BeeMovr has been and will always be an open-source project.
 If you're a beekeeper and have any suggestions or feature requests, please feel free to email us at &lt;workerbees@beemovr.com&gt;.
-And of course, our main website is https://beemovr.com
+Our main website is at [BeeMovr.com](https://BeeMovr.com) and we are Schaler, Eric, Jasper, and Soobin.
 
 <!-- TODO: Delete this after Call for Code submission
 ☐ Link to publicly accessible code repository that contains your working code
@@ -160,7 +161,9 @@ We created a separte section for all of our [development logs](DEVLOG.md).
 
 <br>
 
-## 3. Future Roadmap
+## 3. Roadmap
+
+[Development roadmap diagram will created soon...]
 
 - `Short Term Goal`: Add a drag functionality, where the user can get the honey production prediction value of a rectangle instead of just a single point.
 - `Long Term Goal`: Now, we call the Open Meteo API's everytime the user clicks on a something to get the environmental values (precipitation and max/min temps). This will be replaced by a data storage / caching system. Whenever an API is called, the precipitation and max/min temp values will be stored into either Elastic Stack or PostGIS. Flask caching will also prevent duplicate API calls.
