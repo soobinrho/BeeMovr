@@ -9,20 +9,20 @@
 
 <p align="center">
   <b>
-    Source code for
-    <a href="https://beemovr.com">Beemovr.com</a>
+    Who are we?
   </b>
 </p>
 
 <br>
 
 Google Maps, but for beekeepers.
-We called 50 beekeepers by googling and asked them, "We want to help you save bees. What can we do for you? We can program."
+We called beekeepers all over the country and asked them, "We want to help you save bees.
+What can we do for you?
+We can program."
 
-2023-02-23, 1:14PM is when it all of this began, with an one-hour call with Keith Robert from the Valley Hive in California. He explained that beekeepers need a way to see which area has the highest nectar availability because they're sometimes forced to relocate their beehives - e.g. California drought - and they can't just move into any location. Beekeepers currently have to go to Google Maps; find the precipitation data; and do the math themselves to figure out which area has the best chance for their colonies. He explained, "creating a map that can calculate the nectar availability of any given region will help beekeepers a lot."
-
-That's why we created BeeMovr.
-If you're a beekeeper and want any new feature or modifications to the existing features, please email our co-founder Soobin Rho &lt;soobinrho@nsustain.com&gt;. We'll reply as promptly as possible, and we'll do our best to make it happen (beware we're just volunteers!).
+Keith Robert from the Valley Hive in California explained that beekeepers are sometimes forced to relocate their beehives - e.g. California drought - and they can't just move into any location.
+They need to find an area that has the highest survival rate and the best nectar availability for their colonies.
+That's why we created [BeeMovr](https://beemovr.com).
 
 <br>
 
@@ -37,7 +37,8 @@ If you're a beekeeper and want any new feature or modifications to the existing 
 
 Special thanks to Keith Robert from [The Valley Hive](https://www.thevalleyhive.com/), our favorite beekeeper.
 
-Also, our work would not have been possible without the paper "[The Impact of Precipitation and Temperature on Honey Yield in the United States](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf?sequence=2)" (Hayes Kent Grogan, 2020, Auburn University). The paper provided the BeeMovr team with the prediction formula for the relationship between monthly precipitation / maximum temperature / minimum temperature and honey yield, and this is exactly what made our core functionality possible.
+Also, our work would not have been possible without the paper "[The Impact of Precipitation and Temperature on Honey Yield in the United States](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf?sequence=2)" (Hayes Kent Grogan, 2020, Auburn University).
+This paper is what made our core prediction model possible.
 
 <br>
 
@@ -67,17 +68,33 @@ Work in progres...
 <br>
 
 ***The Issue We are Addressing***<br>
-Whenever beekeepers need to relocate their colonies, they need to find an area that not only increases the chance of survival of their colonies, but also provide the maximum potential for honey yield.
-Until BeeMovr was created, it was a long process involving a lot of manual work on the beekeeper's end.
+```
+☐ Brief description of "The issue we are hoping to solve" (2-3 sentences)
+This should be a short description, 2-3 sentences in length, of the specific sustainability problem your solution is meant to address.
+```
+Whenever beekeepers need to relocate their colonies, they need to find an area that has the higest survival rate and the maximum potential for honey yield.
+BeeMovr allows the user (beekeepers) to do exactly that.
 
 <br>
 
 ***How BeeMovr will Help Beekeepers***<br>
-BeeMovr makes this process faster and easier by algorithmically calculating the maximum honey yield of any given point on the map by ingesting real-time Open Meteo data (monthly total precipitation, maximum temperature, and minimum temperature) into Hayes Kent Grogan's honey yield prediction model.
+```
+☐ Description of "How our technology solution can help" (approximately 10 words)
+This is where you will give a short description of your team's technology solution, in about 10 words.
+```
+Beemovr.com calculates honey yield prediction value of any given point.
 
 <br>
 
 ***The Idea Behind BeeMovr***<br>
+```
+☐ Long description of your team’s solution (approximately 500 words)
+This is a longer description of your solution.
+In about 500 words, describe your solution in more detail.
+Include the real-world problem you identified, describe the technological solution you have created, and explain how it's an improvement over existing solutions.
+You can supply additional documentation in this source code repository that you link to as well.
+```
+We pull in real-time precipitation, maximum temperature, and minimum temperature data from Open Meteo API's, and calculate the maximum possible honey yield value based on Hayes Kent Grogan's honey yield prediction model.
 Our project seeks to give beekeepers increased information about ideal pollinator conditions near them to improve efficiency and decrease uncertainty about insufficient honey production by using precipitation and temperature models.
 
 We focused on researching the most accurate model possible to predict colony survival rate and maximum potential honey yield.
@@ -85,8 +102,8 @@ Currently, the map uses a simple linear regression with the factors of max and m
 
 Other ways to increase accuracy would be to include colony-specific demographic data in our prediction model, as that was found to be a statistically significant factor in Grogan’s paper.
 
-We promised our beekeeper, Keith Robert, that we'll open-source our project and make it available for all beekeepers.
-Our priority has been, and will always be to focus on helping our beekeepers.
+As we promised our beekeeper, Keith Robert, BeeMovr has been and will always be an open-source project available for all beekeepers.
+If you're a beekeeper and have any suggestions or feature requests, please feel free to email us at &lt;workerbees@beemovr.com&gt;.
 
 <!-- TODO: Delete this after Call for Code submission
 ☐ Link to publicly accessible code repository that contains your working code
