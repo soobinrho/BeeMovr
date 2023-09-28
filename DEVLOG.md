@@ -21,7 +21,9 @@ He explained, "creating a map that can calculate the nectar availability of any 
 
 **2023-07-31 Soobin and Schaler**
 
-"[HackMIT] Welcome to HackMIT 2023! 🎈🎉"
+```
+[HackMIT] Welcome to HackMIT 2023! 🎈🎉
+```
 Both Schaler and I (Soobin) got into HackMIT.
 We decided this is the perfect time to create the beekeeper's map to address the problem Keith explained to us a few months ago.
 We will create a map that can calculate the nectar availability of any given point on the map.
