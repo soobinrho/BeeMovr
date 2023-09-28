@@ -154,7 +154,7 @@ I tried to get a deeper understanding of how Next.js works by reading:
 - [Next.js has a built-in font optimization](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts)
 - [For importing external libraries (in our case, it's Mapbox), use next/script](https://nextjs.org/docs/pages/building-your-application/optimizing/scripts)
 
-After that, I read about the specifics of how the actual code can look like:
+After that, I read about the specifics of how to structure the actual code:
 - [Client Components](https://nextjs.org/docs/app/building-your-application/rendering/client-components)
 - [Server Components](https://nextjs.org/docs/app/building-your-application/rendering/server-components)
 - [Patterns for compositing client components and server components](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns)
