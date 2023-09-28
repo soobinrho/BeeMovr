@@ -94,19 +94,19 @@ In about 500 words, describe your solution in more detail.
 Include the real-world problem you identified, describe the technological solution you have created, and explain how it's an improvement over existing solutions.
 You can supply additional documentation in this source code repository that you link to as well.
 ```
-BeeMovr pulls in real-time precipitation, maximum temperature, and minimum temperature data from Open Meteo API's, and calculate a prediction of the maximum possible honey yield based on Hayes Kent Grogan's [honey yield prediction model](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf).
+BeeMovr pulls in real-time precipitation, maximum temperature, and minimum temperature data from Open Meteo API's, and calculates a prediction of the maximum possible honey yield value based on Hayes Kent Grogan's [honey yield prediction model](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf).
 Our project seeks to give beekeepers increased information about ideal pollinator conditions near them to increase colony survival rate and reduce uncertainty.
 We envision BeeMovr to become the de-facto tool for helping beekeepers make an informed decision about what's best for their bees.
 
 We focused on researching the most accurate model possible.
 Currently, we use a linear regression with the factors of maximum and minimum temperatures and precipitation data.
-We plan to use [IBM watsonx.data](https://cloud.ibm.com/docs/watsonxdata?topic=watsonxdata-getting-started) to pull combined data from [USDA (U.S. Department of Agriculture)](https://www.usda.gov/) and [NASS (National Agricultural Statistics Service)](https://www.nass.usda.gov/) for to improve our prediction models.
+We plan to use [IBM watsonx.data](https://cloud.ibm.com/docs/watsonxdata?topic=watsonxdata-getting-started) to pull combined data from [USDA (U.S. Department of Agriculture)](https://www.usda.gov/) and [NASS (National Agricultural Statistics Service)](https://www.nass.usda.gov/) for improved prediction models.
 
-We're also trying to increase prediction accuracy by ingesting colony-specific demographic data in our prediction model, as that was found to be a statistically significant factor in Grogan’s paper.
+We're also trying to increase prediction accuracy by ingesting colony-specific demographic data into our prediction model, as colony demographic data - e.g. age of the queen - were found to be a statistically significant, according to Grogan's 2020 paper.
 
-As we promised our beekeeper, Keith Robert, BeeMovr has been and will always be an open-source project.
+As we promised our beekeeper Keith Robert, BeeMovr has been and will always be an open-source project.
 If you're a beekeeper and have any suggestions or feature requests, please feel free to email us at &lt;workerbees@beemovr.com&gt;.
-Our main website is at [BeeMovr.com](https://BeeMovr.com) and we are Schaler, Eric, Jasper, and Soobin.
+Our main website is at [BeeMovr.com](https://BeeMovr.com) and we are Schaler Starks, Eric Gonzalez Duro, Jasper Ha, and Soobin Rho.
 
 <!-- TODO: Delete this after Call for Code submission
 ☐ Link to publicly accessible code repository that contains your working code
