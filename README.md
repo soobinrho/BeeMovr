@@ -104,6 +104,7 @@ Other ways to increase accuracy would be to include colony-specific demographic 
 
 As we promised our beekeeper, Keith Robert, BeeMovr has been and will always be an open-source project available for all beekeepers.
 If you're a beekeeper and have any suggestions or feature requests, please feel free to email us at &lt;workerbees@beemovr.com&gt;.
+And of course, our main website is https://beemovr.com
 
 <!-- TODO: Delete this after Call for Code submission
 ☐ Link to publicly accessible code repository that contains your working code
