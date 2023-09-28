@@ -28,7 +28,7 @@ Both Schaler and I (Soobin) got into HackMIT.
 We decided this is the perfect time to create the beekeeper's map to address the problem Keith explained to us a few months ago.
 We will create a map that can calculate the nectar availability of any given point on the map.
 We promised Keith that we'll make it open source and therefore available for all beekeepers.
-We'll license it with MIT License, since we'll create it at HackMIT hahaha (and later we made our project dual licnesed with Apache 2.0 and MIT License, since we decided to participate in IBM Call for Code).
+We'll license it with MIT License, since we'll create it at HackMIT hahaha (and later we made our project dual licnesed with Apache 2.0 and MIT License, since we decided to participate in 2023 Call for Code).
 
 <br>
 
