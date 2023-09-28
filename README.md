@@ -96,7 +96,7 @@ You can supply additional documentation in this source code repository that you 
 ```
 BeeMovr pulls in real-time precipitation, maximum temperature, and minimum temperature data from Open Meteo API's, and calculates a prediction of the maximum possible honey yield value based on [Hayes Kent Grogan's paper](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf).
 Our project seeks to give beekeepers increased information about ideal pollinator conditions near them to increase colony survival rate and reduce uncertainty.
-We envision BeeMovr to become the de-facto tool for helping beekeepers make an informed decision about what's best for their bees.
+We envision BeeMovr to become the de-facto map for helping beekeepers make an informed decision about what's best for their bees.
 
 We focused on researching the most accurate model possible.
 Currently, we use a linear regression with the factors of maximum and minimum temperatures and precipitation data.
