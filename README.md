@@ -81,7 +81,7 @@ BeeMovr makes this process faster and easier by algorithmically calculating the 
 Our project seeks to give beekeepers increased information about ideal pollinator conditions near them to improve efficiency and decrease uncertainty about insufficient honey production by using precipitation and temperature models.
 
 We focused on researching the most accurate model possible to predict colony survival rate and maximum potential honey yield.
-Currently, the map uses a simple linear regression with the factors of max and min temperatures and precipitation, but we are in the process of integrating IBM AI services to use combined data from sources such as USDA and NASS to begin a machine learning algorithm to improve the prediction model.
+Currently, the map uses a simple linear regression with the factors of max and min temperatures and precipitation, but we are in the process of integrating [IBM watsonx.data](https://cloud.ibm.com/docs/watsonxdata?topic=watsonxdata-getting-started) to use combined data from sources such as USDA and NASS to begin a machine learning algorithm to improve the prediction model.
 
 Other ways to increase accuracy would be to include colony-specific demographic data in our prediction model, as that was found to be a statistically significant factor in Grogan’s paper.
 
