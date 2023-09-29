@@ -1,6 +1,6 @@
 ## Dev log
 
-**2023-02-23 Soobin**
+#### 2023-02-23 Soobin
 
 All of this began because of helplessness in a way.
 We wanted to help the environment in any way we can because - well, you know - the earth doesn't seem to be doing too well.
@@ -19,7 +19,7 @@ He explained, "creating a map that can calculate the nectar availability of any 
 
 <br>
 
-**2023-07-31 Soobin and Schaler**
+#### 2023-07-31 Soobin and Schaler
 
 ```
 [HackMIT] Welcome to HackMIT 2023! 🎈🎉
@@ -33,7 +33,7 @@ We'll license it with MIT License, since we'll create it at HackMIT hahaha (and 
 
 <br>
 
-**2023-08-21 Eric and Soobin**
+#### 2023-08-21 Eric and Soobin
 
 ```
 Hi Soobin,
@@ -52,7 +52,7 @@ And yes, he built the majority of our MVP during the 48 hours of HackMIT, so he 
 
 <br>
 
-**2023-09-16 Jasper, Schaler, and Soobin**
+#### 2023-09-16 Jasper, Schaler, and Soobin
 
 Schaler and I were waiting patiently at the MIT athletic center for the HackMIT to begin.
 It was going to start at 10AM, and it was around 9AM.
@@ -65,7 +65,7 @@ Schaler, Eric, Jasper, and I, all of us turned out to have the best team chemist
 
 <br>
 
-**2023-09-17 Eric, Jasper, Schaler, and Soobin**
+#### 2023-09-17 Eric, Jasper, Schaler, and Soobin
 
 We worked hard for the weekend-long hackathon.
 We worked on our project, which by the way we named BeeMovr, until 1AM and continued til 5PM the next day.
@@ -106,7 +106,7 @@ Plus, here are some pictures of us at HackMIT:
 <br>
 <br>
 
-**2023-09-24 Soobin**
+#### 2023-09-24 Soobin
 
 The MVP was good and all, but we decided to [throw away the first version](https://news.ycombinator.com/item?id=37003910) of BeeMovr and recreate.
 [Leigh Halliday's YouTube video on Next.js and Mapbox](https://youtu.be/sZfUXVSor-k?si=AFo9qOFzs4eH98fP) was incredibly helpful.
@@ -150,7 +150,7 @@ Today, I read [Next.js routing fundamentals](https://nextjs.org/docs/app/buildin
 
 <br>
 
-**2023-09-26 Soobin**
+#### 2023-09-26 Soobin
 
 I tried to get a deeper understanding of how Next.js works by reading:
 
@@ -200,9 +200,9 @@ For security, I read:
 - [A Dev.to post on how to set up the CSP header](https://dev.to/snaka/securing-your-nextjs-application-with-strict-csp-4lie)
 - [Example code for CSP](https://nextjs.org/docs/pages/building-your-application/configuring/content-security-policy)
 
--> "If you need to read dynamic values from the incoming request, you cannot use a static export." [[Source](https://nextjs.org/docs/app/building-your-application/deploying/static-exports#route-handlers)] So, never mind. We'll use a regular build instead.
+"If you need to read dynamic values from the incoming request, you cannot use a static export." [[Source](https://nextjs.org/docs/app/building-your-application/deploying/static-exports#route-handlers)] So, never mind. We'll use a regular build instead.
 
-**2023-09-28 Soobin**
+#### 2023-09-28 Soobin
 
 We decided to use Jest for unit testing.
 
