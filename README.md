@@ -92,7 +92,7 @@ We plan to use [IBM watsonx.data](https://cloud.ibm.com/docs/watsonxdata?topic=w
 
 We're also trying to increase prediction accuracy by ingesting colony-specific demographic data into our prediction model, as colony demographic data - e.g. age of the queen - were found to be statistically significant, as discovered by Grogan's 2020 paper.
 Currently, we rely on [Next.js request memorization caching method](https://nextjs.org/docs/app/building-your-application/caching#request-memoization) to avoid duplicate API calls and thereby make data fetching fairly efficient.
-However, we believe this process can be improved by implementing [IBM Cloud PostgresSQL](https://www.ibm.com/cloud/databases-for-postgresql) to cache (and also permanently store) all precipitation & temperature requests `[ key: latLng, values: precipitation, maxTemp, minTemp ]`.
+However, we believe this process can be improved by implementing [IBM Cloud PostgresSQL](https://www.ibm.com/cloud/databases-for-postgresql) to cache and store all precipitation & temperature requests `[ key: latLng, values: precipitation, maxTemp, minTemp ]`.
 These data, in turn, will be used in conjuction with [IBM watsonx.data](https://cloud.ibm.com/docs/watsonxdata?topic=watsonxdata-getting-started) to imrpove our prediction models for the maximum potential honey yield for any given coordinates our users (beekeepers ♥) specify.
 
 We envision BeeMovr to become the de-facto map for helping beekeepers make an informed decision about what's best for their bees.
