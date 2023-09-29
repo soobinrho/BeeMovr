@@ -91,7 +91,7 @@ Currently, we use a linear regression with the factors of maximum and minimum te
 We plan to use [IBM watsonx.data](https://cloud.ibm.com/docs/watsonxdata?topic=watsonxdata-getting-started) to pull combined data from [USDA (U.S. Department of Agriculture)](https://www.usda.gov/) and [NASS (National Agricultural Statistics Service)](https://www.nass.usda.gov/) for improved prediction models.
 
 We're also trying to increase prediction accuracy by ingesting colony-specific demographic data into our prediction model, as colony demographic data such as the age of the queen were found to be statistically significant, as discovered by Grogan's 2020 paper.
-Currently, we rely on [Next.js request memorization caching method](https://nextjs.org/docs/app/building-your-application/caching#request-memoization) to avoid duplicate API calls and thereby make data fetching fairly efficient.
+Currently, we rely on [Next.js built-in request memorization caching](https://nextjs.org/docs/app/building-your-application/caching#request-memoization) to avoid duplicate API calls and thereby make data fetching fairly efficient.
 However, we believe this process can be improved by implementing [IBM Cloud PostgresSQL](https://www.ibm.com/cloud/databases-for-postgresql) to cache and store all precipitation & temperature requests `{ key: latLng, values: [precipitation, maxTemp, minTemp] }`.
 These data, in turn, will be used in conjuction with [IBM watsonx.data](https://cloud.ibm.com/docs/watsonxdata?topic=watsonxdata-getting-started) to imrpove our prediction models for the maximum potential honey yield for any given coordinates our users (beekeepers ♥) specify.
 
