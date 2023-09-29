@@ -86,17 +86,25 @@ You can supply additional documentation in this source code repository that you 
 ```
 BeeMovr pulls in real-time precipitation, maximum temperature, and minimum temperature data from Open Meteo API's, and calculates a prediction of the maximum possible honey yield value of any given coordinates on the map based on [Hayes Kent Grogan's paper](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf).
 Our project seeks to give beekeepers increased information about ideal pollinator conditions near them to increase colony survival rate and reduce uncertainty.
-We envision BeeMovr to become the de-facto map for helping beekeepers make an informed decision about what's best for their bees.
-
 We focused on researching the most accurate model possible.
-Currently, we use a linear regression with the factors of maximum and minimum temperatures and precipitation data.
+Currently, we use a linear regression with the factors of maximum and minimum temperatures and monthly sum of precipitation.
 We plan to use [IBM watsonx.data](https://cloud.ibm.com/docs/watsonxdata?topic=watsonxdata-getting-started) to pull combined data from [USDA (U.S. Department of Agriculture)](https://www.usda.gov/) and [NASS (National Agricultural Statistics Service)](https://www.nass.usda.gov/) for improved prediction models.
 
 We're also trying to increase prediction accuracy by ingesting colony-specific demographic data into our prediction model, as colony demographic data - e.g. age of the queen - were found to be statistically significant, as discovered by Grogan's 2020 paper.
+Currently, we rely on [Next.js request memorization caching method](https://nextjs.org/docs/app/building-your-application/caching#request-memoization) to avoid duplicate API calls and thereby make data fetching fairly efficient.
+However, we believe this process can be improved by implementing [IBM Cloud PostgresSQL](https://www.ibm.com/cloud/databases-for-postgresql) to cache (and also permanently store) all precipitation & temperature requests `[ key: latLng, values: precipitation, maxTemp, minTemp ]`.
+These data, in turn, will be used in conjuction with [IBM watsonx.data](https://cloud.ibm.com/docs/watsonxdata?topic=watsonxdata-getting-started) to imrpove our prediction models for the maximum potential honey yield for any given coordinates our users (beekeepers ♥) specify.
 
-As we promised our beekeeper Keith Robert, BeeMovr has been and will always be an open-source project.
+We envision BeeMovr to become the de-facto map for helping beekeepers make an informed decision about what's best for their bees.
+What we're trying to do here is to make our project as helpful for beekeepers as possible.
+Therefore, what we think is the most important part of BeeMovr is understanding what the beekeepers want and need.
+We aim to create *the* beekeeper's map, the first feature of which is maximum potential honey yield prediction.
+As we iterate with our beekeepers, we'll listen to what their (and their bees') needs are, and we'll incremently deliver those features so that we can help them serve their bees.
+
+As we promised our beekeeper Keith Robert, BeeMovr has been and will always be open-sourced and open to all beekeepers.
 If you're a beekeeper and have any suggestions or feature requests, please feel free to email us at &lt;workerbees@beemovr.com&gt;.
-Our main website is at [BeeMovr.com](https://BeeMovr.com) and we are Schaler Starks, Eric Gonzalez Duro, Jasper Ha, and Soobin Rho.
+Our main website is at [BeeMovr.com](https://BeeMovr.com) and we are Schaler Starks &lt;schaler@beemovr.com&gt;, Eric Gonzalez Duro &lt;eric@beemovr.com&gt;, Jasper Ha &lt;jasper@beemovr.com&gt;, and Soobin Rho &lt;soobin@beemovr.com&gt;.
+If you share our goal to make a positive impact on environmental sustainability by helping beekeepers and their bees, you're welcome to join us.
 
 <!-- TODO: Delete this after Call for Code submission
 ☐ Link to publicly accessible code repository that contains your working code
