@@ -22,7 +22,7 @@ We can program."
 
 Keith Robert from the Valley Hive in California explained that beekeepers are sometimes forced to relocate their beehives - e.g. California drought - and they can't just move into any location.
 They need to find an area that has the highest survival rate and the best nectar availability for their colonies.
-That's why we created BeeMovr.
+That's why we started BeeMovr.
 
 <br>
 
@@ -39,6 +39,8 @@ Special thanks to Keith Robert from [The Valley Hive](https://www.thevalleyhive.
 
 Also, our work would not have been possible without the paper "[The Impact of Precipitation and Temperature on Honey Yield in the United States](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf)" (Hayes Kent Grogan, 2020, Auburn University).
 This paper is what made our core prediction model possible.
+
+> BeeMovr is a [HackMIT](https://github.com/soobinrho/BeeMovr/blob/main/DEVLOG.md#2023-09-17-eric-jasper-schaler-and-soobin) and [Call for Code](https://developer.ibm.com/callforcode/) project. 
 
 <br>
 
