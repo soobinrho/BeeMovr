@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
-import { GET } from "../../../../../../src/app/v1/weather/precipitation/route";
+import { GET } from "../../../../../../src/app/v1/weather/max-temp/route";
 import { createMocks } from "node-mocks-http";
 
-describe("/v1/weather/precipitation", () => {
-  test("returns monthly precipitation", async () => {
+describe("/v1/weather/max-temp", () => {
+  test("returns monthly maximum temperature", async () => {
     const { req, res }: { req: NextRequest; res: NextResponse } = createMocks({
       method: "GET",
       query: { lat: "-1", lng: "-1", "year-month": "1998-08" },
@@ -14,7 +14,7 @@ describe("/v1/weather/precipitation", () => {
 
     expect(api_response.status).toBe(200);
     expect(await api_response.json()).toEqual({
-      precipitation: "0.2",
+      "max-temp": "24.3",
     });
   });
 });

@@ -13,6 +13,6 @@ export async function GET(request: NextRequest) {
    */
   const api_type = "precipitation_sum";
   const api_response_key = "precipitation";
-  const parsed_api_response = await getWeather(request, api_type, api_response_key);
-  return NextResponse.json(parsed_api_response);
+  const api_response = await getWeather(request, api_type, api_response_key);
+  return api_response;
 }

@@ -13,6 +13,6 @@ export async function GET(request: NextRequest) {
    */
   const api_type = "temperature_2m_min";
   const api_response_key = "min-temp";
-  const parsed_api_response = await getWeather(request, api_type, api_response_key);
-  return NextResponse.json(parsed_api_response);
+  const api_response = await getWeather(request, api_type, api_response_key);
+  return api_response;
 }

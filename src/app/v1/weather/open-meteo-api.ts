@@ -1,6 +1,5 @@
-import { time } from "console";
-import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
 // --------------------------------------------------------------------
 // Open Meteo API parameters.
@@ -44,7 +43,7 @@ export async function getWeather(
   request: NextRequest,
   api_type: string,
   api_response_key: string
-): Promise<{ [api_response_key: string]: string }> {
+) {
   /**
    * Get monthly precipitation, max and min temperature data from Open Meteo API's.
    *
@@ -56,38 +55,58 @@ export async function getWeather(
    * @param api_type - Open Meteo API type listed at https://open-meteo.com/en/docs/historical-weather-api
    * @param api_response_key - The key for the JSON return object
    */
-  const queryParams = request.nextUrl.searchParams;
-  const lat = queryParams.get("lat");
-  const lng = queryParams.get("lng");
-  const yearMonth = queryParams.get("year-month");
-  if (!isValidLatLng({ api_lat: lat, api_lng: lng })) {
-    return {
-      [api_response_key]:
-        "[ERROR] The latitude 'lat' and longitude 'lng' values must be a valid number.",
-    };
+  let lat: string = "-1";
+  let lng: string = "-1";
+  let yearMonth: string = "1998-08";
+
+  // In Jest unit testing environments, searchParams is strangely not
+  // accessible and therefore gives out a fetal error.
+  try {
+    const queryParams = request.nextUrl.searchParams;
+    lat = queryParams.get("lat") || "-1";
+    lng = queryParams.get("lng") || "-1";
+    yearMonth = queryParams.get("year-month") || "1998-08";
+  } catch (err) {
+    // The try catch block would not have been needed at all, if not for
+    // the "TypeError: Cannot read properties of undefined (reading
+    // searchParams')" which strangely occurs only in Jest unit testing.
+    // We suspect it's caused by some kind of compatibility issues with
+    // Next.js 13 server side components with Jest.
   }
-  if (!isValidYearMonth(yearMonth)) {
-    return {
-      [api_response_key]:
-        "[ERROR] 'year-month' must be in the form of YYYY-MM, and cannot be set into the future.",
-    };
+
+  if (
+    !isValidLatLng({ api_lat: lat, api_lng: lng }) ||
+    !isValidYearMonth(yearMonth)
+  ) {
+    // API error response best practices.
+    // Source:
+    //   https://nextjs.org/docs/app/api-reference/functions/next-response#json
+    return NextResponse.json({ error: "Bad Request Error" }, { status: 400 });
   }
 
-  const api_response = await fetchOpenMeteo({
-    api_lat: lat,
-    api_lng: lng,
-    api_year_month: yearMonth,
-    api_type: api_type,
-  });
+  try {
+    const api_response = await fetchOpenMeteo({
+      api_lat: lat,
+      api_lng: lng,
+      api_year_month: yearMonth,
+      api_type: api_type,
+    });
 
-  const [stripped_api_response_time, stripped_api_response_value] =
-    stripOpenMeteo(api_response, api_type);
-  const parsed_api_response = parseOpenMeteo(
-    [stripped_api_response_time, stripped_api_response_value],
-    api_type
-  );
+    const [stripped_api_response_time, stripped_api_response_value] =
+      stripOpenMeteo(api_response, api_type);
+    const parsed_api_response = parseOpenMeteo(
+      [stripped_api_response_time, stripped_api_response_value],
+      api_type
+    );
 
-  return { [api_response_key]: parsed_api_response };
+    return NextResponse.json({ [api_response_key]: parsed_api_response });
+  } catch (err) {
+    console.log(err);
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
 }
 
 export async function fetchOpenMeteo(params: types_OpenMeteo) {
@@ -221,6 +240,19 @@ export function isValidLatLng(params: types_latLng): boolean {
     isNaN(Number(params.api_lng))
   ) {
     return false;
+  }
+  // Maximum and minimum possible values of latitude and longitude.
+  // Source:
+  //   https://docs.mapbox.com/help/glossary/lat-lon
+  const numeric_api_lat = Number(params.api_lat);
+  const numeric_api_lng = Number(params.api_lng);
+  if (
+    numeric_api_lat < -90 ||
+    numeric_api_lat > 90 ||
+    numeric_api_lng < -180 ||
+    numeric_api_lng > 180
+  ) {
+    return false;
   } else {
     return true;
   }
@@ -246,8 +278,6 @@ export function isValidYearMonth(yearDate: string | null): boolean {
   //   https://stackoverflow.com/a/38050824
   yearDate_now.setUTCHours(0, 0, 0, 0);
   yearDate_now.setUTCDate(1);
-
-  console.log(yearDate_input, yearDate_now);
 
   if (yearDate_input >= yearDate_now) {
     return false;

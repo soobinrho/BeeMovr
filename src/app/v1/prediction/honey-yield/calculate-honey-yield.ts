@@ -4,9 +4,9 @@ import {
 } from "../../weather/open-meteo-api";
 
 export function calculateHoneyYield(
-    precipitation: string,
-    max_temp: string,
-    min_temp: string
+  precipitation: string,
+  max_temp: string,
+  min_temp: string
 ): string {
   /**
    * Returns the honey yield prediction value.
@@ -28,7 +28,6 @@ export function calculateHoneyYield(
   // start_date.setMonth(start_date.getMonth() - 3);
   // const api_start_date = start_date.toISOString().split("T")[0];
   // const api_end_date = end_date.toISOString().split("T")[0];
-
 
   return "0";
 }
