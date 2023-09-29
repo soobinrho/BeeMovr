@@ -113,9 +113,9 @@ The MVP was good and all, but we decided to [throw away the first version](https
 Immediate todos I have to do right now are: finish recreating BeeMovr with Next.js; read Nginx documentation to set up the nginx.conf; and containerize with Docker and deploy with Docker Compose.
 
 ```bash
-#
-# Workflows I find using a lot
-#
+# ---------------------------------------------------------------------
+# Workflows we find using a lot
+# ---------------------------------------------------------------------
 
 # Open VS Code in the project directory.
 cd BeeMovr
@@ -144,20 +144,6 @@ ts-node <filename>
 
 # Add a development dependency.
 yarn add --dev <package name>
-
-# Set up Jest for unit testing.
-# Source:
-#   https://kulshekhar.github.io/ts-jest/docs/getting-started/installation/#jest-config-file
-yarn add --dev jest ts-jest typescript @types/jest
-yarn ts-jest config:init
-
-# Install mock objects for Node.js HTTP requests, required for API endpoint testing.
-# Source:
-#   https://medium.com/@zachshallbetter/unit-test-next-js-api-routes-with-typescript-longer-version-a59ceb261b1f
-yarn add --dev node-mocks-http
-
-# How to run tests.
-yarn test
 ```
 
 Today, I read [Next.js routing fundamentals](https://nextjs.org/docs/app/building-your-application/routing), [REST API URI naming conventions](https://restfulapi.net/resource-naming/), [TSDoc specifications](https://tsdoc.org/), and [JavaScript promises, async, and await](https://javascript.info/async).
@@ -219,3 +205,23 @@ For security, I read:
 **2023-09-28 Soobin**
 
 We decided to use Jest for unit testing.
+
+```bash
+# ---------------------------------------------------------------------
+# Unit testing workflows
+# ---------------------------------------------------------------------
+
+# Set up Jest for unit testing.
+# Source:
+#   https://kulshekhar.github.io/ts-jest/docs/getting-started/installation/#jest-config-file
+yarn add --dev jest ts-jest typescript @types/jest
+yarn ts-jest config:init
+
+# Install mock objects for Node.js HTTP requests, required for API endpoint testing.
+# Source:
+#   https://medium.com/@zachshallbetter/unit-test-next-js-api-routes-with-typescript-longer-version-a59ceb261b1f
+yarn add --dev node-mocks-http
+
+# How to run tests.
+yarn test
+```
