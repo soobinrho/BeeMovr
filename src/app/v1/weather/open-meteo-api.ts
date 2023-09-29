@@ -1,3 +1,4 @@
+import { time } from "console";
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
@@ -12,7 +13,7 @@ import { NextRequest } from "next/server";
 export interface types_OpenMeteo {
   api_lat: string | null;
   api_lng: string | null;
-  api_referenceDate: string | null;
+  api_year_month: string | null;
   api_type: string;
 }
 
@@ -35,7 +36,7 @@ export interface types_api_response {
   timezone: string;
   timezone_abbreviation: string;
   elevation: number;
-  daily_units: DailyUnits;
+  daily_units: any;
   daily: any;
 }
 
@@ -43,22 +44,39 @@ export async function getWeather(
   request: NextRequest,
   api_type: string,
   api_response_key: string
-): Promise<{[api_response_key: string]: string}> {
+): Promise<{ [api_response_key: string]: string }> {
+  /**
+   * Get monthly precipitation, max and min temperature data from Open Meteo API's.
+   *
+   * @remarks
+   * The return values from Open Meteo are daily values, so helper functions are
+   * used to calculate their monthly equivalents (sum, max, and min respectively).
+   *
+   * @param request - API GET request object
+   * @param api_type - Open Meteo API type listed at https://open-meteo.com/en/docs/historical-weather-api
+   * @param api_response_key - The key for the JSON return object
+   */
   const queryParams = request.nextUrl.searchParams;
   const lat = queryParams.get("lat");
   const lng = queryParams.get("lng");
-  const referenceDate = queryParams.get("reference-date");
+  const yearMonth = queryParams.get("year-month");
   if (!isValidLatLng({ api_lat: lat, api_lng: lng })) {
-    return {[api_response_key]: "[ERROR] The latitude 'lat' and longitude 'lng' values must be a valid number."};
+    return {
+      [api_response_key]:
+        "[ERROR] The latitude 'lat' and longitude 'lng' values must be a valid number.",
+    };
   }
-  if (!isValidReferenceDate(referenceDate)) {
-    return {[api_response_key]: "[ERROR] The reference date 'reference-date' must be in the form of YYYY-MM"};
+  if (!isValidYearMonth(yearMonth)) {
+    return {
+      [api_response_key]:
+        "[ERROR] 'year-month' must be in the form of YYYY-MM, and cannot be set into the future.",
+    };
   }
 
   const api_response = await fetchOpenMeteo({
     api_lat: lat,
     api_lng: lng,
-    api_referenceDate: referenceDate,
+    api_year_month: yearMonth,
     api_type: api_type,
   });
 
@@ -69,20 +87,21 @@ export async function getWeather(
     api_type
   );
 
-  return {[api_response_key]: parsed_api_response};
+  return { [api_response_key]: parsed_api_response };
 }
 
 export async function fetchOpenMeteo(params: types_OpenMeteo) {
   /**
-   * Calls the Open Meteo API and returns the json object.
+   * A wrapper around Open Meteo API's for historical weather data.
    */
-  let start_date =
-    (params.api_referenceDate && new Date(params.api_referenceDate)) ||
-    new Date();
-  let end_date =
-    (params.api_referenceDate && new Date(params.api_referenceDate)) ||
-    new Date();
-  start_date.setMonth(start_date.getMonth() - 3);
+
+  // Get exactly one month worth of data, since the prediction model
+  // requires monthly values.
+  const start_date_local =
+    (params.api_year_month && new Date(params.api_year_month)) || new Date();
+  const start_date = getLocalToUTC(start_date_local);
+  const end_date = structuredClone(start_date);
+  end_date.setMonth(start_date.getMonth() + 1);
   const api_start_date = start_date.toISOString().split("T")[0];
   const api_end_date = end_date.toISOString().split("T")[0];
 
@@ -181,6 +200,17 @@ export function parseOpenMeteo(
   }
 }
 
+export function getLocalToUTC(date_local: Date): Date {
+  const date_UTC = new Date(
+    Date.UTC(
+      date_local.getUTCFullYear(),
+      date_local.getUTCMonth(),
+      date_local.getUTCDate()
+    )
+  );
+  return date_UTC;
+}
+
 export function isValidLatLng(params: types_latLng): boolean {
   if (
     params.api_lat == null ||
@@ -196,10 +226,32 @@ export function isValidLatLng(params: types_latLng): boolean {
   }
 }
 
-export function isValidReferenceDate(referenceDate: string | null): boolean {
-  if (referenceDate == null) {
+export function isValidYearMonth(yearDate: string | null): boolean {
+  if (!yearDate || !/\d{4}-\d{2}/.test(yearDate)) {
     return false;
-  } else {
-    return /\d{4}-\d{2}/.test(referenceDate);
   }
+
+  // To calculate monthly precipitation, max and min temperature, we
+  // need a full month worth of data, which means the input month
+  // shouldn't be the current month, since the month has not come to
+  // the end yet. Likewise, it's not a valid month if the date is
+  // set in the future.
+  const yearDate_input = new Date(yearDate + "T00:00:00Z");
+  const yearDate_now_local = new Date();
+  const yearDate_now = getLocalToUTC(yearDate_now_local);
+
+  // Javascript Date objects are initialized with local time zone by
+  // default. Convert them to UTC for accurate handling of time.
+  // Source:
+  //   https://stackoverflow.com/a/38050824
+  yearDate_now.setUTCHours(0, 0, 0, 0);
+  yearDate_now.setUTCDate(1);
+
+  console.log(yearDate_input, yearDate_now);
+
+  if (yearDate_input >= yearDate_now) {
+    return false;
+  }
+
+  return true;
 }

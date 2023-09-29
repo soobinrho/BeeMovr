@@ -4,7 +4,7 @@ import { getWeather } from "../../weather/open-meteo-api";
 import { calculateHoneyYield } from "./calculate-honey-yield";
 import {
   isValidLatLng,
-  isValidReferenceDate,
+  isValidYearMonth,
 } from "../../weather/open-meteo-api";
 
 export async function GET(request: NextRequest) {
@@ -26,7 +26,7 @@ export async function GET(request: NextRequest) {
   if (!isValidLatLng({ api_lat: lat, api_lng: lng })) {
     // return "[ERROR] The latitude 'lat' and longitude 'lng' values must be a valid number.";
   }
-  if (!isValidReferenceDate(referenceDate)) {
+  if (!isValidYearMonth(referenceDate)) {
     // return "[ERROR] The reference date 'reference-date' must be in the form of YYYY-MM";
   }
 
@@ -52,4 +52,11 @@ export async function GET(request: NextRequest) {
     api_type_precipitation,
     api_response_key_precipitation
   );
+
+  const calculated_api_response = calculateHoneyYield(
+    precipitation,
+    max_temp,
+    min_temp
+  );
+  return NextResponse.json(calculated_api_response);
 }
