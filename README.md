@@ -97,7 +97,8 @@ These data, in turn, will be used in conjuction with [IBM watsonx.data](https://
 
 We envision BeeMovr to become the de-facto map for helping beekeepers make an informed decision about what's best for their bees.
 What we're trying to do here is to make our project as helpful for beekeepers as possible.
-Therefore, what we think is the most important part of BeeMovr is understanding what the beekeepers want and need.
+We believe the most important part of BeeMovr is to understand what the beekeepers want and need.
+This is our identity.
 We aim to create *the* beekeeper's map, the first feature of which is maximum potential honey yield prediction.
 As we iterate with our beekeepers, we'll listen to what their (and their bees') needs are, and we'll incremently add those features so that we can better help them serve their bees.
 
