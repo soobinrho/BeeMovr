@@ -67,12 +67,12 @@ BeeMovr allows the user (beekeepers) to do exactly that.
 
 <br>
 
-***How we can help***<br>
+***What BeeMovr does***<br>
 ```
 ☐ Description of "How our technology solution can help" (approximately 10 words)
 This is where you will give a short description of your team's technology solution, in about 10 words.
 ```
-[BeeMovr.com](https://BeeMovr.com) calculates honey yield prediction value of any given coordinates.
+We can calculate honey-yield prediction value of any given coordinates.
 
 <br>
 
