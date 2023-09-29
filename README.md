@@ -22,7 +22,7 @@ We can program."
 
 Keith Robert from the Valley Hive in California explained that beekeepers are sometimes forced to relocate their beehives - e.g. California drought - and they can't just move into any location.
 They need to find an area that has the highest survival rate and the best nectar availability for their colonies.
-That's why we started BeeMovr.
+That's how BeeMovr started.
 
 <br>
 
