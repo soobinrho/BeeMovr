@@ -17,5 +17,7 @@
     "tsdoc"
   ],
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "eslint.validate": [
+    "typescript"
+  ],
 }

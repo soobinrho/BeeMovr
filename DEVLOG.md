@@ -24,6 +24,7 @@ He explained, "creating a map that can calculate the nectar availability of any 
 ```
 [HackMIT] Welcome to HackMIT 2023! 🎈🎉
 ```
+
 Both Schaler and I (Soobin) got into HackMIT.
 We decided this is the perfect time to create the beekeeper's map to address the problem Keith explained to us a few months ago.
 We will create a map that can calculate the nectar availability of any given point on the map.
@@ -86,6 +87,7 @@ Spent many hours coding all night hahaha
 Best,
 Soobin
 ```
+
 ```
 Soobin,
 
@@ -165,6 +167,7 @@ Today, I read [Next.js routing fundamentals](https://nextjs.org/docs/app/buildin
 **2023-09-26 Soobin**
 
 I tried to get a deeper understanding of how Next.js works by reading:
+
 - [Don't be tempted to reach for an internal API route](https://nextjs.org/docs/pages/building-your-application/data-fetching/get-server-side-props#getserversideprops-or-api-routes)
 - [How rendering in Next.js works](https://nextjs.org/docs/app/building-your-application/rendering)
 - [API Route Handling, Response Headers, and CORS Headers](https://nextjs.org/docs/app/building-your-application/routing/route-handlers)
@@ -173,11 +176,13 @@ I tried to get a deeper understanding of how Next.js works by reading:
 - [For importing external libraries (in our case, it's Mapbox), use next/script](https://nextjs.org/docs/pages/building-your-application/optimizing/scripts)
 
 After that, I read about the specifics of how to structure the actual code:
+
 - [Client Components](https://nextjs.org/docs/app/building-your-application/rendering/client-components)
 - [Server Components](https://nextjs.org/docs/app/building-your-application/rendering/server-components)
 - [Patterns for compositing client components and server components](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns)
 
 Plus, I read about meta data generation functions that will greatly improve SEO:
+
 - [metadata object](https://nextjs.org/docs/app/api-reference/functions/generate-metadata#the-metadata-object)
 - [metaData base URL and `canonical: '/'`](https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase)
 - [sitemap.ts](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/sitemap#generate-a-sitemap)
@@ -189,6 +194,7 @@ Plus, I read about meta data generation functions that will greatly improve SEO:
 Also, "to reduce the Client JavaScript bundle size, we recommend moving Client Components down your component tree." If a child component doesn't ready have a `'use client'` directive, create a separate `.tsx` fole wrapping around that component with the `'use client'` directive. [[Source](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#moving-client-components-down-the-tree)]
 
 `yarn build` (which by the way is short for `yarn run build` creates optimized deployment files:
+
 - [Next.js build directory overview](https://nextjs.org/docs/pages/building-your-application/deploying)
 - [SIGTERM handling in Next.js](https://nextjs.org/docs/pages/building-your-application/deploying#manual-graceful-shutdowns)
 - [How to deploy with `yarn run build` and `yarn run start`](https://nextjs.org/docs/pages/building-your-application/deploying#nodejs-server)
@@ -203,6 +209,7 @@ Let's keep in mind future roadmap includes implementation of geospatial database
 We'll see...
 
 For security, I read:
+
 - [Content-Security-Policy HTTP response header](https://csp.withgoogle.com/docs/index.html)
 - [A Dev.to post on how to set up the CSP header](https://dev.to/snaka/securing-your-nextjs-application-with-strict-csp-4lie)
 - [Example code for CSP](https://nextjs.org/docs/pages/building-your-application/configuring/content-security-policy)

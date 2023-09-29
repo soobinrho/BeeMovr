@@ -1,5 +1,4 @@
-import { NextRequest } from "next/server";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
 
 // --------------------------------------------------------------------
 // Open Meteo API parameters.
@@ -39,6 +38,9 @@ export interface types_api_response {
   daily: any;
 }
 
+// --------------------------------------------------------------------
+// Main function.
+// --------------------------------------------------------------------
 export async function getWeather(
   request: NextRequest,
   api_type: string,
@@ -55,17 +57,17 @@ export async function getWeather(
    * @param api_type - Open Meteo API type listed at https://open-meteo.com/en/docs/historical-weather-api
    * @param api_response_key - The key for the JSON return object
    */
-  let lat: string = "-1";
-  let lng: string = "-1";
-  let yearMonth: string = "1998-08";
+  let lat: string = '-1';
+  let lng: string = '-1';
+  let yearMonth: string = '1998-08';
 
   // In Jest unit testing environments, searchParams is strangely not
   // accessible and therefore gives out a fetal error.
   try {
     const queryParams = request.nextUrl.searchParams;
-    lat = queryParams.get("lat") || "-1";
-    lng = queryParams.get("lng") || "-1";
-    yearMonth = queryParams.get("year-month") || "1998-08";
+    lat = queryParams.get('lat') || '-1';
+    lng = queryParams.get('lng') || '-1';
+    yearMonth = queryParams.get('year-month') || '1998-08';
   } catch (err) {
     // The try catch block would not have been needed at all, if not for
     // the "TypeError: Cannot read properties of undefined (reading
@@ -81,7 +83,7 @@ export async function getWeather(
     // API error response best practices.
     // Source:
     //   https://nextjs.org/docs/app/api-reference/functions/next-response#json
-    return NextResponse.json({ error: "Bad Request Error" }, { status: 400 });
+    return NextResponse.json({ error: 'Bad Request Error' }, { status: 400 });
   }
 
   try {
@@ -103,12 +105,15 @@ export async function getWeather(
   } catch (err) {
     console.log(err);
     return NextResponse.json(
-      { error: "Internal Server Error" },
+      { error: 'Internal Server Error' },
       { status: 500 }
     );
   }
 }
 
+// --------------------------------------------------------------------
+// Helper functions.
+// --------------------------------------------------------------------
 export async function fetchOpenMeteo(params: types_OpenMeteo) {
   /**
    * A wrapper around Open Meteo API's for historical weather data.
@@ -121,32 +126,32 @@ export async function fetchOpenMeteo(params: types_OpenMeteo) {
   const start_date = getLocalToUTC(start_date_local);
   const end_date = structuredClone(start_date);
   end_date.setMonth(start_date.getMonth() + 1);
-  const api_start_date = start_date.toISOString().split("T")[0];
-  const api_end_date = end_date.toISOString().split("T")[0];
+  const api_start_date = start_date.toISOString().split('T')[0];
+  const api_end_date = end_date.toISOString().split('T')[0];
 
   const api_url =
-    "https://archive-api.open-meteo.com/v1/archive?" +
-    "latitude" +
-    "=" +
+    'https://archive-api.open-meteo.com/v1/archive?' +
+    'latitude' +
+    '=' +
     params.api_lat +
-    "&" +
-    "longitude" +
-    "=" +
+    '&' +
+    'longitude' +
+    '=' +
     params.api_lng +
-    "&" +
-    "start_date" +
-    "=" +
+    '&' +
+    'start_date' +
+    '=' +
     api_start_date +
-    "&" +
-    "end_date" +
-    "=" +
+    '&' +
+    'end_date' +
+    '=' +
     api_end_date +
-    "&" +
-    "daily" +
-    "=" +
+    '&' +
+    'daily' +
+    '=' +
     params.api_type;
 
-  const api_response = await fetch(api_url, { cache: "force-cache" });
+  const api_response = await fetch(api_url, { cache: 'force-cache' });
   return await api_response.json();
 }
 
@@ -167,7 +172,7 @@ export function stripOpenMeteo(
 }
 
 export function parseOpenMeteo(
-  [stripped_api_response_time, stripped_api_response_value]: Array<Object>,
+  [stripped_api_response_time, stripped_api_response_value]: Array<object>,
   api_type: string
 ): string {
   /**
@@ -185,7 +190,7 @@ export function parseOpenMeteo(
     Object.values(stripped_api_response_value)
   );
   const SIZE = array_api_response_time.length;
-  if (api_type === "precipitation_sum") {
+  if (api_type === 'precipitation_sum') {
     // For monthly precipitation, find the sum of all daily
     // precipitation values.
     let sum = 0;
@@ -193,7 +198,7 @@ export function parseOpenMeteo(
       sum += array_api_response_value[i];
     }
     return sum.toString();
-  } else if (api_type === "temperature_2m_max") {
+  } else if (api_type === 'temperature_2m_max') {
     // For monthly maximum temperature, find the maximum daily
     // temperature value.
     let max = array_api_response_value[0];
@@ -233,10 +238,10 @@ export function getLocalToUTC(date_local: Date): Date {
 export function isValidLatLng(params: types_latLng): boolean {
   if (
     params.api_lat == null ||
-    params.api_lat === "" ||
+    params.api_lat === '' ||
     isNaN(Number(params.api_lat)) ||
     params.api_lng == null ||
-    params.api_lng === "" ||
+    params.api_lng === '' ||
     isNaN(Number(params.api_lng))
   ) {
     return false;
@@ -268,7 +273,7 @@ export function isValidYearMonth(yearDate: string | null): boolean {
   // shouldn't be the current month, since the month has not come to
   // the end yet. Likewise, it's not a valid month if the date is
   // set in the future.
-  const yearDate_input = new Date(yearDate + "T00:00:00Z");
+  const yearDate_input = new Date(yearDate + 'T00:00:00Z');
   const yearDate_now_local = new Date();
   const yearDate_now = getLocalToUTC(yearDate_now_local);
 

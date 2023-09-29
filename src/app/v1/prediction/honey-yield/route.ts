@@ -1,10 +1,15 @@
-import { NextResponse } from "next/server";
-import { NextRequest } from "next/server";
-import { getWeather } from "../../weather/open-meteo-api";
-import { calculateHoneyYield } from "./calculate-honey-yield";
-import { isValidLatLng, isValidYearMonth } from "../../weather/open-meteo-api";
+// import { NextResponse, NextRequest } from "next/server";
+import { NextResponse } from 'next/server';
 
-export async function GET(request: NextRequest) {
+// import { calculateHoneyYield } from "./calculate-honey-yield";
+// import {
+//   getWeather,
+//   isValidLatLng,
+//   isValidYearMonth,
+// } from "../../weather/open-meteo-api";
+
+// export async function GET(request: NextRequest) {
+export async function GET() {
   /**
    * Returns the honey yield prediction value.
    *
@@ -18,5 +23,5 @@ export async function GET(request: NextRequest) {
    */
 
   // WIP
-  return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+  return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
 }

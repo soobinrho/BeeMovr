@@ -1,13 +1,12 @@
 import {
   getWeather,
   types_latLngReferenceDate,
-} from "../../weather/open-meteo-api";
+} from '../../weather/open-meteo-api';
 
-export function calculateHoneyYield(
-  precipitation: string,
-  max_temp: string,
-  min_temp: string
-): string {
+export function calculateHoneyYield(): string {
+  // precipitation: string,
+  // max_temp: string,
+  // min_temp: string,
   /**
    * Returns the honey yield prediction value.
    *
@@ -29,5 +28,5 @@ export function calculateHoneyYield(
   // const api_start_date = start_date.toISOString().split("T")[0];
   // const api_end_date = end_date.toISOString().split("T")[0];
 
-  return "0";
+  return '0';
 }
