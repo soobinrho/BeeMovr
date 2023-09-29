@@ -30,3 +30,6 @@ export function calculateHoneyYield(): string {
 
   return '0';
 }
+
+// TODO: Do more domain research on nectar availability:
+//   https://scholar.google.com/scholar?hl=en&as_sdt=0%2C8&q=nectar+availability&btnG=&oq=nec
