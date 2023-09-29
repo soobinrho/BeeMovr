@@ -104,7 +104,7 @@ As we iterate with our beekeepers, we'll listen to what their (and their bees') 
 As we promised our beekeeper Keith Robert, BeeMovr has been and will always be open-sourced and open to all beekeepers.
 If you're a beekeeper and have any suggestions or feature requests, please feel free to email us at &lt;workerbees@beemovr.com&gt;.
 Our main website is at [BeeMovr.com](https://BeeMovr.com) and we are Schaler Starks &lt;schaler@beemovr.com&gt;, Eric Gonzalez Duro &lt;eric@beemovr.com&gt;, Jasper Ha &lt;jasper@beemovr.com&gt;, and Soobin Rho &lt;soobin@beemovr.com&gt;.
-If you share our goal to make a positive impact on environmental sustainability by helping beekeepers and their bees, you're welcome to join us.
+If you share our goal to make a positive impact on environmental sustainability by helping beekeepers and their bees, you're welcome to join us and feel free to make pull requests on any feature you think is the best for BeeMovr.
 
 <!-- TODO: Delete this after Call for Code submission
 ☐ Link to publicly accessible code repository that contains your working code
