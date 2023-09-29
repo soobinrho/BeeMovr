@@ -99,7 +99,7 @@ We envision BeeMovr to become the de-facto map for helping beekeepers make an in
 What we're trying to do here is to make our project as helpful for beekeepers as possible.
 Therefore, what we think is the most important part of BeeMovr is understanding what the beekeepers want and need.
 We aim to create *the* beekeeper's map, the first feature of which is maximum potential honey yield prediction.
-As we iterate with our beekeepers, we'll listen to what their (and their bees') needs are, and we'll incremently deliver those features so that we can help them serve their bees.
+As we iterate with our beekeepers, we'll listen to what their (and their bees') needs are, and we'll incremently add those features so that we can better help them serve their bees.
 
 As we promised our beekeeper Keith Robert, BeeMovr has been and will always be open-sourced and open to all beekeepers.
 If you're a beekeeper and have any suggestions or feature requests, please feel free to email us at &lt;workerbees@beemovr.com&gt;.
