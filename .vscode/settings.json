@@ -1,5 +1,6 @@
 {
   "cSpell.words": [
+    "beemovr",
     "everytime",
     "generationtime",
     "Grogan",
@@ -11,7 +12,9 @@
     "Movr",
     "Schaler",
     "Soobin",
-    "todos"
+    "tailwindcss",
+    "todos",
+    "tsdoc"
   ],
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode"

@@ -119,6 +119,9 @@ Immediate todos I have to do right now are: finish recreating BeeMovr with Next.
 cd BeeMovr
 code .
 
+# Install Typescript globally
+yarn global add typescript
+
 # Initialize Next.js
 yarn create next-app
 
@@ -138,7 +141,21 @@ yarn global add ts-node
 ts-node <filename>
 
 # Add a development dependency.
-yarn add <package name> --dev
+yarn add --dev <package name>
+
+# Set up Jest for unit testing.
+# Source:
+#   https://kulshekhar.github.io/ts-jest/docs/getting-started/installation/#jest-config-file
+yarn add --dev jest ts-jest typescript @types/jest
+yarn ts-jest config:init
+
+# Install mock objects for Node.js HTTP requests, required for API endpoint testing.
+# Source:
+#   https://medium.com/@zachshallbetter/unit-test-next-js-api-routes-with-typescript-longer-version-a59ceb261b1f
+yarn add --dev node-mocks-http
+
+# How to run tests.
+yarn test
 ```
 
 Today, I read [Next.js routing fundamentals](https://nextjs.org/docs/app/building-your-application/routing), [REST API URI naming conventions](https://restfulapi.net/resource-naming/), [TSDoc specifications](https://tsdoc.org/), and [JavaScript promises, async, and await](https://javascript.info/async).
@@ -191,3 +208,7 @@ For security, I read:
 - [Example code for CSP](https://nextjs.org/docs/pages/building-your-application/configuring/content-security-policy)
 
 -> "If you need to read dynamic values from the incoming request, you cannot use a static export." [[Source](https://nextjs.org/docs/app/building-your-application/deploying/static-exports#route-handlers)] So, never mind. We'll use a regular build instead.
+
+**2023-09-28 Soobin**
+
+We decided to use Jest for unit testing.
