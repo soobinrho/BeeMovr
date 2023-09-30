@@ -133,8 +133,9 @@ yarn install
 # Start a development server.
 yarn dev
 
-# Create optimized production build.
+# Create optimized production build and serve with Node.js
 yarn build
+yarn start
 
 # Install ts-node to run TypeScript files mainly for testing purposes.
 yarn global add ts-node
@@ -225,3 +226,12 @@ yarn add --dev node-mocks-http
 # How to run tests.
 yarn test
 ```
+
+#### 2023-09-29 Soobin
+
+I did some more digging around to see what are the industry standards:
+
+- [How to build a fullstack app with Next.js, Prisma, and Postgres](https://vercel.com/guides/nextjs-prisma-postgres)
+- [.env files and environmental variables in Next.js](https://nextjs.org/docs/pages/building-your-application/configuring/environment-variables#default-environment-variables)
+- [Open Graph protocol image generation as an API endpoint](https://vercel.com/docs/functions/edge-functions/og-image-generation)
+- [Differences between client side rendering, server side rendering, and static site generation](https://youtu.be/6nuRlaNFd4g?si=XiAx3xhnp3TXzAx0)

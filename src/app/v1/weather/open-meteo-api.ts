@@ -284,5 +284,5 @@ export function isValidYearMonth(yearDate: string | null): boolean {
   yearDate_now.setUTCHours(0, 0, 0, 0);
   yearDate_now.setUTCDate(1);
 
-  return yearDate_input < yearDate_now
+  return yearDate_input < yearDate_now;
 }
