@@ -27,9 +27,10 @@ That's how BeeMovr started.
 <br>
 
 ## Getting Started
+
 [1.](#1-how-to-spin-up-a-development-server) How to spin up a development server<br>
-[2.](#2-how-does-this-work) How does this work?<br>
-[3.](#3-roadmap) Roadmap
+[2.](#2-how-we-deploy-to-beemovrcom) How we deploy to [BeeMovr.com](https://BeeMovr.com)<br>
+[3.](#3-how-does-this-work) How does this work?<br>
 
 <br>
 
@@ -40,7 +41,7 @@ Special thanks to Keith Robert from [The Valley Hive](https://www.thevalleyhive.
 Also, our work would not have been possible without the paper "[The Impact of Precipitation and Temperature on Honey Yield in the United States](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf)" (Hayes Kent Grogan, 2020, Auburn University).
 This paper is what made our core prediction model possible.
 
-> BeeMovr is a [HackMIT](https://github.com/soobinrho/BeeMovr/blob/main/DEVLOG.md#2023-09-17-eric-jasper-schaler-and-soobin) and [Call for Code](https://developer.ibm.com/callforcode/) project. 
+> BeeMovr is a [HackMIT](https://github.com/soobinrho/BeeMovr/blob/main/DEVLOG.md#2023-09-17-eric-jasper-schaler-and-soobin) and [Call for Code](https://developer.ibm.com/callforcode/) project.
 
 <br>
 
@@ -48,37 +49,42 @@ This paper is what made our core prediction model possible.
 
 ![Architecture diagram of BeeMovr](https://github.com/soobinrho/BeeMovr/assets/19341857/7bba3368-acb9-4ce4-90c5-167f158d5edf)
 
-| Stack | Name |
-| ------- | ---- |
-| **CDN** | [Cloudflare](https://www.cloudflare.com/) |
-| **Reverse Proxy** | [Nginx](https://www.nginx.com/) |
-| **Deployment** | Containerized with [Docker](https://www.docker.com/) + server runtime with [Node.js](https://nodejs.org/) |
-| **Front-end** | [Next.js client-side components](https://nextjs.org/docs/app/building-your-application/rendering/client-components) + OpenStreetMap interactivity from [Mapbox](https://www.mapbox.com/) |
-| **Back-end** | [Next.js server-side components](https://nextjs.org/docs/app/building-your-application/rendering/server-components) + real-time weather data from [Open Meteo API](https://open-meteo.com/) |
-| **Experimental** | Machine learning with [IBM Cloud watsonx.data](https://www.ibm.com/products/watsonx-data) + data handling with [IBM Cloud PostgresSQL](https://www.ibm.com/cloud/databases-for-postgresql)
+| Stack             | Name                                                                                                                                                                                                  |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **CDN**           | [Cloudflare](https://www.cloudflare.com/)                                                                                                                                                             |
+| **Reverse Proxy** | [Nginx](https://www.nginx.com/)                                                                                                                                                                       |
+| **Deployment**    | Containerized with [Docker](https://www.docker.com/) + server runtime with [Node.js](https://nodejs.org/)                                                                                             |
+| **Front-end**     | [Next.js client-side components](https://nextjs.org/docs/app/building-your-application/rendering/client-components) + OpenStreetMap interactivity from [Mapbox](https://www.mapbox.com/)              |
+| **Back-end**      | [Next.js server-side components](https://nextjs.org/docs/app/building-your-application/rendering/server-components) + real-time weather data from [Open Meteo API](https://open-meteo.com/)           |
+| **Experimental**  | Machine learning with [IBM Cloud watsonx.data](https://www.ibm.com/products/watsonx-data) + persistent data handling with [IBM Cloud PostgresSQL](https://www.ibm.com/cloud/databases-for-postgresql) |
 
 <br>
 
-***The issue we are addressing***<br>
+**_The issue we are addressing_**<br>
+
 ```
 ☐ Brief description of "The issue we are hoping to solve" (2-3 sentences)
 This should be a short description, 2-3 sentences in length, of the specific sustainability problem your solution is meant to address.
 ```
+
 Whenever beekeepers need to relocate their colonies, they need to find an area that has the higest survival rate and the maximum potential for honey yield.
-BeeMovr allows the user (beekeepers) to do exactly that.
+BeeMovr allows our users (beekeepers ♥) to do exactly that.
 
 <br>
 
-***What BeeMovr does***<br>
+**_What BeeMovr does_**<br>
+
 ```
 ☐ Description of "How our technology solution can help" (approximately 10 words)
 This is where you will give a short description of your team's technology solution, in about 10 words.
 ```
+
 We can calculate honey-yield prediction value of any given coordinates.
 
 <br>
 
-***The idea behind BeeMovr***<br>
+**_The idea behind BeeMovr_**<br>
+
 ```
 ☐ Long description of your team’s solution (approximately 500 words)
 This is a longer description of your solution.
@@ -86,28 +92,30 @@ In about 500 words, describe your solution in more detail.
 Include the real-world problem you identified, describe the technological solution you have created, and explain how it's an improvement over existing solutions.
 You can supply additional documentation in this source code repository that you link to as well.
 ```
-BeeMovr pulls in real-time precipitation, maximum temperature, and minimum temperature data from Open Meteo API's, and calculates a prediction of the maximum possible honey yield value of any given coordinates on the map based on [Hayes Kent Grogan's paper](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf).
+
+BeeMovr pulls in real-time precipitation, maximum temperature, and minimum temperature data from Open Meteo API, and calculates a prediction of the maximum possible honey yield value of any given coordinates on the map based on [Hayes Kent Grogan's paper](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf).
 Our project seeks to give beekeepers increased information about ideal pollinator conditions near them to increase colony survival rate and reduce uncertainty.
 We focused on researching the most accurate model possible.
 Currently, we use a linear regression with the factors of maximum and minimum temperatures and monthly sum of precipitation.
 We plan to use [IBM watsonx.data](https://cloud.ibm.com/docs/watsonxdata?topic=watsonxdata-getting-started) to pull combined data from [USDA (U.S. Department of Agriculture)](https://www.usda.gov/) and [NASS (National Agricultural Statistics Service)](https://www.nass.usda.gov/) for improved prediction models.
 
 We're also trying to increase prediction accuracy by ingesting colony-specific demographic data into our prediction model, as colony demographic data such as the age of the queen were found to be statistically significant, as discovered by Grogan's 2020 paper.
-Currently, we rely on [Next.js built-in request memorization caching](https://nextjs.org/docs/app/building-your-application/caching#request-memoization) to avoid duplicate API calls and thereby make data fetching fairly efficient.
-However, we believe this process can be improved by implementing [IBM Cloud PostgresSQL](https://www.ibm.com/cloud/databases-for-postgresql) to cache and store all precipitation & temperature requests `{ key: latLng, values: [precipitation, maxTemp, minTemp] }`.
-These data, in turn, will be used in conjuction with [IBM watsonx.data](https://cloud.ibm.com/docs/watsonxdata?topic=watsonxdata-getting-started) to imrpove our prediction models for the maximum potential honey yield for any given coordinates our users (beekeepers ♥) specify.
+Currently, we rely on [Next.js built-in request memorization caching](https://nextjs.org/docs/app/building-your-application/caching#request-memoization) to avoid duplicate API calls.
+This process is fairly efficient.
+However, we believe the data fetching process can be improved by implementing [IBM Cloud PostgresSQL](https://www.ibm.com/cloud/databases-for-postgresql) to cache and store all precipitation & temperature requests `{ key: latLng, values: [precipitation, maxTemp, minTemp] }`.
+These data, in turn, will be used in conjunction with [IBM watsonx.data](https://cloud.ibm.com/docs/watsonxdata?topic=watsonxdata-getting-started) to improve our prediction models.
 
 We envision BeeMovr to become the de-facto map for helping beekeepers make an informed decision about what's best for their bees.
-What we're trying to do here is to make our project as helpful for beekeepers as possible.
-We believe the most important part of BeeMovr is to understand what the beekeepers want and need.
-This is our identity.
-We aim to create *the* beekeeper's map, the first feature of which is maximum potential honey yield prediction.
-As we iterate with our beekeepers, we'll listen to what their (and their bees') needs are, and we'll incremently add those features so that we can better help them serve their bees.
+What we're trying to do here is to make our project helpful for our beekeepers as best as we can.
+We aim to create _the_ beekeeper's map, the first feature of which is maximum potential honey yield prediction, but as we iterate with our beekeepers, we'll listen to what their (and their bees') needs are, and we'll incrementally add those features.
+We therefore believe the most important part of BeeMovr is to listen, understand, and deliver what the beekeepers want and need to serve their bees.
 
 As we promised our beekeeper Keith Robert, BeeMovr has been and will always be open-sourced and open to all beekeepers.
 If you're a beekeeper and have any suggestions or feature requests, please feel free to email us at &lt;workerbees@beemovr.com&gt;.
-Our main website is at [BeeMovr.com](https://BeeMovr.com) and we are Schaler Starks &lt;schaler@beemovr.com&gt;, Eric Gonzalez Duro &lt;eric@beemovr.com&gt;, Jasper Ha &lt;jasper@beemovr.com&gt;, and Soobin Rho &lt;soobin@beemovr.com&gt;.
+Our program is up and online is at [BeeMovr.com](https://BeeMovr.com) and we are Schaler Starks &lt;schaler@beemovr.com&gt; at Augustana University, Eric Gonzalez Duro &lt;eric@beemovr.com&gt; at Polytechnic University of Catalonia, Jasper Ha &lt;jasper@beemovr.com&gt; at University of California: San Diego, and Soobin Rho &lt;soobin@beemovr.com&gt; from Augustana University.
 If you share our goal to make a positive impact on environmental sustainability by helping beekeepers and their bees, you're welcome to join us and feel free to make pull requests on any feature you think is the best for BeeMovr.
+
+![Timeline of BeeMovr development](https://github.com/soobinrho/BeeMovr/assets/19341857/72474594-7a01-4da1-bcfc-7c45bed963f7)
 
 <!-- TODO: Delete this after Call for Code submission
 ☐ Link to publicly accessible code repository that contains your working code
@@ -139,39 +147,54 @@ This is a longer description of your solution. In about 500 words, describe your
 Create a document or image that shows how mature your solution is today and how you would like to improve it in the future. This can include information on the business model, funding needs, and a sustainability plan. Here's an example from the 2018 Call for Code winner Project OWL: https://github.com/Call-for-Code/Project-Sample/blob/main/images/roadmap.jpg
 -->
 
-<br>
-
 ## 1. How to spin up a development server
 
-***How to run***<br>
 ```bash
-git clone https://github.com/ericfly02/BeeMovr.git
+# ---------------------------------------------------------------------
+# Development workflow.
+# ---------------------------------------------------------------------
 cd BeeMovr
-docker compose up
+
+# Install production dependencies and dev dependencies.
+yarn install
+
+# Run a development server.
+yarn dev
+
+# Unit testing with Jest. We write our test files at `__tests__` dir.
+# Runs `jest --watch`, which re-runs itself everytime files change.
+yarn test
+
+# Whenever we want to run a specific .ts file:
+yarn global add ts-node
+ts-node <filename>
 ```
 
 <br>
 
-***How to stop running and clean up***<br>
+## 2. How we deploy to [BeeMovr.com](https://BeeMovr.com)
+
 ```bash
-docker compose down
+# ---------------------------------------------------------------------
+# Deployment workflow.
+# ---------------------------------------------------------------------
+cd BeeMovr
+
+# Create optimized production build.
+yarn build
+
+# Serve production build with Node.js
+yarn start
+
+# TODO. Containerize Nginx and Node.js with Docker.
+# Deploy with Docker Compose.
 ```
 
 <br>
 
-## 2. How does this work?
+## 3. How does this work?
 
-We created a separte section for all of our [development logs](DEVLOG.md).
-
-<br>
-
-## 3. Roadmap
-
-[Development roadmap diagram will created soon...]
-
-- `Short Term Goal`: Add a drag functionality, where the user can get the honey production prediction value of a rectangle instead of just a single point.
-- `Long Term Goal`: Now, we call the Open Meteo API's everytime the user clicks on a something to get the environmental values (precipitation and max/min temps). This will be replaced by a data storage / caching system. Whenever an API is called, the precipitation and max/min temp values will be stored into either Elastic Stack or PostGIS. Flask caching will also prevent duplicate API calls.
-- `Long Term Goal`: Create a heatmap of the honey production potential of all areas based on the data stored on the database.
+We created a separate section for all of our [development logs](DEVLOG.md).
 
 <br>
 <br>

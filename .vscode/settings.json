@@ -1,5 +1,6 @@
 {
   "cSpell.words": [
+    "Augustana",
     "beemovr",
     "everytime",
     "generationtime",
@@ -10,14 +11,15 @@
     "Mapbox",
     "Meteo",
     "Movr",
+    "NASS",
     "Schaler",
     "Soobin",
+    "Starks",
     "tailwindcss",
     "todos",
-    "tsdoc"
+    "tsdoc",
+    "watsonx"
   ],
   "editor.formatOnSave": true,
-  "eslint.validate": [
-    "typescript"
-  ],
+  "eslint.validate": ["typescript"]
 }
