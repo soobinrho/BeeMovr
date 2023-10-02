@@ -121,30 +121,37 @@ Immediate todos I have to do right now are: finish recreating BeeMovr with Next.
 cd BeeMovr
 code .
 
+# Install pnpm: package manager that is faster and more disk efficient
+npm install -g pnpm
+pnpm setup
+
+# If you're using zsh:
+# source ~/.zshrc
+
+# If you're using bash:
+# source ~/.bashrc
+
 # Install Typescript globally
-yarn global add typescript
+pnpm add -g typescript ts-node
 
 # Initialize Next.js
-yarn create next-app
+pnpm create next-app --typescript
 
 # Install all dependencies.
-yarn install
+pnpm install
 
 # Start a development server.
-yarn dev
+pnpm dev
 
 # Create optimized production build and serve with Node.js
-yarn build
-yarn start
-
-# Install ts-node to run TypeScript files mainly for testing purposes.
-yarn global add ts-node
+pnpm build
+pnpm start
 
 # Run a TypeScript file.
 ts-node <filename>
 
 # Add a development dependency.
-yarn add --dev <package name>
+pnpm add -D <package name>
 ```
 
 Today, I read [Next.js routing fundamentals](https://nextjs.org/docs/app/building-your-application/routing), [REST API URI naming conventions](https://restfulapi.net/resource-naming/), [TSDoc specifications](https://tsdoc.org/), and [JavaScript promises, async, and await](https://javascript.info/async).

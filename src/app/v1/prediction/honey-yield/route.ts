@@ -1,15 +1,9 @@
-// import { NextResponse, NextRequest } from "next/server";
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-// import { calculateHoneyYield } from "./calculate-honey-yield";
-// import {
-//   getWeather,
-//   isValidLatLng,
-//   isValidYearMonth,
-// } from "../../weather/open-meteo-api";
+import { getLatLngYearMonthFromQuery } from '../../weather/open-meteo-api';
+import { calculateHoneyYield } from './calculate-honey-yield';
 
-// export async function GET(request: NextRequest) {
-export async function GET() {
+export async function GET(request: NextRequest) {
   /**
    * Returns the honey yield prediction value.
    *
@@ -21,7 +15,32 @@ export async function GET() {
    * Source:
    *   https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf
    */
+  const api_type = 'honey-yield';
+  const api_response_key = api_type;
 
-  // WIP
-  return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  const {
+    api_lat: lat,
+    api_lng: lng,
+    api_yearMonth: yearMonth,
+  } = getLatLngYearMonthFromQuery(request);
+
+  const api_response = await calculateHoneyYield({
+    api_lat: lat,
+    api_lng: lng,
+    api_yearMonth: yearMonth,
+  });
+
+  // API error response best practices.
+  // Source:
+  //   https://nextjs.org/docs/app/api-reference/functions/next-response#json
+  if (api_response === 'Bad Request Error') {
+    return NextResponse.json({ error: 'Bad Request Error' }, { status: 400 });
+  } else if (api_response === 'Internal Server Error') {
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
+  } else {
+    return NextResponse.json({ [api_response_key]: api_response });
+  }
 }

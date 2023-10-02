@@ -1,6 +1,6 @@
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-import { getWeather } from '../open-meteo-api';
+import { getLatLngYearMonthFromQuery, getWeather } from '../open-meteo-api';
 
 export async function GET(request: NextRequest) {
   /**
@@ -13,6 +13,31 @@ export async function GET(request: NextRequest) {
    */
   const api_type = 'temperature_2m_min';
   const api_response_key = 'min-temp';
-  const api_response = await getWeather(request, api_type, api_response_key);
-  return api_response;
+
+  const {
+    api_lat: lat,
+    api_lng: lng,
+    api_yearMonth: yearMonth,
+  } = getLatLngYearMonthFromQuery(request);
+
+  const api_response = await getWeather({
+    api_lat: lat,
+    api_lng: lng,
+    api_yearMonth: yearMonth,
+    api_type: api_type,
+  });
+
+  // API error response best practices.
+  // Source:
+  //   https://nextjs.org/docs/app/api-reference/functions/next-response#json
+  if (api_response === 'Bad Request Error') {
+    return NextResponse.json({ error: 'Bad Request Error' }, { status: 400 });
+  } else if (api_response === 'Internal Server Error') {
+    return NextResponse.json(
+      { error: 'Internal Server Error' },
+      { status: 500 }
+    );
+  } else {
+    return NextResponse.json({ [api_response_key]: api_response });
+  }
 }

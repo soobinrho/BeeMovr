@@ -155,19 +155,28 @@ Create a document or image that shows how mature your solution is today and how 
 # ---------------------------------------------------------------------
 cd BeeMovr
 
+# Install pnpm: package manager that is faster and more disk efficient
+npm install -g pnpm
+pnpm setup
+
+# If you're using zsh:
+source ~/.zshrc
+
+# If you're using bash:
+source ~/.bashrc
+
+# Install TypeScript.
+pnpm add -g typescript ts-node
+
 # Install production dependencies and dev dependencies.
-yarn install
+pnpm install
 
 # Run a development server.
-yarn dev
+pnpm dev
 
 # Unit testing with Jest. We write our test files at `__tests__` dir.
 # Runs `jest --watch`, which re-runs itself everytime files change.
-yarn test
-
-# Whenever we want to run a specific .ts file:
-yarn global add ts-node
-ts-node <filename>
+pnpm test
 ```
 
 <br>
@@ -181,10 +190,10 @@ ts-node <filename>
 cd BeeMovr
 
 # Create optimized production build.
-yarn build
+pnpm build
 
 # Serve production build with Node.js
-yarn start
+pnpm start
 
 # TODO. Containerize Nginx and Node.js with Docker.
 # Deploy with Docker Compose.

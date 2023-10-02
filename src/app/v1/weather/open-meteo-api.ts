@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest } from 'next/server';
 
 // --------------------------------------------------------------------
 // Open Meteo API parameters.
@@ -8,44 +8,52 @@ import { NextRequest, NextResponse } from 'next/server';
 // the ISO date format, which is yyyy-mm-dd.
 // Source:
 //   https://open-meteo.com/en/docs/historical-weather-api
-export interface types_OpenMeteo {
-  api_lat: string | null;
-  api_lng: string | null;
-  api_year_month: string | null;
+export interface IgetWeather {
+  api_lat: string;
+  api_lng: string;
+  api_yearMonth: string;
   api_type: string;
 }
 
-export interface types_latLngReferenceDate {
-  api_lat: string | null;
-  api_lng: string | null;
-  api_referenceDate: string | null;
+export interface IfetchOpenMeteo {
+  api_lat: string;
+  api_lng: string;
+  api_yearMonth: string;
+  api_type: string;
+}
+
+export interface IstripOpenMeteo {
+  latitude: string;
+  longitude: string;
+  generationtime_ms: string;
+  utc_offset_seconds: string;
+  timezone: string;
+  timezone_abbreviation: string;
+  elevation: string;
+  daily_units: any;
+  daily: any;
+}
+
+export interface IparseOpenMeteo {
+  stripped_api_response_time: string[];
+  stripped_api_response_value: string[];
 }
 
 export interface types_latLng {
-  api_lat: string | null;
-  api_lng: string | null;
+  api_lat: string;
+  api_lng: string;
 }
 
-export interface types_api_response {
-  latitude: number;
-  longitude: number;
-  generationtime_ms: number;
-  utc_offset_seconds: number;
-  timezone: string;
-  timezone_abbreviation: string;
-  elevation: number;
-  daily_units: any;
-  daily: any;
+export interface types_latLngYearMonth {
+  api_lat: string;
+  api_lng: string;
+  api_yearMonth: string;
 }
 
 // --------------------------------------------------------------------
 // Main function.
 // --------------------------------------------------------------------
-export async function getWeather(
-  request: NextRequest,
-  api_type: string,
-  api_response_key: string
-) {
+export async function getWeather(params: IgetWeather): Promise<string> {
   /**
    * Get monthly precipitation, max and min temperature data from Open Meteo API's.
    *
@@ -57,72 +65,45 @@ export async function getWeather(
    * @param api_type - Open Meteo API type listed at https://open-meteo.com/en/docs/historical-weather-api
    * @param api_response_key - The key for the JSON return object
    */
-  let lat: string = '-1';
-  let lng: string = '-1';
-  let yearMonth: string = '1998-08';
-
-  // In Jest unit testing environments, searchParams is strangely not
-  // accessible and therefore gives out a fetal error.
-  try {
-    const queryParams = request.nextUrl.searchParams;
-    lat = queryParams.get('lat') || '-1';
-    lng = queryParams.get('lng') || '-1';
-    yearMonth = queryParams.get('year-month') || '1998-08';
-  } catch (err) {
-    // The try catch block would not have been needed at all, if not for
-    // the "TypeError: Cannot read properties of undefined (reading
-    // searchParams')" which strangely occurs only in Jest unit testing.
-    // We suspect it's caused by some kind of compatibility issues with
-    // Next.js 13 server side components with Jest.
-  }
 
   if (
-    !isValidLatLng({ api_lat: lat, api_lng: lng }) ||
-    !isValidYearMonth(yearMonth)
+    !isValidLatLng({ api_lat: params.api_lat, api_lng: params.api_lng }) ||
+    !isValidYearMonth(params.api_yearMonth)
   ) {
-    // API error response best practices.
-    // Source:
-    //   https://nextjs.org/docs/app/api-reference/functions/next-response#json
-    return NextResponse.json({ error: 'Bad Request Error' }, { status: 400 });
+    return 'Bad Request Error';
   }
 
   try {
     const api_response = await fetchOpenMeteo({
-      api_lat: lat,
-      api_lng: lng,
-      api_year_month: yearMonth,
-      api_type: api_type,
+      api_lat: params.api_lat,
+      api_lng: params.api_lng,
+      api_yearMonth: params.api_yearMonth,
+      api_type: params.api_type,
     });
 
-    const [stripped_api_response_time, stripped_api_response_value] =
-      stripOpenMeteo(api_response, api_type);
+    const stripped_api_response = stripOpenMeteo(api_response, params.api_type);
     const parsed_api_response = parseOpenMeteo(
-      [stripped_api_response_time, stripped_api_response_value],
-      api_type
+      stripped_api_response,
+      params.api_type
     );
-
-    return NextResponse.json({ [api_response_key]: parsed_api_response });
+    return parsed_api_response;
   } catch (err) {
     console.log(err);
-    return NextResponse.json(
-      { error: 'Internal Server Error' },
-      { status: 500 }
-    );
+    return 'Internal Server Error';
   }
 }
 
 // --------------------------------------------------------------------
 // Helper functions.
 // --------------------------------------------------------------------
-export async function fetchOpenMeteo(params: types_OpenMeteo) {
+export async function fetchOpenMeteo(params: IfetchOpenMeteo) {
   /**
    * A wrapper around Open Meteo API's for historical weather data.
    */
 
   // Get exactly one month worth of data, since the prediction model
   // requires monthly values.
-  const start_date_local =
-    (params.api_year_month && new Date(params.api_year_month)) || new Date();
+  const start_date_local = new Date(params.api_yearMonth);
   const start_date = getLocalToUTC(start_date_local);
   const end_date = structuredClone(start_date);
   end_date.setMonth(start_date.getMonth() + 1);
@@ -156,9 +137,9 @@ export async function fetchOpenMeteo(params: types_OpenMeteo) {
 }
 
 export function stripOpenMeteo(
-  api_response: types_api_response,
+  params: IstripOpenMeteo,
   api_type: string
-): Array<object> {
+): IparseOpenMeteo {
   /**
    * Discards unnecessary fields and returns only the relevant fields.
    *
@@ -168,11 +149,17 @@ export function stripOpenMeteo(
    * however, we plan to implement PostGIS to store all of these.
    * This way, we can minimize API calls and improve performance.
    */
-  return [api_response.daily.time, api_response.daily[api_type]];
+  // stripped_api_response_time: string[];
+  // stripped_api_response_value: string[];
+  const stripped_api_response: IparseOpenMeteo = {
+    stripped_api_response_time: params.daily.time,
+    stripped_api_response_value: params.daily[api_type],
+  };
+  return stripped_api_response;
 }
 
 export function parseOpenMeteo(
-  [stripped_api_response_time, stripped_api_response_value]: Array<object>,
+  params: IparseOpenMeteo,
   api_type: string
 ): string {
   /**
@@ -183,29 +170,33 @@ export function parseOpenMeteo(
    * honey yield prediction model requires monthly values, the data
    * have to go through some processing.
    */
-  const array_api_response_time = Array.from(
-    Object.values(stripped_api_response_time)
-  );
-  const array_api_response_value = Array.from(
-    Object.values(stripped_api_response_value)
-  );
+  // const array_api_response_time = Array.from(
+  //   Object.values(IparseOpenMeteo.stripped_api_response_time)
+  // );
+  const array_api_response_time = params.stripped_api_response_time;
+  const array_api_response_value = params.stripped_api_response_value;
   const SIZE = array_api_response_time.length;
   if (api_type === 'precipitation_sum') {
     // For monthly precipitation, find the sum of all daily
     // precipitation values.
     let sum = 0;
     for (let i = 0; i < SIZE; i++) {
-      sum += array_api_response_value[i];
+      const value = array_api_response_value[i];
+      if (isValidNumber(value)) {
+        sum += Number(value);
+      }
     }
     return sum.toString();
   } else if (api_type === 'temperature_2m_max') {
     // For monthly maximum temperature, find the maximum daily
     // temperature value.
-    let max = array_api_response_value[0];
+    let max = Number.MIN_VALUE;
     for (let i = 0; i < SIZE; i++) {
       const value = array_api_response_value[i];
-      if (max < value) {
-        max = value;
+      if (isValidNumber(value)) {
+        if (max < Number(value)) {
+          max = Number(value);
+        }
       }
     }
     return max.toString();
@@ -213,11 +204,13 @@ export function parseOpenMeteo(
     // else if (api_type === "temperature_2m_min")
     // For monthly minimum temperature, find the minimum daily
     // temperature value.
-    let min = array_api_response_value[0];
+    let min = Number.MAX_VALUE;
     for (let i = 0; i < SIZE; i++) {
       const value = array_api_response_value[i];
-      if (min > value) {
-        min = value;
+      if (isValidNumber(value)) {
+        if (min > Number(value)) {
+          min = Number(value);
+        }
       }
     }
     return min.toString();
@@ -237,12 +230,10 @@ export function getLocalToUTC(date_local: Date): Date {
 
 export function isValidLatLng(params: types_latLng): boolean {
   if (
-    params.api_lat == null ||
     params.api_lat === '' ||
-    isNaN(Number(params.api_lat)) ||
-    params.api_lng == null ||
+    !isValidNumber(params.api_lat) ||
     params.api_lng === '' ||
-    isNaN(Number(params.api_lng))
+    !isValidNumber(params.api_lng)
   ) {
     return false;
   }
@@ -285,4 +276,33 @@ export function isValidYearMonth(yearDate: string | null): boolean {
   yearDate_now.setUTCDate(1);
 
   return yearDate_input < yearDate_now;
+}
+
+export function isValidNumber(param: string): boolean {
+  return !isNaN(Number(param));
+}
+
+export function getLatLngYearMonthFromQuery(
+  api_request: NextRequest
+): types_latLngYearMonth {
+  // In Jest unit testing environments, searchParams is strangely not
+  // accessible and therefore gives out a fetal error.
+  let lat = '-1';
+  let lng = '-1';
+  let yearMonth = '1998-08';
+  try {
+    const searchQuery = api_request.nextUrl.searchParams;
+    lat = searchQuery.get('lat') || '-1';
+    lng = searchQuery.get('lng') || '-1';
+    yearMonth = searchQuery.get('year-month') || '1998-08';
+  } catch (err) {
+    // The try catch block would not have been needed at all, if not for
+    // the "TypeError: Cannot read properties of undefined (reading
+    // searchParams')" which strangely occurs only in Jest unit testing.
+    // We suspect it's caused by some kind of compatibility issues with
+    // Next.js 13 server side components with Jest.
+    console.log('Jest unit testing...');
+  }
+
+  return { api_lat: lat, api_lng: lng, api_yearMonth: yearMonth };
 }
