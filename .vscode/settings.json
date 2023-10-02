@@ -8,6 +8,11 @@
     "hackathon",
     "hahaha",
     "Halliday's",
+    "Icalculate",
+    "Ifetch",
+    "Iget",
+    "Iparse",
+    "Istrip",
     "Mapbox",
     "Meteo",
     "Movr",
@@ -17,9 +22,11 @@
     "Starks",
     "tailwindcss",
     "todos",
+    "trivago",
     "tsdoc",
     "watsonx"
   ],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "eslint.validate": ["typescript"]
 }

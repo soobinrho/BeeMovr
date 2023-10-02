@@ -1,7 +1,0 @@
-{
-  // Eslint + Prettier setup.
-  // Source:
-  //   https://gist.github.com/Nivethan-Ar/2375bf451d4c30148916b59c7e0c51c0
-  "plugins": ["eslint-plugin-tsdoc"],
-  "extends": ["next", "prettier"]
-}
