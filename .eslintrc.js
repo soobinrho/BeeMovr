@@ -19,8 +19,6 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['eslint-plugin-tsdoc' ],
-  rules: {
-    'simple-import-sort/imports': 'error'
-  },
+  plugins: ['eslint-plugin-tsdoc'],
+  rules: {},
 };
