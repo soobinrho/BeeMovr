@@ -96,8 +96,8 @@ You can supply additional documentation in this source code repository that you 
 BeeMovr pulls in real-time precipitation, maximum temperature, and minimum temperature data from Open Meteo API, and calculates a prediction of the maximum possible honey yield value of any given coordinates on the map based on [Hayes Kent Grogan's paper](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf).
 Our project seeks to give beekeepers increased information about ideal pollinator conditions near them to increase colony survival rate and reduce uncertainty.
 We focused on researching the most accurate model possible.
-Currently, we use a linear regression with the factors of maximum and minimum temperatures and monthly sum of precipitation.
-We plan to use [IBM watsonx.data](https://cloud.ibm.com/docs/watsonxdata?topic=watsonxdata-getting-started) to pull combined data from [USDA (U.S. Department of Agriculture)](https://www.usda.gov/) and [NASS (National Agricultural Statistics Service)](https://www.nass.usda.gov/) for improved prediction models.
+Currently, we use a linear regression model with the factors of precipitation, maximum temperature, and minimum temperature.
+Further, we plan to use [IBM watsonx.data](https://cloud.ibm.com/docs/watsonxdata?topic=watsonxdata-getting-started) to pull combined data from [USDA (U.S. Department of Agriculture)](https://www.usda.gov/) and [NASS (National Agricultural Statistics Service)](https://www.nass.usda.gov/) for improved prediction models.
 
 We're also trying to increase prediction accuracy by ingesting colony-specific demographic data into our prediction model, as colony demographic data such as the age of the queen were found to be statistically significant, as discovered by Grogan's 2020 paper.
 Currently, we rely on [Next.js built-in request memorization caching](https://nextjs.org/docs/app/building-your-application/caching#request-memoization) to avoid duplicate API calls.
@@ -112,7 +112,7 @@ We therefore believe the most important part of BeeMovr is to listen, understand
 
 As we promised our beekeeper Keith Robert, BeeMovr has been and will always be open-sourced and open to all beekeepers.
 If you're a beekeeper and have any suggestions or feature requests, please feel free to email us at &lt;workerbees@beemovr.com&gt;.
-Our program is up and online is at [BeeMovr.com](https://BeeMovr.com) and we are Schaler Starks &lt;schaler@beemovr.com&gt; at Augustana University, Eric Gonzalez Duro &lt;eric@beemovr.com&gt; at Polytechnic University of Catalonia, Jasper Ha &lt;jasper@beemovr.com&gt; at University of California: San Diego, and Soobin Rho &lt;soobin@beemovr.com&gt; from Augustana University.
+Our program is up and online at [BeeMovr.com](https://BeeMovr.com) and we are Schaler Starks &lt;schaler@beemovr.com&gt;, Eric Gonzalez Duro &lt;eric@beemovr.com&gt;, Jasper Ha &lt;jasper@beemovr.com&gt;, and Soobin Rho &lt;soobin@beemovr.com&gt;.
 If you share our goal to make a positive impact on environmental sustainability by helping beekeepers and their bees, you're welcome to join us and feel free to make pull requests on any feature you think is the best for BeeMovr.
 
 ![Timeline of BeeMovr development](https://github.com/soobinrho/BeeMovr/assets/19341857/72474594-7a01-4da1-bcfc-7c45bed963f7)
@@ -168,7 +168,7 @@ source ~/.bashrc
 # Install TypeScript.
 pnpm add -g typescript ts-node
 
-# Install production dependencies and dev dependencies.
+# Install dependencies.
 pnpm install
 
 # Run a development server.

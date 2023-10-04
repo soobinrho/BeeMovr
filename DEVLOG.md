@@ -1,6 +1,6 @@
 ## Dev log
 
-#### 2023-02-23 Soobin
+#### 2023-02-23
 
 All of this began because of helplessness in a way.
 We wanted to help the environment in any way we can because - well, you know - the earth doesn't seem to be doing too well.
@@ -19,7 +19,7 @@ He explained, "creating a map that can calculate the nectar availability of any 
 
 <br>
 
-#### 2023-07-31 Soobin and Schaler
+#### 2023-07-31
 
 ```
 [HackMIT] Welcome to HackMIT 2023! 🎈🎉
@@ -33,7 +33,7 @@ We'll license it with MIT License, since we'll create it at HackMIT hahaha (and 
 
 <br>
 
-#### 2023-08-21 Eric and Soobin
+#### 2023-08-21
 
 ```
 Hi Soobin,
@@ -52,7 +52,7 @@ And yes, he built the majority of our MVP during the 48 hours of HackMIT, so he 
 
 <br>
 
-#### 2023-09-16 Jasper, Schaler, and Soobin
+#### 2023-09-16
 
 Schaler and I were waiting patiently at the MIT athletic center for the HackMIT to begin.
 It was going to start at 10AM, and it was around 9AM.
@@ -65,7 +65,7 @@ Schaler, Eric, Jasper, and I, all of us turned out to have the best team chemist
 
 <br>
 
-#### 2023-09-17 Eric, Jasper, Schaler, and Soobin
+#### 2023-09-17
 
 We worked hard for the weekend-long hackathon.
 We worked on our project, which by the way we named BeeMovr, until 1AM and continued til 5PM the next day.
@@ -106,7 +106,7 @@ Plus, here are some pictures of us at HackMIT:
 <br>
 <br>
 
-#### 2023-09-24 Soobin
+#### 2023-09-24
 
 The MVP was good and all, but we decided to [throw away the first version](https://news.ycombinator.com/item?id=37003910) of BeeMovr and recreate.
 [Leigh Halliday's YouTube video on Next.js and Mapbox](https://youtu.be/sZfUXVSor-k?si=AFo9qOFzs4eH98fP) was incredibly helpful.
@@ -121,17 +121,17 @@ Immediate todos I have to do right now are: finish recreating BeeMovr with Next.
 cd BeeMovr
 code .
 
-# Install pnpm: package manager that is faster and more disk efficient
+# Install pnpm: package manager that is faster and more disk efficient.
 npm install -g pnpm
 pnpm setup
 
 # If you're using zsh:
-# source ~/.zshrc
+source ~/.zshrc
 
 # If you're using bash:
-# source ~/.bashrc
+source ~/.bashrc
 
-# Install Typescript globally
+# Install Typescript globally.
 pnpm add -g typescript ts-node
 
 # Initialize Next.js
@@ -147,10 +147,10 @@ pnpm dev
 pnpm build
 pnpm start
 
-# Run a TypeScript file.
+# How to run an individual TypeScript file rather than running the entire project.
 ts-node <filename>
 
-# Add a development dependency.
+# Hownto add a development dependency.
 pnpm add -D <package name>
 ```
 
@@ -158,7 +158,7 @@ Today, I read [Next.js routing fundamentals](https://nextjs.org/docs/app/buildin
 
 <br>
 
-#### 2023-09-26 Soobin
+#### 2023-09-26
 
 I tried to get a deeper understanding of how Next.js works by reading:
 
@@ -210,7 +210,9 @@ For security, I read:
 
 "If you need to read dynamic values from the incoming request, you cannot use a static export." [[Source](https://nextjs.org/docs/app/building-your-application/deploying/static-exports#route-handlers)] So, never mind. We'll use a regular build instead.
 
-#### 2023-09-28 Soobin
+<br>
+
+#### 2023-09-28
 
 We decided to use Jest for unit testing.
 
@@ -234,11 +236,61 @@ yarn add --dev node-mocks-http
 yarn test
 ```
 
-#### 2023-09-29 Soobin
+<br>
 
-I did some more digging around to see what are the industry standards:
+#### 2023-09-29
+
+More digging around on best practices:
 
 - [How to build a fullstack app with Next.js, Prisma, and Postgres](https://vercel.com/guides/nextjs-prisma-postgres)
 - [.env files and environmental variables in Next.js](https://nextjs.org/docs/pages/building-your-application/configuring/environment-variables#default-environment-variables)
 - [Open Graph protocol image generation as an API endpoint](https://vercel.com/docs/functions/edge-functions/og-image-generation)
 - [Differences between client side rendering, server side rendering, and static site generation](https://youtu.be/6nuRlaNFd4g?si=XiAx3xhnp3TXzAx0)
+
+<br>
+
+#### 2023-10-02
+
+We're finally done with rewriting all of our back-end with Next.js server-side components.
+Now, we work on the front-end.
+A lot of the UI will change compared to our MVP.
+Whereas our MVP had only one basic functionality, we're now adding an information console at the bottom to see all of the past honey yield prediction values the user clicked on.
+Previously, it was able to show only one value at a time.
+
+We're also building a `/watsonx` route where all datapoints that the user clicked can then be extrapolated using watsonx.ai and exported into graphs.
+When the user first loads the page, the browser will first send a request to our server to run the watsonx.ai code for the machine learning.
+The browser will then receive this data, and after that all modifications to the data and the graphs will be made client-side, so that we minimize duplicate API calls to both our server and watsonx.
+This will take us a few months, but we'll be able to complete the page layout with non-functional placeholders.
+After we finish building our backbone, the placeholders will be replaced with actual functional components.
+
+One of the judges at HackMIT gave us this really good feedback that it will be cool to show basic statistics that are useful for beekeepers.
+Before, we showed only the honey yield prediction value.
+Now, we'll also show basic but crucial stats, such as precipitation.
+
+- [How to add an icon on Mapbox](https://docs.mapbox.com/mapbox-gl-js/example/add-image/)
+- [How to make a popup on icon click](https://docs.mapbox.com/mapbox-gl-js/example/popup-on-click/)
+
+Also, a reminder to myself to use cybersecurity frameworks to ensure the confidentiality, integrity, and availability of all data we store, process, and handle (I compiled this list during my cybersecurity internship over the summer).
+
+- [OWASP Web Security Testing Guide](https://owasp.org/www-project-web-security-testing-guide/latest/)
+- [OWASP Code Review Guide](https://owasp.org/www-project-code-review-guide/)
+- [OWASP Cyber Security File Upload Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/File_Upload_Cheat_Sheet.html)
+- [OWASP Top 10 Web Application Security Risks](https://owasp.org/www-project-top-ten/)
+- [Mitre CWE (Common Weakness Enumeration) List](https://cwe.mitre.org/data/index.html)
+- [CIS Critical Security Controls](https://www.cisecurity.org/controls)
+- [ISO 27001](https://www.iso.org/standard/27001)
+- [NIST Cybersecurity Framework](https://www.nist.gov/cyberframework)
+- [Hacker News discussion on NIST AI Risk Management Framework](https://news.ycombinator.com/item?id=35506485)
+- [Hacker News discussion on CWE Top Most Dangerous Software Weaknesses](https://news.ycombinator.com/item?id=36707321)
+- [Hacker News discussion on GDPR for Developers](https://news.ycombinator.com/item?id=32328837)
+- [NSA Cybersecurity Advisories & Guidance](https://www.nsa.gov/Press-Room/Cybersecurity-Advisories-Guidance/)
+
+Also, these are some articles I'll need to reference when creating schemas with IBM PostgresSQL:
+- [Upgrading databases best practices](https://news.ycombinator.com/item?id=37724549)
+- We can download [historical weather data sets](https://aws.amazon.com/blogs/publicsector/decrease-geospatial-query-latency-minutes-seconds-using-zarr-amazon-s3/) and store them into IBM Cloud PostgresSQL rather than trying to get data one at a time through API's.
+
+<br>
+
+### 2023-10-03
+
+- For the `/watsonx` route, consider [using Markdown](https://nextjs.org/learn/basics/dynamic-routes/render-markdown) with graphs generated as .svg or .png files.
