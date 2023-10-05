@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: process.env.NEXT_PUBLIC_TITLE,
     description: process.env.NEXT_PUBLIC_DESCRIPTION,
-    url: 'https://BeeMovr.com',
+    url: process.env.NEXT_PUBLIC_URL,
     siteName: process.env.NEXT_PUBLIC_TITLE,
     images: process.env.NEXT_PUBLIC_OPENGRAPH_IMAGE,
     type: 'website',
@@ -37,7 +37,10 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL(process.env.NEXT_PUBLIC_URL || ''),
   authors: [
-    { name: process.env.NEXT_PUBLIC_TITLE, url: process.env.NEXT_PUBLIC_URL },
+    {
+      name: process.env.NEXT_PUBLIC_TITLE,
+      url: process.env.NEXT_PUBLIC_GITHUB,
+    },
   ],
   creator: process.env.NEXT_PUBLIC_TITLE,
   publisher: process.env.NEXT_PUBLIC_TITLE,
@@ -45,6 +48,8 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   robots: {
+    index: true,
+    follow: true,
     googleBot: {
       index: true,
       follow: true,

@@ -165,11 +165,12 @@ source ~/.zshrc
 # If you're using bash:
 source ~/.bashrc
 
-# Install TypeScript.
-pnpm add -g typescript ts-node
-
 # Install dependencies.
 pnpm install
+
+# Go to https://mapbox.com and get an API token.
+# Then, copy and paste the token to `.env.local` file.
+cp ./.env.development ./.env.local
 
 # Run a development server.
 pnpm dev

@@ -299,3 +299,4 @@ Also, these are some articles I'll need to reference when creating schemas with 
 - [Mapbox Token Management Security Best Practices](https://docs.mapbox.com/help/troubleshooting/how-to-use-mapbox-securely/#access-tokens)
 - [Mapbox XSS Prevention (Content Security Policy)](https://docs.mapbox.com/mapbox-gl-js/guides/browsers-and-testing/#csp-directives)
 - `react-map-gl` is a [React wrapper for Mapbox GL JS that makes using Mapbox GL JS in React applications easy](https://visgl.github.io/react-map-gl/)
+- [HTTP Status Codes (200, 308, 404, 500, 503)](https://nextjs.org/learn/seo/crawling-and-indexing/status-codes)

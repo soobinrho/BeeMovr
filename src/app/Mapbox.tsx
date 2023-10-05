@@ -23,8 +23,12 @@ export default function Mapbox() {
         <br />
         <b>Latitude</b> {viewport.latitude.toFixed(6)}
       </div>
-      <div className='absolute top-0 right-0 z-10 mx-5 my-5'>
-        <a target="_blank" href={process.env.NEXT_PUBLIC_URL} rel="noopener noreferrer">
+      <div className='absolute right-0 top-0 z-10 mx-5 my-5'>
+        <a
+          target='_blank'
+          href={process.env.NEXT_PUBLIC_URL}
+          rel='noopener noreferrer'
+        >
           <SiGithub />
         </a>
       </div>

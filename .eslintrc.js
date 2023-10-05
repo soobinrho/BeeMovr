@@ -19,6 +19,6 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['eslint-plugin-tsdoc'],
+  plugins: ['eslint-plugin-tsdoc', 'prettier'],
   rules: {},
 };
