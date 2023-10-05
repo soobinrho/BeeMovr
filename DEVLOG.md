@@ -150,7 +150,7 @@ pnpm start
 # How to run an individual TypeScript file rather than running the entire project.
 ts-node <filename>
 
-# Hownto add a development dependency.
+# How to add a development dependency.
 pnpm add -D <package name>
 ```
 
@@ -286,6 +286,7 @@ Also, a reminder to myself to use cybersecurity frameworks to ensure the confide
 - [NSA Cybersecurity Advisories & Guidance](https://www.nsa.gov/Press-Room/Cybersecurity-Advisories-Guidance/)
 
 Also, these are some articles I'll need to reference when creating schemas with IBM PostgresSQL:
+
 - [Upgrading databases best practices](https://news.ycombinator.com/item?id=37724549)
 - We can download [historical weather data sets](https://aws.amazon.com/blogs/publicsector/decrease-geospatial-query-latency-minutes-seconds-using-zarr-amazon-s3/) and store them into IBM Cloud PostgresSQL rather than trying to get data one at a time through API's.
 
@@ -294,3 +295,7 @@ Also, these are some articles I'll need to reference when creating schemas with 
 ### 2023-10-03
 
 - For the `/watsonx` route, consider [using Markdown](https://nextjs.org/learn/basics/dynamic-routes/render-markdown) with graphs generated as .svg or .png files.
+- [Mapbox Getting Started](https://docs.mapbox.com/help/getting-started/web-apps/)
+- [Mapbox Token Management Security Best Practices](https://docs.mapbox.com/help/troubleshooting/how-to-use-mapbox-securely/#access-tokens)
+- [Mapbox XSS Prevention (Content Security Policy)](https://docs.mapbox.com/mapbox-gl-js/guides/browsers-and-testing/#csp-directives)
+- `react-map-gl` is a [React wrapper for Mapbox GL JS that makes using Mapbox GL JS in React applications easy](https://visgl.github.io/react-map-gl/)
