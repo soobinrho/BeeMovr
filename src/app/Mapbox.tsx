@@ -30,6 +30,7 @@ export default function Mapbox() {
         style={{ width: '100%', height: '100vh' }}
         mapStyle='mapbox://styles/mapbox/satellite-streets-v12'
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
+        onMove={(newEvent) => setViewport(newEvent.viewState)}
       ></Map>
     </div>
   );
