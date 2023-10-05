@@ -6,8 +6,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'BeeMovr',
-  description: 'Helping beekeepers save their bees.',
+  title: process.env.NEXT_PUBLIC_TITLE,
+  description: process.env.NEXT_PUBLIC_DESCRIPTION,
   category: 'technology',
   keywords: [
     'Beekeepers',
@@ -16,12 +16,18 @@ export const metadata: Metadata = {
     'honey yield prediction',
   ],
   openGraph: {
-    title: 'BeeMovr',
-    description: 'Helping beekeepers save their bees.',
+    title: process.env.NEXT_PUBLIC_TITLE,
+    description: process.env.NEXT_PUBLIC_DESCRIPTION,
     url: 'https://BeeMovr.com',
-    siteName: 'BeeMovr',
+    siteName: process.env.NEXT_PUBLIC_TITLE,
     images: process.env.NEXT_PUBLIC_OPENGRAPH_IMAGE,
     type: 'website',
+  },
+  twitter: {
+    title: process.env.NEXT_PUBLIC_TITLE,
+    card: 'summary_large_image',
+    description: process.env.NEXT_PUBLIC_DESCRIPTION,
+    images: process.env.NEXT_PUBLIC_OPENGRAPH_IMAGE,
   },
   manifest: '/manifest.json',
   icons: {
@@ -30,9 +36,11 @@ export const metadata: Metadata = {
     apple: '/icon.png',
   },
   metadataBase: new URL(process.env.NEXT_PUBLIC_URL || ''),
-  authors: [{ name: 'BeeMovr', url: process.env.NEXT_PUBLIC_URL }],
-  creator: 'BeeMovr',
-  publisher: 'BeeMovr',
+  authors: [
+    { name: process.env.NEXT_PUBLIC_TITLE, url: process.env.NEXT_PUBLIC_URL },
+  ],
+  creator: process.env.NEXT_PUBLIC_TITLE,
+  publisher: process.env.NEXT_PUBLIC_TITLE,
   alternates: {
     canonical: '/',
   },
