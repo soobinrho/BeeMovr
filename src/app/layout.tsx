@@ -8,6 +8,7 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'BeeMovr',
   description: 'Helping beekeepers save their bees.',
+  category: 'technology',
   keywords: [
     'Beekeepers',
     'map',
@@ -22,17 +23,18 @@ export const metadata: Metadata = {
     images: process.env.NEXT_PUBLIC_OPENGRAPH_IMAGE,
     type: 'website',
   },
+  manifest: '/manifest.json',
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.png',
+    apple: '/icon.png',
+  },
   metadataBase: new URL(process.env.NEXT_PUBLIC_URL || ''),
   authors: [{ name: 'BeeMovr', url: process.env.NEXT_PUBLIC_URL }],
   creator: 'BeeMovr',
   publisher: 'BeeMovr',
   alternates: {
     canonical: '/',
-  },
-  icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.png',
-    apple: '/favicon.png',
   },
   robots: {
     googleBot: {
