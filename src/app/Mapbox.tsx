@@ -26,7 +26,7 @@ export default function Mapbox() {
       <div className='absolute right-0 top-0 z-10 mx-5 my-5'>
         <a
           target='_blank'
-          href={process.env.NEXT_PUBLIC_URL}
+          href={process.env.NEXT_PUBLIC_GITHUB}
           rel='noopener noreferrer'
         >
           <SiGithub />
