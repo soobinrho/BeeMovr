@@ -8,6 +8,27 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'BeeMovr',
   description: 'Helping beekeepers save their bees.',
+  keywords: [
+    'Beekeepers',
+    'map',
+    'nectar availability',
+    'honey yield prediction',
+  ],
+  openGraph: {
+    title: 'BeeMovr',
+    description: 'Helping beekeepers save their bees.',
+    url: 'https://BeeMovr.com',
+    siteName: 'BeeMovr',
+    images: process.env.NEXT_PUBLIC_OPENGRAPH_IMAGE,
+    type: 'website',
+  },
+  metadataBase: new URL(process.env.NEXT_PUBLIC_URL || ''),
+  authors: [{ name: 'BeeMovr', url: process.env.NEXT_PUBLIC_URL }],
+  creator: 'BeeMovr',
+  publisher: 'BeeMovr',
+  alternates: {
+    canonical: '/',
+  },
 };
 
 export default function RootLayout({

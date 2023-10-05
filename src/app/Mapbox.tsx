@@ -2,8 +2,8 @@
 
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Link from 'next/link';
-import Script from 'next/script';
 import { useState } from 'react';
+import { SiGithub } from 'react-icons/si';
 import Map, { Marker, Popup, ViewState } from 'react-map-gl';
 
 export default function Mapbox() {
@@ -19,11 +19,14 @@ export default function Mapbox() {
   return (
     <div>
       <div className='absolute z-10 mx-5 my-5'>
-        {'TODO: Insert GitHub link here'}
-        <br />
         <b>Longitude</b> {viewport.longitude}
         <br />
         <b>Latitude</b> {viewport.latitude}
+      </div>
+      <div className='absolute top-0 right-0 z-10 mx-5 my-5'>
+        <Link href={process.env.NEXT_PUBLIC_URL || ''}>
+          <SiGithub />
+        </Link>
       </div>
       <Map
         {...viewport}
