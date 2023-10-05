@@ -8,8 +8,8 @@ import Map, { Marker, Popup, ViewState } from 'react-map-gl';
 
 export default function Mapbox() {
   const [viewport, setViewport] = useState<ViewState>({
-    longitude: 0,
-    latitude: 0,
+    longitude: 1,
+    latitude: 1,
     zoom: 1,
     bearing: 0,
     pitch: 0,
@@ -19,9 +19,9 @@ export default function Mapbox() {
   return (
     <div>
       <div className='absolute z-10 mx-5 my-5'>
-        <b>Longitude</b> {viewport.longitude}
+        <b>Longitude</b> {viewport.longitude.toFixed(6)}
         <br />
-        <b>Latitude</b> {viewport.latitude}
+        <b>Latitude</b> {viewport.latitude.toFixed(6)}
       </div>
       <div className='absolute top-0 right-0 z-10 mx-5 my-5'>
         <Link href={process.env.NEXT_PUBLIC_URL || ''}>
