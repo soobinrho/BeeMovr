@@ -1,13 +1,20 @@
-'use client';
-
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { useCallback, useMemo, useRef, useState } from 'react';
-import Map, { Marker, NavigationControl, Popup, ViewState } from 'react-map-gl';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import Map, {
+  MapProvider,
+  Marker,
+  NavigationControl,
+  Popup,
+  ViewState,
+  useMap,
+} from 'react-map-gl';
 import type { MapRef } from 'react-map-gl';
 
 import ConditionalRendering from './conditional-rendering';
 
 export default function Mapbox() {
+  // react-map-gl's documentation on the type ViewState:
+  //   https://visgl.github.io/react-map-gl/docs/api-reference/types#viewstate
   const [viewport, setViewport] = useState<ViewState>({
     longitude: 1,
     latitude: 1,
@@ -20,20 +27,27 @@ export default function Mapbox() {
     return viewport.zoom < 2.5;
   }, [viewport.zoom]);
 
-  // const mapRef = useRef<MapRef | null>(null);
-
-  // const onMapLoad = useCallback(() => {
-  //   mapRef.current.on('move', () => {
-  //   });
-  // } []);
-
   return (
     <div>
       <div className='absolute z-10 grid w-screen grid-cols-1 justify-between sm:grid-cols-2'>
-        <div className='m-2 justify-self-center rounded-3xl bg-background-console/50 p-3 text-left font-semibold hover:bg-background-space/80 sm:justify-self-start'>
-          <b>Longitude</b>&nbsp;&nbsp;&nbsp;{viewport.longitude.toFixed(6)}
+        <div className='m-2 justify-self-center rounded-3xl bg-background-console/50 pb-3 pl-6 pr-0 pt-3 text-left font-semibold hover:bg-background-space/80 sm:justify-self-start'>
+          <label htmlFor='longitude'>
+            <b>Longitude</b>
+          </label>
+          <input
+            type='text'
+            className='ml-4 w-28 border-none bg-transparent p-0 placeholder-font-console hover:border-none focus:border-none focus:ring-0'
+            defaultValue={viewport.longitude.toFixed(6)}
+          ></input>
           <br />
-          <b>Latitude</b>&nbsp;&nbsp;&nbsp;{viewport.latitude.toFixed(6)}
+          <label htmlFor='latitude'>
+            <b>Latitude</b>
+          </label>
+          <input
+            type='text'
+            className='ml-4 w-28 border-none bg-transparent p-0 placeholder-font-console hover:border-none focus:border-none focus:ring-0'
+            defaultValue={viewport.latitude.toFixed(6)}
+          ></input>
         </div>
         <div className='invisible z-10 m-4 p-3 sm:visible sm:justify-self-end'>
           <a
@@ -53,7 +67,6 @@ export default function Mapbox() {
           </a>
         </div>
       </div>
-
       <ConditionalRendering condition={isZoomTitleLevel}>
         {/* top-[33%]  */}
         <div className='invisible absolute left-[50%] top-[36%] z-10 translate-x-[-50%] translate-y-[-36%] items-center drop-shadow-[0_8px_8px_rgba(0,0,0,0.5)] sm:visible'>
@@ -62,15 +75,17 @@ export default function Mapbox() {
           </div>
         </div>
       </ConditionalRendering>
-
       <Map
+        id='mapMain'
         {...viewport}
         reuseMaps
         style={{ width: '100%', height: '100vh' }}
         mapStyle='mapbox://styles/mapbox/satellite-streets-v12'
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
         onMove={(newEvent) => setViewport(newEvent.viewState)}
-      ></Map>
+      />
     </div>
   );
 }
+
+// onLoad={(newEvent) => onTest}
