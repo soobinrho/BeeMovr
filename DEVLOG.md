@@ -304,3 +304,4 @@ Also, these are some articles I'll need to reference when creating schemas with 
 ### 2023-10-05
 
 - [Tailwind CSS Buttons Hover, Focus, and Other States](https://tailwindcss.com/docs/hover-focus-and-other-states)
+- [MapLibre is an open-source fork of Mapbox](https://maplibre.org/)

@@ -1,9 +1,9 @@
 'use client';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
-import Link from 'next/link';
-import { useState } from 'react';
-import Map, { Marker, Popup, ViewState } from 'react-map-gl';
+import { useCallback, useRef, useState } from 'react';
+import Map, { Marker, NavigationControl, Popup, ViewState } from 'react-map-gl';
+import type { MapRef } from 'react-map-gl';
 
 export default function Mapbox() {
   const [viewport, setViewport] = useState<ViewState>({
@@ -15,9 +15,16 @@ export default function Mapbox() {
     padding: { left: 0, top: 0, right: 0, bottom: 0 },
   });
 
+  // const mapRef = useRef<MapRef | null>(null);
+
+  // const onMapLoad = useCallback(() => {
+  //   mapRef.current.on('move', () => {
+  //   });
+  // } []);
+
   return (
     <div>
-      <div className='absolute z-10 mx-5 my-5'>
+      <div className='hover:bg-background-space/50 absolute z-10 m-2 p-3'>
         <b>Longitude</b> {viewport.longitude.toFixed(6)}
         <br />
         <b>Latitude</b> {viewport.latitude.toFixed(6)}
@@ -29,7 +36,7 @@ export default function Mapbox() {
           rel='noopener noreferrer'
         >
           <svg
-            className='fill-current text-gray-300 hover:text-gray-400'
+            className='fill-current text-gray-300 hover:text-gray-400 active:text-gray-500'
             xmlns='http://www.w3.org/2000/svg'
             width='24'
             height='24'
@@ -41,6 +48,7 @@ export default function Mapbox() {
       </div>
       <Map
         {...viewport}
+        reuseMaps
         style={{ width: '100%', height: '100vh' }}
         mapStyle='mapbox://styles/mapbox/satellite-streets-v12'
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
