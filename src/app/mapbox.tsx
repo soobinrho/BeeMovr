@@ -5,6 +5,8 @@ import { useCallback, useRef, useState } from 'react';
 import Map, { Marker, NavigationControl, Popup, ViewState } from 'react-map-gl';
 import type { MapRef } from 'react-map-gl';
 
+import ConditionalRendering from './conditional-rendering';
+
 export default function Mapbox() {
   const [viewport, setViewport] = useState<ViewState>({
     longitude: 1,
@@ -24,13 +26,13 @@ export default function Mapbox() {
 
   return (
     <div>
-      <div className='absolute z-20 grid w-screen grid-cols-1 justify-between sm:grid-cols-2'>
+      <div className='absolute z-10 grid w-screen grid-cols-1 justify-between sm:grid-cols-2'>
         <div className='m-2 justify-self-center rounded-3xl bg-background-console/50 p-3 text-left font-semibold hover:bg-background-space/80 sm:justify-self-start'>
           <b>Longitude</b>&nbsp;&nbsp;&nbsp;{viewport.longitude.toFixed(6)}
           <br />
           <b>Latitude</b>&nbsp;&nbsp;&nbsp;{viewport.latitude.toFixed(6)}
         </div>
-        <div className='invisible z-20 m-4 p-3 sm:visible sm:justify-self-end'>
+        <div className='invisible z-10 m-4 p-3 sm:visible sm:justify-self-end'>
           <a
             target='_blank'
             href={process.env.NEXT_PUBLIC_GITHUB}
@@ -49,12 +51,14 @@ export default function Mapbox() {
         </div>
       </div>
 
-      {/* <div className='invisible absolute z-10 flex min-h-[43%] min-w-full select-none flex-row items-end justify-center drop-shadow-[0_8px_8px_rgba(0,0,0,0.5)] sm:visible'> */}
-      <div className='invisible fixed z-10 m-0 bg-white/40 p-0 drop-shadow-[0_8px_8px_rgba(0,0,0,0.5)] sm:visible'>
-        <div className='m-5 text-[11rem] font-extrabold text-white'>
-          {process.env.NEXT_PUBLIC_TITLE}
+      <ConditionalRendering condition={viewport.zoom < 2.5}>
+        {/* <div className='invisible absolute z-10 flex min-h-[43%] min-w-full select-none flex-row items-end justify-center drop-shadow-[0_8px_8px_rgba(0,0,0,0.5)] sm:visible'> */}
+        <div className='invisible fixed z-10 m-0 bg-white/40 p-0 drop-shadow-[0_8px_8px_rgba(0,0,0,0.5)] sm:visible'>
+          <div className='m-5 text-[11rem] font-extrabold text-white'>
+            {process.env.NEXT_PUBLIC_TITLE}
+          </div>
         </div>
-      </div>
+      </ConditionalRendering>
 
       <Map
         {...viewport}

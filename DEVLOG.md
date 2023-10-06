@@ -301,7 +301,19 @@ Also, these are some articles I'll need to reference when creating schemas with 
 - `react-map-gl` is a [React wrapper for Mapbox GL JS that makes using Mapbox GL JS in React applications easy](https://visgl.github.io/react-map-gl/)
 - [HTTP Status Codes (200, 308, 404, 500, 503)](https://nextjs.org/learn/seo/crawling-and-indexing/status-codes)
 
+<br>
+
 ### 2023-10-05
 
 - [Tailwind CSS Buttons Hover, Focus, and Other States](https://tailwindcss.com/docs/hover-focus-and-other-states)
 - [MapLibre is an open-source fork of Mapbox](https://maplibre.org/)
+- [How to make some divs go away using conditonal rendering](https://stackoverflow.com/a/71641621)
+- [Conditional Rendering Best Practices](https://medium.com/@brandonlostboy/build-it-better-next-js-conditional-rendering-be5617431cef)
+
+<br>
+
+### 2023-10-06
+
+- [CSS Positioning (absolute, relative, etc)](https://tailwindcss.com/docs/position)
+- [Hacker News Discussion on Database Performance at Scale](https://news.ycombinator.com/item?id=37778069)
+- [React useMemo hook](https://react.dev/reference/react#performance-hooks) provides caching in functions, and [this can be used for map markers to improve performance](https://visgl.github.io/react-map-gl/docs/get-started/tips-and-tricks#performance-with-many-markers)

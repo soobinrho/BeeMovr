@@ -41,7 +41,7 @@ Special thanks to Keith Robert from [The Valley Hive](https://www.thevalleyhive.
 Also, our work would not have been possible without the paper "[The Impact of Precipitation and Temperature on Honey Yield in the United States](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf)" (Hayes Kent Grogan, 2020, Auburn University).
 This paper is what made our core prediction model possible.
 
-> BeeMovr is a [HackMIT](https://github.com/soobinrho/BeeMovr/blob/main/DEVLOG.md#2023-09-17-eric-jasper-schaler-and-soobin) and [Call for Code](https://developer.ibm.com/callforcode/) project.
+> BeeMovr is a [HackMIT](https://github.com/soobinrho/BeeMovr/blob/main/DEVLOG.md#2023-09-17) and [Call for Code](https://developer.ibm.com/callforcode/) project.
 
 <br>
 

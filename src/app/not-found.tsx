@@ -29,12 +29,12 @@ export default function NotFoundPage() {
       </div>
       <div className='flex min-h-screen flex-row flex-nowrap items-center justify-center bg-background-space'>
         <Link href='/'>
-          <div className='m-5 font-extrabold text-gray-300 hover:text-xl hover:font-black'>
+          <div className='m-5 font-extrabold text-gray-300 hover:text-xl hover:font-black active:text-gray-500'>
             404
           </div>
         </Link>
         <Link href='/'>
-          <div className='text-gray-300 hover:text-lg hover:font-medium'>
+          <div className='text-gray-300 hover:text-lg hover:font-medium active:text-gray-500'>
             Page not found.
           </div>
         </Link>

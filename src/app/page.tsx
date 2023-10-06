@@ -1,5 +1,5 @@
-import InformationConsole from './InformationConsole';
-import Mapbox from './Mapbox';
+import InformationConsole from './information-console';
+import Mapbox from './mapbox';
 
 export default function Home() {
   return (
