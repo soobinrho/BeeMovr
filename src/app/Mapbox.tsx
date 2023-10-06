@@ -9,7 +9,7 @@ export default function Mapbox() {
   const [viewport, setViewport] = useState<ViewState>({
     longitude: 1,
     latitude: 1,
-    zoom: 1,
+    zoom: 2,
     bearing: 0,
     pitch: 0,
     padding: { left: 0, top: 0, right: 0, bottom: 0 },
@@ -25,11 +25,11 @@ export default function Mapbox() {
   return (
     <div>
       <div className='absolute z-10 grid w-screen grid-cols-1 justify-between sm:grid-cols-2'>
-        <p className='m-2 justify-self-center rounded-sm p-3 text-left font-semibold hover:bg-background-space/80 sm:justify-self-start'>
+        <div className='m-2 justify-self-center rounded-sm p-3 text-left font-semibold hover:bg-background-space/80 sm:justify-self-start'>
           <b>Longitude</b>&nbsp;&nbsp;&nbsp;{viewport.longitude.toFixed(6)}
           <br />
           <b>Latitude</b>&nbsp;&nbsp;&nbsp;{viewport.latitude.toFixed(6)}
-        </p>
+        </div>
         <div className='invisible z-10 m-4 p-3 sm:visible sm:justify-self-end'>
           <a
             target='_blank'
@@ -48,6 +48,17 @@ export default function Mapbox() {
           </a>
         </div>
       </div>
+
+      <div className='absolute top-[43%] min-w-full justify-center bg-white/30'>
+        <b>testestetesteatastet</b>
+      </div>
+
+      <div className='invisible absolute z-10 flex min-h-[43%] min-w-full select-none flex-row items-end justify-center drop-shadow-[0_8px_8px_rgba(0,0,0,0.5)] sm:visible'>
+        <div className='m-5 text-[11rem] font-extrabold text-white'>
+          BeeMovr
+        </div>
+      </div>
+
       <Map
         {...viewport}
         reuseMaps
