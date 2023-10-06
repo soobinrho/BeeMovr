@@ -49,9 +49,10 @@ export default function Mapbox() {
         </div>
       </div>
 
-      <div className='invisible absolute z-10 flex min-h-[43%] min-w-full select-none flex-row items-end justify-center drop-shadow-[0_8px_8px_rgba(0,0,0,0.5)] sm:visible'>
+      {/* <div className='invisible absolute z-10 flex min-h-[43%] min-w-full select-none flex-row items-end justify-center drop-shadow-[0_8px_8px_rgba(0,0,0,0.5)] sm:visible'> */}
+      <div className='invisible fixed z-10 m-0 bg-white/40 p-0 drop-shadow-[0_8px_8px_rgba(0,0,0,0.5)] sm:visible'>
         <div className='m-5 text-[11rem] font-extrabold text-white'>
-          BeeMovr
+          {process.env.NEXT_PUBLIC_TITLE}
         </div>
       </div>
 
