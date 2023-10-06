@@ -24,20 +24,20 @@ export default function Mapbox() {
 
   return (
     <div>
-      <div className='absolute z-10 grid w-screen grid-cols-1 justify-between sm:grid-cols-2'>
-        <div className='m-2 justify-self-center rounded-sm p-3 text-left font-semibold hover:bg-background-space/80 sm:justify-self-start'>
+      <div className='absolute z-20 grid w-screen grid-cols-1 justify-between sm:grid-cols-2'>
+        <div className='m-2 justify-self-center rounded-3xl bg-background-console/50 p-3 text-left font-semibold hover:bg-background-space/80 sm:justify-self-start'>
           <b>Longitude</b>&nbsp;&nbsp;&nbsp;{viewport.longitude.toFixed(6)}
           <br />
           <b>Latitude</b>&nbsp;&nbsp;&nbsp;{viewport.latitude.toFixed(6)}
         </div>
-        <div className='invisible z-10 m-4 p-3 sm:visible sm:justify-self-end'>
+        <div className='invisible z-20 m-4 p-3 sm:visible sm:justify-self-end'>
           <a
             target='_blank'
             href={process.env.NEXT_PUBLIC_GITHUB}
             rel='noopener noreferrer'
           >
             <svg
-              className='fill-current text-gray-300 hover:text-gray-400 active:text-gray-500'
+              className='fill-current text-font-console hover:text-gray-400 active:text-gray-500'
               xmlns='http://www.w3.org/2000/svg'
               width='24'
               height='24'
@@ -47,10 +47,6 @@ export default function Mapbox() {
             </svg>
           </a>
         </div>
-      </div>
-
-      <div className='absolute top-[43%] min-w-full justify-center bg-white/30'>
-        <b>testestetesteatastet</b>
       </div>
 
       <div className='invisible absolute z-10 flex min-h-[43%] min-w-full select-none flex-row items-end justify-center drop-shadow-[0_8px_8px_rgba(0,0,0,0.5)] sm:visible'>

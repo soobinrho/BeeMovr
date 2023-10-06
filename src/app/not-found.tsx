@@ -2,9 +2,9 @@ import Link from 'next/link';
 
 export default function NotFoundPage() {
   return (
-    <div className='relative min-h-screen overflow-hidden whitespace-nowrap bg-background-space text-gray-200'>
+    <div className='relative min-h-screen overflow-hidden whitespace-nowrap bg-background-space text-font-console'>
       <div className='absolute z-10 grid w-screen grid-cols-1 justify-between sm:grid-cols-2'>
-        <div className='m-2 justify-self-center rounded-sm p-3 text-left font-semibold hover:bg-background-space/80 sm:justify-self-start'>
+        <div className='m-2 justify-self-center p-3 text-left font-semibold sm:justify-self-start'>
           <b>Longitude</b>&nbsp;&nbsp;&nbsp;404
           <br />
           <b>Latitude</b>&nbsp;&nbsp;&nbsp;404
@@ -16,7 +16,7 @@ export default function NotFoundPage() {
             rel='noopener noreferrer'
           >
             <svg
-              className='fill-current text-gray-300 hover:text-gray-400 active:text-gray-500'
+              className='fill-current text-font-console hover:text-gray-400 active:text-gray-500'
               xmlns='http://www.w3.org/2000/svg'
               width='24'
               height='24'
