@@ -9,6 +9,8 @@ const config: Config = {
     extend: {
       colors: {
         'background-space': '#0D0D0E',
+        'background-console': '#0B1113',
+        'font-console': '#00BB00',
       },
     },
   },

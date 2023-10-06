@@ -23,7 +23,7 @@ export default function NotFoundPage() {
           </svg>
         </a>
       </div>
-      <div className='bg-background-space flex min-h-screen flex-row items-center justify-center'>
+      <div className='flex min-h-screen flex-row items-center justify-center bg-background-space'>
         <div className='m-5 font-extrabold text-gray-300'>404</div>
         <div className='text-gray-300'>Page not found.</div>
       </div>
