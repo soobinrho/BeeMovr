@@ -1,7 +1,7 @@
 'use client';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import Map, { Marker, NavigationControl, Popup, ViewState } from 'react-map-gl';
 import type { MapRef } from 'react-map-gl';
 
@@ -16,6 +16,9 @@ export default function Mapbox() {
     pitch: 0,
     padding: { left: 0, top: 0, right: 0, bottom: 0 },
   });
+  const isZoomTitleLevel = useMemo(() => {
+    return viewport.zoom < 3;
+  }, [viewport.zoom]);
 
   // const mapRef = useRef<MapRef | null>(null);
 
@@ -51,7 +54,7 @@ export default function Mapbox() {
         </div>
       </div>
 
-      <ConditionalRendering condition={viewport.zoom < 2.5}>
+      <ConditionalRendering condition={isZoomTitleLevel}>
         {/* <div className='invisible absolute z-10 flex min-h-[43%] min-w-full select-none flex-row items-end justify-center drop-shadow-[0_8px_8px_rgba(0,0,0,0.5)] sm:visible'> */}
         <div className='invisible fixed z-10 m-0 bg-white/40 p-0 drop-shadow-[0_8px_8px_rgba(0,0,0,0.5)] sm:visible'>
           <div className='m-5 text-[11rem] font-extrabold text-white'>
