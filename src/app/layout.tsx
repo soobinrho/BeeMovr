@@ -6,7 +6,7 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: process.env.NEXT_PUBLIC_TITLE ?? '',
+  title: process.env.NEXT_PUBLIC_TITLE_AND_HEADER ?? ``,
   description: process.env.NEXT_PUBLIC_DESCRIPTION ?? '',
   category: 'technology',
   keywords: [
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     'honey yield prediction',
   ],
   openGraph: {
-    title: process.env.NEXT_PUBLIC_TITLE ?? '',
+    title: process.env.NEXT_PUBLIC_TITLE_AND_HEADER ?? '',
     description: process.env.NEXT_PUBLIC_DESCRIPTION ?? '',
     url: process.env.NEXT_PUBLIC_URL ?? '',
     siteName: process.env.NEXT_PUBLIC_TITLE ?? '',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     type: 'website',
   },
   twitter: {
-    title: process.env.NEXT_PUBLIC_TITLE ?? '',
+    title: process.env.NEXT_PUBLIC_TITLE_AND_HEADER ?? '',
     card: 'summary_large_image',
     description: process.env.NEXT_PUBLIC_DESCRIPTION ?? '',
     images: process.env.NEXT_PUBLIC_OPENGRAPH_IMAGE ?? '',

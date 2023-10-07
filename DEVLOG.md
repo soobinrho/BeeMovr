@@ -317,3 +317,4 @@ Also, these are some articles I'll need to reference when creating schemas with 
 - [CSS Positioning (absolute, relative, etc)](https://tailwindcss.com/docs/position)
 - [Hacker News Discussion on Database Performance at Scale](https://news.ycombinator.com/item?id=37778069)
 - [React useMemo hook](https://react.dev/reference/react#performance-hooks) provides caching in functions, and [this can be used for map markers to improve performance](https://visgl.github.io/react-map-gl/docs/get-started/tips-and-tricks#performance-with-many-markers)
+- [Nginx Configuration Beginner's Guide](http://nginx.org/en/docs/beginners_guide.html#conf_structure)

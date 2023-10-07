@@ -174,10 +174,6 @@ cp ./.env.development ./.env.local
 
 # Run a development server.
 pnpm dev
-
-# Unit testing with Jest. We write our test files at `__tests__` dir.
-# Runs `jest --watch`, which re-runs itself everytime files change.
-pnpm test
 ```
 
 <br>
@@ -188,16 +184,30 @@ pnpm test
 # ---------------------------------------------------------------------
 # Deployment workflow.
 # ---------------------------------------------------------------------
-cd BeeMovr
+# Our server is an Ubuntu box on Hetzner with 3 vCPU, 4GB RAM, and
+# 80GB SSD, which amounts to only $8 per month. We wanted to make our
+# program as sustainable as possible, so we tried to use the most
+# reliable, yet the most inexpensive server available.
+ssh <username>@<ip address>
+cd ~
+git clone https://github.com/soobinrho/BeeMovr
+cd BeeMovr/docker
 
-# Create optimized production build.
-pnpm build
+# For development purposes, just running `cd ./BeeMovr && pnpm dev` is
+# perfect, and in fact that is how we run a development server all the
+# time for testing purposes. However, if you want to run a production
+# server, by which we mean deployment to a server so that it becomes
+# available to everyone on the internet, we use Docker Compose to
+# deploy Next.js through Node.js and reverse proxy that through Nginx.
+docker compose up -d
 
-# Serve production build with Node.js
-pnpm start
-
-# TODO. Containerize Nginx and Node.js with Docker.
-# Deploy with Docker Compose.
+# ---------------------------------------------------------------------
+# How we re-deploy whenever we make changes to our code.
+# ---------------------------------------------------------------------
+cd BeeMovr/docker
+git pull
+docker compose build --no-cache
+docker compose up --force-recreate -d
 ```
 
 <br>
