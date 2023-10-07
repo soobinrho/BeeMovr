@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { getLatLngYearMonthFromQuery, getWeather } from '../open-meteo-api';
+import { getLngLatYearMonthFromQuery, getWeather } from '../open-meteo-api';
 
 export async function GET(request: NextRequest) {
   /**
@@ -15,14 +15,14 @@ export async function GET(request: NextRequest) {
   const api_response_key = 'max-temp';
 
   const {
-    api_lat: lat,
     api_lng: lng,
+    api_lat: lat,
     api_yearMonth: yearMonth,
-  } = getLatLngYearMonthFromQuery(request);
+  } = getLngLatYearMonthFromQuery(request);
 
   const api_response = await getWeather({
-    api_lat: lat,
     api_lng: lng,
+    api_lat: lat,
     api_yearMonth: yearMonth,
     api_type: api_type,
   });

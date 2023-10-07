@@ -9,22 +9,22 @@ import { NextRequest } from 'next/server';
 // Source:
 //   https://open-meteo.com/en/docs/historical-weather-api
 export interface IgetWeather {
-  api_lat: string;
   api_lng: string;
+  api_lat: string;
   api_yearMonth: string;
   api_type: string;
 }
 
 export interface IfetchOpenMeteo {
-  api_lat: string;
   api_lng: string;
+  api_lat: string;
   api_yearMonth: string;
   api_type: string;
 }
 
 export interface IstripOpenMeteo {
-  latitude: string;
   longitude: string;
+  latitude: string;
   generationtime_ms: string;
   utc_offset_seconds: string;
   timezone: string;
@@ -40,13 +40,13 @@ export interface IparseOpenMeteo {
 }
 
 export interface types_latLng {
-  api_lat: string;
   api_lng: string;
+  api_lat: string;
 }
 
 export interface types_latLngYearMonth {
-  api_lat: string;
   api_lng: string;
+  api_lat: string;
   api_yearMonth: string;
 }
 
@@ -67,7 +67,7 @@ export async function getWeather(params: IgetWeather): Promise<string> {
    */
 
   if (
-    !isValidLatLng({ api_lat: params.api_lat, api_lng: params.api_lng }) ||
+    !isValidLngLat({ api_lng: params.api_lng, api_lat: params.api_lat }) ||
     !isValidYearMonth(params.api_yearMonth)
   ) {
     return 'Bad Request Error';
@@ -75,8 +75,8 @@ export async function getWeather(params: IgetWeather): Promise<string> {
 
   try {
     const api_response = await fetchOpenMeteo({
-      api_lat: params.api_lat,
       api_lng: params.api_lng,
+      api_lat: params.api_lat,
       api_yearMonth: params.api_yearMonth,
       api_type: params.api_type,
     });
@@ -112,13 +112,13 @@ export async function fetchOpenMeteo(params: IfetchOpenMeteo) {
 
   const api_url =
     'https://archive-api.open-meteo.com/v1/archive?' +
-    'latitude' +
-    '=' +
-    params.api_lat +
-    '&' +
     'longitude' +
     '=' +
     params.api_lng +
+    '&' +
+    'latitude' +
+    '=' +
+    params.api_lat +
     '&' +
     'start_date' +
     '=' +
@@ -130,7 +130,11 @@ export async function fetchOpenMeteo(params: IfetchOpenMeteo) {
     '&' +
     'daily' +
     '=' +
-    params.api_type;
+    params.api_type +
+    '&' +
+    'timezone' +
+    '=' +
+    'GMT';
 
   const api_response = await fetch(api_url, { cache: 'force-cache' });
   return await api_response.json();
@@ -228,29 +232,24 @@ export function getLocalToUTC(date_local: Date): Date {
   return date_UTC;
 }
 
-export function isValidLatLng(params: types_latLng): boolean {
+export function isValidLngLat(params: types_latLng): boolean {
   if (
-    params.api_lat === '' ||
-    !isValidNumber(params.api_lat) ||
     params.api_lng === '' ||
-    !isValidNumber(params.api_lng)
+    !isValidNumber(params.api_lng) ||
+    params.api_lat === '' ||
+    !isValidNumber(params.api_lat)
   ) {
     return false;
   }
   // Maximum and minimum possible values of latitude and longitude.
   // Source:
   //   https://docs.mapbox.com/help/glossary/lat-lon
-  const numeric_api_lat = Number(params.api_lat);
   const numeric_api_lng = Number(params.api_lng);
-  if (
-    numeric_api_lat < -90 ||
-    numeric_api_lat > 90 ||
-    numeric_api_lng < -180 ||
-    numeric_api_lng > 180
-  ) {
-    return false;
-  } else {
+  const numeric_api_lat = Number(params.api_lat);
+  if (Math.abs(numeric_api_lng) <= 180 || Math.abs(numeric_api_lat) <= 90) {
     return true;
+  } else {
+    return false;
   }
 }
 
@@ -282,18 +281,18 @@ export function isValidNumber(param: string): boolean {
   return !isNaN(Number(param));
 }
 
-export function getLatLngYearMonthFromQuery(
+export function getLngLatYearMonthFromQuery(
   api_request: NextRequest
 ): types_latLngYearMonth {
   // In Jest unit testing environments, searchParams is strangely not
   // accessible and therefore gives out a fetal error.
-  let lat = '-1';
   let lng = '-1';
+  let lat = '-1';
   let yearMonth = '1998-08';
   try {
     const searchQuery = api_request.nextUrl.searchParams;
-    lat = searchQuery.get('lat') || '-1';
     lng = searchQuery.get('lng') || '-1';
+    lat = searchQuery.get('lat') || '-1';
     yearMonth = searchQuery.get('year-month') || '1998-08';
   } catch (err) {
     // The try catch block would not have been needed at all, if not for
@@ -304,5 +303,5 @@ export function getLatLngYearMonthFromQuery(
     console.log('Jest unit testing...');
   }
 
-  return { api_lat: lat, api_lng: lng, api_yearMonth: yearMonth };
+  return { api_lng: lng, api_lat: lat, api_yearMonth: yearMonth };
 }

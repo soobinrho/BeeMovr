@@ -4,7 +4,6 @@ import { MapProvider } from 'react-map-gl';
 
 import InformationConsole from './information-console';
 import Mapbox from './mapbox';
-import MapboxControls from './mapbox-controls';
 
 export default function Home() {
   return (
@@ -12,7 +11,6 @@ export default function Home() {
       <MapProvider>
         <Mapbox />
         <InformationConsole />
-        <MapboxControls />
       </MapProvider>
     </main>
   );

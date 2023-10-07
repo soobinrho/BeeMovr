@@ -3,13 +3,13 @@ import { NextRequest } from 'next/server';
 import {
   getLocalToUTC,
   getWeather,
-  isValidLatLng,
+  isValidLngLat,
   isValidYearMonth,
 } from '../../weather/open-meteo-api';
 
 export interface IcalculateHoneyYield {
-  api_lat: string;
   api_lng: string;
+  api_lat: string;
   api_yearMonth: string;
 }
 
@@ -28,7 +28,7 @@ export async function calculateHoneyYield(
    */
 
   if (
-    !isValidLatLng({ api_lat: params.api_lat, api_lng: params.api_lng }) ||
+    !isValidLngLat({ api_lng: params.api_lng, api_lat: params.api_lat }) ||
     !isValidYearMonth(params.api_yearMonth)
   ) {
     return 'Bad Request Error';
@@ -53,8 +53,8 @@ export async function calculateHoneyYield(
   let api_responses_precipitation: number[] = [];
   for (let i = 0; i < HOW_MANY_MONTHS; i++) {
     const api_response = await getWeather({
-      api_lat: params.api_lat,
       api_lng: params.api_lng,
+      api_lat: params.api_lat,
       api_yearMonth: api_dates[i],
       api_type: api_type_precipitation,
     });
@@ -78,8 +78,8 @@ export async function calculateHoneyYield(
   let api_responses_maxTemp: number[] = [];
   for (let i = 0; i < HOW_MANY_MONTHS; i++) {
     const api_response = await getWeather({
-      api_lat: params.api_lat,
       api_lng: params.api_lng,
+      api_lat: params.api_lat,
       api_yearMonth: api_dates[i],
       api_type: api_type_maxTemp,
     });
@@ -103,8 +103,8 @@ export async function calculateHoneyYield(
   let api_responses_minTemp: number[] = [];
   for (let i = 0; i < HOW_MANY_MONTHS; i++) {
     const api_response = await getWeather({
-      api_lat: params.api_lat,
       api_lng: params.api_lng,
+      api_lat: params.api_lat,
       api_yearMonth: api_dates[i],
       api_type: api_type_minTemp,
     });

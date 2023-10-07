@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { getLatLngYearMonthFromQuery } from '../../weather/open-meteo-api';
+import { getLngLatYearMonthFromQuery } from '../../weather/open-meteo-api';
 import { calculateHoneyYield } from './calculate-honey-yield';
 
 export async function GET(request: NextRequest) {
@@ -19,14 +19,14 @@ export async function GET(request: NextRequest) {
   const api_response_key = api_type;
 
   const {
-    api_lat: lat,
     api_lng: lng,
+    api_lat: lat,
     api_yearMonth: yearMonth,
-  } = getLatLngYearMonthFromQuery(request);
+  } = getLngLatYearMonthFromQuery(request);
 
   const api_response = await calculateHoneyYield({
-    api_lat: lat,
     api_lng: lng,
+    api_lat: lat,
     api_yearMonth: yearMonth,
   });
 

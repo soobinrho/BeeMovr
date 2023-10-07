@@ -1,4 +1,4 @@
-import { NextResponse, NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { createMocks } from 'node-mocks-http';
 
 import { GET } from '../../../../../../src/app/v1/weather/precipitation/route';
@@ -7,7 +7,7 @@ describe('/v1/weather/precipitation', () => {
   test('returns monthly precipitation', async () => {
     const { req, res }: { req: NextRequest; res: NextResponse } = createMocks({
       method: 'GET',
-      query: { lat: '-1', lng: '-1', 'year-month': '1998-08' },
+      query: { lng: '-1', lat: '-1', 'year-month': '1998-08' },
     });
 
     const api_response = await GET(req);

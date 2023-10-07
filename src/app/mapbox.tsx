@@ -1,4 +1,5 @@
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { ButtonHTMLAttributes } from 'react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Map, {
   MapProvider,
@@ -11,13 +12,14 @@ import Map, {
 import type { MapRef } from 'react-map-gl';
 
 import ConditionalRendering from './conditional-rendering';
+import MapboxLngLatControl from './mapbox-controls';
 
 export default function Mapbox() {
   // react-map-gl's documentation on the type ViewState:
   //   https://visgl.github.io/react-map-gl/docs/api-reference/types#viewstate
   const [viewport, setViewport] = useState<ViewState>({
-    longitude: 1,
-    latitude: 1,
+    longitude: 0,
+    latitude: 0,
     zoom: 2,
     bearing: 0,
     pitch: 0,
@@ -30,25 +32,7 @@ export default function Mapbox() {
   return (
     <div>
       <div className='absolute z-10 grid w-screen grid-cols-1 justify-between sm:grid-cols-2'>
-        <div className='m-2 justify-self-center rounded-3xl bg-background-console/50 pb-3 pl-6 pr-0 pt-3 text-left font-semibold hover:bg-background-space/80 sm:justify-self-start'>
-          <label htmlFor='longitude'>
-            <b>Longitude</b>
-          </label>
-          <input
-            type='text'
-            className='ml-4 w-28 border-none bg-transparent p-0 placeholder-font-console hover:border-none focus:border-none focus:ring-0'
-            defaultValue={viewport.longitude.toFixed(6)}
-          ></input>
-          <br />
-          <label htmlFor='latitude'>
-            <b>Latitude</b>
-          </label>
-          <input
-            type='text'
-            className='ml-4 w-28 border-none bg-transparent p-0 placeholder-font-console hover:border-none focus:border-none focus:ring-0'
-            defaultValue={viewport.latitude.toFixed(6)}
-          ></input>
-        </div>
+        <MapboxLngLatControl />
         <div className='invisible z-10 m-4 p-3 sm:visible sm:justify-self-end'>
           <a
             target='_blank'
@@ -87,5 +71,3 @@ export default function Mapbox() {
     </div>
   );
 }
-
-// onLoad={(newEvent) => onTest}
