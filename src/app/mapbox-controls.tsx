@@ -51,7 +51,7 @@ export default function MapboxLngLatControl() {
   }, [mapMain, inputLng, inputLat]);
 
   return (
-    <div className='m-2 mt-3 justify-self-center rounded-3xl bg-background-console/50 pb-3 pl-8 pr-0 pt-3 text-left font-semibold hover:bg-background-space/80 sm:justify-self-start'>
+    <div className='m-2 mt-3 justify-self-center rounded-3xl bg-background-console/50 pb-3 pl-8 pr-0 pt-3 text-left font-semibold hover:bg-background-console/90 sm:justify-self-start'>
       <label htmlFor='longitude'>
         <b>Longitude</b>
       </label>
@@ -59,7 +59,7 @@ export default function MapboxLngLatControl() {
         id='longitude'
         type='text'
         style={{ color: hasError ? 'red' : '' }}
-        className='ml-4 w-28 border-none bg-transparent p-0 placeholder-font-console hover:border-none focus:border-none focus:ring-0'
+        className='ml-4 w-28 border-none bg-transparent p-0 placeholder-font-console hover:border-none hover:text-white focus:border-none focus:text-white focus:ring-0'
         required
         value={inputLng}
         onChange={onLngChange}
@@ -77,7 +77,7 @@ export default function MapboxLngLatControl() {
         id='latitude'
         type='text'
         style={{ color: hasError ? 'red' : '' }}
-        className='ml-4 w-28 border-none bg-transparent p-0 placeholder-font-console hover:border-none focus:border-none focus:ring-0'
+        className='ml-4 w-28 border-none bg-transparent p-0 placeholder-font-console hover:border-none hover:text-white focus:border-none focus:text-white focus:ring-0'
         required
         value={inputLat}
         onChange={onLatChange}
