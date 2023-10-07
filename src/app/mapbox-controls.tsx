@@ -59,7 +59,7 @@ export default function MapboxLngLatControl() {
         id='longitude'
         type='text'
         style={{ color: hasError ? 'red' : '' }}
-        className='ml-4 w-28 border-none bg-transparent p-0 placeholder-font-console hover:border-none hover:text-white focus:border-none focus:text-white focus:ring-0'
+        className='ml-4 mr-4 w-24 border-none bg-transparent p-0 placeholder-font-console hover:border-none hover:text-white focus:border-none focus:text-white focus:ring-0'
         required
         value={inputLng}
         onChange={onLngChange}
@@ -77,7 +77,7 @@ export default function MapboxLngLatControl() {
         id='latitude'
         type='text'
         style={{ color: hasError ? 'red' : '' }}
-        className='ml-4 w-28 border-none bg-transparent p-0 placeholder-font-console hover:border-none hover:text-white focus:border-none focus:text-white focus:ring-0'
+        className='ml-4 mr-4 w-24 border-none bg-transparent p-0 placeholder-font-console hover:border-none hover:text-white focus:border-none focus:text-white focus:ring-0'
         required
         value={inputLat}
         onChange={onLatChange}
