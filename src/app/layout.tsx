@@ -6,8 +6,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: process.env.NEXT_PUBLIC_TITLE,
-  description: process.env.NEXT_PUBLIC_DESCRIPTION,
+  title: process.env.NEXT_PUBLIC_TITLE ?? '',
+  description: process.env.NEXT_PUBLIC_DESCRIPTION ?? '',
   category: 'technology',
   keywords: [
     'Beekeepers',
@@ -16,18 +16,18 @@ export const metadata: Metadata = {
     'honey yield prediction',
   ],
   openGraph: {
-    title: process.env.NEXT_PUBLIC_TITLE,
-    description: process.env.NEXT_PUBLIC_DESCRIPTION,
-    url: process.env.NEXT_PUBLIC_URL,
-    siteName: process.env.NEXT_PUBLIC_TITLE,
-    images: process.env.NEXT_PUBLIC_OPENGRAPH_IMAGE,
+    title: process.env.NEXT_PUBLIC_TITLE ?? '',
+    description: process.env.NEXT_PUBLIC_DESCRIPTION ?? '',
+    url: process.env.NEXT_PUBLIC_URL ?? '',
+    siteName: process.env.NEXT_PUBLIC_TITLE ?? '',
+    images: process.env.NEXT_PUBLIC_OPENGRAPH_IMAGE ?? '',
     type: 'website',
   },
   twitter: {
-    title: process.env.NEXT_PUBLIC_TITLE,
+    title: process.env.NEXT_PUBLIC_TITLE ?? '',
     card: 'summary_large_image',
-    description: process.env.NEXT_PUBLIC_DESCRIPTION,
-    images: process.env.NEXT_PUBLIC_OPENGRAPH_IMAGE,
+    description: process.env.NEXT_PUBLIC_DESCRIPTION ?? '',
+    images: process.env.NEXT_PUBLIC_OPENGRAPH_IMAGE ?? '',
   },
   manifest: '/manifest.json',
   icons: {
@@ -35,15 +35,15 @@ export const metadata: Metadata = {
     shortcut: '/icon.png',
     apple: '/icon.png',
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_URL || ''),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_URL ?? ''),
   authors: [
     {
-      name: process.env.NEXT_PUBLIC_TITLE,
-      url: process.env.NEXT_PUBLIC_GITHUB,
+      name: process.env.NEXT_PUBLIC_TITLE ?? '',
+      url: process.env.NEXT_PUBLIC_GITHUB ?? '',
     },
   ],
-  creator: process.env.NEXT_PUBLIC_TITLE,
-  publisher: process.env.NEXT_PUBLIC_TITLE,
+  creator: process.env.NEXT_PUBLIC_TITLE ?? '',
+  publisher: process.env.NEXT_PUBLIC_TITLE ?? '',
   alternates: {
     canonical: '/',
   },
