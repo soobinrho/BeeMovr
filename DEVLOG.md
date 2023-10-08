@@ -319,3 +319,8 @@ Also, these are some articles I'll need to reference when creating schemas with 
 - [React useMemo hook](https://react.dev/reference/react#performance-hooks) provides caching in functions, and [this can be used for map markers to improve performance](https://visgl.github.io/react-map-gl/docs/get-started/tips-and-tricks#performance-with-many-markers)
 - [Nginx Configuration Beginner's Guide](http://nginx.org/en/docs/beginners_guide.html#conf_structure)
 - [NSA / CISA Top 10 Misconfigurations](https://www.nsa.gov/Press-Room/Press-Releases-Statements/Press-Release-View/Article/3549369/nsa-and-cisa-advise-on-top-ten-cybersecurity-misconfigurations/)
+
+<br>
+
+## 2023-10-08
+- [Next.js and Content Security Policy (CSP)](https://reesmorris.co.uk/blog/implementing-proper-csp-nextjs-styled-components)
