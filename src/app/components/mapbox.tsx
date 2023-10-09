@@ -1,5 +1,5 @@
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import Map, {
   MapProvider,
   Marker,
@@ -14,6 +14,9 @@ import Searchbox from './searchbox';
 import SocialMedia from './social-media';
 
 export default function Mapbox() {
+  // ------------------------------------------------------------------
+  // Initialize Mapbox.
+  // ------------------------------------------------------------------
   // react-map-gl's documentation on the type ViewState:
   //   https://visgl.github.io/react-map-gl/docs/api-reference/types#viewstate
   const [viewport, setViewport] = useState<ViewState>({
@@ -29,6 +32,9 @@ export default function Mapbox() {
     return viewport.zoom < ZOOM_LEVEL_TITLE;
   }, [viewport.zoom]);
 
+  // ------------------------------------------------------------------
+  // Rotate the globe at startup.
+  // ------------------------------------------------------------------
   const [rotationChartCounter, setRotationChartCounter] = useState(0);
   const rotationChart_lng = [
     -98.5795, -42.6043, 31.1656, 127.7669, 131.42068, 134.9145, -60, 1,
@@ -38,6 +44,7 @@ export default function Mapbox() {
   ];
   const rotationChar_length = rotationChart_lng.length;
 
+  const mapRef = useRef(null);
   return (
     <>
       <MapboxLngLatControl />
@@ -52,12 +59,14 @@ export default function Mapbox() {
       </ConditionalRendering>
       <Map
         id='mapMain'
+        ref={mapRef}
         {...viewport}
         reuseMaps
         style={{ width: '100%', height: '100vh' }}
         mapStyle='mapbox://styles/mapbox/satellite-streets-v12'
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
         onLoad={(newEvent) => {
+          newEvent.target.doubleClickZoom.disable();
           newEvent.target.easeTo({
             center: [
               rotationChart_lng[rotationChartCounter % rotationChar_length],
@@ -81,6 +90,11 @@ export default function Mapbox() {
           }
         }}
         onMove={(newEvent) => setViewport(newEvent.viewState)}
+        onClick={(newEvent) => {
+          const { lng, lat } = newEvent.lngLat;
+          console.log(`${lng} ${lat}`);
+        }}
+        doubleClickZoom
       />
     </>
   );
