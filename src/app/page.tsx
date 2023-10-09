@@ -2,8 +2,8 @@
 
 import { MapProvider } from 'react-map-gl';
 
-import InformationConsole from './information-console';
-import Mapbox from './mapbox';
+import InformationConsole from './components/information-console';
+import Mapbox from './components/mapbox';
 
 export default function Home() {
   return (

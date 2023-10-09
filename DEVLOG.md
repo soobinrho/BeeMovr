@@ -322,5 +322,5 @@ Also, these are some articles I'll need to reference when creating schemas with 
 
 <br>
 
-## 2023-10-08
+### 2023-10-08
 - [Next.js and Content Security Policy (CSP)](https://reesmorris.co.uk/blog/implementing-proper-csp-nextjs-styled-components)

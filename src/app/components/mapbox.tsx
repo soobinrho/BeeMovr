@@ -39,10 +39,8 @@ export default function Mapbox() {
 
   return (
     <div>
-      <div className='absolute z-10 grid w-screen grid-cols-1 justify-between sm:grid-cols-2'>
-        <MapboxLngLatControl />
-        <SocialMedia />
-      </div>
+      <MapboxLngLatControl />
+      <SocialMedia />
       <ConditionalRendering condition={isZoomTitleLevel}>
         <div className='absolute left-[50%] top-[36%] z-10 translate-x-[-50%] translate-y-[-36%] items-center drop-shadow-[0_8px_8px_rgba(0,0,0,1)]'>
           <div className='m-0 p-1 text-center text-6xl font-extrabold text-white/80 sm:text-[11rem]'>

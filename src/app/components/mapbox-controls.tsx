@@ -51,7 +51,7 @@ export default function MapboxLngLatControl() {
   }, [mapMain, inputLng, inputLat]);
 
   return (
-    <div className='m-2 mt-3 justify-self-center rounded-3xl bg-background-console/50 pb-3 pl-8 pr-0 pt-3 text-left font-semibold hover:bg-background-console/90 sm:justify-self-start'>
+    <div className='absolute left-[50%] z-10 m-2 mt-3 translate-x-[-50%] rounded-3xl bg-background-console/50 pb-3 pl-8 pr-0 pt-3 text-left font-semibold hover:bg-background-console/90 sm:left-0 sm:translate-x-0'>
       <label htmlFor='longitude'>
         <b>Longitude</b>
       </label>
