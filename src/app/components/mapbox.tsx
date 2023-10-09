@@ -1,6 +1,8 @@
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import Map, {
+  MapEvent,
+  MapLayerMouseEvent,
   MapProvider,
   Marker,
   NavigationControl,
@@ -36,15 +38,67 @@ export default function Mapbox() {
   // Rotate the globe at startup.
   // ------------------------------------------------------------------
   const [rotationChartCounter, setRotationChartCounter] = useState(0);
-  const rotationChart_lng = [
-    -98.5795, -42.6043, 31.1656, 127.7669, 131.42068, 134.9145, -60, 1,
-  ];
-  const rotationChart_lat = [
-    39.8383, 71.7096, 48.3794, 35.9078, -31.96361, -85.0511, -15.38171, 1,
-  ];
+  const rotationChart_lng = useMemo(() => {
+    return [-98.5795, -42.6043, 31.1656, 127.7669, 131.42068, 134.9145, -60, 1];
+  }, []);
+  const rotationChart_lat = useMemo(() => {
+    return [
+      39.8383, 71.7096, 48.3794, 35.9078, -31.96361, -85.0511, -15.38171, 1,
+    ];
+  }, []);
   const rotationChar_length = rotationChart_lng.length;
 
-  const mapRef = useRef(null);
+  // ------------------------------------------------------------------
+  // Callback definitions.
+  // ------------------------------------------------------------------
+  const onLoad_mapMain = useCallback(
+    (newEvent: MapEvent) => {
+      newEvent.target.doubleClickZoom.disable();
+      newEvent.target.easeTo({
+        center: [
+          rotationChart_lng[rotationChartCounter % rotationChar_length],
+          rotationChart_lat[rotationChartCounter % rotationChar_length],
+        ],
+        duration: 15000,
+      });
+      setRotationChartCounter(rotationChartCounter + 1);
+    },
+    [
+      rotationChart_lng,
+      rotationChart_lat,
+      rotationChartCounter,
+      rotationChar_length,
+    ]
+  );
+
+  const onIdle_mapMain = useCallback(
+    (newEvent: MapEvent) => {
+      if (isZoomTitleLevel) {
+        newEvent.target.easeTo({
+          center: [
+            rotationChart_lng[rotationChartCounter % rotationChar_length],
+            rotationChart_lat[rotationChartCounter % rotationChar_length],
+          ],
+          duration: 20000,
+          easing: (n) => n,
+        });
+        setRotationChartCounter(rotationChartCounter + 1);
+      }
+    },
+    [
+      rotationChart_lng,
+      rotationChart_lat,
+      rotationChartCounter,
+      rotationChar_length,
+      isZoomTitleLevel,
+    ]
+  );
+
+  const onClick_mapMain = useCallback((newEvent: MapLayerMouseEvent) => {
+    const { lng, lat } = newEvent.lngLat;
+    console.log(`${lng} ${lat}`);
+  }, []);
+
   return (
     <>
       <MapboxLngLatControl />
@@ -59,42 +113,15 @@ export default function Mapbox() {
       </ConditionalRendering>
       <Map
         id='mapMain'
-        ref={mapRef}
         {...viewport}
         reuseMaps
         style={{ width: '100%', height: '100vh' }}
         mapStyle='mapbox://styles/mapbox/satellite-streets-v12'
         mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
-        onLoad={(newEvent) => {
-          newEvent.target.doubleClickZoom.disable();
-          newEvent.target.easeTo({
-            center: [
-              rotationChart_lng[rotationChartCounter % rotationChar_length],
-              rotationChart_lat[rotationChartCounter % rotationChar_length],
-            ],
-            duration: 15000,
-          });
-          setRotationChartCounter(rotationChartCounter + 1);
-        }}
-        onIdle={(newEvent) => {
-          if (viewport.zoom < ZOOM_LEVEL_TITLE) {
-            newEvent.target.easeTo({
-              center: [
-                rotationChart_lng[rotationChartCounter % rotationChar_length],
-                rotationChart_lat[rotationChartCounter % rotationChar_length],
-              ],
-              duration: 20000,
-              easing: (n) => n,
-            });
-            setRotationChartCounter(rotationChartCounter + 1);
-          }
-        }}
         onMove={(newEvent) => setViewport(newEvent.viewState)}
-        onClick={(newEvent) => {
-          const { lng, lat } = newEvent.lngLat;
-          console.log(`${lng} ${lat}`);
-        }}
-        doubleClickZoom
+        onLoad={onLoad_mapMain}
+        onIdle={onIdle_mapMain}
+        onClick={onClick_mapMain}
       />
     </>
   );
