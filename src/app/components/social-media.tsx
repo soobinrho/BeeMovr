@@ -1,6 +1,6 @@
 export default function SocialMedia() {
   return (
-    <div className='absolute end-0 z-10 m-4 p-3'>
+    <div className='absolute end-0 z-10 mr-4 mt-6 p-3'>
       <a
         target='_blank'
         href={process.env.NEXT_PUBLIC_GITHUB}

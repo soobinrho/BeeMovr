@@ -10,6 +10,7 @@ import Map, {
 
 import ConditionalRendering from './conditional-rendering';
 import MapboxLngLatControl from './mapbox-controls';
+import Searchbox from './searchbox';
 import SocialMedia from './social-media';
 
 export default function Mapbox() {
@@ -38,8 +39,9 @@ export default function Mapbox() {
   const rotationChar_length = rotationChart_lng.length;
 
   return (
-    <div>
+    <>
       <MapboxLngLatControl />
+      <Searchbox />
       <SocialMedia />
       <ConditionalRendering condition={isZoomTitleLevel}>
         <div className='absolute left-[50%] top-[36%] z-10 translate-x-[-50%] translate-y-[-36%] items-center drop-shadow-[0_8px_8px_rgba(0,0,0,1)]'>
@@ -80,6 +82,6 @@ export default function Mapbox() {
         }}
         onMove={(newEvent) => setViewport(newEvent.viewState)}
       />
-    </div>
+    </>
   );
 }

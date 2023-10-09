@@ -2,7 +2,7 @@ import SocialMedia from '../components/social-media';
 
 export default function Watsonx() {
   return (
-    <div>
+    <>
       <SocialMedia />
       <div className='flex min-h-screen flex-row items-center justify-center bg-background-space'>
         <div className='m-5 font-extrabold text-gray-300'>watsonx.data</div>
@@ -12,6 +12,6 @@ export default function Watsonx() {
           visualization.
         </div>
       </div>
-    </div>
+    </>
   );
 }
