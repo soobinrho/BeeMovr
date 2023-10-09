@@ -1,4 +1,4 @@
-import { getWeather } from '../../../../../../src/app/v1/weather/open-meteo-api';
+import { getWeather } from '../../../../../../src/app/v1/components/open-meteo-api';
 
 describe('/v1/weather/precipitation', () => {
   test('returns monthly precipitation', async () => {
@@ -6,15 +6,20 @@ describe('/v1/weather/precipitation', () => {
 
     const lng = '-1';
     const lat = '-1';
-    const yearMonth = '1998-08';
+    const startYearMonth = '1998-08';
+    const endYearMonth = '1998-09';
 
     const api_response = await getWeather({
       api_lng: lng,
       api_lat: lat,
-      api_yearMonth: yearMonth,
+      api_startYearMonth: startYearMonth,
+      api_endYearMonth: endYearMonth,
       api_type: api_type,
     });
 
-    expect(api_response).toEqual('0.2');
+    expect(api_response).toStrictEqual({
+      [startYearMonth]: expect.any(String),
+      [endYearMonth]: expect.any(String),
+    });
   });
 });

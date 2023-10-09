@@ -11,3 +11,5 @@ export default function InformationConsole() {
     </div>
   );
 }
+
+// const fetcher = (url) => fetch(url).then((res) => res.json());

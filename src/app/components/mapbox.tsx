@@ -9,9 +9,10 @@ import Map, {
   Popup,
   ViewState,
 } from 'react-map-gl';
+import useSWR from 'swr';
 
 import ConditionalRendering from './conditional-rendering';
-import MapboxLngLatControl from './mapbox-controls';
+import MapboxLngLatControl from './mapbox-lng-lat-control';
 import Searchbox from './searchbox';
 import SocialMedia from './social-media';
 
@@ -94,11 +95,6 @@ export default function Mapbox() {
     ]
   );
 
-  const onClick_mapMain = useCallback((newEvent: MapLayerMouseEvent) => {
-    const { lng, lat } = newEvent.lngLat;
-    console.log(`${lng} ${lat}`);
-  }, []);
-
   return (
     <>
       <MapboxLngLatControl />
@@ -121,7 +117,10 @@ export default function Mapbox() {
         onMove={(newEvent) => setViewport(newEvent.viewState)}
         onLoad={onLoad_mapMain}
         onIdle={onIdle_mapMain}
-        onClick={onClick_mapMain}
+        onClick={(newEvent) => {
+          const { lng, lat } = newEvent.lngLat;
+          console.log(`${lng} ${lat}`);
+        }}
       />
     </>
   );

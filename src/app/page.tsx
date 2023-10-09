@@ -1,12 +1,10 @@
 'use client';
 
-import React, { useContext } from 'react';
+import React from 'react';
 import { MapProvider } from 'react-map-gl';
 
 import InformationConsole from './components/information-console';
 import Mapbox from './components/mapbox';
-
-const MapDataContext = React.createContext;
 
 export default function Home() {
   return (

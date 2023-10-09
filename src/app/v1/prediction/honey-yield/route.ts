@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { calculateHoneyYield } from './calculate-honey-yield';
+import { calculateHoneyYield } from '../../components/calculate-honey-yield';
 
 export async function GET(request: NextRequest) {
   /**
@@ -13,32 +13,29 @@ export async function GET(request: NextRequest) {
    * Precipitation and Temperature on Honey Yield in the United States."
    * Source:
    *   https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf
+   *
+   * @example
+   * https://beemovr.com/v1/prediction/honey-yield?lng=-1&lat=-1&start-year-month=2023-09&end-year-month=2023-09
    */
-  const api_type = 'honey-yield';
-  const api_response_key = api_type;
-
   const searchQuery = request.nextUrl.searchParams;
   const lng = searchQuery.get('lng') ?? '';
   const lat = searchQuery.get('lat') ?? '';
   const yearMonth = searchQuery.get('year-month') ?? '';
 
-  const api_response = await calculateHoneyYield({
-    api_lng: lng,
-    api_lat: lat,
-    api_yearMonth: yearMonth,
-  });
-
-  // API error response best practices.
-  // Source:
-  //   https://nextjs.org/docs/app/api-reference/functions/next-response#json
-  if (api_response === 'Bad Request Error') {
-    return NextResponse.json({ error: 'Bad Request Error' }, { status: 400 });
-  } else if (api_response === 'Internal Server Error') {
-    return NextResponse.json(
-      { error: 'Internal Server Error' },
-      { status: 500 }
-    );
-  } else {
-    return NextResponse.json({ [api_response_key]: api_response });
+  try {
+    const api_response = await calculateHoneyYield({
+      api_lng: lng,
+      api_lat: lat,
+      api_yearMonth: yearMonth,
+    });
+    return NextResponse.json(api_response);
+  } catch (err) {
+    if (err instanceof RangeError) {
+      return NextResponse.json({ error: err.message }, { status: 400 });
+    } else if (err instanceof Error) {
+      return NextResponse.json({ error: err.message }, { status: 500 });
+    } else {
+      return NextResponse.json({ error: 'Undefined Error' }, { status: 500 });
+    }
   }
 }

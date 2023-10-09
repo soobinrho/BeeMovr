@@ -1,5 +1,9 @@
 import SocialMedia from '../components/social-media';
 
+// The main difference between the main `/` route and `watsonx` route
+// will be that the main page will show a summary of information, while
+// `watsonx` page will give the user all the information we have so
+// that our users can see the data and export the data.
 export default function Watsonx() {
   return (
     <>
