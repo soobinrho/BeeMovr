@@ -3,7 +3,7 @@ export default function Searchbox() {
     <div className='absolute start-0 z-10 ml-4 mt-6 flex w-[28%] flex-auto flex-grow translate-x-0 flex-row flex-nowrap items-center gap-0 pl-3 pt-1 sm:start-[50%] sm:ml-5 sm:mt-7 sm:translate-x-[-50%] sm:pt-0'>
       <div className='start-0 z-10 translate-x-0 text-white/50 sm:start-[50%] sm:translate-x-[-50%]'>
         <svg
-          className='fill-current text-font-console hover:text-gray-400 active:text-gray-500'
+          className='fill-current text-font-console hover:text-white active:text-gray-300'
           xmlns='http://www.w3.org/2000/svg'
           width='24'
           height='24'
@@ -16,7 +16,7 @@ export default function Searchbox() {
       <input
         id='searchbox'
         type='text'
-        className='invisible z-10 w-[100%] self-stretch rounded-3xl border-none bg-background-console/50 text-left font-semibold placeholder-font-console/90 hover:border-none hover:bg-background-console/90 hover:text-white focus:border-none focus:text-white focus:ring-0 sm:visible'
+        className='invisible z-10 w-[100%] self-stretch rounded-3xl border-none bg-background-console/50 text-left font-semibold placeholder-font-console/90 hover:border-none hover:bg-background-console/90 hover:text-white hover:placeholder-white focus:border-none focus:text-white focus:ring-0 active:placeholder-gray-300 sm:visible'
         required
         placeholder='Search...'
         onKeyDown={(evt) => {

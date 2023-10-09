@@ -7,7 +7,7 @@ export default function SocialMedia() {
         rel='noopener noreferrer'
       >
         <svg
-          className='fill-current text-font-console hover:text-gray-400 active:text-gray-500'
+          className='fill-current text-font-console hover:text-white active:text-gray-300'
           xmlns='http://www.w3.org/2000/svg'
           width='24'
           height='24'
