@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { getLngLatYearMonthFromQuery, getWeather } from '../open-meteo-api';
+import { getWeather } from '../open-meteo-api';
 
 export async function GET(request: NextRequest) {
   /**
@@ -14,11 +14,10 @@ export async function GET(request: NextRequest) {
   const api_type = 'temperature_2m_min';
   const api_response_key = 'min-temp';
 
-  const {
-    api_lng: lng,
-    api_lat: lat,
-    api_yearMonth: yearMonth,
-  } = getLngLatYearMonthFromQuery(request);
+  const searchQuery = request.nextUrl.searchParams;
+  const lng = searchQuery.get('lng') ?? '';
+  const lat = searchQuery.get('lat') ?? '';
+  const yearMonth = searchQuery.get('year-month') ?? '';
 
   const api_response = await getWeather({
     api_lng: lng,

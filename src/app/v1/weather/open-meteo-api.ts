@@ -1,5 +1,3 @@
-import { NextRequest } from 'next/server';
-
 // --------------------------------------------------------------------
 // Open Meteo API parameters.
 // --------------------------------------------------------------------
@@ -279,29 +277,4 @@ export function isValidYearMonth(yearDate: string | null): boolean {
 
 export function isValidNumber(param: string): boolean {
   return !isNaN(Number(param));
-}
-
-export function getLngLatYearMonthFromQuery(
-  api_request: NextRequest
-): types_latLngYearMonth {
-  // In Jest unit testing environments, searchParams is strangely not
-  // accessible and therefore gives out a fetal error.
-  let lng = '-1';
-  let lat = '-1';
-  let yearMonth = '1998-08';
-  try {
-    const searchQuery = api_request.nextUrl.searchParams;
-    lng = searchQuery.get('lng') || '-1';
-    lat = searchQuery.get('lat') || '-1';
-    yearMonth = searchQuery.get('year-month') || '1998-08';
-  } catch (err) {
-    // The try catch block would not have been needed at all, if not for
-    // the "TypeError: Cannot read properties of undefined (reading
-    // searchParams')" which strangely occurs only in Jest unit testing.
-    // We suspect it's caused by some kind of compatibility issues with
-    // Next.js 13 server side components with Jest.
-    console.log('Jest unit testing...');
-  }
-
-  return { api_lng: lng, api_lat: lat, api_yearMonth: yearMonth };
 }

@@ -1,20 +1,17 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { createMocks } from 'node-mocks-http';
-
-import { GET } from '../../../../../../src/app/v1/prediction/honey-yield/route';
+import { calculateHoneyYield } from '../../../../../../src/app/v1/prediction/honey-yield/calculate-honey-yield';
 
 describe('/v1/prediction/honey-yield', () => {
-  test('returns honey yield prediction', async () => {
-    const { req, res }: { req: NextRequest; res: NextResponse } = createMocks({
-      method: 'GET',
-      query: { lng: '-1', lat: '-1', 'year-month': '1998-08' },
+  test('returns honey yield prediction value', async () => {
+    const lng = '-1';
+    const lat = '-1';
+    const yearMonth = '1998-08';
+
+    const api_response = await calculateHoneyYield({
+      api_lng: lng,
+      api_lat: lat,
+      api_yearMonth: yearMonth,
     });
 
-    const api_response = await GET(req);
-
-    expect(api_response.status).toBe(200);
-    expect(await api_response.json()).toEqual({
-      'honey-yield': '77.49192999999998',
-    });
+    expect(api_response).toEqual('77.49192999999998');
   });
 });

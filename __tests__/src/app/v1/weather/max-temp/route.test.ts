@@ -1,20 +1,20 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { createMocks } from 'node-mocks-http';
-
-import { GET } from '../../../../../../src/app/v1/weather/max-temp/route';
+import { getWeather } from '../../../../../../src/app/v1/weather/open-meteo-api';
 
 describe('/v1/weather/max-temp', () => {
   test('returns monthly maximum temperature', async () => {
-    const { req, res }: { req: NextRequest; res: NextResponse } = createMocks({
-      method: 'GET',
-      query: { lng: '-1', lat: '-1', 'year-month': '1998-08' },
+    const api_type = 'temperature_2m_max';
+
+    const lng = '-1';
+    const lat = '-1';
+    const yearMonth = '1998-08';
+
+    const api_response = await getWeather({
+      api_lng: lng,
+      api_lat: lat,
+      api_yearMonth: yearMonth,
+      api_type: api_type,
     });
 
-    const api_response = await GET(req);
-
-    expect(api_response.status).toBe(200);
-    expect(await api_response.json()).toEqual({
-      'max-temp': '24.2',
-    });
+    expect(api_response).toEqual('24.2');
   });
 });
