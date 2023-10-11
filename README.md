@@ -29,7 +29,7 @@ That's how BeeMovr started.
 ## Getting Started
 
 [1.](#1-how-to-spin-up-a-development-server) How to spin up a development server<br>
-[2.](#2-how-we-deploy-to-beemovrcom) How we deploy to [BeeMovr.com](https://BeeMovr.com)<br>
+[2.](#2-how-we-deploy-to-beemovrcom) How we deploy to [beemovr.com](https://beemovr.com)<br>
 [3.](#3-how-does-this-work) How does this work?<br>
 
 <br>
@@ -112,7 +112,7 @@ We therefore believe the most important part of BeeMovr is to listen, understand
 
 As we promised our beekeeper Keith Robert, BeeMovr has been and will always be open-sourced and open to all beekeepers.
 If you're a beekeeper and have any suggestions or feature requests, please feel free to email us at &lt;workerbees@beemovr.com&gt;.
-Our program is up and online at [BeeMovr.com](https://BeeMovr.com) and we are Schaler Starks &lt;schaler@beemovr.com&gt;, Eric Gonzalez Duro &lt;eric@beemovr.com&gt;, Jasper Ha &lt;jasper@beemovr.com&gt;, and Soobin Rho &lt;soobin@beemovr.com&gt;.
+Our program is up and online at [beemovr.com](https://beemovr.com) and we are Schaler Starks &lt;schaler@beemovr.com&gt;, Eric Gonzalez Duro &lt;eric@beemovr.com&gt;, Jasper Ha &lt;jasper@beemovr.com&gt;, and Soobin Rho &lt;soobin@beemovr.com&gt;.
 If you share our goal to make a positive impact on environmental sustainability by helping beekeepers and their bees, you're welcome to join us and feel free to make pull requests on any feature you think is the best for BeeMovr.
 
 ![Timeline of BeeMovr development](https://github.com/soobinrho/BeeMovr/assets/19341857/72474594-7a01-4da1-bcfc-7c45bed963f7)
@@ -178,7 +178,7 @@ pnpm dev
 
 <br>
 
-## 2. How we deploy to [BeeMovr.com](https://BeeMovr.com)
+## 2. How we deploy to [beemovr.com](https://beemovr.com)
 
 ```bash
 # ---------------------------------------------------------------------
