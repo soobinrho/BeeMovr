@@ -93,27 +93,26 @@ Include the real-world problem you identified, describe the technological soluti
 You can supply additional documentation in this source code repository that you link to as well.
 ```
 
-BeeMovr pulls in real-time precipitation, maximum temperature, and minimum temperature data from Open Meteo API, and calculates a prediction of the maximum possible honey yield value of any given coordinates on the map based on [Hayes Kent Grogan's paper](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf).
-Our project seeks to give beekeepers increased information about ideal pollinator conditions near them to increase colony survival rate and reduce uncertainty.
-We focused on researching the most accurate model possible.
-Currently, we use a linear regression model with the factors of precipitation, maximum temperature, and minimum temperature.
+BeeMovr utilizes real-time precipitation, maximum temperature, and minimum temperature data from Open Meteo API to calculate prediction of the maximum possible honey yield value of any given coordinates on a map based on [Hayes Kent Grogan's paper](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf).
+Our project seeks to provide beekeepers with better information about ideal pollinator conditions near them in order to increase colony survival rates and reduce uncertainty.
+We focused on researching the most accurate model possible and we now use a linear regression model with the factors of precipitation, maximum temperature, and minimum temperature.
 Further, we plan to use [IBM watsonx.data](https://cloud.ibm.com/docs/watsonxdata?topic=watsonxdata-getting-started) to pull combined data from [USDA (U.S. Department of Agriculture)](https://www.usda.gov/) and [NASS (National Agricultural Statistics Service)](https://www.nass.usda.gov/) for improved prediction models.
 
-We're also trying to increase prediction accuracy by ingesting colony-specific demographic data into our prediction model, as colony demographic data such as the age of the queen were found to be statistically significant, as discovered by Grogan's 2020 paper.
-Currently, we rely on [Next.js built-in request memorization caching](https://nextjs.org/docs/app/building-your-application/caching#request-memoization) to avoid duplicate API calls.
+We're also trying to increase prediction accuracy by utilizing colony-specific demographic data in our prediction model, as colony demographic data such as the age of the queen were found to be statistically significant, as reported in Grogan's 2020 paper.
+In our predictive model API endpoints, we currently rely on [Next.js built-in request memorization caching](https://nextjs.org/docs/app/building-your-application/caching#request-memoization) to avoid duplicate API calls.
 This process is fairly efficient.
 However, we believe the data fetching process can be improved by implementing [IBM Cloud PostgresSQL](https://www.ibm.com/cloud/databases-for-postgresql) to cache and store all precipitation & temperature requests `{ key: latLng, values: [precipitation, maxTemp, minTemp] }`.
 These data, in turn, will be used in conjunction with [IBM watsonx.data](https://cloud.ibm.com/docs/watsonxdata?topic=watsonxdata-getting-started) to improve our prediction models.
 
 We envision BeeMovr to become the de-facto map for helping beekeepers make an informed decision about what's best for their bees.
-What we're trying to do here is to make our project helpful for our beekeepers as best as we can.
 We aim to create _the_ beekeeper's map, the first feature of which is maximum potential honey yield prediction, but as we iterate with our beekeepers, we'll listen to what their (and their bees') needs are, and we'll incrementally add those features.
-We therefore believe the most important part of BeeMovr is to listen, understand, and deliver what the beekeepers want and need to serve their bees.
+We therefore believe that the most important part of BeeMovr is to listen, understand, and deliver what the beekeepers want and need to serve their bees.
 
-As we promised our beekeeper Keith Robert, BeeMovr has been and will always be open-sourced and open to all beekeepers.
+BeeMovr has been and will always be open-sourced and open to all beekeepers.
 If you're a beekeeper and have any suggestions or feature requests, please feel free to email us at &lt;workerbees@beemovr.com&gt;.
 Our program is up and online at [beemovr.com](https://beemovr.com) and we are Schaler Starks &lt;schaler@beemovr.com&gt;, Eric Gonzalez Duro &lt;eric@beemovr.com&gt;, Jasper Ha &lt;jasper@beemovr.com&gt;, and Soobin Rho &lt;soobin@beemovr.com&gt;.
-If you share our goal to make a positive impact on environmental sustainability by helping beekeepers and their bees, you're welcome to join us and feel free to make pull requests on any feature you think is the best for BeeMovr.
+If you share our goal to make a positive impact on environmental sustainability by helping beekeepers and their bees, you're welcome to join us.
+Feel free to make pull requests and contribute in any way you think is the best for helping beekeepers save their bees.
 
 ![Timeline of BeeMovr development](https://github.com/soobinrho/BeeMovr/assets/19341857/72474594-7a01-4da1-bcfc-7c45bed963f7)
 

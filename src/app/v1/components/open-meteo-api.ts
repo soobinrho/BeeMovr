@@ -1,9 +1,9 @@
 // --------------------------------------------------------------------
 // Open Meteo API parameters.
 // --------------------------------------------------------------------
-// The latitude and longitude must be in the WGS84 system.
+// The longitude and latitude must be in the WGS84 system.
 // Precipitation's unit must be millimeters. Date's unit must be
-// the ISO date format, which is yyyy-mm-dd.
+// the ISO date format, which is yyyy-MM-dd.
 // Source:
 //   https://open-meteo.com/en/docs/historical-weather-api
 export interface IgetWeather {
@@ -64,10 +64,6 @@ export async function getWeather(params: IgetWeather) {
    * @remarks
    * The return values from Open Meteo are daily values, so helper functions are
    * used to calculate their monthly equivalents (sum, max, and min respectively).
-   *
-   * @param request - API GET request object
-   * @param api_type - Open Meteo API type listed at https://open-meteo.com/en/docs/historical-weather-api
-   * @param api_response_key - The key for the JSON return object
    */
 
   if (

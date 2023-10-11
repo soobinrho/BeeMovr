@@ -326,3 +326,9 @@ Also, these are some articles I'll need to reference when creating schemas with 
 
 - [Next.js and Content Security Policy (CSP)](https://reesmorris.co.uk/blog/implementing-proper-csp-nextjs-styled-components)
 - [React State Management (useState, useReducer, useContext)](https://react.dev/learn/managing-state)
+
+<br>
+
+### 2023-10-11
+
+- [Axios has a built-in mechanism for protecting against CSRF (Cross-Site Request Forgery)](https://axios-http.com/docs/intro)
