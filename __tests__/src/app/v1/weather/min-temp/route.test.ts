@@ -1,8 +1,9 @@
 import { getWeather } from '../../../../../../src/app/v1/components/open-meteo-api';
+import { api_type_minTemp } from '../../../../../../src/app/v1/components/open-meteo-api';
 
 describe('/v1/weather/min-temp', () => {
   test('returns monthly minimum temperature', async () => {
-    const api_type = 'temperature_2m_min';
+    const api_type = api_type_minTemp;
 
     const lng = '-1';
     const lat = '-1';

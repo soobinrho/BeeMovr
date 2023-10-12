@@ -55,6 +55,18 @@ export interface types_latLng {
 }
 
 // --------------------------------------------------------------------
+// Global constants.
+// --------------------------------------------------------------------
+export const COORDINATE_MAX_DIGITS = 5;
+export const api_type_precipitation = 'precipitation_sum';
+export const api_response_key_precipitation = 'precipitation';
+export const api_type_maxTemp = 'temperature_2m_max';
+export const api_response_key_maxTemp = 'max-temp';
+export const api_type_minTemp = 'temperature_2m_min';
+export const api_response_key_minTemp = 'min-temp';
+export const api_response_key_honeyYield = 'honey-yield';
+
+// --------------------------------------------------------------------
 // Main function.
 // --------------------------------------------------------------------
 export async function getWeather(params: IgetWeather) {
@@ -340,6 +352,16 @@ export function getTodayYearMonthUTC(): string {
   date.setUTCHours(0, 0, 0, 0);
   date.setUTCDate(1);
 
-  const yearMonth_UTC = date.toISOString().split('T')[0];
+  const yearMonth_UTC = date.toISOString().split('T')[0].slice(0, 7);
+  return yearMonth_UTC;
+}
+
+export function getLastMonthYearMonthUTC(): string {
+  let date = new Date();
+  date.setUTCHours(0, 0, 0, 0);
+  date.setUTCDate(1);
+  date.setUTCMonth(date.getUTCMonth() - 1);
+
+  const yearMonth_UTC = date.toISOString().split('T')[0].slice(0, 7);
   return yearMonth_UTC;
 }

@@ -1,8 +1,9 @@
 import { getWeather } from '../../../../../../src/app/v1/components/open-meteo-api';
+import { api_type_maxTemp } from '../../../../../../src/app/v1/components/open-meteo-api';
 
 describe('/v1/weather/max-temp', () => {
   test('returns monthly maximum temperature', async () => {
-    const api_type = 'temperature_2m_max';
+    const api_type = api_type_maxTemp;
 
     const lng = '-1';
     const lat = '-1';

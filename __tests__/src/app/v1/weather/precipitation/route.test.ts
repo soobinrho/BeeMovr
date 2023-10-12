@@ -1,8 +1,9 @@
 import { getWeather } from '../../../../../../src/app/v1/components/open-meteo-api';
+import { api_type_precipitation } from '../../../../../../src/app/v1/components/open-meteo-api';
 
 describe('/v1/weather/precipitation', () => {
   test('returns monthly precipitation', async () => {
-    const api_type = 'precipitation_sum';
+    const api_type = api_type_precipitation;
 
     const lng = '-1';
     const lat = '-1';

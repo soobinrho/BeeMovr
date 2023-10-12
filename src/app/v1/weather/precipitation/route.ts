@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { getWeather } from '../../components/open-meteo-api';
+import {
+  api_response_key_precipitation,
+  api_type_precipitation,
+  getWeather,
+} from '../../components/open-meteo-api';
 
 export async function GET(request: NextRequest) {
   /**
@@ -14,8 +18,8 @@ export async function GET(request: NextRequest) {
    * @example
    * https://beemovr.com/v1/weather/precipitation?lng=-1&lat=-1&start-year-month=2023-09&end-year-month=2023-09
    */
-  const api_type = 'precipitation_sum';
-  const api_response_key = 'precipitation';
+  const api_type = api_type_precipitation;
+  const api_response_key = api_response_key_precipitation;
 
   const searchQuery = request.nextUrl.searchParams;
   const lng = searchQuery.get('lng') ?? '';

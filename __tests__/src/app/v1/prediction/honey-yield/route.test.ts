@@ -1,4 +1,10 @@
 import { calculateHoneyYield } from '../../../../../../src/app/v1/components/calculate-honey-yield';
+import {
+  api_response_key_honeyYield,
+  api_response_key_maxTemp,
+  api_response_key_minTemp,
+  api_response_key_precipitation,
+} from '../../../../../../src/app/v1/components/open-meteo-api';
 
 describe('/v1/prediction/honey-yield', () => {
   test('returns honey yield prediction value', async () => {
@@ -11,11 +17,6 @@ describe('/v1/prediction/honey-yield', () => {
       api_lat: lat,
       api_yearMonth: yearMonth,
     });
-
-    const api_response_key_honeyYield = 'honey-yield';
-    const api_response_key_precipitation = 'precipitation';
-    const api_response_key_maxTemp = 'max-temp';
-    const api_response_key_minTemp = 'min-temp';
 
     expect(api_response).toStrictEqual({
       [api_response_key_honeyYield]: expect.any(Object),

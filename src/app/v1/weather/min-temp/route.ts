@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { getWeather } from '../../components/open-meteo-api';
+import {
+  api_response_key_minTemp,
+  api_type_minTemp,
+  getWeather,
+} from '../../components/open-meteo-api';
 
 export async function GET(request: NextRequest) {
   /**
@@ -14,8 +18,8 @@ export async function GET(request: NextRequest) {
    * @example
    * https://beemovr.com/v1/weather/min-temp?lng=-1&lat=-1&start-year-month=2023-09&end-year-month=2023-09
    */
-  const api_type = 'temperature_2m_min';
-  const api_response_key = 'min-temp';
+  const api_type = api_type_minTemp;
+  const api_response_key = api_response_key_minTemp;
 
   const searchQuery = request.nextUrl.searchParams;
   const lng = searchQuery.get('lng') ?? '';

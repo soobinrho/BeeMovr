@@ -1,6 +1,13 @@
 import { NextRequest } from 'next/server';
 
 import {
+  api_response_key_honeyYield,
+  api_response_key_maxTemp,
+  api_response_key_minTemp,
+  api_response_key_precipitation,
+  api_type_maxTemp,
+  api_type_minTemp,
+  api_type_precipitation,
   getLocalYearMonthToUTCYearMonth,
   getWeather,
   isValidLngLat,
@@ -47,8 +54,6 @@ export async function calculateHoneyYield(params: IcalculateHoneyYield) {
   // ------------------------------------------------------------------
   // Monthly precipitation data of the last three months.
   // ------------------------------------------------------------------
-  const api_type_precipitation = 'precipitation_sum';
-  const api_response_key_precipitation = 'precipitation';
   let api_response_precipitation = await getWeather({
     api_lng: params.api_lng,
     api_lat: params.api_lat,
@@ -60,8 +65,6 @@ export async function calculateHoneyYield(params: IcalculateHoneyYield) {
   // ------------------------------------------------------------------
   // Monthly maximum temperature data of the last three months.
   // ------------------------------------------------------------------
-  const api_type_maxTemp = 'temperature_2m_max';
-  const api_response_key_maxTemp = 'max-temp';
   let api_response_maxTemp = await getWeather({
     api_lng: params.api_lng,
     api_lat: params.api_lat,
@@ -73,8 +76,6 @@ export async function calculateHoneyYield(params: IcalculateHoneyYield) {
   // ------------------------------------------------------------------
   // Monthly minimum temperature data of the last three months.
   // ------------------------------------------------------------------
-  const api_type_minTemp = 'temperature_2m_min';
-  const api_response_key_minTemp = 'min-temp';
   let api_response_minTemp = await getWeather({
     api_lng: params.api_lng,
     api_lat: params.api_lat,
@@ -106,7 +107,6 @@ export async function calculateHoneyYield(params: IcalculateHoneyYield) {
     0.032 * Number(api_response_maxTemp[keys[0]]) * 10 +
     (0.465 * 0.074 + 2.28 * 0.012 + 9.679 * 0.04);
 
-  const api_response_key_honeyYield = 'honey-yield';
   const returnObject = {
     [api_response_key_honeyYield]: {
       [params.api_yearMonth]: `${prediction_honeyYield}`,
