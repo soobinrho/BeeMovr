@@ -332,3 +332,32 @@ Also, these are some articles I'll need to reference when creating schemas with 
 ### 2023-10-11
 
 - [Axios has a built-in mechanism for protecting against CSRF (Cross-Site Request Forgery)](https://axios-http.com/docs/intro)
+
+<br>
+
+### 2023-10-12
+
+- I think we can share the main route  (`/`) data with the `/watsonx` page using [Next.js Link Router](https://stackoverflow.com/questions/52238637/react-router-how-to-pass-data-between-pages-in-react)
+- [How rendering works in React](https://react.dev/learn/render-and-commit)
+- [How to write pure React components](https://react.dev/learn/keeping-components-pure)
+- [Why `e.preventDefault()` is needed](https://react.dev/learn/responding-to-events#preventing-default-behavior)
+
+"When a piece of information is used for rendering, keep it in state.
+When a piece of information is only needed by event handlers and changing it doesn’t require a re-render, using a ref may be more efficient ...
+If your component needs to store some value, but it doesn’t impact the rendering logic, choose refs."
+- [Purpose and mechanisms of useRef](https://react.dev/learn/referencing-values-with-refs)
+
+"Effects let you run some code after rendering so that you can synchronize your component with some system outside of React ...
+Effects run at the end of a commit after the screen updates.
+This is a good time to synchronize the React components with some external system (like network or a third-party library)."
+- [Purpose and mechanisms of useEffect](https://react.dev/learn/synchronizing-with-effects)
+
+"Hooks are special functions that are only available while React is rendering (which we’ll get into in more detail on the next page).
+They let you “hook into” different React features ...
+
+Hooks—functions starting with use—can only be called at the top level of your components or your own Hooks.
+You can’t call Hooks inside conditions, loops, or other nested functions.
+Hooks are functions, but it’s helpful to think of them as unconditional declarations about your component’s needs.
+You “use” React features at the top of your component similar to how you “import” modules at the top of your file."
+- [Purpose and mechanisms of useState](https://react.dev/learn/state-a-components-memory#meet-your-first-hook)
+- [All React built-in hooks](https://react.dev/reference/react)

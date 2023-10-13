@@ -1,8 +1,10 @@
+import axios from 'axios';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useRef, useState } from 'react';
 import Map, {
   MapEvent,
   MapLayerMouseEvent,
+  MapMouseEvent,
   MapProvider,
   Marker,
   NavigationControl,
@@ -11,6 +13,12 @@ import Map, {
 } from 'react-map-gl';
 import useSWR from 'swr';
 
+import {
+  COORDINATE_MAX_DIGITS,
+  getLastMonthYearMonthUTC,
+  getTodayYearMonthUTC,
+} from '../v1/components/open-meteo-api';
+import { axiosFetch } from './axios-swr-wrapper';
 import ConditionalRendering from './conditional-rendering';
 import MapboxLngLatControl from './mapbox-lng-lat-control';
 import Searchbox from './searchbox';
@@ -38,7 +46,7 @@ export default function Mapbox() {
   // ------------------------------------------------------------------
   // Rotate the globe at startup.
   // ------------------------------------------------------------------
-  const [rotationChartCounter, setRotationChartCounter] = useState(0);
+  const rotationChartCounter = useRef(0);
   const rotationChart_lng = useMemo(() => {
     return [-98.5795, -42.6043, 31.1656, 127.7669, 131.42068, 134.9145, -60, 1];
   }, []);
@@ -47,7 +55,7 @@ export default function Mapbox() {
       39.8383, 71.7096, 48.3794, 35.9078, -31.96361, -85.0511, -15.38171, 1,
     ];
   }, []);
-  const rotationChar_length = rotationChart_lng.length;
+  const rotationChart_length = rotationChart_lng.length;
 
   // ------------------------------------------------------------------
   // Callback definitions.
@@ -57,43 +65,59 @@ export default function Mapbox() {
       newEvent.target.doubleClickZoom.disable();
       newEvent.target.easeTo({
         center: [
-          rotationChart_lng[rotationChartCounter % rotationChar_length],
-          rotationChart_lat[rotationChartCounter % rotationChar_length],
+          rotationChart_lng[rotationChartCounter.current],
+          rotationChart_lat[rotationChartCounter.current],
         ],
         duration: 15000,
       });
-      setRotationChartCounter(rotationChartCounter + 1);
+      rotationChartCounter.current += 1;
     },
-    [
-      rotationChart_lng,
-      rotationChart_lat,
-      rotationChartCounter,
-      rotationChar_length,
-    ]
+    [rotationChart_lng, rotationChart_lat, rotationChartCounter]
   );
 
   const onIdle_mapMain = useCallback(
     (newEvent: MapEvent) => {
       if (isZoomTitleLevel) {
+        if (rotationChartCounter.current >= rotationChart_length) {
+          rotationChartCounter.current = 0;
+        }
         newEvent.target.easeTo({
           center: [
-            rotationChart_lng[rotationChartCounter % rotationChar_length],
-            rotationChart_lat[rotationChartCounter % rotationChar_length],
+            rotationChart_lng[rotationChartCounter.current],
+            rotationChart_lat[rotationChartCounter.current],
           ],
           duration: 20000,
           easing: (n) => n,
         });
-        setRotationChartCounter(rotationChartCounter + 1);
+        rotationChartCounter.current += 1;
       }
     },
     [
       rotationChart_lng,
       rotationChart_lat,
+      rotationChart_length,
       rotationChartCounter,
-      rotationChar_length,
       isZoomTitleLevel,
     ]
   );
+
+  const onClick_mapMain = useCallback(async (newEvent: MapMouseEvent) => {
+    const { lng, lat } = newEvent.lngLat;
+    const api_lng = lng.toFixed(COORDINATE_MAX_DIGITS);
+    const api_lat = lat.toFixed(COORDINATE_MAX_DIGITS);
+
+    const api_yearMonth = getLastMonthYearMonthUTC();
+    const api_response = await axiosFetch(
+      `${process.env.NEXT_PUBLIC_URL}/v1/prediction/honey-yield?lng=${api_lng}&lat=${api_lat}&year-month=${api_yearMonth}`
+    );
+
+    // useSWR(
+    //   `${process.env.NEXT_PUBLIC_URL}/v1/prediction/honey-yield?lng=${api_lng}&lat=${api_lat}&year-month=${api_yearMonth}`,
+    //   axiosFetcher
+    // );
+
+    console.log(api_response);
+  }, []);
 
   return (
     <>
@@ -117,10 +141,7 @@ export default function Mapbox() {
         onMove={(newEvent) => setViewport(newEvent.viewState)}
         onLoad={onLoad_mapMain}
         onIdle={onIdle_mapMain}
-        onClick={(newEvent) => {
-          const { lng, lat } = newEvent.lngLat;
-          console.log(`${lng} ${lat}`);
-        }}
+        onClick={onClick_mapMain}
       />
     </>
   );
