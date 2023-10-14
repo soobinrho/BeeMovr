@@ -15,7 +15,7 @@ import Map, {
 import useSWR from 'swr';
 
 import {
-  COORDINATE_MAX_DIGITS,
+  MAX_DIGITS_COORDINATES,
   getLastMonthYearMonthUTC,
   getTodayYearMonthUTC,
 } from '../v1/components/open-meteo-api';
@@ -114,8 +114,8 @@ export default function Mapbox() {
   const onClick_mapMain = useCallback((e: MapMouseEvent) => {
     e.preventDefault();
     const { lng, lat } = e.lngLat;
-    const api_lng = lng.toFixed(COORDINATE_MAX_DIGITS);
-    const api_lat = lat.toFixed(COORDINATE_MAX_DIGITS);
+    const api_lng = lng.toFixed(MAX_DIGITS_COORDINATES);
+    const api_lat = lat.toFixed(MAX_DIGITS_COORDINATES);
     setClickedLng(api_lng);
     setClickedLat(api_lat);
   }, []);

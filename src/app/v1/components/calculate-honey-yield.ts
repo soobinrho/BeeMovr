@@ -20,6 +20,8 @@ export interface IcalculateHoneyYield {
   api_yearMonth: string;
 }
 
+export const MAX_DIGITS_HONEY_YIELD = 1;
+
 export async function calculateHoneyYield(params: IcalculateHoneyYield) {
   /**
    * Returns the honey yield prediction value.
@@ -109,7 +111,9 @@ export async function calculateHoneyYield(params: IcalculateHoneyYield) {
 
   const returnObject = {
     [api_response_key_honeyYield]: {
-      [params.api_yearMonth]: `${prediction_honeyYield}`,
+      [params.api_yearMonth]: `${prediction_honeyYield.toFixed(
+        MAX_DIGITS_HONEY_YIELD
+      )}`,
     },
     [api_response_key_precipitation]: api_response_precipitation,
     [api_response_key_maxTemp]: api_response_maxTemp,

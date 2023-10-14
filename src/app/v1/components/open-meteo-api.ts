@@ -57,7 +57,11 @@ export interface types_latLng {
 // --------------------------------------------------------------------
 // Global constants.
 // --------------------------------------------------------------------
-export const COORDINATE_MAX_DIGITS = 5;
+export const MAX_DIGITS_COORDINATES = 5;
+export const MAX_DIGITS_PRECIPITATION = 1;
+export const MAX_DIGITS_MAX_TEMP = 1;
+export const MAX_DIGITS_MIN_TEMP = 1;
+
 export const api_type_precipitation = 'precipitation_sum';
 export const api_response_key_precipitation = 'precipitation';
 export const api_type_maxTemp = 'temperature_2m_max';
@@ -257,7 +261,9 @@ function parseOpenMeteo(params: IparseOpenMeteo) {
           sum += Number(value);
         }
       }
-      parsed_api_response[yearMonth] = String(sum);
+      parsed_api_response[yearMonth] = String(
+        sum.toFixed(MAX_DIGITS_PRECIPITATION)
+      );
     } else if (params.api_type === 'temperature_2m_max') {
       // For monthly maximum temperature, find the maximum daily
       // temperature value.
@@ -270,7 +276,7 @@ function parseOpenMeteo(params: IparseOpenMeteo) {
           }
         }
       }
-      parsed_api_response[yearMonth] = String(max);
+      parsed_api_response[yearMonth] = String(max.toFixed(MAX_DIGITS_MAX_TEMP));
     } else {
       // else if (api_type === "temperature_2m_min")
       // For monthly minimum temperature, find the minimum daily
@@ -284,7 +290,7 @@ function parseOpenMeteo(params: IparseOpenMeteo) {
           }
         }
       }
-      parsed_api_response[yearMonth] = String(min);
+      parsed_api_response[yearMonth] = String(min.toFixed(MAX_DIGITS_MIN_TEMP));
     }
   }
   return parsed_api_response;

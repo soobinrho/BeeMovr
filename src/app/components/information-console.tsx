@@ -6,8 +6,9 @@ import { ChangeEvent } from 'react';
 import { MapMouseEvent, useMap } from 'react-map-gl';
 import useSWR from 'swr';
 
+import { isValidLngLat } from '../v1/components/open-meteo-api';
 import {
-  COORDINATE_MAX_DIGITS,
+  MAX_DIGITS_COORDINATES,
   getLastMonthYearMonthUTC,
 } from '../v1/components/open-meteo-api';
 import { axiosFetcher } from './axios-swr-wrapper';
@@ -51,8 +52,11 @@ export function FetchInformationConsoleData({
   api_lng,
   api_lat,
 }: IInformationConsoleData) {
+  const shouldRender = isValidLngLat({ api_lng: api_lng, api_lat: api_lat });
   const { data, error } = useSWR(
-    `/v1/prediction/honey-yield?lng=${api_lng}&lat=${api_lat}&year-month=${getLastMonthYearMonthUTC()}`,
+    shouldRender
+      ? `/v1/prediction/honey-yield?lng=${api_lng}&lat=${api_lat}&year-month=${getLastMonthYearMonthUTC()}`
+      : null,
     axiosFetcher
   );
 
@@ -67,6 +71,7 @@ export function FetchInformationConsoleData({
               Object.keys(api_response['honey-yield'])[0]
             ]
           )}
+          <br />
         </div>
       ) : (
         <div>
