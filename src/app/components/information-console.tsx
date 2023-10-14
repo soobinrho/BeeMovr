@@ -9,6 +9,10 @@ import useSWR from 'swr';
 import { isValidLngLat } from '../v1/components/open-meteo-api';
 import {
   MAX_DIGITS_COORDINATES,
+  api_response_key_honeyYield,
+  api_response_key_maxTemp,
+  api_response_key_minTemp,
+  api_response_key_precipitation,
   getLastMonthYearMonthUTC,
 } from '../v1/components/open-meteo-api';
 import { axiosFetcher } from './axios-swr-wrapper';
@@ -19,10 +23,10 @@ export interface IInformationConsoleData {
 }
 
 export interface IApi {
-  'honey-yield': IHoneyYield;
-  precipitation: IPrecipitation;
-  'max-temp': IMaxTemp;
-  'min-temp': IMinTemp;
+  [api_response_key_honeyYield]: IHoneyYield;
+  [api_response_key_precipitation]: IPrecipitation;
+  [api_response_key_maxTemp]: IMaxTemp;
+  [api_response_key_minTemp]: IMinTemp;
 }
 
 interface IHoneyYield {
@@ -41,7 +45,7 @@ export default function InformationConsole({
 }: IInformationConsoleData) {
   return (
     <div className='absolute bottom-4 z-10 w-screen'>
-      <div className='my-12 ml-2 flex flex-col-reverse justify-self-start overflow-x-auto rounded-l-md bg-background-console/50 p-5 text-left font-semibold text-font-console hover:bg-background-console/90 sm:my-5'>
+      <div className='my-12 ml-2 flex max-h-[25vh] flex-col-reverse justify-self-start overflow-auto rounded-l-md bg-background-console/50 p-5 text-left font-thin text-font-console hover:bg-background-console/90 sm:my-5'>
         <FetchInformationConsoleData api_lng={api_lng} api_lat={api_lat} />
       </div>
     </div>
@@ -65,19 +69,40 @@ export function FetchInformationConsoleData({
   return (
     <>
       {api_response ? (
-        <div>
+        <p>
+          <b className='pr-2 font-semibold'>Honey Yield Prediction: </b>
           {Object.values(
-            api_response['honey-yield'][
-              Object.keys(api_response['honey-yield'])[0]
+            api_response[api_response_key_honeyYield][
+              Object.keys(api_response[api_response_key_honeyYield])[0]
             ]
-          )}
+          )}{' '}
+          pounds per year <br />
+          <b className='pr-2 font-semibold'>
+            Precipitation ({getLastMonthYearMonthUTC()}):{' '}
+          </b>
+          {
+            Object.keys(api_response[api_response_key_precipitation])[
+              Object.keys(api_response[api_response_key_precipitation]).length -
+                1
+            ]
+          }{' '}
+          unit
           <br />
-        </div>
+          <b className='pr-2 font-semibold'>Honey Yield Prediction: </b>
+          {Object.values(
+            api_response[api_response_key_honeyYield][
+              Object.keys(api_response[api_response_key_honeyYield])[0]
+            ]
+          )}{' '}
+          pounds per year <br />
+        </p>
       ) : (
         <div>
-          <b>Test value</b> {process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN} <br />
-          <b>Test value</b> {process.env.NEXT_PUBLIC_URL} <br />
-          <b>Test value</b> {process.env.NODE_ENV}
+          <b className='font-semibold'>Test value</b>{' '}
+          {process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN} <br />
+          <b className='font-semibold'>Test value</b>{' '}
+          {process.env.NEXT_PUBLIC_URL} <br />
+          <b className='font-semibold'>Test value</b> {process.env.NODE_ENV}
         </div>
       )}
     </>
