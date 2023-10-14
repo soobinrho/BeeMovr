@@ -16,6 +16,7 @@ import {
   getLastMonthYearMonthUTC,
 } from '../v1/components/open-meteo-api';
 import { axiosFetcher } from './axios-swr-wrapper';
+import { IMarker } from './mapbox';
 
 export interface IInformationConsole {
   api_lng: string;
@@ -35,7 +36,7 @@ export default function InformationConsole({
 }: IInformationConsole) {
   return (
     <div className='absolute bottom-4 z-10 w-screen'>
-      <div className='mx-2 my-12 flex max-h-[25vh] flex-col-reverse justify-self-start overflow-auto rounded-l-md bg-background-console/50 p-5 text-left font-normal text-font-console hover:bg-background-console/90 sm:my-5'>
+      <div className='mx-2 my-12 flex max-h-[25vh] flex-col-reverse justify-self-start overflow-auto rounded-md bg-background-console/50 p-5 text-left font-normal text-font-console hover:bg-background-console/90 sm:my-5'>
         <FetchInformationConsoleData api_lng={api_lng} api_lat={api_lat} />
       </div>
     </div>
@@ -73,35 +74,29 @@ export function FetchInformationConsoleData({
   let minTemp_date_key: any = '';
   let minTemp: any = '';
   if (api_response) {
-    honeyYield = Object.values(
+    honeyYield =
       api_response[api_response_key_honeyYield][
         String(Object.keys(api_response[api_response_key_honeyYield]))
-      ]
-    );
+      ];
 
     precipitation_date_key = Object.keys(
       api_response[api_response_key_precipitation]
     )[Object.keys(api_response[api_response_key_precipitation]).length - 1];
 
-    precipitation = Object.values(
-      api_response[api_response_key_precipitation][precipitation_date_key]
-    );
+    precipitation =
+      api_response[api_response_key_precipitation][precipitation_date_key];
 
     maxTemp_date_key = Object.keys(api_response[api_response_key_maxTemp])[
       Object.keys(api_response[api_response_key_maxTemp]).length - 1
     ];
 
-    maxTemp = Object.values(
-      api_response[api_response_key_maxTemp][maxTemp_date_key]
-    );
+    maxTemp = api_response[api_response_key_maxTemp][maxTemp_date_key];
 
     minTemp_date_key = Object.keys(api_response[api_response_key_minTemp])[
       Object.keys(api_response[api_response_key_minTemp]).length - 1
     ];
 
-    minTemp = Object.values(
-      api_response[api_response_key_minTemp][minTemp_date_key]
-    );
+    minTemp = api_response[api_response_key_minTemp][minTemp_date_key];
   }
 
   return (
@@ -111,7 +106,7 @@ export function FetchInformationConsoleData({
           <b className='pr-2 font-semibold'>Honey Yield Prediction: </b>
           {honeyYield} pounds per colony <br />
           <b className='pr-2 font-semibold'>Monthly Precipitation: </b>
-          {precipitation} mm
+          {precipitation}mm
           <br />
           <b className='pr-2 font-semibold'>Maximum Temperature: </b>
           {maxTemp}°C

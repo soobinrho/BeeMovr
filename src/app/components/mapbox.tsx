@@ -11,6 +11,7 @@ import Map, {
   NavigationControl,
   Popup,
   ViewState,
+  ViewStateChangeEvent,
 } from 'react-map-gl';
 import useSWR from 'swr';
 
@@ -24,6 +25,12 @@ import InformationConsole from './information-console';
 import MapboxLngLatControl from './mapbox-lng-lat-control';
 import Searchbox from './searchbox';
 import SocialMedia from './social-media';
+
+export interface IMarker {
+  api_lng: string;
+  api_lat: string;
+  honeyYield: string;
+}
 
 export default function Mapbox() {
   // ------------------------------------------------------------------
@@ -47,11 +54,34 @@ export default function Mapbox() {
   // ------------------------------------------------------------------
   // Initialize states for information console data.
   // ------------------------------------------------------------------
-  const [informationConsoleData, setInformationConsoleData] = useState({
-    test: 'hi',
-  });
   const [clickedLng, setClickedLng] = useState('');
   const [clickedLat, setClickedLat] = useState('');
+  const [markerData, setMarkerData] = useState<Array<IMarker>>([]);
+  const markers = useMemo(
+    () =>
+      markerData.map((marker) => (
+        <Marker
+          key={`${marker.api_lat} ${marker.api_lng}`}
+          longitude={Number(marker.api_lng)}
+          latitude={Number(marker.api_lat)}
+          anchor='bottom'
+          style={{
+            backgroundImage: 'url(/marker.png)',
+            backgroundPosition: 'center',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+            fontWeight: 'bold',
+            width: '16px',
+            height: '16px',
+            textAlign: 'center',
+            textOverflow: 'visible',
+          }}
+        >
+          <span className='relative top-3'> </span>
+        </Marker>
+      )),
+    [markerData]
+  );
 
   // ------------------------------------------------------------------
   // Rotate the globe at startup.
@@ -116,6 +146,11 @@ export default function Mapbox() {
     const api_lat = lat.toFixed(MAX_DIGITS_COORDINATES);
     setClickedLng(api_lng);
     setClickedLat(api_lat);
+
+    setMarkerData((markerData) => [
+      ...markerData,
+      { api_lng: api_lng, api_lat: api_lat, honeyYield: '-1' },
+    ]);
   }, []);
 
   return (
@@ -132,18 +167,20 @@ export default function Mapbox() {
           </div>
         </ConditionalRendering>
         <Map
-          id='mapMain'
-          {...viewport}
+          id={'mapMain'}
+          initialViewState={viewport}
           reuseMaps
           doubleClickZoom={false}
           style={{ width: '100%', height: '100vh' }}
-          mapStyle='mapbox://styles/mapbox/satellite-streets-v12'
+          mapStyle={'mapbox://styles/mapbox/satellite-streets-v12'}
           mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
-          onMove={(e) => setViewport(e.viewState)}
+          onMove={(e: ViewStateChangeEvent) => setViewport(e.viewState)}
           onLoad={onLoad_mapMain}
           onIdle={onIdle_mapMain}
           onDblClick={onDblClick_mapMain}
-        />
+        >
+          {markers}
+        </Map>
         <InformationConsole api_lng={clickedLng} api_lat={clickedLat} />
       </MapProvider>
     </>
