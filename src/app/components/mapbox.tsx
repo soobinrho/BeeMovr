@@ -161,11 +161,15 @@ export default function Mapbox() {
         <Searchbox />
         <SocialMedia />
         <ConditionalRendering condition={isZoomTitleLevel}>
-          <div className='absolute left-[50%] top-[36%] z-10 translate-x-[-50%] translate-y-[-36%] items-center drop-shadow-[0_8px_8px_rgba(0,0,0,1)]'>
-            <div className='m-0 p-1 text-center text-6xl font-extrabold text-white/80 sm:text-[11rem]'>
-              {process.env.NEXT_PUBLIC_TITLE}
-            </div>
-          </div>
+          <div
+            className='absolute left-[50%] top-[36%] z-10 min-h-[17%] min-w-[60vw] translate-x-[-50%] translate-y-[-36%] select-none items-center sm:min-w-[30vw]'
+            style={{
+              backgroundImage: 'url(/logo.png)',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+              backgroundSize: 'contain',
+            }}
+          ></div>
         </ConditionalRendering>
         <Map
           id={'mapMain'}
