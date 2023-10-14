@@ -72,7 +72,6 @@ export default function Mapbox() {
   // ------------------------------------------------------------------
   const onLoad_mapMain = useCallback(
     (e: MapEvent) => {
-      e.target.doubleClickZoom.disable();
       e.target.easeTo({
         center: [
           rotationChart_lng[rotationChartCounter.current],
@@ -111,8 +110,7 @@ export default function Mapbox() {
     ]
   );
 
-  const onClick_mapMain = useCallback((e: MapMouseEvent) => {
-    e.preventDefault();
+  const onDblClick_mapMain = useCallback((e: MapMouseEvent) => {
     const { lng, lat } = e.lngLat;
     const api_lng = lng.toFixed(MAX_DIGITS_COORDINATES);
     const api_lat = lat.toFixed(MAX_DIGITS_COORDINATES);
@@ -137,13 +135,14 @@ export default function Mapbox() {
           id='mapMain'
           {...viewport}
           reuseMaps
+          doubleClickZoom={false}
           style={{ width: '100%', height: '100vh' }}
           mapStyle='mapbox://styles/mapbox/satellite-streets-v12'
           mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
           onMove={(e) => setViewport(e.viewState)}
           onLoad={onLoad_mapMain}
           onIdle={onIdle_mapMain}
-          onClick={onClick_mapMain}
+          onDblClick={onDblClick_mapMain}
         />
         <InformationConsole api_lng={clickedLng} api_lat={clickedLat} />
       </MapProvider>

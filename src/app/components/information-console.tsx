@@ -35,7 +35,7 @@ export default function InformationConsole({
 }: IInformationConsole) {
   return (
     <div className='absolute bottom-4 z-10 w-screen'>
-      <div className='my-12 ml-2 flex max-h-[25vh] flex-col-reverse justify-self-start overflow-auto rounded-l-md bg-background-console/50 p-5 text-left font-normal text-font-console hover:bg-background-console/90 sm:my-5'>
+      <div className='mx-2 my-12 flex max-h-[25vh] flex-col-reverse justify-self-start overflow-auto rounded-l-md bg-background-console/50 p-5 text-left font-normal text-font-console hover:bg-background-console/90 sm:my-5'>
         <FetchInformationConsoleData api_lng={api_lng} api_lat={api_lat} />
       </div>
     </div>
