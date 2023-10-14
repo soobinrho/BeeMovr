@@ -17,7 +17,7 @@ import {
 } from '../v1/components/open-meteo-api';
 import { axiosFetcher } from './axios-swr-wrapper';
 
-export interface IInformationConsoleData {
+export interface IInformationConsole {
   api_lng: string;
   api_lat: string;
 }
@@ -32,10 +32,10 @@ export interface IApi {
 export default function InformationConsole({
   api_lng,
   api_lat,
-}: IInformationConsoleData) {
+}: IInformationConsole) {
   return (
     <div className='absolute bottom-4 z-10 w-screen'>
-      <div className='my-12 ml-2 flex max-h-[25vh] flex-col-reverse justify-self-start overflow-auto rounded-l-md bg-background-console/50 p-5 text-left font-thin text-font-console hover:bg-background-console/90 sm:my-5'>
+      <div className='my-12 ml-2 flex max-h-[25vh] flex-col-reverse justify-self-start overflow-auto rounded-l-md bg-background-console/50 p-5 text-left font-normal text-font-console hover:bg-background-console/90 sm:my-5'>
         <FetchInformationConsoleData api_lng={api_lng} api_lat={api_lat} />
       </div>
     </div>
@@ -45,7 +45,7 @@ export default function InformationConsole({
 const useInformationConsoleDataFetching = ({
   api_lng,
   api_lat,
-}: IInformationConsoleData) => {
+}: IInformationConsole) => {
   const shouldRender = isValidLngLat({ api_lng: api_lng, api_lat: api_lat });
   const { data, error } = useSWR(
     shouldRender
@@ -59,7 +59,7 @@ const useInformationConsoleDataFetching = ({
 export function FetchInformationConsoleData({
   api_lng,
   api_lat,
-}: IInformationConsoleData) {
+}: IInformationConsole) {
   const api_response: IApi = useInformationConsoleDataFetching({
     api_lng: api_lng,
     api_lat: api_lat,
@@ -118,15 +118,16 @@ export function FetchInformationConsoleData({
           <br />
           <b className='pr-2 font-semibold'>Minimum Temperature: </b>
           {minTemp}°C
-          <br />
         </p>
       ) : (
         <div>
-          <b className='font-semibold'>Test value</b>{' '}
-          {process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN} <br />
-          <b className='font-semibold'>Test value</b>{' '}
-          {process.env.NEXT_PUBLIC_URL} <br />
-          <b className='font-semibold'>Test value</b> {process.env.NODE_ENV}
+          <b className='pr-2 font-semibold'>Honey Yield Prediction: </b>
+          <br />
+          <b className='pr-2 font-semibold'>Monthly Precipitation: </b>
+          <br />
+          <b className='pr-2 font-semibold'>Maximum Temperature: </b>
+          <br />
+          <b className='pr-2 font-semibold'>Minimum Temperature: </b>
         </div>
       )}
     </>
