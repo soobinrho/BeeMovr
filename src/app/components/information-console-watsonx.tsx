@@ -26,10 +26,7 @@ import {
 import { axiosFetcher } from './axios-swr-wrapper';
 import { IMarker } from './mapbox';
 
-interface IInformationConsole {
-  api_lng: string;
-  api_lat: string;
-}
+interface IInformationConsole {}
 
 interface IApi {
   [api_response_key_honeyYield]: any;
@@ -39,58 +36,56 @@ interface IApi {
 }
 
 interface IAllInformationConsoleData {
-  [key: number]: IApi;
+  [key: string]: IApi;
 }
 
-export default function InformationConsoleWatsonx({
-  api_lng,
-  api_lat,
-}: IInformationConsole) {
+export default function InformationConsoleWatsonx({}: IInformationConsole) {
   return (
     <div className='absolute bottom-4 z-10 w-screen'>
       <div className='mx-2 my-12 flex max-h-[25vh] flex-col-reverse justify-self-start overflow-auto rounded-md bg-background-console/50 p-5 text-left font-normal text-font-console hover:bg-background-console/90 sm:my-5'>
-        <InformationConsoleDataWatsonx api_lng={api_lng} api_lat={api_lat} />
+        <InformationConsoleDataWatsonx />
       </div>
     </div>
   );
 }
 
-export function InformationConsoleDataWatsonx({
-  api_lng,
-  api_lat,
-}: IInformationConsole) {
-  const allInformationConsoleData = useMemo(() => {
-    if (typeof window !== 'undefined') {
-      return [{ ...localStorage }];
+export function InformationConsoleDataWatsonx() {
+  const [allInformationConsoleData, setAllInformationConsoleData] = useState<
+    Array<IAllInformationConsoleData>
+  >([]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      setAllInformationConsoleData([{ ...localStorage }]);
     } else {
-      return {};
+      setAllInformationConsoleData([
+        {
+          '1.0 1.0': {
+            [api_response_key_honeyYield]: '',
+            [api_response_key_precipitation]: '',
+            [api_response_key_maxTemp]: '',
+            [api_response_key_minTemp]: '',
+          },
+        },
+      ]);
     }
   }, []);
 
-  const AllListedData = useMemo(
-    () =>
-      Object.keys(allInformationConsoleData).map((dataKey: string) => (
-        <li key={dataKey} className='list-none'>
-          <b className='pr-2 font-semibold'>{dataKey}: </b>
-          Work in progress...
-          {/* {JSON.stringify(allInformationConsoleData[0])} */}
-          <br />
-        </li>
-      )),
-    [allInformationConsoleData]
-  );
+  const AllListedData = useMemo(() => {
+    if (Object.keys(allInformationConsoleData).length > 0) {
+      return Object.keys(allInformationConsoleData[0]).map(
+        (dataKey: string) => (
+          <li key={dataKey} className='list-none'>
+            <b className='pr-2 font-semibold'>{dataKey}: </b>
+            Work in progress... allInformationConsoleData[0][{dataKey}] ={' '}
+            {JSON.stringify(allInformationConsoleData[0][dataKey])}
+          </li>
+        )
+      );
+    } else {
+      return null;
+    }
+  }, [allInformationConsoleData]);
 
-  return (
-    <>
-      {allInformationConsoleData ? (
-        AllListedData
-      ) : (
-        <p>
-          <b className='pr-2 font-semibold'>Test Value: </b>
-          Work in progress...
-        </p>
-      )}
-      <br />
-    </>
-  );
+  return <div>{AllListedData ?? AllListedData}</div>;
 }

@@ -38,8 +38,15 @@ export default function Searchbox() {
       mapMain?.easeTo({
         center: [Number(searchValue_lng), Number(searchValue_lat)],
         duration: 2300,
-        zoom: ZOOM_LEVEL_TITLE + 2,
+        zoom: ZOOM_LEVEL_TITLE + 3,
       });
+      setTimeout(() => {
+        mapMain?.easeTo({
+          center: [Number(searchValue_lng), Number(searchValue_lat)],
+          duration: 4500,
+          zoom: 19,
+        });
+      }, 2400);
       setShouldFetch(false);
     }
   }

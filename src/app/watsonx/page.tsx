@@ -17,7 +17,7 @@ export default function Watsonx() {
           visualization.
         </div>
       </div>
-      <InformationConsoleWatsonx api_lat='' api_lng='' />
+      <InformationConsoleWatsonx />
     </>
   );
 }
