@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Ref, RefObject, useCallback, useEffect, useState } from 'react';
 import { ChangeEvent } from 'react';
 import { MapMouseEvent, useMap } from 'react-map-gl';
-import useSWR from 'swr';
+import useSWRImmutable from 'swr/immutable';
 
 import { isValidLngLat } from '../v1/components/open-meteo-api';
 import {
@@ -48,7 +48,7 @@ export function FetchInformationConsoleData({
   api_lat,
 }: IInformationConsole) {
   const shouldRender = isValidLngLat({ api_lng: api_lng, api_lat: api_lat });
-  const { data, error, isLoading } = useSWR(
+  const { data, error, isLoading } = useSWRImmutable(
     shouldRender
       ? `/v1/prediction/honey-yield?lng=${api_lng}&lat=${api_lat}&year-month=${getLastMonthYearMonthUTC()}`
       : null,
@@ -57,13 +57,13 @@ export function FetchInformationConsoleData({
   if (error) console.log(error);
 
   const api_response: IApi = data;
-  let honeyYield: any = '';
-  let precipitation_date_key: any = '';
-  let precipitation: any = '';
-  let maxTemp_date_key: any = '';
-  let maxTemp: any = '';
-  let minTemp_date_key: any = '';
-  let minTemp: any = '';
+  let honeyYield = '';
+  let precipitation_date_key = '';
+  let precipitation = '';
+  let maxTemp_date_key = '';
+  let maxTemp = '';
+  let minTemp_date_key = '';
+  let minTemp = '';
   if (api_response) {
     honeyYield =
       api_response[api_response_key_honeyYield][
