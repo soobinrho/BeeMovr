@@ -97,17 +97,21 @@ export async function calculateHoneyYield(params: IcalculateHoneyYield) {
   // Source:
   //   "The Impact of Precipitation and Temperature on Honey Yield in
   //   the United States." 2020. Auburn University. Hayes Kent Grogan.
-  const prediction_honeyYield =
-    60.596 +
-    0.001 * Number(api_response_precipitation[keys[3]]) * 10 +
-    -0.001 * Number(api_response_precipitation[keys[2]]) * 10 +
-    0.056 * Number(api_response_minTemp[keys[3]]) * 10 +
-    0.027 * Number(api_response_minTemp[keys[2]]) * 10 +
-    -0.027 * Number(api_response_minTemp[keys[0]]) * 10 +
-    -0.034 * Number(api_response_maxTemp[keys[3]]) * 10 +
-    0.012 * Number(api_response_maxTemp[keys[2]]) * 10 +
-    0.032 * Number(api_response_maxTemp[keys[0]]) * 10 +
-    (0.465 * 0.074 + 2.28 * 0.012 + 9.679 * 0.04);
+  const prediction_honeyYield = isWithinTemperatureLimit({
+    maxTemp: Number(api_response_maxTemp[keys[3]]),
+    minTemp: Number(api_response_minTemp[keys[3]]),
+  })
+    ? 60.596 +
+      0.001 * Number(api_response_precipitation[keys[3]]) * 10 +
+      -0.001 * Number(api_response_precipitation[keys[2]]) * 10 +
+      0.056 * Number(api_response_minTemp[keys[3]]) * 10 +
+      0.027 * Number(api_response_minTemp[keys[2]]) * 10 +
+      -0.027 * Number(api_response_minTemp[keys[0]]) * 10 +
+      -0.034 * Number(api_response_maxTemp[keys[3]]) * 10 +
+      0.012 * Number(api_response_maxTemp[keys[2]]) * 10 +
+      0.032 * Number(api_response_maxTemp[keys[0]]) * 10 +
+      (0.465 * 0.074 + 2.28 * 0.012 + 9.679 * 0.04)
+    : 0;
 
   const returnObject = {
     [api_response_key_honeyYield]: {
@@ -121,4 +125,28 @@ export async function calculateHoneyYield(params: IcalculateHoneyYield) {
   };
 
   return returnObject;
+}
+
+function isWithinTemperatureLimit({
+  maxTemp,
+  minTemp,
+}: {
+  maxTemp: Number;
+  minTemp: Number;
+}) {
+  // "The minimum temperature for honeybee flight is 54º F. The
+  // optimum temperature for flight activity is 72-77º F, but
+  // activity continues up to about 100º F before declining."
+  // Source: University of Maine. "Honeybee (Apis mellifera) Flight Activity Index and Mason Bee (Osmia cornuta) Flight Threshold Status"
+  //   https://extension.umaine.edu/ipm/background-honeybee-flight-activity-index/#:~:text=Honeybees%20forage%20when%20temperatures%20are,(24.1%20km)%20per%20hour
+
+  // Maximum flight temperature: 100F => 37.78C
+  // Minimum flight temperature: 54F => 12.22C
+  const MAX_FLIGHT_TEMP: Number = 37.78;
+  const MIN_FLIGHT_TEMP: Number = 12.22;
+  if (minTemp > MAX_FLIGHT_TEMP || maxTemp < MIN_FLIGHT_TEMP) {
+    return false;
+  } else {
+    return true;
+  }
 }

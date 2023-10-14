@@ -23,21 +23,11 @@ export interface IInformationConsoleData {
 }
 
 export interface IApi {
-  [api_response_key_honeyYield]: IHoneyYield;
-  [api_response_key_precipitation]: IPrecipitation;
-  [api_response_key_maxTemp]: IMaxTemp;
-  [api_response_key_minTemp]: IMinTemp;
+  [api_response_key_honeyYield]: any;
+  [api_response_key_precipitation]: any;
+  [api_response_key_maxTemp]: any;
+  [api_response_key_minTemp]: any;
 }
-
-interface IHoneyYield {
-  [key: string]: string;
-}
-
-interface IPrecipitation {}
-
-interface IMaxTemp {}
-
-interface IMinTemp {}
 
 export default function InformationConsole({
   api_lng,
@@ -52,10 +42,10 @@ export default function InformationConsole({
   );
 }
 
-export function FetchInformationConsoleData({
+const useInformationConsoleDataFetching = ({
   api_lng,
   api_lat,
-}: IInformationConsoleData) {
+}: IInformationConsoleData) => {
   const shouldRender = isValidLngLat({ api_lng: api_lng, api_lat: api_lat });
   const { data, error } = useSWR(
     shouldRender
@@ -63,38 +53,72 @@ export function FetchInformationConsoleData({
       : null,
     axiosFetcher
   );
+  return data;
+};
 
-  const api_response: IApi = data;
+export function FetchInformationConsoleData({
+  api_lng,
+  api_lat,
+}: IInformationConsoleData) {
+  const api_response: IApi = useInformationConsoleDataFetching({
+    api_lng: api_lng,
+    api_lat: api_lat,
+  });
+
+  let honeyYield: any = '';
+  let precipitation_date_key: any = '';
+  let precipitation: any = '';
+  let maxTemp_date_key: any = '';
+  let maxTemp: any = '';
+  let minTemp_date_key: any = '';
+  let minTemp: any = '';
+  if (api_response) {
+    honeyYield = Object.values(
+      api_response[api_response_key_honeyYield][
+        String(Object.keys(api_response[api_response_key_honeyYield]))
+      ]
+    );
+
+    precipitation_date_key = Object.keys(
+      api_response[api_response_key_precipitation]
+    )[Object.keys(api_response[api_response_key_precipitation]).length - 1];
+
+    precipitation = Object.values(
+      api_response[api_response_key_precipitation][precipitation_date_key]
+    );
+
+    maxTemp_date_key = Object.keys(api_response[api_response_key_maxTemp])[
+      Object.keys(api_response[api_response_key_maxTemp]).length - 1
+    ];
+
+    maxTemp = Object.values(
+      api_response[api_response_key_maxTemp][maxTemp_date_key]
+    );
+
+    minTemp_date_key = Object.keys(api_response[api_response_key_minTemp])[
+      Object.keys(api_response[api_response_key_minTemp]).length - 1
+    ];
+
+    minTemp = Object.values(
+      api_response[api_response_key_minTemp][minTemp_date_key]
+    );
+  }
 
   return (
     <>
       {api_response ? (
         <p>
           <b className='pr-2 font-semibold'>Honey Yield Prediction: </b>
-          {Object.values(
-            api_response[api_response_key_honeyYield][
-              Object.keys(api_response[api_response_key_honeyYield])[0]
-            ]
-          )}{' '}
-          pounds per year <br />
-          <b className='pr-2 font-semibold'>
-            Precipitation ({getLastMonthYearMonthUTC()}):{' '}
-          </b>
-          {
-            Object.keys(api_response[api_response_key_precipitation])[
-              Object.keys(api_response[api_response_key_precipitation]).length -
-                1
-            ]
-          }{' '}
-          unit
+          {honeyYield} pounds per colony <br />
+          <b className='pr-2 font-semibold'>Monthly Precipitation: </b>
+          {precipitation} mm
           <br />
-          <b className='pr-2 font-semibold'>Honey Yield Prediction: </b>
-          {Object.values(
-            api_response[api_response_key_honeyYield][
-              Object.keys(api_response[api_response_key_honeyYield])[0]
-            ]
-          )}{' '}
-          pounds per year <br />
+          <b className='pr-2 font-semibold'>Maximum Temperature: </b>
+          {maxTemp}°C
+          <br />
+          <b className='pr-2 font-semibold'>Minimum Temperature: </b>
+          {minTemp}°C
+          <br />
         </p>
       ) : (
         <div>
