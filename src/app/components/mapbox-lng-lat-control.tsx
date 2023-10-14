@@ -1,7 +1,11 @@
+'use client';
+
 import * as React from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import { ChangeEvent } from 'react';
 import { useMap } from 'react-map-gl';
+
+import { COORDINATE_MAX_DIGITS } from '../v1/components/open-meteo-api';
 
 export default function MapboxLngLatControl() {
   const { mapMain } = useMap();
@@ -17,8 +21,8 @@ export default function MapboxLngLatControl() {
 
     const onMove = () => {
       const { lng, lat } = mapMain.getCenter();
-      setInputLng(`${lng.toFixed(5)}`);
-      setInputLat(`${lat.toFixed(5)}`);
+      setInputLng(`${lng.toFixed(COORDINATE_MAX_DIGITS)}`);
+      setInputLat(`${lat.toFixed(COORDINATE_MAX_DIGITS)}`);
       setError(false);
     };
     mapMain.on('move', onMove);

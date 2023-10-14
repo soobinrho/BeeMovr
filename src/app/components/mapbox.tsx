@@ -1,4 +1,5 @@
-import axios from 'axios';
+'use client';
+
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import Map, {
@@ -18,8 +19,8 @@ import {
   getLastMonthYearMonthUTC,
   getTodayYearMonthUTC,
 } from '../v1/components/open-meteo-api';
-import { axiosFetch } from './axios-swr-wrapper';
 import ConditionalRendering from './conditional-rendering';
+import InformationConsole from './information-console';
 import MapboxLngLatControl from './mapbox-lng-lat-control';
 import Searchbox from './searchbox';
 import SocialMedia from './social-media';
@@ -44,6 +45,15 @@ export default function Mapbox() {
   }, [viewport.zoom]);
 
   // ------------------------------------------------------------------
+  // Initialize states for information console data.
+  // ------------------------------------------------------------------
+  const [informationConsoleData, setInformationConsoleData] = useState({
+    test: 'hi',
+  });
+  const [clickedLng, setClickedLng] = useState('');
+  const [clickedLat, setClickedLat] = useState('');
+
+  // ------------------------------------------------------------------
   // Rotate the globe at startup.
   // ------------------------------------------------------------------
   const rotationChartCounter = useRef(0);
@@ -61,9 +71,9 @@ export default function Mapbox() {
   // Callback definitions.
   // ------------------------------------------------------------------
   const onLoad_mapMain = useCallback(
-    (newEvent: MapEvent) => {
-      newEvent.target.doubleClickZoom.disable();
-      newEvent.target.easeTo({
+    (e: MapEvent) => {
+      e.target.doubleClickZoom.disable();
+      e.target.easeTo({
         center: [
           rotationChart_lng[rotationChartCounter.current],
           rotationChart_lat[rotationChartCounter.current],
@@ -76,12 +86,12 @@ export default function Mapbox() {
   );
 
   const onIdle_mapMain = useCallback(
-    (newEvent: MapEvent) => {
+    (e: MapEvent) => {
       if (isZoomTitleLevel) {
         if (rotationChartCounter.current >= rotationChart_length) {
           rotationChartCounter.current = 0;
         }
-        newEvent.target.easeTo({
+        e.target.easeTo({
           center: [
             rotationChart_lng[rotationChartCounter.current],
             rotationChart_lat[rotationChartCounter.current],
@@ -101,48 +111,42 @@ export default function Mapbox() {
     ]
   );
 
-  const onClick_mapMain = useCallback(async (newEvent: MapMouseEvent) => {
-    const { lng, lat } = newEvent.lngLat;
+  const onClick_mapMain = useCallback((e: MapMouseEvent) => {
+    e.preventDefault();
+    const { lng, lat } = e.lngLat;
     const api_lng = lng.toFixed(COORDINATE_MAX_DIGITS);
     const api_lat = lat.toFixed(COORDINATE_MAX_DIGITS);
-
-    const api_yearMonth = getLastMonthYearMonthUTC();
-    const api_response = await axiosFetch(
-      `${process.env.NEXT_PUBLIC_URL}/v1/prediction/honey-yield?lng=${api_lng}&lat=${api_lat}&year-month=${api_yearMonth}`
-    );
-
-    // useSWR(
-    //   `${process.env.NEXT_PUBLIC_URL}/v1/prediction/honey-yield?lng=${api_lng}&lat=${api_lat}&year-month=${api_yearMonth}`,
-    //   axiosFetcher
-    // );
-
-    console.log(api_response);
+    setClickedLng(api_lng);
+    setClickedLat(api_lat);
   }, []);
 
   return (
     <>
-      <MapboxLngLatControl />
-      <Searchbox />
-      <SocialMedia />
-      <ConditionalRendering condition={isZoomTitleLevel}>
-        <div className='absolute left-[50%] top-[36%] z-10 translate-x-[-50%] translate-y-[-36%] items-center drop-shadow-[0_8px_8px_rgba(0,0,0,1)]'>
-          <div className='m-0 p-1 text-center text-6xl font-extrabold text-white/80 sm:text-[11rem]'>
-            {process.env.NEXT_PUBLIC_TITLE}
+      <MapProvider>
+        <MapboxLngLatControl />
+        <Searchbox />
+        <SocialMedia />
+        <ConditionalRendering condition={isZoomTitleLevel}>
+          <div className='absolute left-[50%] top-[36%] z-10 translate-x-[-50%] translate-y-[-36%] items-center drop-shadow-[0_8px_8px_rgba(0,0,0,1)]'>
+            <div className='m-0 p-1 text-center text-6xl font-extrabold text-white/80 sm:text-[11rem]'>
+              {process.env.NEXT_PUBLIC_TITLE}
+            </div>
           </div>
-        </div>
-      </ConditionalRendering>
-      <Map
-        id='mapMain'
-        {...viewport}
-        reuseMaps
-        style={{ width: '100%', height: '100vh' }}
-        mapStyle='mapbox://styles/mapbox/satellite-streets-v12'
-        mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
-        onMove={(newEvent) => setViewport(newEvent.viewState)}
-        onLoad={onLoad_mapMain}
-        onIdle={onIdle_mapMain}
-        onClick={onClick_mapMain}
-      />
+        </ConditionalRendering>
+        <Map
+          id='mapMain'
+          {...viewport}
+          reuseMaps
+          style={{ width: '100%', height: '100vh' }}
+          mapStyle='mapbox://styles/mapbox/satellite-streets-v12'
+          mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
+          onMove={(e) => setViewport(e.viewState)}
+          onLoad={onLoad_mapMain}
+          onIdle={onIdle_mapMain}
+          onClick={onClick_mapMain}
+        />
+        <InformationConsole api_lng={clickedLng} api_lat={clickedLat} />
+      </MapProvider>
     </>
   );
 }
