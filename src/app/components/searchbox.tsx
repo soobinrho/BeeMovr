@@ -1,9 +1,61 @@
 'use client';
 
-import { SearchBox } from '@mapbox/search-js-react';
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useCallback, useState } from 'react';
+import { useMap } from 'react-map-gl';
+import useSWRImmutable from 'swr/immutable';
+
+import { isValidLngLat } from '../v1/components/open-meteo-api';
+import { axiosFetcher } from './axios-swr-wrapper';
+import { ZOOM_LEVEL_TITLE } from './mapbox';
+
+export interface IApi {
+  test: any;
+}
 
 export default function Searchbox() {
+  const { mapMain } = useMap();
+  const [searchValue, setSearchValue] = useState<string | null>(null);
+  const [shouldFetch, setShouldFetch] = useState(false);
+
+  const { data, error } = useSWRImmutable(
+    shouldFetch
+      ? `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchValue}.json?autocomplete=false&access_token=${process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}`
+      : null,
+    axiosFetcher
+  );
+  if (error) console.log(error);
+
+  let searchValue_lng = '';
+  let searchValue_lat = '';
+  if (data) {
+    searchValue_lng = data['features'][0]['center'][0];
+    searchValue_lat = data['features'][0]['center'][1];
+
+    if (
+      shouldFetch &&
+      isValidLngLat({ api_lng: searchValue_lng, api_lat: searchValue_lat })
+    ) {
+      mapMain?.easeTo({
+        center: [Number(searchValue_lng), Number(searchValue_lat)],
+        duration: 2300,
+        zoom: ZOOM_LEVEL_TITLE + 2,
+      });
+      setShouldFetch(false);
+    }
+  }
+
+  const onChange = useCallback(
+    (evt: ChangeEvent<HTMLInputElement>) => {
+      evt.preventDefault();
+      setSearchValue(evt.target.value);
+    },
+    [setSearchValue]
+  );
+
+  const onSubmit = useCallback(() => {
+    setShouldFetch(true);
+  }, []);
+
   return (
     <div className='absolute start-0 z-10 ml-4 mt-6 flex w-[28%] flex-auto flex-grow translate-x-0 flex-row flex-nowrap items-center gap-0 pl-3 pt-1 sm:start-[50%] sm:ml-5 sm:mt-7 sm:translate-x-[-50%] sm:pt-0'>
       <div className='start-0 z-10 translate-x-0 text-white/50 sm:start-[50%] sm:translate-x-[-50%]'>
@@ -24,9 +76,11 @@ export default function Searchbox() {
         className='invisible z-10 w-[100%] self-stretch rounded-3xl border-none bg-background-console/50 text-left font-semibold placeholder-font-console/90 hover:border-none hover:bg-background-console/90 hover:text-white hover:placeholder-white focus:border-none focus:text-white focus:ring-0 active:placeholder-gray-300 sm:visible'
         required
         placeholder='Search...'
+        value={searchValue ?? ''}
+        onChange={onChange}
         onKeyDown={(evt) => {
           if (evt.key === 'Enter') {
-            console.log('yes');
+            onSubmit();
           }
         }}
       ></input>
