@@ -34,10 +34,12 @@ export default function MapboxLngLatControl() {
   }, [mapMain]);
 
   const onLngChange = useCallback((evt: ChangeEvent<HTMLInputElement>) => {
+    evt.preventDefault();
     setInputLng(evt.target.value);
   }, []);
 
   const onLatChange = useCallback((evt: ChangeEvent<HTMLInputElement>) => {
+    evt.preventDefault();
     setInputLat(evt.target.value);
   }, []);
 

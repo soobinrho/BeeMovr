@@ -32,6 +32,8 @@ export interface IMarker {
   honeyYield: string;
 }
 
+export const ZOOM_LEVEL_TITLE = 2.5;
+
 export default function Mapbox() {
   // ------------------------------------------------------------------
   // Initialize Mapbox.
@@ -46,7 +48,6 @@ export default function Mapbox() {
     pitch: 0,
     padding: { left: 0, top: 0, right: 0, bottom: 0 },
   });
-  const ZOOM_LEVEL_TITLE = 2.5;
   const isZoomTitleLevel = useMemo(() => {
     return viewport.zoom < ZOOM_LEVEL_TITLE;
   }, [viewport.zoom]);

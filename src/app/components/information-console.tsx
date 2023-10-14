@@ -43,29 +43,20 @@ export default function InformationConsole({
   );
 }
 
-const useInformationConsoleDataFetching = ({
+export function FetchInformationConsoleData({
   api_lng,
   api_lat,
-}: IInformationConsole) => {
+}: IInformationConsole) {
   const shouldRender = isValidLngLat({ api_lng: api_lng, api_lat: api_lat });
-  const { data, error } = useSWR(
+  const { data, error, isLoading } = useSWR(
     shouldRender
       ? `/v1/prediction/honey-yield?lng=${api_lng}&lat=${api_lat}&year-month=${getLastMonthYearMonthUTC()}`
       : null,
     axiosFetcher
   );
-  return data;
-};
+  if (error) console.log(error);
 
-export function FetchInformationConsoleData({
-  api_lng,
-  api_lat,
-}: IInformationConsole) {
-  const api_response: IApi = useInformationConsoleDataFetching({
-    api_lng: api_lng,
-    api_lat: api_lat,
-  });
-
+  const api_response: IApi = data;
   let honeyYield: any = '';
   let precipitation_date_key: any = '';
   let precipitation: any = '';
@@ -98,6 +89,25 @@ export function FetchInformationConsoleData({
 
     minTemp = api_response[api_response_key_minTemp][minTemp_date_key];
   }
+
+  if (isLoading)
+    return (
+      <>
+        <div>
+          <b className='pr-2 font-semibold'>Honey Yield Prediction: </b>
+          Loading...
+          <br />
+          <b className='pr-2 font-semibold'>Monthly Precipitation: </b>
+          Loading...
+          <br />
+          <b className='pr-2 font-semibold'>Maximum Temperature: </b>
+          Loading...
+          <br />
+          <b className='pr-2 font-semibold'>Minimum Temperature: </b>
+          Loading...
+        </div>
+      </>
+    );
 
   return (
     <>
