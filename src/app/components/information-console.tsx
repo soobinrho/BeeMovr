@@ -1,7 +1,14 @@
 'use client';
 
 import * as React from 'react';
-import { Ref, RefObject, useCallback, useEffect, useState } from 'react';
+import {
+  Ref,
+  RefObject,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { ChangeEvent } from 'react';
 import { MapMouseEvent, useMap } from 'react-map-gl';
 import useSWRImmutable from 'swr/immutable';
@@ -18,16 +25,20 @@ import {
 import { axiosFetcher } from './axios-swr-wrapper';
 import { IMarker } from './mapbox';
 
-export interface IInformationConsole {
+interface IInformationConsole {
   api_lng: string;
   api_lat: string;
 }
 
-export interface IApi {
+interface IApi {
   [api_response_key_honeyYield]: any;
   [api_response_key_precipitation]: any;
   [api_response_key_maxTemp]: any;
   [api_response_key_minTemp]: any;
+}
+
+interface IAllInformationConsoleData {
+  [key: number]: IApi;
 }
 
 export default function InformationConsole({
@@ -37,16 +48,19 @@ export default function InformationConsole({
   return (
     <div className='absolute bottom-4 z-10 w-screen'>
       <div className='mx-2 my-12 flex max-h-[25vh] flex-col-reverse justify-self-start overflow-auto rounded-md bg-background-console/50 p-5 text-left font-normal text-font-console hover:bg-background-console/90 sm:my-5'>
-        <FetchInformationConsoleData api_lng={api_lng} api_lat={api_lat} />
+        <InformationConsoleData api_lng={api_lng} api_lat={api_lat} />
       </div>
     </div>
   );
 }
 
-export function FetchInformationConsoleData({
+export function InformationConsoleData({
   api_lng,
   api_lat,
 }: IInformationConsole) {
+  const [allInformationConsoleData, setAllInformationConsoleData] = useState<
+    Array<IAllInformationConsoleData>
+  >([]);
   const shouldRender = isValidLngLat({ api_lng: api_lng, api_lat: api_lat });
   const { data, error, isLoading } = useSWRImmutable(
     shouldRender
@@ -89,6 +103,50 @@ export function FetchInformationConsoleData({
 
     minTemp = api_response[api_response_key_minTemp][minTemp_date_key];
   }
+
+  // TODO: DEBUG. Rendering and updates are not synced.
+  let lastUpdateKey = useRef('');
+  const updateAllInformationConsoleData = useCallback(
+    (api_response: IApi) => {
+      const updateKey = `${api_lng} ${api_lat}`;
+      if (lastUpdateKey.current !== updateKey) {
+        // TODO: Store exactly as response data
+        setAllInformationConsoleData((allInformationConsoleData) => [
+          ...allInformationConsoleData,
+          {
+            [updateKey]: {
+              [api_response_key_honeyYield]: honeyYield,
+              [api_response_key_precipitation]: precipitation,
+              [api_response_key_maxTemp]: maxTemp,
+              [api_response_key_minTemp]: minTemp,
+            },
+          },
+        ]);
+        localStorage.setItem(
+          updateKey,
+          JSON.stringify(JSON.stringify(allInformationConsoleData))
+        );
+        lastUpdateKey.current = updateKey;
+      }
+    },
+    [
+      setAllInformationConsoleData,
+      allInformationConsoleData,
+      api_lng,
+      api_lat,
+      honeyYield,
+      precipitation,
+      maxTemp,
+      minTemp,
+    ]
+  );
+
+  useEffect(() => {
+    if (!api_response) {
+      return undefined;
+    }
+    updateAllInformationConsoleData(api_response);
+  }, [updateAllInformationConsoleData, api_response]);
 
   if (isLoading)
     return (

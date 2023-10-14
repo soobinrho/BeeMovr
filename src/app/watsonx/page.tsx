@@ -1,3 +1,4 @@
+import InformationConsoleWatsonx from '../components/information-console-watsonx';
 import SocialMedia from '../components/social-media';
 
 // The main difference between the main `/` route and `watsonx` route
@@ -16,6 +17,7 @@ export default function Watsonx() {
           visualization.
         </div>
       </div>
+      <InformationConsoleWatsonx api_lat='' api_lng='' />
     </>
   );
 }
