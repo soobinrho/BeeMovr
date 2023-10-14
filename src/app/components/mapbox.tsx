@@ -148,8 +148,11 @@ export default function Mapbox() {
     setClickedLng(api_lng);
     setClickedLat(api_lat);
 
+    // setMarkerData((markerData) => [
+    //   ...markerData,
+    //   { api_lng: api_lng, api_lat: api_lat, honeyYield: '-1' },
+    // ]);
     setMarkerData((markerData) => [
-      ...markerData,
       { api_lng: api_lng, api_lat: api_lat, honeyYield: '-1' },
     ]);
   }, []);
