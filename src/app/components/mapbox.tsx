@@ -165,7 +165,7 @@ export default function Mapbox() {
         <SocialMedia />
         <ConditionalRendering condition={isZoomTitleLevel}>
           <div
-            className='absolute left-[50%] top-[36%] z-10 min-h-[17%] min-w-[60vw] translate-x-[-50%] translate-y-[-36%] select-none items-center sm:min-w-[30vw]'
+            className='pointer-events-none absolute left-[50%] top-[36%] z-10 min-h-[17%] min-w-[60vw] translate-x-[-50%] translate-y-[-36%] select-none items-center'
             style={{
               backgroundImage: 'url(/logo.png)',
               backgroundRepeat: 'no-repeat',
