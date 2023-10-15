@@ -94,8 +94,11 @@ export default function Searchbox() {
         </svg>
       </div>
 
+      <label htmlFor='location-search' className='invisible h-0 w-0'>
+        Search location to navigate.
+      </label>
       <input
-        id='searchbox'
+        id='location-search'
         type='text'
         className='invisible z-10 w-[100%] self-stretch rounded-3xl border-none bg-background-console/50 text-left font-semibold placeholder-font-console/90 hover:border-none hover:bg-background-console/90 hover:text-white hover:placeholder-white focus:border-none focus:text-white focus:ring-0 active:placeholder-gray-300 sm:visible'
         required
