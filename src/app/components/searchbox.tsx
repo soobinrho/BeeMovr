@@ -35,18 +35,35 @@ export default function Searchbox() {
       shouldFetch &&
       isValidLngLat({ api_lng: searchValue_lng, api_lat: searchValue_lat })
     ) {
-      mapMain?.easeTo({
-        center: [Number(searchValue_lng), Number(searchValue_lat)],
-        duration: 2300,
-        zoom: ZOOM_LEVEL_TITLE + 3,
-      });
+      let duration_0 = 0;
+      const duration_1 = 2300;
+      const duration_2 = 4500;
+      let timeout_1 = 0;
+      let timeout_2 = duration_1 + 100;
+
+      if (mapMain?.getZoom() && mapMain?.getZoom() > ZOOM_LEVEL_TITLE + 6) {
+        duration_0 = 2300;
+        timeout_1 = duration_0 + 100;
+        timeout_2 = timeout_1 + duration_1 + 100;
+        mapMain?.easeTo({
+          duration: duration_0,
+          zoom: ZOOM_LEVEL_TITLE + 3,
+        });
+      }
       setTimeout(() => {
         mapMain?.easeTo({
           center: [Number(searchValue_lng), Number(searchValue_lat)],
-          duration: 4500,
+          duration: duration_1,
+          zoom: ZOOM_LEVEL_TITLE + 3,
+        });
+      }, timeout_1);
+      setTimeout(() => {
+        mapMain?.easeTo({
+          center: [Number(searchValue_lng), Number(searchValue_lat)],
+          duration: duration_2,
           zoom: 19,
         });
-      }, 2400);
+      }, timeout_2);
       setShouldFetch(false);
     }
   }
