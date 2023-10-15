@@ -361,3 +361,9 @@ Hooks are functions, but it’s helpful to think of them as unconditional declar
 You “use” React features at the top of your component similar to how you “import” modules at the top of your file."
 - [Purpose and mechanisms of useState](https://react.dev/learn/state-a-components-memory#meet-your-first-hook)
 - [All React built-in hooks](https://react.dev/reference/react)
+
+<br>
+
+### 2023-10-14
+
+- [How to let the user click through a div class](https://stackoverflow.com/a/4839672)
