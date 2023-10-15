@@ -171,6 +171,7 @@ export default function Mapbox() {
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center',
               backgroundSize: 'contain',
+              opacity: '0.8',
             }}
           ></div>
         </ConditionalRendering>

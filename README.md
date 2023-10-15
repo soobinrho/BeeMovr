@@ -15,7 +15,7 @@
 
 <br>
 
-Google Maps, but for beekeepers.
+Maps for beekeepers.
 We called beekeepers all over the country and asked them, "We want to help you save bees.
 What can we do for you?
 We can program."
