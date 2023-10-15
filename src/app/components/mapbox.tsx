@@ -72,8 +72,8 @@ export default function Mapbox() {
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             fontWeight: 'bold',
-            width: '16px',
-            height: '16px',
+            width: '32px',
+            height: '32px',
             textAlign: 'center',
             textOverflow: 'visible',
           }}
