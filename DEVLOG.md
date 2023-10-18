@@ -367,3 +367,15 @@ You “use” React features at the top of your component similar to how you “
 ### 2023-10-14
 
 - [How to let the user click through a div class](https://stackoverflow.com/a/4839672)
+
+<br>
+
+### 2023-10-18
+
+I just remembered that we can get data of the total honey yield of the entire country.
+Reminder for myself to go check my notes from last year's *Intro to GIS* class, in which we used data from - I think - USDA.
+With these, we'll be able to take note on the trends of honey yield, and also make predictions on future trends.
+These features won't require interactivity from the user.
+Rather, a mere server-side script will suffice, i.e. a script that runs only once in a while and saves the data and graph plots as local files, and the client-side components of `https://beemovr.com/watsonx` can serve those as static files.
+These, in turn, will hopefully prove to be an interesting insight to beekeepers.
+What other kinds of data analysis do beekeepers need?
