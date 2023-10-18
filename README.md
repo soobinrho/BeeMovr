@@ -118,6 +118,16 @@ Feel free to make pull requests and contribute in any way you think is the best 
 
 <br>
 
+**_How will you support this project going forward?_**<br>
+
+We designed BeeMovr to be as self-sustainable as possible by minimizing the operational costs.
+We'll maintain it as a free software - hosted at [beemovr.com](https://beemovr.com) - with open-source community.
+The historical weather data API from Open Metro we use for honey-yield prediction is free thanks to Open Metro's generosity, as well as OpenStreetMap and Mapbox's mapping scripts and API (Mapbox provides a free 50,000 map loads per month). 
+
+Yes, we'll have to temporarily stop our website if the map loads go over 50,000 and wait until the quote resets the next month, but we anticipate this will be fine with the use cases of our users, since doing this allows us to be completely free for everyone.
+
+<br>
+
 <!-- TODO: Delete this after Call for Code submission
 ☐ Link to publicly accessible code repository that contains your working code
 Link should be to a GitHub repository (or other source control system such as GitLab or Bitbucket) where the judges can examine and evaluate the source code built for your solution as well as a README containing all of the technology and solution descriptions for your project. You should use the Call for Code Project Sample template to create your team's repository. This template will help you deliver all required components of your submission. See the instructions below for "Setting up your project GitHub repository".
