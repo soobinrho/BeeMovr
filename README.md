@@ -60,6 +60,13 @@ This paper is what made our core prediction model possible.
 
 <br>
 
+**_IBM watsonx_**<br>
+
+TODO: code location for our ML code on our server.
+The code itself, as well as where we serve those graphs for the honey-yield data analysis and colony-loss data analysis.
+
+<br>
+
 **_The issue we are addressing_**<br>
 
 ```
@@ -96,13 +103,13 @@ You can supply additional documentation in this source code repository that you 
 BeeMovr utilizes real-time precipitation, maximum temperature, and minimum temperature data from Open Meteo API to calculate prediction of the maximum possible honey yield value of any given coordinates on a map based on [Hayes Kent Grogan's paper](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf).
 Our project seeks to provide beekeepers with better information about ideal pollinator conditions near them in order to increase colony survival rates and reduce uncertainty.
 We focused on researching the most accurate model possible and we now use a linear regression model with the factors of precipitation, maximum temperature, and minimum temperature.
-Further, we plan to use [IBM watsonx.data](https://cloud.ibm.com/docs/watsonxdata?topic=watsonxdata-getting-started) to pull combined data from [USDA (U.S. Department of Agriculture)](https://www.usda.gov/) and [NASS (National Agricultural Statistics Service)](https://www.nass.usda.gov/) for improved prediction models.
+Further, we plan to use IBM watsonx.data to pull combined data from USDA (U.S. Department of Agriculture) and NASS (National Agricultural Statistics Service) for improved prediction models.
 
 We're also trying to increase prediction accuracy by utilizing colony-specific demographic data in our prediction model, as colony demographic data such as the age of the queen were found to be statistically significant, as reported in Grogan's 2020 paper.
-In our predictive model API endpoints, we currently rely on [Next.js built-in request memorization caching](https://nextjs.org/docs/app/building-your-application/caching#request-memoization) to avoid duplicate API calls.
+In our predictive model API endpoints, we currently rely on Next.js built-in request memorization caching to avoid duplicate API calls.
 This process is fairly efficient.
-However, we believe the data fetching process can be improved by implementing [IBM Cloud PostgresSQL](https://www.ibm.com/cloud/databases-for-postgresql) to cache and store all precipitation & temperature requests `{ key: latLng, values: [precipitation, maxTemp, minTemp] }`.
-These data, in turn, will be used in conjunction with [IBM watsonx.data](https://cloud.ibm.com/docs/watsonxdata?topic=watsonxdata-getting-started) to improve our prediction models, which we will host at [beemovr.com/watsonx](https://beemovr.com/watsonx)
+However, we believe the data fetching process can be improved by implementing IBM Cloud PostgresSQL to cache and store all precipitation & temperature requests `{ key: latLng, values: [precipitation, maxTemp, minTemp] }`.
+These data, in turn, will be used in conjunction with IBM watsonx.data to improve our prediction models, which we will host at [beemovr.com/watsonx](https://beemovr.com/watsonx)
 
 We envision BeeMovr to become the de-facto map for helping beekeepers make an informed decision about what's best for their bees.
 We aim to create _the_ beekeeper's map, the first feature of which is maximum potential honey yield prediction, but as we iterate with our beekeepers, we'll listen to what their (and their bees') needs are, and we'll incrementally add those features.
@@ -122,9 +129,9 @@ Feel free to make pull requests and contribute in any way you think is the best 
 
 We designed BeeMovr to be as self-sustainable as possible by minimizing the operational costs.
 We'll maintain it as a free software - hosted at [beemovr.com](https://beemovr.com) - with open-source community.
-The historical weather data API from Open Metro we use for honey-yield prediction is free thanks to Open Metro's generosity, as well as OpenStreetMap and Mapbox's mapping scripts and API (Mapbox provides a free 50,000 map loads per month). 
+The historical weather data API from Open Metro we use for honey-yield prediction is free thanks to Open Metro's generosity, as well as OpenStreetMap and Mapbox's mapping scripts and API (Mapbox provides a free 50,000 map loads per month).
 
-Yes, we'll have to temporarily stop our website if the map loads go over 50,000 and wait until the quote resets the next month, but we anticipate this will be fine with the use cases of our users, since doing this allows us to be completely free for everyone.
+Yes, we'll have to temporarily stop our website if the map loads go over 50,000 and wait until the quota resets the next month, but we anticipate this will be fine with the use cases of our users, since doing this allows our program to be completely free for everyone.
 
 <br>
 
