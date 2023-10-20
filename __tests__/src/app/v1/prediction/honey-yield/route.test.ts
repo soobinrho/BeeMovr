@@ -1,10 +1,10 @@
-import { calculateHoneyYield } from '../../../../../../src/app/v1/components/calculate-honey-yield';
+import { calculateHoneyYield } from '@/app/v1/components/calculate-honey-yield';
 import {
   api_response_key_honeyYield,
   api_response_key_maxTemp,
   api_response_key_minTemp,
   api_response_key_precipitation,
-} from '../../../../../../src/app/v1/components/open-meteo-api';
+} from '@/app/v1/components/open-meteo-api';
 
 describe('/v1/prediction/honey-yield', () => {
   test('returns honey yield prediction value', async () => {

@@ -1,6 +1,5 @@
+import { calculateHoneyYield } from '@/app/v1/components/calculate-honey-yield';
 import { NextRequest, NextResponse } from 'next/server';
-
-import { calculateHoneyYield } from '../../components/calculate-honey-yield';
 
 export async function GET(request: NextRequest) {
   /**

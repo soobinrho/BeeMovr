@@ -1,6 +1,5 @@
+import Mapbox from '@/app/components/mapbox';
 import React from 'react';
-
-import Mapbox from './components/mapbox';
 
 export default function Home() {
   return (

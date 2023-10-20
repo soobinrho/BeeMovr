@@ -1,6 +1,5 @@
+import SocialMedia from '@/app/components/social-media';
 import Link from 'next/link';
-
-import SocialMedia from './components/social-media';
 
 export default function NotFoundPage() {
   return (

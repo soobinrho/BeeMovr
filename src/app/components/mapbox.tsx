@@ -1,5 +1,15 @@
 'use client';
 
+import ConditionalRendering from '@/app/components/conditional-rendering';
+import InformationConsole from '@/app/components/information-console';
+import MapboxLngLatControl from '@/app/components/mapbox-lng-lat-control';
+import Searchbox from '@/app/components/searchbox';
+import SocialMedia from '@/app/components/social-media';
+import {
+  MAX_DIGITS_COORDINATES,
+  getLastMonthYearMonthUTC,
+  getTodayYearMonthUTC,
+} from '@/app/v1/components/open-meteo-api';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import Map, {
@@ -14,17 +24,6 @@ import Map, {
   ViewStateChangeEvent,
 } from 'react-map-gl';
 import useSWR from 'swr';
-
-import {
-  MAX_DIGITS_COORDINATES,
-  getLastMonthYearMonthUTC,
-  getTodayYearMonthUTC,
-} from '../v1/components/open-meteo-api';
-import ConditionalRendering from './conditional-rendering';
-import InformationConsole from './information-console';
-import MapboxLngLatControl from './mapbox-lng-lat-control';
-import Searchbox from './searchbox';
-import SocialMedia from './social-media';
 
 export interface IMarker {
   api_lng: string;

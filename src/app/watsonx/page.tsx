@@ -1,5 +1,5 @@
-import InformationConsoleWatsonx from '../components/information-console-watsonx';
-import SocialMedia from '../components/social-media';
+import InformationConsoleWatsonx from '@/app/components/information-console-watsonx';
+import SocialMedia from '@/app/components/social-media';
 
 // The main difference between the main `/` route and `watsonx` route
 // will be that the main page will show a summary of information, while

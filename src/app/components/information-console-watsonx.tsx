@@ -1,5 +1,16 @@
 'use client';
 
+import { axiosFetcher } from '@/app/components/axios-swr-wrapper';
+import { IMarker } from '@/app/components/mapbox';
+import { isValidLngLat } from '@/app/v1/components/open-meteo-api';
+import {
+  MAX_DIGITS_COORDINATES,
+  api_response_key_honeyYield,
+  api_response_key_maxTemp,
+  api_response_key_minTemp,
+  api_response_key_precipitation,
+  getLastMonthYearMonthUTC,
+} from '@/app/v1/components/open-meteo-api';
 import * as React from 'react';
 import {
   Ref,
@@ -13,18 +24,6 @@ import {
 import { ChangeEvent } from 'react';
 import { MapMouseEvent, useMap } from 'react-map-gl';
 import useSWRImmutable from 'swr/immutable';
-
-import { isValidLngLat } from '../v1/components/open-meteo-api';
-import {
-  MAX_DIGITS_COORDINATES,
-  api_response_key_honeyYield,
-  api_response_key_maxTemp,
-  api_response_key_minTemp,
-  api_response_key_precipitation,
-  getLastMonthYearMonthUTC,
-} from '../v1/components/open-meteo-api';
-import { axiosFetcher } from './axios-swr-wrapper';
-import { IMarker } from './mapbox';
 
 interface IInformationConsole {}
 

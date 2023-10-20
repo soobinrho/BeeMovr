@@ -1,11 +1,10 @@
 'use client';
 
+import { MAX_DIGITS_COORDINATES } from '@/app/v1/components/open-meteo-api';
 import * as React from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import { ChangeEvent } from 'react';
 import { useMap } from 'react-map-gl';
-
-import { MAX_DIGITS_COORDINATES } from '../v1/components/open-meteo-api';
 
 export default function MapboxLngLatControl() {
   const { mapMain } = useMap();

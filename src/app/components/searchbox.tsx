@@ -1,12 +1,11 @@
 'use client';
 
+import { axiosFetcher } from '@/app/components/axios-swr-wrapper';
+import { ZOOM_LEVEL_TITLE } from '@/app/components/mapbox';
+import { isValidLngLat } from '@/app/v1/components/open-meteo-api';
 import { ChangeEvent, FormEvent, useCallback, useState } from 'react';
 import { useMap } from 'react-map-gl';
 import useSWRImmutable from 'swr/immutable';
-
-import { isValidLngLat } from '../v1/components/open-meteo-api';
-import { axiosFetcher } from './axios-swr-wrapper';
-import { ZOOM_LEVEL_TITLE } from './mapbox';
 
 export interface IApi {
   test: any;

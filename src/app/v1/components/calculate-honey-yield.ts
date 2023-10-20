@@ -1,5 +1,3 @@
-import { NextRequest } from 'next/server';
-
 import {
   api_response_key_honeyYield,
   api_response_key_maxTemp,
@@ -12,7 +10,7 @@ import {
   getWeather,
   isValidLngLat,
   isValidYearMonth,
-} from './open-meteo-api';
+} from '@/app/v1/components/open-meteo-api';
 
 export interface IcalculateHoneyYield {
   api_lng: string;

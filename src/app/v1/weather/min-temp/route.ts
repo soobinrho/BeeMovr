@@ -1,10 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server';
-
 import {
   api_response_key_minTemp,
   api_type_minTemp,
   getWeather,
-} from '../../components/open-meteo-api';
+} from '@/app/v1/components/open-meteo-api';
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
   /**

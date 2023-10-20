@@ -1,5 +1,5 @@
-import { getWeather } from '../../../../../../src/app/v1/components/open-meteo-api';
-import { api_type_minTemp } from '../../../../../../src/app/v1/components/open-meteo-api';
+import { getWeather } from '@/app/v1/components/open-meteo-api';
+import { api_type_minTemp } from '@/app/v1/components/open-meteo-api';
 
 describe('/v1/weather/min-temp', () => {
   test('returns monthly minimum temperature', async () => {

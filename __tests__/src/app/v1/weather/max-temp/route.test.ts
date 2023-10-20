@@ -1,5 +1,5 @@
-import { getWeather } from '../../../../../../src/app/v1/components/open-meteo-api';
-import { api_type_maxTemp } from '../../../../../../src/app/v1/components/open-meteo-api';
+import { getWeather } from '@/app/v1/components/open-meteo-api';
+import { api_type_maxTemp } from '@/app/v1/components/open-meteo-api';
 
 describe('/v1/weather/max-temp', () => {
   test('returns monthly maximum temperature', async () => {
