@@ -19,6 +19,8 @@ export default function Watsonx() {
           visualization.
         </div>
       </div>
+
+
     </>
   );
 }

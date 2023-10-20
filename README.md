@@ -56,14 +56,14 @@ This paper is what made our core prediction model possible.
 | **Deployment**    | Containerized with [Docker](https://www.docker.com/) + server runtime with [Node.js](https://nodejs.org/)                                                                                             |
 | **Front-end**     | [Next.js client-side components](https://nextjs.org/docs/app/building-your-application/rendering/client-components) + OpenStreetMap interactivity from [Mapbox](https://www.mapbox.com/)              |
 | **Back-end**      | [Next.js server-side components](https://nextjs.org/docs/app/building-your-application/rendering/server-components) + real-time weather data from [Open Meteo API](https://open-meteo.com/)           |
-| **Experimental**  | Machine learning with [IBM Cloud watsonx.data](https://www.ibm.com/products/watsonx-data) + persistent data handling with [IBM Cloud PostgresSQL](https://www.ibm.com/cloud/databases-for-postgresql) |
+| **Experimental**  | [IBM Cloud watsonx.data](https://www.ibm.com/products/watsonx-data) + [IBM Cloud PostgresSQL](https://www.ibm.com/cloud/databases-for-postgresql) |
 
 <br>
 
-**_IBM watsonx_**<br>
+**_Powered by IBM AI Services_**<br>
 
-TODO: code location for our ML code on our server.
-The code itself, as well as where we serve those graphs for the honey-yield data analysis and colony-loss data analysis.
+- `watsonx.ai`: [[work in progress at beemovr.com/watsonx](https://beemovr.com/watsonx)] improving our core prediction models.
+- `watsonx.data`: [[work in progress at beemovr.com/watsonx](https://beemovr.com/watsonx)] data pipelines and security controls.
 
 <br>
 

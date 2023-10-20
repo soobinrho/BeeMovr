@@ -387,6 +387,9 @@ What other kinds of data analysis do beekeepers need?
 
 ### 2023-10-19
 
+- [USDA Honey Bee Surveys and Reports](https://www.nass.usda.gov/surveys/Guide_to_NASS_Surveys/Bee_and_Honey/)
+- [USDA "HONEY, BEE COLONIES - LOSS, DEADOUT, MEASURED IN COLONIES" (2015-2022)](https://quickstats.nass.usda.gov/results/96060AFB-43C7-33D7-868A-788D2E45608B)
+- [USDA "HONEY - PRODUCTION, MEASURED IN LB / COLONY" (2013-2022)](https://quickstats.nass.usda.gov/results/E518BE2D-6EC7-33B5-B21E-13B92ADD51F8)
 - [Helpful public datasets we can use for predicting country-wide honey yield and colony loss](https://community.ibm.com/community/user/ai-datascience/blogs/susan-malaika/2020/02/21/call-for-code-useful-datasets)
 - [What is watsonx.ai?](https://mediacenter.ibm.com/media/Meet%20watsonx.ai/1_gs9c9o1w)
 - [What is watsonx.data?](https://mediacenter.ibm.com/media/watsonx.dataA+Insights+powered+by+generative+AI/1_g6o5vttd)
