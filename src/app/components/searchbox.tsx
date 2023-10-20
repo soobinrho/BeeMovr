@@ -31,12 +31,14 @@ export default function Searchbox() {
   let searchValue_lng = '';
   let searchValue_lat = '';
   if (data) {
-    const MAX_DIGITS_COORDINATES_FOR_SEARCHES = 1;
-    searchValue_lng = data['features'][0]['center'][0].toFixed(
-      MAX_DIGITS_COORDINATES_FOR_SEARCHES
+    const MAX_DIGITS_COORDINATES_FOR_COMPARISON = 1;
+    searchValue_lng = data['features'][0]['center'][0];
+    searchValue_lat = data['features'][0]['center'][1];
+    const searchValue_lng_comparison = data['features'][0]['center'][0].toFixed(
+      MAX_DIGITS_COORDINATES_FOR_COMPARISON
     );
-    searchValue_lat = data['features'][0]['center'][1].toFixed(
-      MAX_DIGITS_COORDINATES_FOR_SEARCHES
+    const searchValue_lat_comparison = data['features'][0]['center'][1].toFixed(
+      MAX_DIGITS_COORDINATES_FOR_COMPARISON
     );
 
     if (
@@ -52,10 +54,10 @@ export default function Searchbox() {
 
       if (
         !(
-          now_lngLat?.lng.toFixed(MAX_DIGITS_COORDINATES_FOR_SEARCHES) ===
-            String(searchValue_lng) &&
-          now_lngLat?.lat.toFixed(MAX_DIGITS_COORDINATES_FOR_SEARCHES) ===
-            String(searchValue_lat)
+          now_lngLat?.lng.toFixed(MAX_DIGITS_COORDINATES_FOR_COMPARISON) ===
+            String(searchValue_lng_comparison) &&
+          now_lngLat?.lat.toFixed(MAX_DIGITS_COORDINATES_FOR_COMPARISON) ===
+            String(searchValue_lat_comparison)
         ) &&
         mapMain?.getZoom() &&
         mapMain?.getZoom() > ZOOM_LEVEL_TITLE + 6
