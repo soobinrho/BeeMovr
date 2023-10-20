@@ -100,20 +100,6 @@ export default function Mapbox() {
   // ------------------------------------------------------------------
   // Callback definitions.
   // ------------------------------------------------------------------
-  const onLoad_mapMain = useCallback(
-    (e: MapEvent) => {
-      e.target.easeTo({
-        center: [
-          rotationChart_lng[rotationChartCounter.current],
-          rotationChart_lat[rotationChartCounter.current],
-        ],
-        duration: 15000,
-      });
-      rotationChartCounter.current += 1;
-    },
-    [rotationChart_lng, rotationChart_lat, rotationChartCounter]
-  );
-
   const onIdle_mapMain = useCallback(
     (e: MapEvent) => {
       if (isZoomTitleLevel) {
@@ -183,7 +169,6 @@ export default function Mapbox() {
           mapStyle={'mapbox://styles/mapbox/satellite-streets-v12'}
           mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
           onMove={(e: ViewStateChangeEvent) => setViewport(e.viewState)}
-          onLoad={onLoad_mapMain}
           onIdle={onIdle_mapMain}
           onDblClick={onDblClick_mapMain}
         >
