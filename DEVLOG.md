@@ -337,7 +337,7 @@ Also, these are some articles I'll need to reference when creating schemas with 
 
 ### 2023-10-12
 
-- I think we can share the main route  (`/`) data with the `/watsonx` page using [Next.js Link Router](https://stackoverflow.com/questions/52238637/react-router-how-to-pass-data-between-pages-in-react)
+- I think we can share the main route (`/`) data with the `/watsonx` page using [Next.js Link Router](https://stackoverflow.com/questions/52238637/react-router-how-to-pass-data-between-pages-in-react)
 - [How rendering works in React](https://react.dev/learn/render-and-commit)
 - [How to write pure React components](https://react.dev/learn/keeping-components-pure)
 - [Why `e.preventDefault()` is needed](https://react.dev/learn/responding-to-events#preventing-default-behavior)
@@ -345,11 +345,13 @@ Also, these are some articles I'll need to reference when creating schemas with 
 "When a piece of information is used for rendering, keep it in state.
 When a piece of information is only needed by event handlers and changing it doesn’t require a re-render, using a ref may be more efficient ...
 If your component needs to store some value, but it doesn’t impact the rendering logic, choose refs."
+
 - [Purpose and mechanisms of useRef](https://react.dev/learn/referencing-values-with-refs)
 
 "Effects let you run some code after rendering so that you can synchronize your component with some system outside of React ...
 Effects run at the end of a commit after the screen updates.
 This is a good time to synchronize the React components with some external system (like network or a third-party library)."
+
 - [Purpose and mechanisms of useEffect](https://react.dev/learn/synchronizing-with-effects)
 
 "Hooks are special functions that are only available while React is rendering (which we’ll get into in more detail on the next page).
@@ -359,6 +361,7 @@ Hooks—functions starting with use—can only be called at the top level of you
 You can’t call Hooks inside conditions, loops, or other nested functions.
 Hooks are functions, but it’s helpful to think of them as unconditional declarations about your component’s needs.
 You “use” React features at the top of your component similar to how you “import” modules at the top of your file."
+
 - [Purpose and mechanisms of useState](https://react.dev/learn/state-a-components-memory#meet-your-first-hook)
 - [All React built-in hooks](https://react.dev/reference/react)
 
@@ -373,9 +376,15 @@ You “use” React features at the top of your component similar to how you “
 ### 2023-10-18
 
 I just remembered that we can get data of the total honey yield of the entire country.
-Reminder for myself to go check my notes from last year's *Intro to GIS* class, in which we used data from - I think - USDA.
+Reminder for myself to go check my notes from last year's _Intro to GIS_ class, in which we used data from - I think - USDA.
 With these, we'll be able to take note on the trends of honey yield, and also make predictions on future trends.
 These features won't require interactivity from the user.
 Rather, a mere server-side script will suffice, i.e. a script that runs only once in a while and saves the data and graph plots as local files, and the client-side components of `https://beemovr.com/watsonx` can serve those as static files.
 These, in turn, will hopefully prove to be an interesting insight to beekeepers.
 What other kinds of data analysis do beekeepers need?
+
+<br>
+
+### 2023-10-19
+
+- [Helpful public datasets we can use for predicting country-wide honey yield and colony loss](https://community.ibm.com/community/user/ai-datascience/blogs/susan-malaika/2020/02/21/call-for-code-useful-datasets)
