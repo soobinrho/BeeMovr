@@ -162,7 +162,7 @@ export default function Searchbox() {
         <input
           id='location-search'
           type='text'
-          className='absolute left-[50%] z-20 mt-7 w-[50%] translate-x-[-50%] rounded-3xl border-none bg-background-console/90 text-left font-semibold placeholder-font-console/90 hover:border-none hover:bg-background-console hover:text-white hover:placeholder-white focus:border-none focus:text-white focus:ring-0 active:placeholder-gray-300 '
+          className='absolute left-[50%] z-20 mt-7 w-[50%] translate-x-[-50%] rounded-3xl border-none bg-background-console/90 text-left font-semibold placeholder-font-console/90 ring-4 ring-cyan-900 hover:bg-background-console hover:text-white hover:placeholder-white focus:border-none focus:text-white focus:ring-4 focus:ring-cyan-800 active:placeholder-gray-300 active:ring-4 active:ring-cyan-800 '
           required
           placeholder='Search...'
           value={searchValue ?? ''}
