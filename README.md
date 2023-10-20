@@ -49,21 +49,14 @@ This paper is what made our core prediction model possible.
 
 ![Architecture diagram of BeeMovr](https://github.com/soobinrho/BeeMovr/assets/19341857/7bba3368-acb9-4ce4-90c5-167f158d5edf)
 
-| Stack             | Name                                                                                                                                                                                                  |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **CDN**           | [Cloudflare](https://www.cloudflare.com/)                                                                                                                                                             |
-| **Reverse Proxy** | [Nginx](https://www.nginx.com/)                                                                                                                                                                       |
-| **Deployment**    | Containerized with [Docker](https://www.docker.com/) + server runtime with [Node.js](https://nodejs.org/)                                                                                             |
-| **Front-end**     | [Next.js client-side components](https://nextjs.org/docs/app/building-your-application/rendering/client-components) + OpenStreetMap interactivity from [Mapbox](https://www.mapbox.com/)              |
-| **Back-end**      | [Next.js server-side components](https://nextjs.org/docs/app/building-your-application/rendering/server-components) + real-time weather data from [Open Meteo API](https://open-meteo.com/)           |
-| **Experimental**  | [IBM Cloud watsonx.data](https://www.ibm.com/products/watsonx-data) + [IBM Cloud PostgresSQL](https://www.ibm.com/cloud/databases-for-postgresql) |
-
-<br>
-
-**_Powered by IBM AI Services_**<br>
-
-- `watsonx.ai`: [[work in progress at beemovr.com/watsonx](https://beemovr.com/watsonx)] improving our core prediction models.
-- `watsonx.data`: [[work in progress at beemovr.com/watsonx](https://beemovr.com/watsonx)] data pipelines and security controls.
+| Stack             | Name                                                                                                                                                                                        |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **CDN**           | [Cloudflare](https://www.cloudflare.com/)                                                                                                                                                   |
+| **Reverse Proxy** | [Nginx](https://www.nginx.com/)                                                                                                                                                             |
+| **Deployment**    | Containerized with [Docker](https://www.docker.com/) + server runtime with [Node.js](https://nodejs.org/)                                                                                   |
+| **Front-end**     | [Next.js client-side components](https://nextjs.org/docs/app/building-your-application/rendering/client-components) + OpenStreetMap interactivity from [Mapbox](https://www.mapbox.com/)    |
+| **Back-end**      | [Next.js server-side components](https://nextjs.org/docs/app/building-your-application/rendering/server-components) + real-time weather data from [Open Meteo API](https://open-meteo.com/) |
+| **Experimental**  | [IBM Cloud PostgresSQL](https://www.ibm.com/cloud/databases-for-postgresql) + [watsonx.ai](https://www.ibm.com/products/watsonx-ai)                                                         |
 
 <br>
 
@@ -103,13 +96,13 @@ You can supply additional documentation in this source code repository that you 
 BeeMovr utilizes real-time precipitation, maximum temperature, and minimum temperature data from Open Meteo API to calculate prediction of the maximum possible honey yield value of any given coordinates on a map based on [Hayes Kent Grogan's paper](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf).
 Our project seeks to provide beekeepers with better information about ideal pollinator conditions near them in order to increase colony survival rates and reduce uncertainty.
 We focused on researching the most accurate model possible and we now use a linear regression model with the factors of precipitation, maximum temperature, and minimum temperature.
-Further, we plan to use IBM watsonx.data to pull combined data from USDA (U.S. Department of Agriculture) and NASS (National Agricultural Statistics Service) for improved prediction models.
+Further, we plan to use watsonx.data to pull combined data from USDA (U.S. Department of Agriculture) and NASS (National Agricultural Statistics Service) for improved prediction models.
 
 We're also trying to increase prediction accuracy by utilizing colony-specific demographic data in our prediction model, as colony demographic data such as the age of the queen were found to be statistically significant, as reported in Grogan's 2020 paper.
 In our predictive model API endpoints, we currently rely on Next.js built-in request memorization caching to avoid duplicate API calls.
 This process is fairly efficient.
 However, we believe the data fetching process can be improved by implementing IBM Cloud PostgresSQL to cache and store all precipitation & temperature requests `{ key: latLng, values: [precipitation, maxTemp, minTemp] }`.
-These data, in turn, will be used in conjunction with IBM watsonx.data to improve our prediction models, which we will host at [beemovr.com/watsonx](https://beemovr.com/watsonx)
+These data, in turn, will be used in conjunction with watsonx.ai to improve our prediction models, which we will host at [beemovr.com/watsonx](https://beemovr.com/watsonx)
 
 We envision BeeMovr to become the de-facto map for helping beekeepers make an informed decision about what's best for their bees.
 We aim to create _the_ beekeeper's map, the first feature of which is maximum potential honey yield prediction, but as we iterate with our beekeepers, we'll listen to what their (and their bees') needs are, and we'll incrementally add those features.
@@ -123,47 +116,21 @@ Feel free to make pull requests and contribute in any way you think is the best 
 
 ![Timeline of BeeMovr development](https://github.com/soobinrho/BeeMovr/assets/19341857/72474594-7a01-4da1-bcfc-7c45bed963f7)
 
+**_IBM AI Services_**<br>
+
+We are trying to improve our core prediction models by integrating `watsonx.ai`, `watsonx.data`, `IBM Cloud PostgresSQL`, and `Watson Studio` at [beemovr.com/watsonx](https://beemovr.com/watsonx)
+
 <br>
 
 **_How will you support this project going forward?_**<br>
 
 We designed BeeMovr to be as self-sustainable as possible by minimizing the operational costs.
 We'll maintain it as a free software - hosted at [beemovr.com](https://beemovr.com) - with open-source community.
-The historical weather data API from Open Metro we use for honey-yield prediction is free thanks to Open Metro's generosity, as well as OpenStreetMap and Mapbox's mapping scripts and API (Mapbox provides a free 50,000 map loads per month).
+The historical weather data API from Open Meteo we use for honey-yield prediction is free thanks to Open Meteo's generosity, as well as OpenStreetMap's support for open-source community and Mapbox providing 50,000 map loads per month for free.
 
 Yes, we'll have to temporarily stop our website if the map loads go over 50,000 and wait until the quota resets the next month, but we anticipate this will be fine with the use cases of our users, since doing this allows our program to be completely free for everyone.
 
 <br>
-
-<!-- TODO: Delete this after Call for Code submission
-☐ Link to publicly accessible code repository that contains your working code
-Link should be to a GitHub repository (or other source control system such as GitLab or Bitbucket) where the judges can examine and evaluate the source code built for your solution as well as a README containing all of the technology and solution descriptions for your project. You should use the Call for Code Project Sample template to create your team's repository. This template will help you deliver all required components of your submission. See the instructions below for "Setting up your project GitHub repository".
-
-☐ Link to a three-minute solution demo video (Public YouTube or Vimeo link)
-Record a demo of your solution, upload it to YouTube or Vimeo, and share the URL. Three minutes is the maximum length. Judges will not watch more than 3 minutes of your video. You can link to additional or longer versions from your source code repository. It is recommended that you use this video to briefly introduce the problem you are trying to solve, but also leave at least 90 seconds to demonstrate your solution’s interface, architecture, and code. Keep in mind that non-technical judges may rely on the video more than technical documentation.
-
-☐ Listing of all IBM AI services used in your solution code and description of how they were used
-List all IBM AI services used in your solution code. Provide details on where and how you used each IBM AI service to help judges review your implementation.
-Note: Complete project submissions must make use of one or more IBM AI services, and will receive a "2023 Call for Code Global Challenge — IBM AI Services" digital badge for doing so, after the close of the Round.
-
-☐ Listing of any other IBM technology used in your solution code and description of how it was used
-List any other IBM technology used in your solution and describe how each component was used. If you can provide links to exactly where these were used in your code, that would help the judges review your submission.
-
-☐ Solution architecture diagram (.pdf, .png)
-Create a graphic diagram that show the user experience flow of your solution and highlights how and where technology comes into the overall solution architecture. See the example provided in the Project Sample README template. Also include numbered steps below the image to describe the flow in words.
-
-☐ Brief description of "The issue we are hoping to solve" (2-3 sentences)
-This should be a short description, 2-3 sentences in length, of the specific sustainability problem your solution is meant to address.
-
-☐ Description of "How our technology solution can help" (approximately 10 words)
-This is where you will give a short description of your team's technology solution, in about 10 words.
-
-☐ Long description of your team’s solution (approximately 500 words)
-This is a longer description of your solution. In about 500 words, describe your solution in more detail. Include the real-world problem you identified, describe the technological solution you have created, and explain how it's an improvement over existing solutions. You can supply additional documentation in this source code repository that you link to as well.
-
-☐ Project development roadmap (.pdf, .png, .docx)
-Create a document or image that shows how mature your solution is today and how you would like to improve it in the future. This can include information on the business model, funding needs, and a sustainability plan. Here's an example from the 2018 Call for Code winner Project OWL: https://github.com/Call-for-Code/Project-Sample/blob/main/images/roadmap.jpg
--->
 
 ## 1. How to spin up a development server
 
@@ -188,6 +155,7 @@ pnpm install
 
 # Go to https://mapbox.com and get an API token.
 # Then, copy and paste the token to `.env.local` file.
+# Mapbox has a free tier of 50,000 map loads per month.
 cp ./.env.development ./.env.local
 
 # Run a development server.
@@ -224,8 +192,7 @@ docker compose up -d
 # ---------------------------------------------------------------------
 cd BeeMovr/docker
 git pull
-docker compose build --no-cache
-docker compose up --force-recreate -d
+docker compose build --no-cache && docker compose up --force-recreate -d
 ```
 
 <br>
