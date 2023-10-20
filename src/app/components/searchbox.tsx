@@ -2,7 +2,10 @@
 
 import { axiosFetcher } from '@/app/components/axios-swr-wrapper';
 import { ZOOM_LEVEL_TITLE } from '@/app/components/mapbox';
-import { isValidLngLat } from '@/app/v1/components/open-meteo-api';
+import {
+  MAX_DIGITS_COORDINATES,
+  isValidLngLat,
+} from '@/app/v1/components/open-meteo-api';
 import { ChangeEvent, FormEvent, useCallback, useState } from 'react';
 import { useMap } from 'react-map-gl';
 import useSWRImmutable from 'swr/immutable';
@@ -27,20 +30,35 @@ export default function Searchbox() {
   let searchValue_lng = '';
   let searchValue_lat = '';
   if (data) {
-    searchValue_lng = data['features'][0]['center'][0];
-    searchValue_lat = data['features'][0]['center'][1];
+    const MAX_DIGITS_COORDINATES_FOR_SEARCHES = 1;
+    searchValue_lng = data['features'][0]['center'][0].toFixed(
+      MAX_DIGITS_COORDINATES_FOR_SEARCHES
+    );
+    searchValue_lat = data['features'][0]['center'][1].toFixed(
+      MAX_DIGITS_COORDINATES_FOR_SEARCHES
+    );
 
     if (
       shouldFetch &&
       isValidLngLat({ api_lng: searchValue_lng, api_lat: searchValue_lat })
     ) {
+      const now_lngLat = mapMain?.getCenter();
       let duration_0 = 0;
       const duration_1 = 2300;
       const duration_2 = 4500;
       let timeout_1 = 0;
       let timeout_2 = duration_1 + 100;
 
-      if (mapMain?.getZoom() && mapMain?.getZoom() > ZOOM_LEVEL_TITLE + 6) {
+      if (
+        !(
+          now_lngLat?.lng.toFixed(MAX_DIGITS_COORDINATES_FOR_SEARCHES) ===
+            String(searchValue_lng) &&
+          now_lngLat?.lat.toFixed(MAX_DIGITS_COORDINATES_FOR_SEARCHES) ===
+            String(searchValue_lat)
+        ) &&
+        mapMain?.getZoom() &&
+        mapMain?.getZoom() > ZOOM_LEVEL_TITLE + 6
+      ) {
         duration_0 = 2300;
         timeout_1 = duration_0 + 100;
         timeout_2 = timeout_1 + duration_1 + 100;
