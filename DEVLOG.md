@@ -388,3 +388,5 @@ What other kinds of data analysis do beekeepers need?
 ### 2023-10-19
 
 - [Helpful public datasets we can use for predicting country-wide honey yield and colony loss](https://community.ibm.com/community/user/ai-datascience/blogs/susan-malaika/2020/02/21/call-for-code-useful-datasets)
+- [What is watsonx.ai?](https://mediacenter.ibm.com/media/Meet%20watsonx.ai/1_gs9c9o1w)
+- [What is watsonx.data?](https://mediacenter.ibm.com/media/watsonx.dataA+Insights+powered+by+generative+AI/1_g6o5vttd)

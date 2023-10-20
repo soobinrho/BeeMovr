@@ -94,8 +94,10 @@ export default function Searchbox() {
   );
 
   const onSubmit = useCallback(() => {
-    setShouldFetch(true);
-  }, []);
+    if (searchValue && searchValue?.length > 0) {
+      setShouldFetch(true);
+    }
+  }, [searchValue]);
 
   return (
     <div className='absolute start-0 z-10 ml-4 mt-6 flex w-[28%] flex-auto flex-grow translate-x-0 flex-row flex-nowrap items-center gap-0 pl-3 pt-1 sm:start-[50%] sm:ml-5 sm:mt-7 sm:translate-x-[-50%] sm:pt-0'>
