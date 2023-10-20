@@ -126,7 +126,7 @@ export default function Mapbox() {
     ]
   );
 
-  const onDblClick_mapMain = useCallback((e: MapMouseEvent) => {
+  const onClick_mapMain = useCallback((e: MapMouseEvent) => {
     const { lng, lat } = e.lngLat;
     const api_lng = lng.toFixed(MAX_DIGITS_COORDINATES);
     const api_lat = lat.toFixed(MAX_DIGITS_COORDINATES);
@@ -170,7 +170,7 @@ export default function Mapbox() {
           mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
           onMove={(e: ViewStateChangeEvent) => setViewport(e.viewState)}
           onIdle={onIdle_mapMain}
-          onDblClick={onDblClick_mapMain}
+          onClick={onClick_mapMain}
         >
           {markers}
         </Map>
