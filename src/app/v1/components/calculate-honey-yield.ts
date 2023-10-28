@@ -11,6 +11,7 @@ import {
   isValidLngLat,
   isValidYearMonth,
 } from '@/app/v1/components/open-meteo-api';
+import axios from 'axios';
 
 export interface IcalculateHoneyYield {
   api_lng: string;
@@ -96,7 +97,9 @@ export async function calculateHoneyYield(params: IcalculateHoneyYield) {
   // Check if the given coordinate is land or water.
   // Source:
   //   https://isitwater.com/
-  if (!(await isNotLand(params.api_lng, params.api_lat))) {
+  if (
+    !(await isNotLand({ api_lng: params.api_lng, api_lat: params.api_lat }))
+  ) {
     // Honey yield prediction model.
     // Source:
     //   "The Impact of Precipitation and Temperature on Honey Yield in
@@ -117,7 +120,7 @@ export async function calculateHoneyYield(params: IcalculateHoneyYield) {
         (0.465 * 0.074 + 2.28 * 0.012 + 9.679 * 0.04)
       : 0;
   }
-    
+
   const returnObject = {
     [api_response_key_honeyYield]: {
       [params.api_yearMonth]: `${prediction_honeyYield.toFixed(
@@ -157,29 +160,44 @@ function isWithinTemperatureLimit({
 }
 async function isNotLand({
   api_lng,
-  api_lat
+  api_lat,
 }: {
   api_lng: string;
   api_lat: string;
 }) {
-  // If the API credentials are not present as env variaes, let
-  // the operation bypass this check.
+  // If the API credentials are not present as env variables, let the
+  // operation bypass this check.
   if (
-    !process.env.ISITWATER_API_HOST ||
+    !process.env.NEXT_PUBLIC_ISITWATER_API_HOST ||
     !process.env.ISITWATER_API_KEY ||
-    process.env.ISITWATER_API_HOST === '' ||
+    process.env.NEXT_PUBLIC_ISITWATER_API_HOST === '' ||
     process.env.ISITWATER_API_KEY === ''
   ) {
     return false;
   }
 
-  // TODO: SWR ir regular axios fetch?
-  // Since this is server conponent, SWR might not be the best.
-  // Gotta do some research...
-  
-  if (false) {  // Check Isitwater API response.
-    return true;
-  }
+  const api_request_options = {
+    method: 'GET',
+    url: process.env.NEXT_PUBLIC_ISITWATER_API_HOST,
+    params: {
+      longitude: api_lng,
+      latitude: api_lat,
+    },
+    headers: {
+      'X-RapidAPI-Key': '7be8a963cdmshc8e78426726017fp1118d5jsn29de5dcea7e1',
+      'X-RapidAPI-Host': 'isitwater-com.p.rapidapi.com',
+    },
+  };
 
-  return false;
+  try {
+    const api_response = await axios.request(api_request_options);
+    if (api_response?.data['water'] === true) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (err) {
+    console.error(err);
+    return false;
+  }
 }
