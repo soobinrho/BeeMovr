@@ -184,7 +184,7 @@ async function isNotLand({
       latitude: api_lat,
     },
     headers: {
-      'X-RapidAPI-Key': '7be8a963cdmshc8e78426726017fp1118d5jsn29de5dcea7e1',
+      'X-RapidAPI-Key': process.env.ISITWATER_API_KEY,
       'X-RapidAPI-Host': 'isitwater-com.p.rapidapi.com',
     },
   };
