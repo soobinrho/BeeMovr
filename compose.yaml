@@ -16,7 +16,8 @@
 #
 # HOW TO RUN NODE.JS and REVERSE PROXY
 # @example
-# cd BeeMovr/docker
+# cd BeeMovr
+# cp .env.production .env.local
 # docker compose up -d
 #
 # HOW TO STOP BEEMOVR.COM
@@ -48,7 +49,7 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./letsencrypt:/etc/letsencrypt
+      - ./docker/letsencrypt:/etc/letsencrypt
 
 # "The presence of these objects is sufficient to define them"
 # Source:

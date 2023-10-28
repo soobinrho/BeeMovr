@@ -178,7 +178,8 @@ pnpm dev
 ssh <username>@<ip address>
 cd ~
 git clone https://github.com/soobinrho/BeeMovr
-cd BeeMovr/docker
+cd BeeMovr
+cp .env.production .env.local
 
 # For development purposes, just running `cd ./BeeMovr && pnpm dev` is
 # perfect, and in fact that is how we run a development server all the
@@ -191,7 +192,7 @@ docker compose up -d
 # ---------------------------------------------------------------------
 # How we re-deploy whenever we make changes to our code.
 # ---------------------------------------------------------------------
-cd BeeMovr/docker
+cd BeeMovr
 git pull
 docker compose build --no-cache && docker compose up --force-recreate -d
 ```
