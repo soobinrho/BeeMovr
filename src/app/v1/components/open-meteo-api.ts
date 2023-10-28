@@ -252,17 +252,20 @@ function parseOpenMeteo(params: IparseOpenMeteo) {
     const values = monthly_grouped_api_response[yearMonth];
     const values_length = monthly_grouped_api_response[yearMonth].length;
     if (params.api_type === 'precipitation_sum') {
-      // For monthly precipitation, find the sum of all daily
+      // For monthly precipitation, find the averave of all daily
       // precipitation values.
       let sum = 0;
+      let count = 0;
       for (let i = 0; i < values_length; i++) {
         const value = values[i];
         if (isValidNumber(value)) {
           sum += Number(value);
+          count += 1;
         }
       }
+      const average = sum / count;
       parsed_api_response[yearMonth] = String(
-        sum.toFixed(MAX_DIGITS_PRECIPITATION)
+        average.toFixed(MAX_DIGITS_PRECIPITATION)
       );
     } else if (params.api_type === 'temperature_2m_max') {
       // For monthly maximum temperature, find the maximum daily

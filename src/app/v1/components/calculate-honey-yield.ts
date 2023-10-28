@@ -109,14 +109,16 @@ export async function calculateHoneyYield(params: IcalculateHoneyYield) {
       minTemp: Number(api_response_minTemp[keys[3]]),
     })
       ? 60.596 +
-        0.001 * Number(api_response_precipitation[keys[3]]) * 10 +
-        -0.001 * Number(api_response_precipitation[keys[2]]) * 10 +
-        0.056 * Number(api_response_minTemp[keys[3]]) * 10 +
-        0.027 * Number(api_response_minTemp[keys[2]]) * 10 +
-        -0.027 * Number(api_response_minTemp[keys[0]]) * 10 +
-        -0.034 * Number(api_response_maxTemp[keys[3]]) * 10 +
-        0.012 * Number(api_response_maxTemp[keys[2]]) * 10 +
-        0.032 * Number(api_response_maxTemp[keys[0]]) * 10 +
+        0.001 * Number(api_response_precipitation[keys[0]]) +
+        -0.001 * Number(api_response_precipitation[keys[1]]) +
+        0.056 * Number(api_response_minTemp[keys[0]]) +
+        0.025 * Number(api_response_minTemp[keys[1]]) +
+        -0.01 * Number(api_response_minTemp[keys[2]]) +
+        -0.027 * Number(api_response_minTemp[keys[3]]) +
+        -0.034 * Number(api_response_maxTemp[keys[0]]) +
+        0.012 * Number(api_response_maxTemp[keys[1]]) +
+        -0.007 * Number(api_response_maxTemp[keys[2]]) +
+        0.032 * Number(api_response_maxTemp[keys[3]]) +
         (0.465 * 0.074 + 2.28 * 0.012 + 9.679 * 0.04)
       : 0;
   }
