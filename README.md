@@ -23,6 +23,7 @@ We can program."
 Keith Robert from the Valley Hive in California explained that beekeepers are sometimes forced to relocate their beehives - e.g. California drought - and they can't just move into any location.
 They need to find an area that has the highest survival rate and the best nectar availability for their colonies.
 That's how BeeMovr started.
+[[YouTube](https://youtu.be/Q76m2ZjPfSI?si=yi5HHsqS1kMIkJe_)]
 
 <br>
 
@@ -36,7 +37,7 @@ That's how BeeMovr started.
 
 ## Acknowledgement
 
-Special thanks to Keith Robert from [The Valley Hive](https://www.thevalleyhive.com/), our favorite beekeeper.
+Special thanks to Keith Robert from [The Valley Hive](https://www.thevalleyhive.com/), our favorite beekeeper, and John Nagro from Noreaster Group for giving us an unlimited access to [Isitwater API](https://isitwater.com/).
 
 Also, our work would not have been possible without the paper "[The Impact of Precipitation and Temperature on Honey Yield in the United States](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf)" (Hayes Kent Grogan, 2020, Auburn University).
 This paper is what made our core prediction model possible.
@@ -110,7 +111,7 @@ We therefore believe that the most important part of BeeMovr is to listen, under
 
 BeeMovr has been and will always be open-sourced and open to all beekeepers.
 If you're a beekeeper and have any suggestions or feature requests, please feel free to email us at &lt;workerbees@beemovr.com&gt;.
-Our program is up and online at [beemovr.com](https://beemovr.com) and we are Schaler Starks &lt;schaler@beemovr.com&gt;, Eric Gonzalez Duro &lt;eric@beemovr.com&gt;, Jasper Ha &lt;jasper@beemovr.com&gt;, and Soobin Rho &lt;soobin@beemovr.com&gt;.
+Our program is up and running at [beemovr.com](https://beemovr.com) and we are Schaler Starks &lt;schaler@beemovr.com&gt;, Eric Gonzalez Duro &lt;eric@beemovr.com&gt;, Jasper Ha &lt;jasper@beemovr.com&gt;, and Soobin Rho &lt;soobin@beemovr.com&gt;.
 If you share our goal to make a positive impact on environmental sustainability by helping beekeepers and their bees, you're welcome to join us.
 Feel free to make pull requests and contribute in any way you think is the best for helping beekeepers save their bees.
 

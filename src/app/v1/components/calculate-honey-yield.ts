@@ -91,26 +91,33 @@ export async function calculateHoneyYield(params: IcalculateHoneyYield) {
     keys.push(key);
   }
 
-  // Honey yield prediction model.
-  // Source:
-  //   "The Impact of Precipitation and Temperature on Honey Yield in
-  //   the United States." 2020. Auburn University. Hayes Kent Grogan.
-  const prediction_honeyYield = isWithinTemperatureLimit({
-    maxTemp: Number(api_response_maxTemp[keys[3]]),
-    minTemp: Number(api_response_minTemp[keys[3]]),
-  })
-    ? 60.596 +
-      0.001 * Number(api_response_precipitation[keys[3]]) * 10 +
-      -0.001 * Number(api_response_precipitation[keys[2]]) * 10 +
-      0.056 * Number(api_response_minTemp[keys[3]]) * 10 +
-      0.027 * Number(api_response_minTemp[keys[2]]) * 10 +
-      -0.027 * Number(api_response_minTemp[keys[0]]) * 10 +
-      -0.034 * Number(api_response_maxTemp[keys[3]]) * 10 +
-      0.012 * Number(api_response_maxTemp[keys[2]]) * 10 +
-      0.032 * Number(api_response_maxTemp[keys[0]]) * 10 +
-      (0.465 * 0.074 + 2.28 * 0.012 + 9.679 * 0.04)
-    : 0;
+  let prediction_honeyYield = 0;
 
+  // Check if the given coordinate is land or water.
+  // Source:
+  //   https://isitwater.com/
+  if (!(await isNotLand(params.api_lng, params.api_lat))) {
+    // Honey yield prediction model.
+    // Source:
+    //   "The Impact of Precipitation and Temperature on Honey Yield in
+    //   the United States." 2020. Auburn University. Hayes Kent Grogan.
+    prediction_honeyYield = isWithinTemperatureLimit({
+      maxTemp: Number(api_response_maxTemp[keys[3]]),
+      minTemp: Number(api_response_minTemp[keys[3]]),
+    })
+      ? 60.596 +
+        0.001 * Number(api_response_precipitation[keys[3]]) * 10 +
+        -0.001 * Number(api_response_precipitation[keys[2]]) * 10 +
+        0.056 * Number(api_response_minTemp[keys[3]]) * 10 +
+        0.027 * Number(api_response_minTemp[keys[2]]) * 10 +
+        -0.027 * Number(api_response_minTemp[keys[0]]) * 10 +
+        -0.034 * Number(api_response_maxTemp[keys[3]]) * 10 +
+        0.012 * Number(api_response_maxTemp[keys[2]]) * 10 +
+        0.032 * Number(api_response_maxTemp[keys[0]]) * 10 +
+        (0.465 * 0.074 + 2.28 * 0.012 + 9.679 * 0.04)
+      : 0;
+  }
+    
   const returnObject = {
     [api_response_key_honeyYield]: {
       [params.api_yearMonth]: `${prediction_honeyYield.toFixed(
@@ -147,4 +154,32 @@ function isWithinTemperatureLimit({
   } else {
     return true;
   }
+}
+async function isNotLand({
+  api_lng,
+  api_lat
+}: {
+  api_lng: string;
+  api_lat: string;
+}) {
+  // If the API credentials are not present as env variaes, let
+  // the operation bypass this check.
+  if (
+    !process.env.ISITWATER_API_HOST ||
+    !process.env.ISITWATER_API_KEY ||
+    process.env.ISITWATER_API_HOST === '' ||
+    process.env.ISITWATER_API_KEY === ''
+  ) {
+    return false;
+  }
+
+  // TODO: SWR ir regular axios fetch?
+  // Since this is server conponent, SWR might not be the best.
+  // Gotta do some research...
+  
+  if (false) {  // Check Isitwater API response.
+    return true;
+  }
+
+  return false;
 }

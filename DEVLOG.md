@@ -187,11 +187,11 @@ Plus, I read about meta data generation functions that will greatly improve SEO:
 
 Also, "to reduce the Client JavaScript bundle size, we recommend moving Client Components down your component tree." If a child component doesn't ready have a `'use client'` directive, create a separate `.tsx` fole wrapping around that component with the `'use client'` directive. [[Source](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#moving-client-components-down-the-tree)]
 
-`yarn build` (which by the way is short for `yarn run build` creates optimized deployment files:
+`pnpm build` creates optimized deployment files:
 
 - [Next.js build directory overview](https://nextjs.org/docs/pages/building-your-application/deploying)
 - [SIGTERM handling in Next.js](https://nextjs.org/docs/pages/building-your-application/deploying#manual-graceful-shutdowns)
-- [How to deploy with `yarn run build` and `yarn run start`](https://nextjs.org/docs/pages/building-your-application/deploying#nodejs-server)
+- [How to deploy prod](https://nextjs.org/docs/pages/building-your-application/deploying#nodejs-server)
 - [Next.js production Dockerfile example](https://github.com/vercel/next.js/tree/canary/examples/with-docker#in-existing-projects)
 - [Nginx as reverse proxy for Node](https://betterstack.com/community/guides/scaling-nodejs/nodejs-reverse-proxy-nginx/)
 
@@ -224,16 +224,11 @@ We decided to use Jest for unit testing.
 # Set up Jest for unit testing.
 # Source:
 #   https://kulshekhar.github.io/ts-jest/docs/getting-started/installation/#jest-config-file
-yarn add --dev jest ts-jest typescript @types/jest
-yarn ts-jest config:init
-
-# Install mock objects for Node.js HTTP requests, required for API endpoint testing.
-# Source:
-#   https://medium.com/@zachshallbetter/unit-test-next-js-api-routes-with-typescript-longer-version-a59ceb261b1f
-yarn add --dev node-mocks-http
+pnpm add -D jest ts-jest @types/jest
+pnpm ts-jest config:init
 
 # How to run tests.
-yarn test
+pnpm test
 ```
 
 <br>
@@ -393,3 +388,9 @@ What other kinds of data analysis do beekeepers need?
 - [Helpful public datasets we can use for predicting country-wide honey yield and colony loss](https://community.ibm.com/community/user/ai-datascience/blogs/susan-malaika/2020/02/21/call-for-code-useful-datasets)
 - [What is watsonx.ai?](https://mediacenter.ibm.com/media/Meet%20watsonx.ai/1_gs9c9o1w)
 - [What is watsonx.data?](https://mediacenter.ibm.com/media/watsonx.dataA+Insights+powered+by+generative+AI/1_g6o5vttd)
+
+<br>
+
+### 2023-10-27
+
+- [How to make README.MD more accessible](https://github.blog/2023-10-26-5-tips-for-making-your-github-profile-page-accessible/)
