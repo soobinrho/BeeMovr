@@ -394,3 +394,20 @@ What other kinds of data analysis do beekeepers need?
 ### 2023-10-27
 
 - [How to make README.MD more accessible](https://github.blog/2023-10-26-5-tips-for-making-your-github-profile-page-accessible/)
+
+<br>
+
+### 2023-10-28
+
+- [PRISM Historical Weather Datasets](https://prism.oregonstate.edu/6month/)
+- [Next.js 14 Release blog post](https://next-site-git-next-14.vercel.sh/blog/next-14)
+- [Using clsx for conditionals in className](https://nextjs.org/learn/dashboard-app/css-styling#using-the-clsx-library-to-toggle-class-names)
+- [layout.tsx good example. "One benefit of using layout is that on navigation, only the page components update while the layout won’t re-render. In Next.js, this is called partial rendering"](https://nextjs.org/learn/dashboard-app/creating-layouts-and-pages#creating-the-dashboard-layout)
+- [Databse connection in Next.js good example](https://nextjs.org/learn/dashboard-app/setting-up-your-database#exploring-your-database)
+- [Use parellel data fetching to avoid data request waterfall](https://nextjs.org/learn/dashboard-app/fetching-data#parallel-data-fetching)
+- [In dynamic rendering, the slowest data fetch slows down the entire page rendering. So, use streaming](https://nextjs.org/learn/dashboard-app/streaming)
+- [How to update the url without rerendering](https://nextjs.org/learn/dashboard-app/adding-search-and-pagination#2-update-the-url-with-the-search-params)
+- [Super cool server actions, which is a new feature in Next.js 14](https://nextjs.org/learn/dashboard-app/mutating-data)
+- [try/catch and notFound.tsx best practices](https://nextjs.org/learn/dashboard-app/error-handling#handling-all-errors-with-errortsx)
+- [Increasing accessibility (forms)](https://nextjs.org/learn/dashboard-app/improving-accessibility#improving-form-accessibility)
+- [NextAuth.js best practices](https://nextjs.org/learn/dashboard-app/adding-authentication#setting-up-nextauthjs)

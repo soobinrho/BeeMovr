@@ -252,7 +252,7 @@ function parseOpenMeteo(params: IparseOpenMeteo) {
     const values = monthly_grouped_api_response[yearMonth];
     const values_length = monthly_grouped_api_response[yearMonth].length;
     if (params.api_type === 'precipitation_sum') {
-      // For monthly precipitation, find the averave of all daily
+      // For monthly precipitation, find the average of all daily
       // precipitation values.
       let sum = 0;
       let count = 0;
