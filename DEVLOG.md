@@ -411,3 +411,9 @@ What other kinds of data analysis do beekeepers need?
 - [try/catch and notFound.tsx best practices](https://nextjs.org/learn/dashboard-app/error-handling#handling-all-errors-with-errortsx)
 - [Increasing accessibility (forms)](https://nextjs.org/learn/dashboard-app/improving-accessibility#improving-form-accessibility)
 - [NextAuth.js best practices](https://nextjs.org/learn/dashboard-app/adding-authentication#setting-up-nextauthjs)
+
+<br>
+
+### 2023-10-29
+
+- [Introduction to Linear Algebra](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://terrytao.files.wordpress.com/2016/12/linear-algebra-notes.pdf&ved=2ahUKEwjix4bzypyCAxXmJUQIHSgyAzIQFnoECA4QAQ&usg=AOvVaw2-4_1MME94qz0voAMm3jeW)

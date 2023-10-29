@@ -154,7 +154,7 @@ export function InformationConsoleData({
           <b className='pr-2 font-semibold'>Honey Yield Prediction: </b>
           Loading...
           <br />
-          <b className='pr-2 font-semibold'>Monthly Precipitation: </b>
+          <b className='pr-2 font-semibold'>Average Precipitation: </b>
           Loading...
           <br />
           <b className='pr-2 font-semibold'>Maximum Temperature: </b>
@@ -172,7 +172,7 @@ export function InformationConsoleData({
         <p>
           <b className='pr-2 font-semibold'>Honey Yield Prediction: </b>
           {honeyYield} pounds per colony <br />
-          <b className='pr-2 font-semibold'>Monthly Precipitation: </b>
+          <b className='pr-2 font-semibold'>Average Precipitation: </b>
           {precipitation}mm
           <br />
           <b className='pr-2 font-semibold'>Maximum Temperature: </b>
@@ -185,7 +185,7 @@ export function InformationConsoleData({
         <div>
           <b className='pr-2 font-semibold'>Honey Yield Prediction: </b>
           <br />
-          <b className='pr-2 font-semibold'>Monthly Precipitation: </b>
+          <b className='pr-2 font-semibold'>Average Precipitation: </b>
           <br />
           <b className='pr-2 font-semibold'>Maximum Temperature: </b>
           <br />
