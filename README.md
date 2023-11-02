@@ -37,7 +37,7 @@ That's how BeeMovr started.
 
 ## Acknowledgement
 
-Special thanks to Keith Robert from [The Valley Hive](https://www.thevalleyhive.com/), our favorite beekeeper, and John Nagro from [Isitwater API](https://isitwater.com/) for supporting us.
+Special thanks to Keith Robert from [The Valley Hive](https://www.thevalleyhive.com/), our favorite beekeeper, and John Nagro from [Isitwater API](https://isitwater.com/) for supporting us through API credits.
 
 Also, our work would not have been possible without the paper "[The Impact of Precipitation and Temperature on Honey Yield in the United States](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf)" (Hayes Kent Grogan, 2020, Auburn University).
 This paper is what made our core prediction model possible.
