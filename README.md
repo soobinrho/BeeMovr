@@ -125,8 +125,8 @@ We are trying to improve our core prediction models by integrating `watsonx.ai`,
 
 **_How will you support this project going forward?_**<br>
 
-We designed BeeMovr to be as self-sustainable as possible by minimizing the operational costs.
-We'll maintain it as a free software - hosted at [beemovr.com](https://beemovr.com) - with open-source community.
+We designed BeeMovr to be as self-sustainable as possible by minimizing the [operational costs](https://github.com/soobinrho/BeeMovr/blob/main/FINANCIALS.md).
+We'll maintain it as a free, open-source software.
 The historical weather data API from Open Meteo we use for honey-yield prediction is free thanks to Open Meteo's generosity, as well as OpenStreetMap's support for open-source community and Mapbox providing 50,000 map loads per month for free.
 
 Yes, we'll have to temporarily stop our website if the map loads go over 50,000 and wait until the quota resets the next month, but we anticipate this will be fine with the use cases of our users, since doing this allows our program to be completely free for everyone.
