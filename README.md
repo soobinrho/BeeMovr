@@ -42,11 +42,11 @@ Special thanks to Keith Robert from [The Valley Hive](https://www.thevalleyhive.
 Also, our work would not have been possible without the paper "[The Impact of Precipitation and Temperature on Honey Yield in the United States](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf)" (Hayes Kent Grogan, 2020, Auburn University).
 This paper is what made our core prediction model possible.
 
-> BeeMovr is a [HackMIT](https://github.com/soobinrho/BeeMovr/blob/main/DEVLOG.md#2023-09-17) and [Call for Code](https://developer.ibm.com/callforcode/) project.
+> BeeMovr started as a [HackMIT](https://github.com/soobinrho/BeeMovr/blob/main/DEVLOG.md#2023-09-17) project.
 
 <br>
 
-## Call for Code
+## Context
 
 ![Architecture diagram of BeeMovr](https://github.com/soobinrho/BeeMovr/assets/19341857/7bba3368-acb9-4ce4-90c5-167f158d5edf)
 
@@ -57,16 +57,10 @@ This paper is what made our core prediction model possible.
 | **Deployment**    | Containerized with [Docker](https://www.docker.com/) + server runtime with [Node.js](https://nodejs.org/)                                                                                   |
 | **Front-end**     | [Next.js client-side components](https://nextjs.org/docs/app/building-your-application/rendering/client-components) + OpenStreetMap interactivity from [Mapbox](https://www.mapbox.com/)    |
 | **Back-end**      | [Next.js server-side components](https://nextjs.org/docs/app/building-your-application/rendering/server-components) + real-time weather data from [Open Meteo API](https://open-meteo.com/) |
-| **Experimental**  | [IBM Cloud PostgresSQL](https://www.ibm.com/cloud/databases-for-postgresql) + [watsonx.ai](https://www.ibm.com/products/watsonx-ai)                                                         |
 
 <br>
 
 **_The issue we are addressing_**<br>
-
-```
-☐ Brief description of "The issue we are hoping to solve" (2-3 sentences)
-This should be a short description, 2-3 sentences in length, of the specific sustainability problem your solution is meant to address.
-```
 
 Whenever beekeepers need to relocate their colonies, they need to find an area that has the higest survival rate and the maximum potential for honey yield.
 BeeMovr allows our users (beekeepers ♥) to do exactly that.
@@ -75,35 +69,16 @@ BeeMovr allows our users (beekeepers ♥) to do exactly that.
 
 **_What BeeMovr does_**<br>
 
-```
-☐ Description of "How our technology solution can help" (approximately 10 words)
-This is where you will give a short description of your team's technology solution, in about 10 words.
-```
-
 We can calculate honey-yield prediction value of any given coordinates.
 
 <br>
 
 **_The idea behind BeeMovr_**<br>
 
-```
-☐ Long description of your team’s solution (approximately 500 words)
-This is a longer description of your solution.
-In about 500 words, describe your solution in more detail.
-Include the real-world problem you identified, describe the technological solution you have created, and explain how it's an improvement over existing solutions.
-You can supply additional documentation in this source code repository that you link to as well.
-```
-
 BeeMovr utilizes real-time precipitation, maximum temperature, and minimum temperature data from Open Meteo API to calculate prediction of the maximum possible honey yield value of any given coordinates on a map based on [Hayes Kent Grogan's paper](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf).
 Our project seeks to provide beekeepers with better information about ideal pollinator conditions near them in order to increase colony survival rates and reduce uncertainty.
 We focused on researching the most accurate model possible and we now use a linear regression model with the factors of precipitation, maximum temperature, and minimum temperature.
 Further, we plan to use watsonx.data to pull combined data from USDA (U.S. Department of Agriculture) and NASS (National Agricultural Statistics Service) for improved prediction models.
-
-We're also trying to increase prediction accuracy by utilizing colony-specific demographic data in our prediction model, as colony demographic data such as the age of the queen were found to be statistically significant, as reported in Grogan's 2020 paper.
-In our predictive model API endpoints, we currently rely on Next.js built-in request memorization caching to avoid duplicate API calls.
-This process is fairly efficient.
-However, we believe the data fetching process can be improved by implementing IBM Cloud PostgresSQL to cache and store all precipitation & temperature requests `{ key: latLng, values: [precipitation, maxTemp, minTemp] }`.
-These data, in turn, will be used in conjunction with watsonx.ai to improve our prediction models, which we will host at [beemovr.com/watsonx](https://beemovr.com/watsonx)
 
 We envision BeeMovr to become the de-facto map for helping beekeepers make an informed decision about what's best for their bees.
 We aim to create _the_ beekeeper's map, the first feature of which is maximum potential honey yield prediction, but as we iterate with our beekeepers, we'll listen to what their (and their bees') needs are, and we'll incrementally add those features.
@@ -111,15 +86,6 @@ We therefore believe that the most important part of BeeMovr is to listen, under
 
 BeeMovr has been and will always be open-sourced and open to all beekeepers.
 If you're a beekeeper and have any suggestions or feature requests, please feel free to email us at &lt;workerbees@beemovr.com&gt;.
-Our program is up and running at [beemovr.com](https://beemovr.com) and we are Schaler Starks &lt;schaler@beemovr.com&gt;, Eric Gonzalez Duro &lt;eric@beemovr.com&gt;, Jasper Ha &lt;jasper@beemovr.com&gt;, and Soobin Rho &lt;soobin@beemovr.com&gt;.
-If you share our goal to make a positive impact on environmental sustainability by helping beekeepers and their bees, you're welcome to join us.
-Feel free to make pull requests and contribute in any way you think is the best for helping beekeepers save their bees.
-
-![Timeline of BeeMovr development](https://github.com/soobinrho/BeeMovr/assets/19341857/72474594-7a01-4da1-bcfc-7c45bed963f7)
-
-**_IBM AI Services_**<br>
-
-We are trying to improve our core prediction models by integrating `watsonx.ai`, `watsonx.data`, `IBM Cloud PostgresSQL`, and `Watson Studio` at [beemovr.com/watsonx](https://beemovr.com/watsonx)
 
 <br>
 

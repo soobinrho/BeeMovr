@@ -29,7 +29,6 @@ Both Schaler and I (Soobin) got into HackMIT.
 We decided this is the perfect time to create the beekeeper's map to address the problem Keith explained to us a few months ago.
 We will create a map that can calculate the nectar availability of any given point on the map.
 We promised Keith that we'll make it open source and therefore available for all beekeepers.
-We'll license it with MIT License, since we'll create it at HackMIT hahaha (and later we made our project dual licnesed with Apache 2.0 and MIT License, since we decided to participate in 2023 Call for Code).
 
 <br>
 
@@ -152,6 +151,12 @@ ts-node <filename>
 
 # How to add a development dependency.
 pnpm add -D <package name>
+
+# How to remove a dependency.
+pnpm remove <package name>
+
+# How to update all packages.
+pnpm up --latest
 ```
 
 Today, I read [Next.js routing fundamentals](https://nextjs.org/docs/app/building-your-application/routing), [REST API URI naming conventions](https://restfulapi.net/resource-naming/), [TSDoc specifications](https://tsdoc.org/), and [JavaScript promises, async, and await](https://javascript.info/async).
@@ -185,7 +190,7 @@ Plus, I read about meta data generation functions that will greatly improve SEO:
 - [The 404 page and the 500 page](https://nextjs.org/docs/pages/building-your-application/routing/custom-error#customizing-the-404-page)
 - [loading.ts](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming)
 
-Also, "to reduce the Client JavaScript bundle size, we recommend moving Client Components down your component tree." If a child component doesn't ready have a `'use client'` directive, create a separate `.tsx` fole wrapping around that component with the `'use client'` directive. [[Source](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#moving-client-components-down-the-tree)]
+Also, "to reduce the Client JavaScript bundle size, we recommend moving Client Components down your component tree." If a child component doesn't ready have a `'use client'` directive, create a separate `.tsx` file wrapping around that component with the `'use client'` directive. [[Source](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#moving-client-components-down-the-tree)]
 
 `pnpm build` creates optimized deployment files:
 
@@ -252,12 +257,6 @@ A lot of the UI will change compared to our MVP.
 Whereas our MVP had only one basic functionality, we're now adding an information console at the bottom to see all of the past honey yield prediction values the user clicked on.
 Previously, it was able to show only one value at a time.
 
-We're also building a `/watsonx` route where all datapoints that the user clicked can then be extrapolated using watsonx.ai and exported into graphs.
-When the user first loads the page, the browser will first send a request to our server to run the watsonx.ai code for the machine learning.
-The browser will then receive this data, and after that all modifications to the data and the graphs will be made client-side, so that we minimize duplicate API calls to both our server and watsonx.
-This will take us a few months, but we'll be able to complete the page layout with non-functional placeholders.
-After we finish building our backbone, the placeholders will be replaced with actual functional components.
-
 One of the judges at HackMIT gave us this really good feedback that it will be cool to show basic statistics that are useful for beekeepers.
 Before, we showed only the honey yield prediction value.
 Now, we'll also show basic but crucial stats, such as precipitation.
@@ -289,7 +288,7 @@ Also, these are some articles I'll need to reference when creating schemas with 
 
 ### 2023-10-03
 
-- For the `/watsonx` route, consider [using Markdown](https://nextjs.org/learn/basics/dynamic-routes/render-markdown) with graphs generated as .svg or .png files.
+- Consider [using Markdown](https://nextjs.org/learn/basics/dynamic-routes/render-markdown) with graphs generated as .svg or .png files.
 - [Mapbox Getting Started](https://docs.mapbox.com/help/getting-started/web-apps/)
 - [Mapbox Token Management Security Best Practices](https://docs.mapbox.com/help/troubleshooting/how-to-use-mapbox-securely/#access-tokens)
 - [Mapbox XSS Prevention (Content Security Policy)](https://docs.mapbox.com/mapbox-gl-js/guides/browsers-and-testing/#csp-directives)
@@ -302,7 +301,7 @@ Also, these are some articles I'll need to reference when creating schemas with 
 
 - [Tailwind CSS Buttons Hover, Focus, and Other States](https://tailwindcss.com/docs/hover-focus-and-other-states)
 - [MapLibre is an open-source fork of Mapbox](https://maplibre.org/)
-- [How to make some divs go away using conditonal rendering](https://stackoverflow.com/a/71641621)
+- [How to make some divs go away using conditional rendering](https://stackoverflow.com/a/71641621)
 - [Conditional Rendering Best Practices](https://medium.com/@brandonlostboy/build-it-better-next-js-conditional-rendering-be5617431cef)
 
 <br>
@@ -332,7 +331,7 @@ Also, these are some articles I'll need to reference when creating schemas with 
 
 ### 2023-10-12
 
-- I think we can share the main route (`/`) data with the `/watsonx` page using [Next.js Link Router](https://stackoverflow.com/questions/52238637/react-router-how-to-pass-data-between-pages-in-react)
+- I think we can share the main route (`/`) data with other pages using [Next.js Link Router](https://stackoverflow.com/questions/52238637/react-router-how-to-pass-data-between-pages-in-react)
 - [How rendering works in React](https://react.dev/learn/render-and-commit)
 - [How to write pure React components](https://react.dev/learn/keeping-components-pure)
 - [Why `e.preventDefault()` is needed](https://react.dev/learn/responding-to-events#preventing-default-behavior)
@@ -368,26 +367,12 @@ You “use” React features at the top of your component similar to how you “
 
 <br>
 
-### 2023-10-18
-
-I just remembered that we can get data of the total honey yield of the entire country.
-Reminder for myself to go check my notes from last year's _Intro to GIS_ class, in which we used data from - I think - USDA.
-With these, we'll be able to take note on the trends of honey yield, and also make predictions on future trends.
-These features won't require interactivity from the user.
-Rather, a mere server-side script will suffice, i.e. a script that runs only once in a while and saves the data and graph plots as local files, and the client-side components of `https://beemovr.com/watsonx` can serve those as static files.
-These, in turn, will hopefully prove to be an interesting insight to beekeepers.
-What other kinds of data analysis do beekeepers need?
-
-<br>
-
 ### 2023-10-19
 
 - [USDA Honey Bee Surveys and Reports](https://www.nass.usda.gov/surveys/Guide_to_NASS_Surveys/Bee_and_Honey/)
 - [USDA "HONEY, BEE COLONIES - LOSS, DEADOUT, MEASURED IN COLONIES" (2015-2022)](https://quickstats.nass.usda.gov/results/96060AFB-43C7-33D7-868A-788D2E45608B)
 - [USDA "HONEY - PRODUCTION, MEASURED IN LB / COLONY" (2013-2022)](https://quickstats.nass.usda.gov/results/E518BE2D-6EC7-33B5-B21E-13B92ADD51F8)
 - [Helpful public datasets we can use for predicting country-wide honey yield and colony loss](https://community.ibm.com/community/user/ai-datascience/blogs/susan-malaika/2020/02/21/call-for-code-useful-datasets)
-- [What is watsonx.ai?](https://mediacenter.ibm.com/media/Meet%20watsonx.ai/1_gs9c9o1w)
-- [What is watsonx.data?](https://mediacenter.ibm.com/media/watsonx.dataA+Insights+powered+by+generative+AI/1_g6o5vttd)
 
 <br>
 
@@ -403,8 +388,8 @@ What other kinds of data analysis do beekeepers need?
 - [Next.js 14 Release blog post](https://next-site-git-next-14.vercel.sh/blog/next-14)
 - [Using clsx for conditionals in className](https://nextjs.org/learn/dashboard-app/css-styling#using-the-clsx-library-to-toggle-class-names)
 - [layout.tsx good example. "One benefit of using layout is that on navigation, only the page components update while the layout won’t re-render. In Next.js, this is called partial rendering"](https://nextjs.org/learn/dashboard-app/creating-layouts-and-pages#creating-the-dashboard-layout)
-- [Databse connection in Next.js good example](https://nextjs.org/learn/dashboard-app/setting-up-your-database#exploring-your-database)
-- [Use parellel data fetching to avoid data request waterfall](https://nextjs.org/learn/dashboard-app/fetching-data#parallel-data-fetching)
+- [Database connection in Next.js good example](https://nextjs.org/learn/dashboard-app/setting-up-your-database#exploring-your-database)
+- [Use parallel data fetching to avoid data request waterfall](https://nextjs.org/learn/dashboard-app/fetching-data#parallel-data-fetching)
 - [In dynamic rendering, the slowest data fetch slows down the entire page rendering. So, use streaming](https://nextjs.org/learn/dashboard-app/streaming)
 - [How to update the url without rerendering](https://nextjs.org/learn/dashboard-app/adding-search-and-pagination#2-update-the-url-with-the-search-params)
 - [Super cool server actions, which is a new feature in Next.js 14](https://nextjs.org/learn/dashboard-app/mutating-data)
