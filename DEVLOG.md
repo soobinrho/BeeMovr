@@ -29,7 +29,7 @@ Both Schaler and I (Soobin) got into HackMIT.
 We decided this is the perfect time to create the beekeeper's map to address the problem Keith explained to us a few months ago.
 We will create a map that can calculate the nectar availability of any given point on the map.
 We promised Keith that we'll make it open source and therefore available for all beekeepers.
-We'll license it with MIT License, since we'll create it at HackMIT hahaha (and later we made our project dual licnesed with Apache 2.0 and MIT License, since we decided to participate in 2023 Call for Code).
+We'll license it with MIT License, since we'll create it at HackMIT hahaha (and later we made our project dual licensed with Apache 2.0 and MIT License, since we decided to participate in 2023 Call for Code).
 
 <br>
 
@@ -185,7 +185,7 @@ Plus, I read about meta data generation functions that will greatly improve SEO:
 - [The 404 page and the 500 page](https://nextjs.org/docs/pages/building-your-application/routing/custom-error#customizing-the-404-page)
 - [loading.ts](https://nextjs.org/docs/app/building-your-application/routing/loading-ui-and-streaming)
 
-Also, "to reduce the Client JavaScript bundle size, we recommend moving Client Components down your component tree." If a child component doesn't ready have a `'use client'` directive, create a separate `.tsx` fole wrapping around that component with the `'use client'` directive. [[Source](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#moving-client-components-down-the-tree)]
+Also, "to reduce the Client JavaScript bundle size, we recommend moving Client Components down your component tree." If a child component doesn't ready have a `'use client'` directive, create a separate `.tsx` file wrapping around that component with the `'use client'` directive. [[Source](https://nextjs.org/docs/app/building-your-application/rendering/composition-patterns#moving-client-components-down-the-tree)]
 
 `pnpm build` creates optimized deployment files:
 
@@ -302,7 +302,7 @@ Also, these are some articles I'll need to reference when creating schemas with 
 
 - [Tailwind CSS Buttons Hover, Focus, and Other States](https://tailwindcss.com/docs/hover-focus-and-other-states)
 - [MapLibre is an open-source fork of Mapbox](https://maplibre.org/)
-- [How to make some divs go away using conditonal rendering](https://stackoverflow.com/a/71641621)
+- [How to make some divs go away using conditional rendering](https://stackoverflow.com/a/71641621)
 - [Conditional Rendering Best Practices](https://medium.com/@brandonlostboy/build-it-better-next-js-conditional-rendering-be5617431cef)
 
 <br>
@@ -403,8 +403,8 @@ What other kinds of data analysis do beekeepers need?
 - [Next.js 14 Release blog post](https://next-site-git-next-14.vercel.sh/blog/next-14)
 - [Using clsx for conditionals in className](https://nextjs.org/learn/dashboard-app/css-styling#using-the-clsx-library-to-toggle-class-names)
 - [layout.tsx good example. "One benefit of using layout is that on navigation, only the page components update while the layout won’t re-render. In Next.js, this is called partial rendering"](https://nextjs.org/learn/dashboard-app/creating-layouts-and-pages#creating-the-dashboard-layout)
-- [Databse connection in Next.js good example](https://nextjs.org/learn/dashboard-app/setting-up-your-database#exploring-your-database)
-- [Use parellel data fetching to avoid data request waterfall](https://nextjs.org/learn/dashboard-app/fetching-data#parallel-data-fetching)
+- [Database connection in Next.js good example](https://nextjs.org/learn/dashboard-app/setting-up-your-database#exploring-your-database)
+- [Use parallel data fetching to avoid data request waterfall](https://nextjs.org/learn/dashboard-app/fetching-data#parallel-data-fetching)
 - [In dynamic rendering, the slowest data fetch slows down the entire page rendering. So, use streaming](https://nextjs.org/learn/dashboard-app/streaming)
 - [How to update the url without rerendering](https://nextjs.org/learn/dashboard-app/adding-search-and-pagination#2-update-the-url-with-the-search-params)
 - [Super cool server actions, which is a new feature in Next.js 14](https://nextjs.org/learn/dashboard-app/mutating-data)
