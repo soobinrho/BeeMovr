@@ -251,12 +251,6 @@ A lot of the UI will change compared to our MVP.
 Whereas our MVP had only one basic functionality, we're now adding an information console at the bottom to see all of the past honey yield prediction values the user clicked on.
 Previously, it was able to show only one value at a time.
 
-We're also building a `/watsonx` route where all datapoints that the user clicked can then be extrapolated using watsonx.ai and exported into graphs.
-When the user first loads the page, the browser will first send a request to our server to run the watsonx.ai code for the machine learning.
-The browser will then receive this data, and after that all modifications to the data and the graphs will be made client-side, so that we minimize duplicate API calls to both our server and watsonx.
-This will take us a few months, but we'll be able to complete the page layout with non-functional placeholders.
-After we finish building our backbone, the placeholders will be replaced with actual functional components.
-
 One of the judges at HackMIT gave us this really good feedback that it will be cool to show basic statistics that are useful for beekeepers.
 Before, we showed only the honey yield prediction value.
 Now, we'll also show basic but crucial stats, such as precipitation.
@@ -288,7 +282,7 @@ Also, these are some articles I'll need to reference when creating schemas with 
 
 ### 2023-10-03
 
-- For the `/watsonx` route, consider [using Markdown](https://nextjs.org/learn/basics/dynamic-routes/render-markdown) with graphs generated as .svg or .png files.
+- Consider [using Markdown](https://nextjs.org/learn/basics/dynamic-routes/render-markdown) with graphs generated as .svg or .png files.
 - [Mapbox Getting Started](https://docs.mapbox.com/help/getting-started/web-apps/)
 - [Mapbox Token Management Security Best Practices](https://docs.mapbox.com/help/troubleshooting/how-to-use-mapbox-securely/#access-tokens)
 - [Mapbox XSS Prevention (Content Security Policy)](https://docs.mapbox.com/mapbox-gl-js/guides/browsers-and-testing/#csp-directives)
@@ -331,7 +325,7 @@ Also, these are some articles I'll need to reference when creating schemas with 
 
 ### 2023-10-12
 
-- I think we can share the main route (`/`) data with the `/watsonx` page using [Next.js Link Router](https://stackoverflow.com/questions/52238637/react-router-how-to-pass-data-between-pages-in-react)
+- I think we can share the main route (`/`) data with other pages using [Next.js Link Router](https://stackoverflow.com/questions/52238637/react-router-how-to-pass-data-between-pages-in-react)
 - [How rendering works in React](https://react.dev/learn/render-and-commit)
 - [How to write pure React components](https://react.dev/learn/keeping-components-pure)
 - [Why `e.preventDefault()` is needed](https://react.dev/learn/responding-to-events#preventing-default-behavior)
@@ -385,8 +379,6 @@ What other kinds of data analysis do beekeepers need?
 - [USDA "HONEY, BEE COLONIES - LOSS, DEADOUT, MEASURED IN COLONIES" (2015-2022)](https://quickstats.nass.usda.gov/results/96060AFB-43C7-33D7-868A-788D2E45608B)
 - [USDA "HONEY - PRODUCTION, MEASURED IN LB / COLONY" (2013-2022)](https://quickstats.nass.usda.gov/results/E518BE2D-6EC7-33B5-B21E-13B92ADD51F8)
 - [Helpful public datasets we can use for predicting country-wide honey yield and colony loss](https://community.ibm.com/community/user/ai-datascience/blogs/susan-malaika/2020/02/21/call-for-code-useful-datasets)
-- [What is watsonx.ai?](https://mediacenter.ibm.com/media/Meet%20watsonx.ai/1_gs9c9o1w)
-- [What is watsonx.data?](https://mediacenter.ibm.com/media/watsonx.dataA+Insights+powered+by+generative+AI/1_g6o5vttd)
 
 <br>
 
