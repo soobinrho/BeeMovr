@@ -1,6 +1,6 @@
 ## Dev log
 
-#### 2023-02-23
+### 2023-02-23
 
 All of this began because of helplessness in a way.
 We wanted to help the environment in any way we can because - well, you know - the earth doesn't seem to be doing too well.
@@ -19,7 +19,7 @@ He explained, "creating a map that can calculate the nectar availability of any 
 
 <br>
 
-#### 2023-07-31
+### 2023-07-31
 
 ```
 [HackMIT] Welcome to HackMIT 2023! 🎈🎉
@@ -32,7 +32,7 @@ We promised Keith that we'll make it open source and therefore available for all
 
 <br>
 
-#### 2023-08-21
+### 2023-08-21
 
 ```
 Hi Soobin,
@@ -51,7 +51,7 @@ And yes, he built the majority of our MVP during the 48 hours of HackMIT, so he 
 
 <br>
 
-#### 2023-09-16
+### 2023-09-16
 
 Schaler and I were waiting patiently at the MIT athletic center for the HackMIT to begin.
 It was going to start at 10AM, and it was around 9AM.
@@ -64,7 +64,7 @@ Schaler, Eric, Jasper, and I, all of us turned out to have the best team chemist
 
 <br>
 
-#### 2023-09-17
+### 2023-09-17
 
 We worked hard for the weekend-long hackathon.
 We worked on our project, which by the way we named BeeMovr, until 1AM and continued til 5PM the next day.
@@ -105,7 +105,7 @@ Plus, here are some pictures of us at HackMIT:
 <br>
 <br>
 
-#### 2023-09-24
+### 2023-09-24
 
 The MVP was good and all, but we decided to [throw away the first version](https://news.ycombinator.com/item?id=37003910) of BeeMovr and recreate.
 [Leigh Halliday's YouTube video on Next.js and Mapbox](https://youtu.be/sZfUXVSor-k?si=AFo9qOFzs4eH98fP) was incredibly helpful.
@@ -163,7 +163,7 @@ Today, I read [Next.js routing fundamentals](https://nextjs.org/docs/app/buildin
 
 <br>
 
-#### 2023-09-26
+### 2023-09-26
 
 I tried to get a deeper understanding of how Next.js works by reading:
 
@@ -217,7 +217,7 @@ For security, I read:
 
 <br>
 
-#### 2023-09-28
+### 2023-09-28
 
 We decided to use Jest for unit testing.
 
@@ -238,7 +238,7 @@ pnpm test
 
 <br>
 
-#### 2023-09-29
+### 2023-09-29
 
 More digging around on best practices:
 
@@ -249,7 +249,7 @@ More digging around on best practices:
 
 <br>
 
-#### 2023-10-02
+### 2023-10-02
 
 We're finally done with rewriting all of our back-end with Next.js server-side components.
 Now, we work on the front-end.
@@ -282,7 +282,7 @@ Also, a reminder to myself to use cybersecurity frameworks to ensure the confide
 Also, these are some articles I'll need to reference when creating schemas with IBM PostgresSQL:
 
 - [Upgrading databases best practices](https://news.ycombinator.com/item?id=37724549)
-- We can download [historical weather data sets](https://aws.amazon.com/blogs/publicsector/decrease-geospatial-query-latency-minutes-seconds-using-zarr-amazon-s3/) and store them into IBM Cloud PostgresSQL rather than trying to get data one at a time through API's.
+- We can download [historical weather data sets](https://aws.amazon.com/blogs/publicsector/decrease-geospatial-query-latency-minutes-seconds-using-zarr-amazon-s3/) and store them into PostgresSQL rather than trying to get data one at a time through API's.
 
 <br>
 
@@ -372,7 +372,6 @@ You “use” React features at the top of your component similar to how you “
 - [USDA Honey Bee Surveys and Reports](https://www.nass.usda.gov/surveys/Guide_to_NASS_Surveys/Bee_and_Honey/)
 - [USDA "HONEY, BEE COLONIES - LOSS, DEADOUT, MEASURED IN COLONIES" (2015-2022)](https://quickstats.nass.usda.gov/results/96060AFB-43C7-33D7-868A-788D2E45608B)
 - [USDA "HONEY - PRODUCTION, MEASURED IN LB / COLONY" (2013-2022)](https://quickstats.nass.usda.gov/results/E518BE2D-6EC7-33B5-B21E-13B92ADD51F8)
-- [Helpful public datasets we can use for predicting country-wide honey yield and colony loss](https://community.ibm.com/community/user/ai-datascience/blogs/susan-malaika/2020/02/21/call-for-code-useful-datasets)
 
 <br>
 
