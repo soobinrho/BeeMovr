@@ -151,6 +151,12 @@ ts-node <filename>
 
 # How to add a development dependency.
 pnpm add -D <package name>
+
+# How to remove a dependency.
+pnpm remove <package name>
+
+# How to update all packages.
+pnpm up --latest
 ```
 
 Today, I read [Next.js routing fundamentals](https://nextjs.org/docs/app/building-your-application/routing), [REST API URI naming conventions](https://restfulapi.net/resource-naming/), [TSDoc specifications](https://tsdoc.org/), and [JavaScript promises, async, and await](https://javascript.info/async).
