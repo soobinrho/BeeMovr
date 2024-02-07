@@ -282,7 +282,7 @@ Also, a reminder to myself to use cybersecurity frameworks to ensure the confide
 Also, these are some articles I'll need to reference when creating schemas with IBM PostgresSQL:
 
 - [Upgrading databases best practices](https://news.ycombinator.com/item?id=37724549)
-- We can download [historical weather data sets](https://aws.amazon.com/blogs/publicsector/decrease-geospatial-query-latency-minutes-seconds-using-zarr-amazon-s3/) and store them into IBM Cloud PostgresSQL rather than trying to get data one at a time through API's.
+- We can download [historical weather data sets](https://aws.amazon.com/blogs/publicsector/decrease-geospatial-query-latency-minutes-seconds-using-zarr-amazon-s3/) and store them into PostgresSQL rather than trying to get data one at a time through API's.
 
 <br>
 
@@ -372,7 +372,6 @@ You “use” React features at the top of your component similar to how you “
 - [USDA Honey Bee Surveys and Reports](https://www.nass.usda.gov/surveys/Guide_to_NASS_Surveys/Bee_and_Honey/)
 - [USDA "HONEY, BEE COLONIES - LOSS, DEADOUT, MEASURED IN COLONIES" (2015-2022)](https://quickstats.nass.usda.gov/results/96060AFB-43C7-33D7-868A-788D2E45608B)
 - [USDA "HONEY - PRODUCTION, MEASURED IN LB / COLONY" (2013-2022)](https://quickstats.nass.usda.gov/results/E518BE2D-6EC7-33B5-B21E-13B92ADD51F8)
-- [Helpful public datasets we can use for predicting country-wide honey yield and colony loss](https://community.ibm.com/community/user/ai-datascience/blogs/susan-malaika/2020/02/21/call-for-code-useful-datasets)
 
 <br>
 
