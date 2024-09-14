@@ -27,6 +27,9 @@ That's how BeeMovr started.
 
 <br>
 
+> [!CAUTION]
+> 2024-09-13 We've disabled the mapbox token access until we implement an access limit feature. We don't want to be billed $$$$... We will implement a rate limit so that we can stay under Mapbox's free tier and re-enable our website.
+
 ## Getting Started
 
 [1.](#1-how-to-spin-up-a-development-server) How to spin up a development server<br>
