@@ -50,7 +50,7 @@ This paper is what made our core prediction model possible.
 
 ## Context
 
-![Architecture diagram of BeeMovr](https://github.com/soobinrho/BeeMovr/assets/19341857/7bba3368-acb9-4ce4-90c5-167f158d5edf)
+![Architecture diagram of BeeMovr](https://github.com/user-attachments/assets/05e563a7-1854-4c16-abe4-dcb59d21ac44)
 
 | Stack             | Name                                                                                                                                                                                        |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
