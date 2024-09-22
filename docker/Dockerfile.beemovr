@@ -22,8 +22,8 @@
 # ---------------------------------------------------------------------
 FROM alpine:latest
 
-LABEL com.beemovr.description="https://BeeMovr.com"
-LABEL com.beemovr.maintainer="BeeMovr <workerbees@beemovr.com>"
+LABEL com.beemovr.description="https://github.com/soobinrho/BeeMovr"
+LABEL com.beemovr.maintainer="Soobin Rho <soobin@nsustain.com>"
 
 #
 # System setup
