@@ -49,6 +49,10 @@ services:
       - 443:443
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
+    command:
+      - nginx
+      - -g
+      - daemon off;
 
 # "The presence of these objects is sufficient to define them"
 # Source:
