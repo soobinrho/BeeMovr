@@ -36,7 +36,7 @@ services:
     networks:
       - back-end
     expose:
-      - 3000  # used by Node (pnpm)
+      - 8000  # used by Node (pnpm)
     env_file:
       - ../.env.local
 

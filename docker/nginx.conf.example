@@ -63,8 +63,8 @@ http {
 
         location / {
             # This is not the same as BeeMovr.com
-            # http://beemovr:3000 here refers to the host name inside Docker Compose network.
-            proxy_pass http://beemovr:3000;
+            # http://beemovr:8000 here refers to the host name inside Docker Compose network.
+            proxy_pass http://beemovr:8000;
             proxy_http_version 1.1;
             proxy_set_header Upgrade $http_upgrade;
             proxy_set_header Connection 'upgrade';
