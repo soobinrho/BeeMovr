@@ -16,7 +16,7 @@
 #
 # HOW TO RUN NODE.JS and REVERSE PROXY
 # @example
-# cd BeeMovr
+# cd BeeMovr/docker
 # cp .env.production .env.local
 # docker compose up -d
 #
@@ -27,32 +27,31 @@
 version: '3.8'
 services:
   beemovr:
+    container_name: beemovr
     build:
       context: .
       dockerfile: Dockerfile.beemovr
     restart: unless-stopped
     networks:
-      - node
+      - back-end
     expose:
-      # Expose `pnpm start` port 3000 for reverse proxy.
-      - 3000
+      - 3000  # used by Node (pnpm)
 
   nginx:
-    build:
-      context: .
-      dockerfile: Dockerfile.nginx
+    image: nginx:latest
+    container_name: nginx
     restart: unless-stopped
+    pull_policy: always
     networks:
-      - node
+      - back-end
     ports:
-      # Open the host's http and https ports.
       - 80:80
       - 443:443
     volumes:
-      - ./letsencrypt:/etc/letsencrypt
+      - ./nginx.conf:/etc/nginx/nginx.conf
 
 # "The presence of these objects is sufficient to define them"
 # Source:
 #   https://docs.docker.com/compose/compose-file/
 networks:
-  node: {}
+  back-end: {}
