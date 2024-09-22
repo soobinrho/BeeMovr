@@ -31,6 +31,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.beemovr
+    depends_on:
+      - nginx
     restart: unless-stopped
     networks:
       - back-end
