@@ -39,3 +39,5 @@ next-env.d.ts
 
 # Letsencrypt keys and configs
 letsencrypt
+
+nginx.conf

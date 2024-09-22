@@ -16,8 +16,7 @@
 #
 # HOW TO RUN NODE.JS and REVERSE PROXY
 # @example
-# cd BeeMovr/docker
-# cp .env.production .env.local
+# cd BeeMovr
 # docker compose build
 # docker compose up -d
 #
@@ -36,9 +35,7 @@ services:
     networks:
       - back-end
     expose:
-      - 8000  # used by Node (pnpm)
-    env_file:
-      - ../.env.local
+      - 3000  # used by Node (pnpm)
 
   nginx:
     image: nginx:latest
