@@ -36,6 +36,8 @@ services:
       - back-end
     expose:
       - 3000  # used by Node (pnpm)
+    env_file:
+      - .env.local
 
   nginx:
     image: nginx:latest
