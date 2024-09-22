@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
    *   https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf
    *
    * @example
-   * https://beemovr.com/v1/prediction/honey-yield?lng=-1&lat=-1&year-month=2023-09
+   * https://BeeMovr.nsustain.com/v1/prediction/honey-yield?lng=-1&lat=-1&year-month=2023-09
    */
   const searchQuery = request.nextUrl.searchParams;
   const lng = searchQuery.get('lng') ?? '';

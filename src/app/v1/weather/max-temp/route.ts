@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
    *   https://open-meteo.com/en/docs/historical-weather-api
    *
    * @example
-   * https://beemovr.com/v1/weather/max-temp?lng=-1&lat=-1&start-year-month=2023-09&end-year-month=2023-09
+   * https://BeeMovr.nsustain.com/v1/weather/max-temp?lng=-1&lat=-1&start-year-month=2023-09&end-year-month=2023-09
    */
   const api_type = api_type_maxTemp;
   const api_response_key = api_response_key_maxTemp;
