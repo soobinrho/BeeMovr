@@ -12,7 +12,7 @@ const nextConfig = {
           {
             key: 'Content-Security-Policy',
             value:
-              "default-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://api.mapbox.com; connect-src 'self' https://api.mapbox.com https://events.mapbox.com; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' https://fonts.googleapis.com; worker-src 'self' blob:; base-uri 'self'; form-action 'self'; manifest-src 'self'; object-src 'self' data:;",
+              "default-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' https://fonts.googleapis.com; worker-src 'self'; base-uri 'self'; form-action 'self'; manifest-src 'self'; object-src 'self';",
           },
           {
             key: 'X-Content-Type-Options',
@@ -32,6 +32,11 @@ const nextConfig = {
       },
     ];
   },
+  // Recommended by Next.js documentation to export as standalone
+  // for Docker projects.
+  // Source:
+  //   https://github.com/vercel/next.js/tree/canary/examples/with-docker#in-existing-projects
+  output: 'standalone',
 };
 
-module.exports = nextConfig;
+export default nextConfig;
