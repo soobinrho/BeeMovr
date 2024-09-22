@@ -37,7 +37,7 @@ RUN apk update \
  && git clone https://github.com/soobinrho/BeeMovr \
  && cd BeeMovr \
  && npm install -g pnpm \
- && pnpm install \
+ && pnpm install --prod \
  && pnpm build
 
 # Unlike RUN, which runs commands at the build time,
