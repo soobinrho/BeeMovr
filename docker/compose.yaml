@@ -1,0 +1,58 @@
+# ---------------------------------------------------------------------
+# HOW WE RUN BEEMOVR.COM
+# @remarks
+# For development purposes, just running `cd ./BeeMovr && pnpm dev` is
+# perfect, and in fact that is how we run a development server all the
+# time. However, if you want to run a production server, by which we
+# mean deployment to a server so that it becomes available to everyone
+# on the internet, we use Docker Compose to deploy Next.js through
+# Node.js and reverse proxy that through Nginx.
+#
+# First, go to certbot website and issue a certificate:
+#   https://certbot.eff.org/instructions?ws=nginx&os=ubuntufocal
+#
+# Then, copy the generated files to BeeMovr/docker folder on the server:
+#   scp -r /etc/letsencrypt <username>@<ip address>:<BeeMovr dir>/docker/letsencrypt
+#
+# HOW TO RUN NODE.JS and REVERSE PROXY
+# @example
+# cd BeeMovr
+# cp .env.production .env.local
+# docker compose up -d
+#
+# HOW TO STOP BEEMOVR.COM
+# @example
+# docker compose down
+# ---------------------------------------------------------------------
+version: '3.8'
+services:
+  beemovr:
+    build:
+      context: .
+      dockerfile: Dockerfile.beemovr
+    restart: unless-stopped
+    networks:
+      - node
+    expose:
+      # Expose `pnpm start` port 3000 for reverse proxy.
+      - 3000
+
+  nginx:
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    restart: unless-stopped
+    networks:
+      - node
+    ports:
+      # Open the host's http and https ports.
+      - 80:80
+      - 443:443
+    volumes:
+      - ./letsencrypt:/etc/letsencrypt
+
+# "The presence of these objects is sufficient to define them"
+# Source:
+#   https://docs.docker.com/compose/compose-file/
+networks:
+  node: {}
