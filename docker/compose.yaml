@@ -18,6 +18,7 @@
 # @example
 # cd BeeMovr/docker
 # cp .env.production .env.local
+# docker compose build
 # docker compose up -d
 #
 # HOW TO STOP BEEMOVR.COM

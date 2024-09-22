@@ -146,7 +146,7 @@ pnpm dev
 ssh <username>@<ip address>
 cd ~
 git clone https://github.com/soobinrho/BeeMovr
-cd BeeMovr
+cd BeeMovr/docker
 cp .env.production .env.local
 
 # For development purposes, just running `cd ./BeeMovr && pnpm dev` is
@@ -155,12 +155,13 @@ cp .env.production .env.local
 # server, by which we mean deployment to a server so that it becomes
 # available to everyone on the internet, we use Docker Compose to
 # deploy Next.js through Node.js and reverse proxy that through Nginx.
+docker compose build
 docker compose up -d
 
 # ---------------------------------------------------------------------
 # How we re-deploy whenever we make changes to our code.
 # ---------------------------------------------------------------------
-cd BeeMovr
+cd BeeMovr/docker
 git pull
 docker compose build --no-cache && docker compose up --force-recreate -d
 ```
