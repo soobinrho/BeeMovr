@@ -1,6 +1,6 @@
-## Dev log
+# Dev log
 
-### 2023-02-23
+## 2023-02-23
 
 All of this began because of helplessness in a way.
 We wanted to help the environment in any way we can because - well, you know - the earth doesn't seem to be doing too well.
@@ -19,7 +19,7 @@ He explained, "creating a map that can calculate the nectar availability of any 
 
 <br>
 
-### 2023-07-31
+## 2023-07-31
 
 ```
 [HackMIT] Welcome to HackMIT 2023! 🎈🎉
@@ -32,7 +32,7 @@ We promised Keith that we'll make it open source and therefore available for all
 
 <br>
 
-### 2023-08-21
+## 2023-08-21
 
 ```
 Hi Soobin,
@@ -51,7 +51,7 @@ And yes, he built the majority of our MVP during the 48 hours of HackMIT, so he 
 
 <br>
 
-### 2023-09-16
+## 2023-09-16
 
 Schaler and I were waiting patiently at the MIT athletic center for the HackMIT to begin.
 It was going to start at 10AM, and it was around 9AM.
@@ -64,7 +64,7 @@ Schaler, Eric, Jasper, and I, all of us turned out to have the best team chemist
 
 <br>
 
-### 2023-09-17
+## 2023-09-17
 
 We worked hard for the weekend-long hackathon.
 We worked on our project, which by the way we named BeeMovr, until 1AM and continued til 5PM the next day.
@@ -105,7 +105,7 @@ Plus, here are some pictures of us at HackMIT:
 <br>
 <br>
 
-### 2023-09-24
+## 2023-09-24
 
 The MVP was good and all, but we decided to [throw away the first version](https://news.ycombinator.com/item?id=37003910) of BeeMovr and recreate.
 [Leigh Halliday's YouTube video on Next.js and Mapbox](https://youtu.be/sZfUXVSor-k?si=AFo9qOFzs4eH98fP) was incredibly helpful.
@@ -163,7 +163,7 @@ Today, I read [Next.js routing fundamentals](https://nextjs.org/docs/app/buildin
 
 <br>
 
-### 2023-09-26
+## 2023-09-26
 
 I tried to get a deeper understanding of how Next.js works by reading:
 
@@ -217,7 +217,7 @@ For security, I read:
 
 <br>
 
-### 2023-09-28
+## 2023-09-28
 
 We decided to use Jest for unit testing.
 
@@ -238,7 +238,7 @@ pnpm test
 
 <br>
 
-### 2023-09-29
+## 2023-09-29
 
 More digging around on best practices:
 
@@ -249,7 +249,7 @@ More digging around on best practices:
 
 <br>
 
-### 2023-10-02
+## 2023-10-02
 
 We're finally done with rewriting all of our back-end with Next.js server-side components.
 Now, we work on the front-end.
@@ -286,7 +286,7 @@ Also, these are some articles I'll need to reference when creating schemas with 
 
 <br>
 
-### 2023-10-03
+## 2023-10-03
 
 - Consider [using Markdown](https://nextjs.org/learn/basics/dynamic-routes/render-markdown) with graphs generated as .svg or .png files.
 - [Mapbox Getting Started](https://docs.mapbox.com/help/getting-started/web-apps/)
@@ -297,7 +297,7 @@ Also, these are some articles I'll need to reference when creating schemas with 
 
 <br>
 
-### 2023-10-05
+## 2023-10-05
 
 - [Tailwind CSS Buttons Hover, Focus, and Other States](https://tailwindcss.com/docs/hover-focus-and-other-states)
 - [MapLibre is an open-source fork of Mapbox](https://maplibre.org/)
@@ -306,7 +306,7 @@ Also, these are some articles I'll need to reference when creating schemas with 
 
 <br>
 
-### 2023-10-06
+## 2023-10-06
 
 - [CSS Positioning (absolute, relative, etc)](https://tailwindcss.com/docs/position)
 - [Hacker News Discussion on Database Performance at Scale](https://news.ycombinator.com/item?id=37778069)
@@ -316,20 +316,20 @@ Also, these are some articles I'll need to reference when creating schemas with 
 
 <br>
 
-### 2023-10-08
+## 2023-10-08
 
 - [Next.js and Content Security Policy (CSP)](https://reesmorris.co.uk/blog/implementing-proper-csp-nextjs-styled-components)
 - [React State Management (useState, useReducer, useContext)](https://react.dev/learn/managing-state)
 
 <br>
 
-### 2023-10-11
+## 2023-10-11
 
 - [Axios has a built-in mechanism for protecting against CSRF (Cross-Site Request Forgery)](https://axios-http.com/docs/intro)
 
 <br>
 
-### 2023-10-12
+## 2023-10-12
 
 - I think we can share the main route (`/`) data with other pages using [Next.js Link Router](https://stackoverflow.com/questions/52238637/react-router-how-to-pass-data-between-pages-in-react)
 - [How rendering works in React](https://react.dev/learn/render-and-commit)
@@ -361,13 +361,13 @@ You “use” React features at the top of your component similar to how you “
 
 <br>
 
-### 2023-10-14
+## 2023-10-14
 
 - [How to let the user click through a div class](https://stackoverflow.com/a/4839672)
 
 <br>
 
-### 2023-10-19
+## 2023-10-19
 
 - [USDA Honey Bee Surveys and Reports](https://www.nass.usda.gov/surveys/Guide_to_NASS_Surveys/Bee_and_Honey/)
 - [USDA "HONEY, BEE COLONIES - LOSS, DEADOUT, MEASURED IN COLONIES" (2015-2022)](https://quickstats.nass.usda.gov/results/96060AFB-43C7-33D7-868A-788D2E45608B)
@@ -375,13 +375,13 @@ You “use” React features at the top of your component similar to how you “
 
 <br>
 
-### 2023-10-27
+## 2023-10-27
 
 - [How to make README.MD more accessible](https://github.blog/2023-10-26-5-tips-for-making-your-github-profile-page-accessible/)
 
 <br>
 
-### 2023-10-28
+## 2023-10-28
 
 - [PRISM Historical Weather Datasets](https://prism.oregonstate.edu/6month/)
 - [Next.js 14 Release blog post](https://next-site-git-next-14.vercel.sh/blog/next-14)
@@ -398,6 +398,16 @@ You “use” React features at the top of your component similar to how you “
 
 <br>
 
-### 2023-10-29
+## 2023-10-29
 
 - [Introduction to Linear Algebra](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://terrytao.files.wordpress.com/2016/12/linear-algebra-notes.pdf&ved=2ahUKEwjix4bzypyCAxXmJUQIHSgyAzIQFnoECA4QAQ&usg=AOvVaw2-4_1MME94qz0voAMm3jeW)
+
+<br>
+
+## 2024-09-25
+
+### How does `sqlite` work?
+
+
+
+
