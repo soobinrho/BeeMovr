@@ -408,6 +408,9 @@ You “use” React features at the top of your component similar to how you “
 
 ### How does `sqlite` work?
 
+https://www.sqlite.org/fileformat2.html
 
+"The complete state of an SQLite database is usually contained in a single file on disk called the 'main database file.'
+During a transaction, SQLite stores additional information in a second file called the "rollback journal", or if SQLite is in WAL mode, a write-ahead log file."
 
 
