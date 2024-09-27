@@ -453,6 +453,14 @@ https://www.sqlite.org/whentouse.html
 Because this problem results from bugs in the underlying filesystem implementation, there is nothing SQLite can do to prevent it.
 If there are many client programs sending SQL to the same database over a network, then use a client/server database engine instead of SQLite."
 
+"SQLite allows multiple processes to have the database file open at once, and for multiple processes to read the database at once.
+When any process wants to write, it must lock the entire database file for the duration of its update.
+But that normally only takes a few milliseconds.
+Other processes just wait on the writer to finish then continue about their business."
+
+"However, client/server database engines (such as PostgreSQL, MySQL, or Oracle) usually support a higher level of concurrency and allow multiple processes to be writing to the same database at the same time.
+This is possible in a client/server database because there is always a single well-controlled server process available to coordinate access."
+
 "An SQLite database is limited in size to 281 terabytes (248 bytes, 256 tibibytes). 
 And even if it could handle larger databases, SQLite stores the entire database in a single disk file and many filesystems limit the maximum size of files to something less than this.
 So if you are contemplating databases of this magnitude, you would do well to consider using a client/server database engine that spreads its content across multiple disk files, and perhaps across multiple volumes."
@@ -462,5 +470,50 @@ For device-local storage with low writer concurrency and less than a terabyte of
 SQLite is fast and reliable and it requires no configuration or maintenance. 
 It keeps things simple.
 SQLite 'just works.'"
+
+<br>
+
+### Basics of `SQLite`
+
+https://www.sqlite.org/cli.html
+
+```sql
+# How to attach to or create a new database.
+soobinrho: sqlite3 newDatabase.db
+
+# How to list all
+soobinrho: sqlite3 .
+```
+
+<br>
+
+### `SQL` Style Guide
+
+https://www.sqlstyle.guide/
+
+1. "Store ISO 8601 compliant time and date information (`YYYY-MM-DDTHH:MM:SS.SSSSS`)."
+2. "Include comments in SQL code where necessary. Use the C style opening `/*` and closing `*/` where possible otherwise precede comments with `--` and finish them with a new line."
+
+```sql
+/* Use whitespaces and indents to make it easy to read. */
+/* Spaces should be used to line up the code so that the root keywords all end on the same character boundary. */
+SELECT file_hash  -- stored ssdeep hash
+  FROM file_system
+ WHERE file_name = '.vimrc';
+```
+
+5. "Never give a table the same name as one of its columns and vice versa."
+6. For table names, Avoid a singular form. "Use a collective name or, less ideally, a plural form. For example (in order of preference) staff and employees."
+7. For column names, "always use the singular name."
+8. For procedures, always include a verb.
+9. Avoid "camelCase -- it is difficult to scan quickly."
+10. "Use underscores where you would naturally include a space in the name (`first name` becomes `first_name`)."
+11. "Where possible avoid simply using id as the primary identifier for the table."
+12. Always use lowercase except where it may make sense not to such as proper nouns.
+13. "Always use uppercase for the reserved keywords like `SELECT` and `WHERE`."
+14. It is best to avoid the abbreviated keywords and use the full length ones where available (prefer `ABSOLUTE` to `ABS`).
+15. Include space before and after "before and after equals (`=`)
+after commas (`,`)."
+
 
 <br>
