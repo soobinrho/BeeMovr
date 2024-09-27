@@ -436,7 +436,31 @@ Separate B-trees are used for each table and each index in the database. All B-t
 "Rather than using fopen() to write XML, JSON, CSV, or some proprietary format into disk files used by your application, use an SQLite database.
 You'll avoid having to write and troubleshoot a parser, your data will be more easily accessible and cross-platform, and your updates will be transactional."
 
-"Because it requires no configuration and stores information in ordinary disk files, SQLite is a popular choice as the database to back small to medium-sized websites."
-"SQLite has a small code footprint, makes efficient use of memory, disk space, and disk bandwidth, is highly reliable, and requires no maintenance from a Database Administrator."
+"Because it requires no configuration and stores information in ordinary disk files, SQLite is a popular choice as the database to back small to medium-sized websites...
+SQLite has a small code footprint, makes efficient use of memory, disk space, and disk bandwidth, is highly reliable, and requires no maintenance from a Database Administrator...
+SQLite works great as the database engine for most low to medium traffic websites (which is to say, most websites)."
+
+
+<br>
+
+### When not to use `SQLite`
+
+https://www.sqlite.org/whentouse.html
+
+"SQLite supports an unlimited number of simultaneous readers, but it will only allow one writer at any instant in time."
+
+"A good rule of thumb is to avoid using SQLite in situations where the same database will be accessed directly (without an intervening application server) and simultaneously from many computers over a network...
+Because this problem results from bugs in the underlying filesystem implementation, there is nothing SQLite can do to prevent it.
+If there are many client programs sending SQL to the same database over a network, then use a client/server database engine instead of SQLite."
+
+"An SQLite database is limited in size to 281 terabytes (248 bytes, 256 tibibytes). 
+And even if it could handle larger databases, SQLite stores the entire database in a single disk file and many filesystems limit the maximum size of files to something less than this.
+So if you are contemplating databases of this magnitude, you would do well to consider using a client/server database engine that spreads its content across multiple disk files, and perhaps across multiple volumes."
+
+"Otherwise → choose SQLite!
+For device-local storage with low writer concurrency and less than a terabyte of content, SQLite is almost always a better solution.
+SQLite is fast and reliable and it requires no configuration or maintenance. 
+It keeps things simple.
+SQLite 'just works.'"
 
 <br>
