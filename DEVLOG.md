@@ -477,12 +477,46 @@ SQLite 'just works.'"
 
 https://www.sqlite.org/cli.html
 
-```sql
-# How to attach to or create a new database.
-soobinrho: sqlite3 newDatabase.db
+Enter `sqlite3 newDatabase.db` to attach to or create a new database.
+"Most of the time, sqlite3 just reads lines of input and passes them on to the SQLite library for execution.
+But input lines that begin with a dot (".") are intercepted and interpreted by the sqlite3 program itself."
 
-# How to list all
-soobinrho: sqlite3 .
+```
+```sql
+/* How to see all tables. */
+.tables
+
+/* How to see all tables and indices. */
+.schema
+
+/* How to get general help or for a specific function. */
+.help ?PATTERN?
+
+/* How to configure logging option. */
+.log FILE|on|off
+
+/* How to clone a database. */
+.clone NEWDB
+
+/* Close the current db and open a new one. */
+.open NEWDB
+
+/* How to export to an Excel file. */
+.excel
+SELECT * FROM tab1;
+
+/* How to import a csv. */
+.import --csv --skip 1 --schema temp C:/work/somedata.csv tab1
+
+/* How to export to a csv. */
+.headers on  -- Output column names.
+.mode csv
+.once c:/work/dataout.csv  -- Next query's output goes to the csv file.
+SELECT * FROM tab1;
+
+/* How to export to a csv. */
+/* How to exit. */
+.exit
 ```
 
 <br>
@@ -514,6 +548,7 @@ SELECT file_hash  -- stored ssdeep hash
 14. It is best to avoid the abbreviated keywords and use the full length ones where available (prefer `ABSOLUTE` to `ABS`).
 15. Include space before and after "before and after equals (`=`)
 after commas (`,`)."
-
+16. "Specify the primary key first right after the `CREATE TABLE` statement.
+Constraints should be defined directly beneath the column they correspond to."
 
 <br>
