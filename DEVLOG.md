@@ -429,6 +429,8 @@ During a transaction, SQLite stores additional information in a second file call
 "An SQLite database is maintained on disk using a B-tree implementation found in the `btree.c` source file.
 Separate B-trees are used for each table and each index in the database. All B-trees are stored in the same disk file."
 
+<br>
+
 ### `SQLite` Use Cases
 
 "Rather than using fopen() to write XML, JSON, CSV, or some proprietary format into disk files used by your application, use an SQLite database.
