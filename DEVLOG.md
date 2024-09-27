@@ -410,7 +410,31 @@ You “use” React features at the top of your component similar to how you “
 
 https://www.sqlite.org/fileformat2.html
 
+https://www.sqlite.org/arch.html
+
+"SQLite is a Recommended Storage Format for datasets according to the US Library of Congress."
+"SQLite runs on any platform with an 8-bit byte, two's complement 32-bit and 64-bit integers, and a C compiler."
+"SQLite database files are bit-for-bit identical on 32-bit, 64-bit, big-endian, and little-endian platforms.
+You can copy an SQLite database file from one system to another without having to translate or convert the database."
+"The only other recommended storage formats for datasets are XML, JSON, and CSV."
+
+"In order to provide portability across operating systems, SQLite uses an abstract object called the VFS [SQLite OS portability layer].
+Each VFS provides methods for opening, reading, writing, and closing files on disk, and for other OS-specific tasks such as finding the current time, or obtaining randomness to initialize the built-in pseudo-random number generator.
+Hence, porting SQLite to a new operating system is simply a matter of writing a new OS interface layer or 'VFS.'
+
+"SQLite works by compiling SQL text into bytecode, then running that bytecode using a virtual machine."
+
 "The complete state of an SQLite database is usually contained in a single file on disk called the 'main database file.'
 During a transaction, SQLite stores additional information in a second file called the "rollback journal", or if SQLite is in WAL mode, a write-ahead log file."
+"An SQLite database is maintained on disk using a B-tree implementation found in the `btree.c` source file.
+Separate B-trees are used for each table and each index in the database. All B-trees are stored in the same disk file."
 
+### `SQLite` Use Cases
 
+"Rather than using fopen() to write XML, JSON, CSV, or some proprietary format into disk files used by your application, use an SQLite database.
+You'll avoid having to write and troubleshoot a parser, your data will be more easily accessible and cross-platform, and your updates will be transactional."
+
+"Because it requires no configuration and stores information in ordinary disk files, SQLite is a popular choice as the database to back small to medium-sized websites."
+"SQLite has a small code footprint, makes efficient use of memory, disk space, and disk bandwidth, is highly reliable, and requires no maintenance from a Database Administrator."
+
+<br>
