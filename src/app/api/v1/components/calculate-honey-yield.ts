@@ -10,7 +10,7 @@ import {
   getWeather,
   isValidLngLat,
   isValidYearMonth,
-} from '@/app/v1/components/open-meteo-api';
+} from '@/app/api/v1/components/open-meteo-api';
 import axios from 'axios';
 
 export interface IcalculateHoneyYield {

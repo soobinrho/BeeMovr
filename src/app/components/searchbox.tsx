@@ -5,7 +5,7 @@ import { ZOOM_LEVEL_TITLE } from '@/app/components/mapbox';
 import {
   MAX_DIGITS_COORDINATES,
   isValidLngLat,
-} from '@/app/v1/components/open-meteo-api';
+} from '@/app/api/v1/components/open-meteo-api';
 import { ChangeEvent, FormEvent, useCallback, useState } from 'react';
 import { useMap } from 'react-map-gl';
 import useSWRImmutable from 'swr/immutable';

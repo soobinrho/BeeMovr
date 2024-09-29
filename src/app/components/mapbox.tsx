@@ -9,7 +9,7 @@ import {
   MAX_DIGITS_COORDINATES,
   getLastMonthYearMonthUTC,
   getTodayYearMonthUTC,
-} from '@/app/v1/components/open-meteo-api';
+} from '@/app/api/v1/components/open-meteo-api';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import Map, {

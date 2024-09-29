@@ -1,6 +1,6 @@
 'use client';
 
-import { MAX_DIGITS_COORDINATES } from '@/app/v1/components/open-meteo-api';
+import { MAX_DIGITS_COORDINATES } from '@/app/api/v1/components/open-meteo-api';
 import * as React from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import { ChangeEvent } from 'react';

@@ -1,9 +1,9 @@
-import { getWeather } from '@/app/v1/components/open-meteo-api';
-import { api_type_maxTemp } from '@/app/v1/components/open-meteo-api';
+import { getWeather } from '@/app/api/v1/components/open-meteo-api';
+import { api_type_precipitation } from '@/app/api/v1/components/open-meteo-api';
 
-describe('/v1/weather/max-temp', () => {
-  test('returns monthly maximum temperature', async () => {
-    const api_type = api_type_maxTemp;
+describe('/api/v1/weather/precipitation', () => {
+  test('returns monthly precipitation', async () => {
+    const api_type = api_type_precipitation;
 
     const lng = '-1';
     const lat = '-1';

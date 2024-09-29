@@ -552,3 +552,34 @@ after commas (`,`)."
 Constraints should be defined directly beneath the column they correspond to."
 
 <br>
+
+### What are `props` in html?
+
+https://nextjs.org/learn/react-foundations/displaying-data-with-props
+
+```tsx
+<Header title="React" />
+
+{/* ... */}
+
+function Header(props) {
+  console.log(props); // { title: "React" }
+  return <h1>Develop. Preview. Ship.</h1>;
+}
+```
+
+<br>
+
+### App Router in `Next.js`
+
+https://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration#server-side-rendering-getserversideprops
+
+`getStaticProps` and `getServerSideProps` are now replaced by `Static Rendering` and `Dynamic Rendering` respectively.
+
+
+
+
+
+
+
+<br>

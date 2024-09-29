@@ -2,7 +2,7 @@ import {
   api_response_key_precipitation,
   api_type_precipitation,
   getWeather,
-} from '@/app/v1/components/open-meteo-api';
+} from '@/app/api/v1/components/open-meteo-api';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
    *   https://open-meteo.com/en/docs/historical-weather-api
    *
    * @example
-   * https://BeeMovr.nsustain.com/v1/weather/precipitation?lng=-1&lat=-1&start-year-month=2023-09&end-year-month=2023-09
+   * https://BeeMovr.nsustain.com/api/v1/weather/precipitation?lng=-1&lat=-1&start-year-month=2023-09&end-year-month=2023-09
    */
   const api_type = api_type_precipitation;
   const api_response_key = api_response_key_precipitation;

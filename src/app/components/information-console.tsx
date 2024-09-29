@@ -2,7 +2,7 @@
 
 import { axiosFetcher } from '@/app/components/axios-swr-wrapper';
 import { IMarker } from '@/app/components/mapbox';
-import { isValidLngLat } from '@/app/v1/components/open-meteo-api';
+import { isValidLngLat } from '@/app/api/v1/components/open-meteo-api';
 import {
   MAX_DIGITS_COORDINATES,
   api_response_key_honeyYield,
@@ -10,7 +10,7 @@ import {
   api_response_key_minTemp,
   api_response_key_precipitation,
   getLastMonthYearMonthUTC,
-} from '@/app/v1/components/open-meteo-api';
+} from '@/app/api/v1/components/open-meteo-api';
 import * as React from 'react';
 import {
   Ref,
@@ -63,7 +63,7 @@ export function InformationConsoleData({
   const shouldRender = isValidLngLat({ api_lng: api_lng, api_lat: api_lat });
   const { data, error, isLoading } = useSWRImmutable(
     shouldRender
-      ? `/v1/prediction/honey-yield?lng=${api_lng}&lat=${api_lat}&year-month=${getLastMonthYearMonthUTC()}`
+      ? `/api/v1/prediction/honey-yield?lng=${api_lng}&lat=${api_lat}&year-month=${getLastMonthYearMonthUTC()}`
       : null,
     axiosFetcher
   );
