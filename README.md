@@ -167,9 +167,9 @@ docker compose build --no-cache && docker compose up --force-recreate -d
 
 <br>
 
-## 3. How does this work?
+## 3. Dev Log
 
-We created a separate section for all of our [development logs](DEVLOG.md).
+https://github.com/soobinrho/BeeMovr/blob/3c7adb36e8d8bebb31605ba91c9a3b441597758b/DEVLOG.md
 
 <br>
 <br>
