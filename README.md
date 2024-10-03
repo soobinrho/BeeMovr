@@ -162,7 +162,7 @@ docker compose up -d
 # ---------------------------------------------------------------------
 cd BeeMovr/docker
 git pull
-docker compose build --no-cache && docker compose up --force-recreate -d
+docker compose up --build --force-recreate -d
 ```
 
 <br>

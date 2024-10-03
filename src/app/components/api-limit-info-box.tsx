@@ -8,10 +8,9 @@ export default function ApiLimitInfoBox() {
     useState(true);
   return (
     <>
-      {/* className='pointer-events-none absolute left-[50%] top-[47%] z-10 min-h-[27%] min-w-[65vw] translate-x-[-50%] translate-y-[-50%] select-none items-center' */}
-      <div className='absolute left-[50%] top-[50%] z-20 max-h-[50%] w-screen translate-x-[-50%] translate-y-[-50%] flex-col-reverse items-center justify-center overflow-auto bg-white/50'>
+      <div className='absolute left-[50%] top-[47%] z-20 max-h-[50%] w-screen translate-x-[-50%] translate-y-[-50%] flex-col-reverse items-center justify-center overflow-auto'>
         {shouldShowApiLimitInfoBox ? (
-          <div className='relative mx-4 my-16 whitespace-break-spaces rounded-md bg-background-console/90 p-4 text-left text-sm text-font-console sm:mx-[25%] sm:px-16 sm:py-12 sm:text-base'>
+          <div className='relative mx-4 my-16 whitespace-break-spaces rounded-md bg-background-console/90 p-4 text-left text-sm text-font-console sm:mx-[25%] sm:px-16 sm:py-20 sm:text-base'>
             <p className='font-black'>2024-09-13</p>
             <p className='font-normal'>
               We&apos;ve disabled access to our map (powered by Mapbox&apos;s
