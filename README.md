@@ -86,7 +86,7 @@ We aim to create _the_ beekeeper's map, the first feature of which is maximum po
 We therefore believe that the most important part of BeeMovr is to listen, understand, and deliver what the beekeepers want and need to serve their bees.
 
 BeeMovr has been and will always be open-sourced and open to all beekeepers.
-If you're a beekeeper and have any suggestions or feature requests, please feel free to email us at &lt;workerbees@beemovr.com&gt;.
+If you're a beekeeper and have any suggestions or feature requests, please feel free to email us at &lt;beemovr@nsustain.com&gt;.
 
 <br>
 

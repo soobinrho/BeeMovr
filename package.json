@@ -48,15 +48,15 @@
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   },
-  "homepage": "https://BeeMovr.com",
+  "homepage": "https://BeeMovr.nsustain.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/soobinrho/BeeMovr.git"
   },
-  "author": "BeeMovr <workerbees@beemovr.com> (https://github.com/soobinrho/BeeMovr)",
+  "author": "BeeMovr <beemovr@nsustain.com> (https://github.com/soobinrho/BeeMovr)",
   "bugs": {
     "url": "https://github.com/soobinrho/BeeMovr/issues",
-    "email": "workerbees@beemovr.com"
+    "email": "beemovr@nsustain.com"
   },
   "license": "(MIT OR Apache-2.0)"
 }
