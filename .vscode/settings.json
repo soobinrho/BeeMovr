@@ -5,6 +5,7 @@
     "beemovr",
     "cornuta",
     "DEADOUT",
+    "don",
     "everytime",
     "extralight",
     "generationtime",
@@ -40,7 +41,7 @@
     "tailwindcss",
     "todos",
     "trivago",
-    "tsdoc",
+    "tsdoc"
   ],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,

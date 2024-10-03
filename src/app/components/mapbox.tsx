@@ -1,15 +1,16 @@
 'use client';
 
-import ConditionalRendering from '@/app/components/conditional-rendering';
-import InformationConsole from '@/app/components/information-console';
-import MapboxLngLatControl from '@/app/components/mapbox-lng-lat-control';
-import Searchbox from '@/app/components/searchbox';
-import SocialMedia from '@/app/components/social-media';
 import {
   MAX_DIGITS_COORDINATES,
   getLastMonthYearMonthUTC,
   getTodayYearMonthUTC,
 } from '@/app/api/v1/components/open-meteo-api';
+import ApiLimitInfoBox from '@/app/components/api-limit-info-box';
+import ConditionalRendering from '@/app/components/conditional-rendering';
+import InformationConsole from '@/app/components/information-console';
+import MapboxLngLatControl from '@/app/components/mapbox-lng-lat-control';
+import Searchbox from '@/app/components/searchbox';
+import SocialMedia from '@/app/components/social-media';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { useCallback, useMemo, useRef, useState } from 'react';
 import Map, {
@@ -148,6 +149,7 @@ export default function Mapbox() {
         <MapboxLngLatControl />
         <Searchbox />
         <SocialMedia />
+        <ApiLimitInfoBox />
         <ConditionalRendering condition={isZoomTitleLevel}>
           <div
             className='pointer-events-none absolute left-[50%] top-[47%] z-10 min-h-[27%] min-w-[65vw] translate-x-[-50%] translate-y-[-50%] select-none items-center'
