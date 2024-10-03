@@ -26,9 +26,6 @@ That's how BeeMovr started.
 
 <br>
 
-> [!CAUTION]
-> 2024-09-13 We've disabled the mapbox token access until we implement an access limit feature. We don't want to be billed $$$$... We will implement a rate limit so that we can stay under Mapbox's free tier and re-enable our website.
-
 ## Getting Started
 
 [1.](#1-how-to-spin-up-a-development-server) How to spin up a development server<br>
@@ -43,8 +40,6 @@ Special thanks to Keith Robert from [The Valley Hive](https://www.thevalleyhive.
 
 Also, our work would not have been possible without the paper "[The Impact of Precipitation and Temperature on Honey Yield in the United States](https://etd.auburn.edu/bitstream/handle/10415/7108/Hayes%20Grogan.pdf)" (Hayes Kent Grogan, 2020, Auburn University).
 This paper is what made our core prediction model possible.
-
-> BeeMovr started as a [HackMIT](https://github.com/soobinrho/BeeMovr/blob/main/DEVLOG.md#2023-09-17) project.
 
 <br>
 
