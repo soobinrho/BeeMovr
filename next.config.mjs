@@ -12,7 +12,17 @@ const nextConfig = {
           {
             key: 'Content-Security-Policy',
             value:
-              "default-src 'none'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self' https://fonts.googleapis.com; worker-src 'self'; base-uri 'self'; form-action 'self'; manifest-src 'self'; object-src 'self';",
+              "img-src 'self' data: blob: ; \
+              style-src 'self' 'unsafe-inline'; \
+              font-src 'self' https://fonts.googleapis.com; \
+              worker-src 'self' blob: ; \
+              base-uri 'self'; \
+              form-action 'self'; \
+              manifest-src 'self'; \
+              object-src 'none'; \
+              child-src blob: ; \
+              connect-src 'self' https://*.tiles.mapbox.com https://api.mapbox.com https://events.mapbox.com; \
+              script-src 'unsafe-inline' 'unsafe-eval' http: https:;",
           },
           {
             key: 'X-Content-Type-Options',
