@@ -12,7 +12,7 @@ import MapboxLngLatControl from '@/app/components/mapbox-lng-lat-control';
 import Searchbox from '@/app/components/searchbox';
 import SocialMedia from '@/app/components/social-media';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import Map, {
   MapEvent,
   MapLayerMouseEvent,
@@ -51,6 +51,14 @@ export default function Mapbox() {
   const isZoomTitleLevel = useMemo(() => {
     return viewport.zoom < ZOOM_LEVEL_TITLE;
   }, [viewport.zoom]);
+
+  // ------------------------------------------------------------------
+  // API rate limit (50,000 loads per month) for Mapbox free tier.
+  // ------------------------------------------------------------------
+  const [isMapboxAPIUnderRateLimit, setShouldShowApiLimitInfoBox] =
+    useState(true);
+
+  // TODO: Implement API access limit feature to 50,000 loads per month.
 
   // ------------------------------------------------------------------
   // Initialize states for information console data.
@@ -149,7 +157,6 @@ export default function Mapbox() {
         <MapboxLngLatControl />
         <Searchbox />
         <SocialMedia />
-        <ApiLimitInfoBox />
         <ConditionalRendering condition={isZoomTitleLevel}>
           <div
             className='pointer-events-none absolute left-[50%] top-[47%] z-10 min-h-[27%] min-w-[65vw] translate-x-[-50%] translate-y-[-50%] select-none items-center'
@@ -162,20 +169,25 @@ export default function Mapbox() {
             }}
           ></div>
         </ConditionalRendering>
-        <Map
-          id={'mapMain'}
-          initialViewState={viewport}
-          reuseMaps
-          doubleClickZoom={false}
-          style={{ width: '100%', height: '100vh' }}
-          mapStyle={'mapbox://styles/mapbox/satellite-streets-v12'}
-          mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
-          onMove={(e: ViewStateChangeEvent) => setViewport(e.viewState)}
-          onIdle={onIdle_mapMain}
-          onClick={onClick_mapMain}
-        >
-          {markers}
-        </Map>
+        <ConditionalRendering condition={!isMapboxAPIUnderRateLimit}>
+          <ApiLimitInfoBox />
+        </ConditionalRendering>
+        <ConditionalRendering condition={isMapboxAPIUnderRateLimit}>
+          <Map
+            id={'mapMain'}
+            initialViewState={viewport}
+            reuseMaps
+            doubleClickZoom={false}
+            style={{ width: '100%', height: '100vh' }}
+            mapStyle={'mapbox://styles/mapbox/satellite-streets-v12'}
+            mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
+            onMove={(e: ViewStateChangeEvent) => setViewport(e.viewState)}
+            onIdle={onIdle_mapMain}
+            onClick={onClick_mapMain}
+          >
+            {markers}
+          </Map>
+        </ConditionalRendering>
         <InformationConsole api_lng={clickedLng} api_lat={clickedLat} />
       </MapProvider>
     </>
