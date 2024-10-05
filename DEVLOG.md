@@ -575,11 +575,6 @@ function Header(props) {
 https://nextjs.org/docs/app/building-your-application/upgrading/app-router-migration#server-side-rendering-getserversideprops
 
 `getStaticProps` and `getServerSideProps` are now replaced by `Static Rendering` and `Dynamic Rendering` respectively.
-
-
-
-
-
-
+Server-side components use `Static Rendering` by default, but we can make it to use `Dynamic Rendering` by adding `unstable_noStore`.
 
 <br>
