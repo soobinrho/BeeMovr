@@ -1,11 +1,11 @@
 'use client';
 
-import { axiosFetcher } from '@/app/components/axios-swr-wrapper';
-import { ZOOM_LEVEL_TITLE } from '@/app/components/mapbox';
 import {
   MAX_DIGITS_COORDINATES,
   isValidLngLat,
 } from '@/app/api/v1/components/open-meteo-api';
+import { axiosFetcher } from '@/components/axios-swr-wrapper';
+import { ZOOM_LEVEL_TITLE } from '@/components/mapbox';
 import { ChangeEvent, FormEvent, useCallback, useState } from 'react';
 import { useMap } from 'react-map-gl';
 import useSWRImmutable from 'swr/immutable';

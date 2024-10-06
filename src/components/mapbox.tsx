@@ -5,12 +5,12 @@ import {
   getLastMonthYearMonthUTC,
   getTodayYearMonthUTC,
 } from '@/app/api/v1/components/open-meteo-api';
-import ApiLimitInfoBox from '@/app/components/api-limit-info-box';
-import ConditionalRendering from '@/app/components/conditional-rendering';
-import InformationConsole from '@/app/components/information-console';
-import MapboxLngLatControl from '@/app/components/mapbox-lng-lat-control';
-import Searchbox from '@/app/components/searchbox';
-import SocialMedia from '@/app/components/social-media';
+import ApiLimitInfoBox from '@/components/api-limit-info-box';
+import ConditionalRendering from '@/components/conditional-rendering';
+import InformationConsole from '@/components/information-console';
+import MapboxLngLatControl from '@/components/mapbox-lng-lat-control';
+import Searchbox from '@/components/searchbox';
+import SocialMedia from '@/components/social-media';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import Map, {
@@ -36,6 +36,15 @@ export const ZOOM_LEVEL_TITLE = 2.5;
 
 export default function Mapbox() {
   // ------------------------------------------------------------------
+  // API rate limit (50,000 loads per month) for Mapbox free tier.
+  // ------------------------------------------------------------------
+  const [isMapboxAPIUnderRateLimit, setShouldShowApiLimitInfoBox] =
+    useState(true);
+
+  // TODO: Implement API access limit feature to 50,000 loads per month.
+  // Date in the form of YYYY-MM so that rate limit resets every month.
+
+  // ------------------------------------------------------------------
   // Initialize Mapbox.
   // ------------------------------------------------------------------
   // react-map-gl's documentation on the type ViewState:
@@ -51,14 +60,6 @@ export default function Mapbox() {
   const isZoomTitleLevel = useMemo(() => {
     return viewport.zoom < ZOOM_LEVEL_TITLE;
   }, [viewport.zoom]);
-
-  // ------------------------------------------------------------------
-  // API rate limit (50,000 loads per month) for Mapbox free tier.
-  // ------------------------------------------------------------------
-  const [isMapboxAPIUnderRateLimit, setShouldShowApiLimitInfoBox] =
-    useState(true);
-
-  // TODO: Implement API access limit feature to 50,000 loads per month.
 
   // ------------------------------------------------------------------
   // Initialize states for information console data.

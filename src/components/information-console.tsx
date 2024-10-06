@@ -1,7 +1,5 @@
 'use client';
 
-import { axiosFetcher } from '@/app/components/axios-swr-wrapper';
-import { IMarker } from '@/app/components/mapbox';
 import { isValidLngLat } from '@/app/api/v1/components/open-meteo-api';
 import {
   MAX_DIGITS_COORDINATES,
@@ -11,6 +9,8 @@ import {
   api_response_key_precipitation,
   getLastMonthYearMonthUTC,
 } from '@/app/api/v1/components/open-meteo-api';
+import { axiosFetcher } from '@/components/axios-swr-wrapper';
+import { IMarker } from '@/components/mapbox';
 import * as React from 'react';
 import {
   Ref,

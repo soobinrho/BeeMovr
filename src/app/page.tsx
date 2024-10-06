@@ -1,4 +1,4 @@
-import Mapbox from '@/app/components/mapbox';
+import Mapbox from '@/components/mapbox';
 import React from 'react';
 
 export default function Home() {
