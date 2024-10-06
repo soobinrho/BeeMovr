@@ -489,6 +489,9 @@ But input lines that begin with a dot (".") are intercepted and interpreted by t
 /* How to see all tables and indices. */
 .schema
 
+/* How to run an SQL script. */
+.read <fileName>
+
 /* How to get general help or for a specific function. */
 .help ?PATTERN?
 
