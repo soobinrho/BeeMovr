@@ -41,3 +41,6 @@ next-env.d.ts
 letsencrypt
 
 nginx.conf
+
+# SQLite files
+*.db
