@@ -16,13 +16,13 @@ const nextConfig = {
               style-src 'self' 'unsafe-inline'; \
               font-src 'self' https://fonts.googleapis.com; \
               worker-src 'self' blob: ; \
-              base-uri 'self'; \
+              base-uri 'none'; \
               form-action 'self'; \
               manifest-src 'self'; \
               object-src 'none'; \
               child-src blob: ; \
               connect-src 'self' https://*.tiles.mapbox.com https://api.mapbox.com https://events.mapbox.com; \
-              script-src 'unsafe-inline' 'unsafe-eval' http: https:;",
+              script-src 'self' 'unsafe-inline' 'unsafe-eval' http: https:;",
           },
           {
             key: 'X-Content-Type-Options',
