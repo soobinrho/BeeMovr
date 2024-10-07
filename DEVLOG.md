@@ -481,7 +481,6 @@ Enter `sqlite3 newDatabase.db` to attach to or create a new database.
 "Most of the time, sqlite3 just reads lines of input and passes them on to the SQLite library for execution.
 But input lines that begin with a dot (".") are intercepted and interpreted by the sqlite3 program itself."
 
-```
 ```sql
 /* How to see all tables. */
 .tables
@@ -520,6 +519,24 @@ SELECT * FROM tab1;
 /* How to export to a csv. */
 /* How to exit. */
 .exit
+```
+```sql
+/* How to create a new table if not exists. */
+CREATE TABLE IF NOT EXISTS usage_stats(
+  usage_stats_date  TEXT NOT NULL PRIMARY KEY,
+  usage_stats_count INT  NOT NULL DEFAULT 0
+);
+
+/* How to increment by 1, or insert a new entry if not exists. */
+INSERT INTO usage_stats VALUES('2024-10', 0)
+  ON CONFLICT(usage_stats_date)
+  DO UPDATE SET usage_stats_count = usage_stats_count + 1;
+
+/* How to insert a new entry. */
+UPDATE usage_stats SET usage_stats_count = usage_stats_count + 1 WHERE usage_stats_date = '2024-10';
+
+/* How to query. */
+SELECT usage_stats_count FROM usage_stats WHERE usage_stats_date = '2024-10';
 ```
 
 <br>

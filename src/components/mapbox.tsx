@@ -1,10 +1,6 @@
 'use client';
 
-import {
-  MAX_DIGITS_COORDINATES,
-  getLastMonthYearMonthUTC,
-  getTodayYearMonthUTC,
-} from '@/app/api/v1/components/open-meteo-api';
+import { MAX_DIGITS_COORDINATES } from '@/app/api/v1/components/open-meteo-api';
 import ApiLimitInfoBox from '@/components/api-limit-info-box';
 import ConditionalRendering from '@/components/conditional-rendering';
 import InformationConsole from '@/components/information-console';
@@ -24,7 +20,6 @@ import Map, {
   ViewState,
   ViewStateChangeEvent,
 } from 'react-map-gl';
-import useSWR from 'swr';
 
 export interface IMarker {
   api_lng: string;
@@ -35,15 +30,6 @@ export interface IMarker {
 export const ZOOM_LEVEL_TITLE = 2.5;
 
 export default function Mapbox() {
-  // ------------------------------------------------------------------
-  // API rate limit (50,000 loads per month) for Mapbox free tier.
-  // ------------------------------------------------------------------
-  const [isMapboxAPIUnderRateLimit, setShouldShowApiLimitInfoBox] =
-    useState(true);
-
-  // TODO: Implement API access limit feature to 50,000 loads per month.
-  // Date in the form of YYYY-MM so that rate limit resets every month.
-
   // ------------------------------------------------------------------
   // Initialize Mapbox.
   // ------------------------------------------------------------------
@@ -155,9 +141,8 @@ export default function Mapbox() {
   return (
     <>
       <MapProvider>
-        <MapboxLngLatControl />
         <Searchbox />
-        <SocialMedia />
+        <MapboxLngLatControl />
         <ConditionalRendering condition={isZoomTitleLevel}>
           <div
             className='pointer-events-none absolute left-[50%] top-[47%] z-10 min-h-[27%] min-w-[65vw] translate-x-[-50%] translate-y-[-50%] select-none items-center'
@@ -170,25 +155,20 @@ export default function Mapbox() {
             }}
           ></div>
         </ConditionalRendering>
-        <ConditionalRendering condition={!isMapboxAPIUnderRateLimit}>
-          <ApiLimitInfoBox />
-        </ConditionalRendering>
-        <ConditionalRendering condition={isMapboxAPIUnderRateLimit}>
-          <Map
-            id={'mapMain'}
-            initialViewState={viewport}
-            reuseMaps
-            doubleClickZoom={false}
-            style={{ width: '100%', height: '100vh' }}
-            mapStyle={'mapbox://styles/mapbox/satellite-streets-v12'}
-            mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
-            onMove={(e: ViewStateChangeEvent) => setViewport(e.viewState)}
-            onIdle={onIdle_mapMain}
-            onClick={onClick_mapMain}
-          >
-            {markers}
-          </Map>
-        </ConditionalRendering>
+        <Map
+          id={'mapMain'}
+          initialViewState={viewport}
+          reuseMaps
+          doubleClickZoom={false}
+          style={{ width: '100%', height: '100vh' }}
+          mapStyle={'mapbox://styles/mapbox/satellite-streets-v12'}
+          mapboxAccessToken={process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}
+          onMove={(e: ViewStateChangeEvent) => setViewport(e.viewState)}
+          onIdle={onIdle_mapMain}
+          onClick={onClick_mapMain}
+        >
+          {markers}
+        </Map>
         <InformationConsole api_lng={clickedLng} api_lat={clickedLat} />
       </MapProvider>
     </>
