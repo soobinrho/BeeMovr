@@ -581,3 +581,12 @@ https://nextjs.org/docs/app/building-your-application/upgrading/app-router-migra
 Server-side components use `Static Rendering` by default, but we can make it to use `Dynamic Rendering` by adding `unstable_noStore`.
 
 <br>
+
+### `import` and `require`
+
+https://javascript.plainenglish.io/javascript-import-vs-require-statements-in-gatsby-next-js-and-similar-frameworks-1de1145f1228
+
+While `require` was primarily made to be used outside a web browser, `import` was implemented more recently to improve the modular system of JavaScript.
+Both `require` and `import` will work in any files under `src` directory thanks to bundlers and compilers, but outside the `src` folder (e.g. config files), only `require` will work.
+
+<br>
