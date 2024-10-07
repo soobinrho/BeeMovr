@@ -15,7 +15,7 @@ function IncrementAndGetCurrentAPILoadCount() {
   // This creates `main.db` at ../BeeMovr/ directory.
   // Source:
   //   https://github.com/WiseLibs/better-sqlite3/blob/master/docs/api.md#new-databasepath-options
-  const db = new Database('main.db');
+  const db = new Database('database/main.db');
   const todayYearMonthUTC = getTodayYearMonthUTC();
 
   // Configs for improving performance.
