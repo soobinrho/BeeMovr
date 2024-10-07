@@ -590,3 +590,12 @@ While `require` was primarily made to be used outside a web browser, `import` wa
 Both `require` and `import` will work in any files under `src` directory thanks to bundlers and compilers, but outside the `src` folder (e.g. config files), only `require` will work.
 
 <br>
+
+### `Next.js` Client-Side Component Pricinples
+
+https://www.yoseph.tech/posts/jam-stack/architecting-nextjs-applications-for-better-performance
+
+In order to maximize user experience, we need to minimize the amount of JavaScript that the client receives and therefore processes using the client's browser.
+To do so, we need to (a) "push all of our client components as far downt he NextJS render tree as you can," so that we can use server components by default to render most things on the server instead of on the client's browser, and (b) "keep client components as thin as possible."
+
+<br>
