@@ -7,10 +7,13 @@ import MapboxLngLatControl from '@/components/mapbox-lng-lat-control';
 import Searchbox from '@/components/searchbox';
 import SocialMedia from '@/components/social-media';
 import Database from 'better-sqlite3';
-import { cookies } from 'next/headers';
+import { unstable_noStore as noStore } from 'next/cache';
 import React from 'react';
 
 function IncrementAndGetCurrentAPILoadCount() {
+  // Necessary because otherwise this function not be called after initialization.
+  noStore();
+
   // "Creates a new database connection. If the database file does not exist, it is created."
   // This creates `main.db` at ../BeeMovr/ directory.
   // Source:

@@ -43,10 +43,13 @@ const nextConfig = {
     ];
   },
   // Recommended by Next.js documentation to export as standalone
-  // for Docker projects.
+  // for Docker projects. However, I commented this out because better-sqlite3
+  // seems to be unable to create an SQLite file at all if used with standalone.
+  // Normally, for Docker projects, I would use standalone to minimize Docker
+  // image size, but this will be an exception since SQLite is necessary.
   // Source:
   //   https://github.com/vercel/next.js/tree/canary/examples/with-docker#in-existing-projects
-  output: 'standalone',
+  // output: 'standalone',
 };
 
 export default nextConfig;

@@ -38,31 +38,16 @@ COPY . .
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
 # ---------------------------------------------------------------------
-# Build production files.
-# ---------------------------------------------------------------------
-FROM base as builder
-WORKDIR /app
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-ENV NEXT_TELEMETRY_DISABLED=1
-RUN pnpm run build
-
-# ---------------------------------------------------------------------
 # Run node through pnpm and Next.js
 # ---------------------------------------------------------------------
 FROM base as runner
 WORKDIR /app
+COPY . .
+COPY ./.env* ./
+COPY --from=deps /app/node_modules ./node_modules
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-COPY --from=builder /app/public ./public
-RUN mkdir .next
-RUN chown nextjs:nodejs .next
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-COPY ./.env* ./
-USER nextjs
+RUN pnpm run build
 
 # Unlike RUN, which runs commands at the build time,
 # CMD is what the image runs when we use "docker run ..."
@@ -81,5 +66,5 @@ USER nextjs
 
 # server.js is created by next build from the standalone output
 # https://nextjs.org/docs/pages/api-reference/next-config-js/output
-ENTRYPOINT ["node"]
-CMD ["server.js"]
+ENTRYPOINT ["pnpm"]
+CMD ["start"]
