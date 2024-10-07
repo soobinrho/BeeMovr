@@ -164,7 +164,7 @@ docker compose up --build --force-recreate -d
 
 ## 3. Dev Log
 
-https://github.com/soobinrho/BeeMovr/blob/3c7adb36e8d8bebb31605ba91c9a3b441597758b/DEVLOG.md
+https://github.com/soobinrho/BeeMovr/blob/main/DEVLOG.md
 
 <br>
 <br>
