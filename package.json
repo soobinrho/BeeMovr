@@ -16,6 +16,7 @@
     "@types/react-dom": "18.2.14",
     "autoprefixer": "10.4.16",
     "axios": "^1.6.0",
+    "better-sqlite3": "^11.3.0",
     "mapbox-gl": "^2.15.0",
     "next": "14.0.0",
     "postcss": "8.4.31",
@@ -29,6 +30,7 @@
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.6",
     "@trivago/prettier-plugin-sort-imports": "^4.2.1",
+    "@types/better-sqlite3": "^7.6.11",
     "@types/jest": "^29.5.6",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "eslint": "^8.52.0",
