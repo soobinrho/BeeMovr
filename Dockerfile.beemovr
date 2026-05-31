@@ -20,33 +20,18 @@
 # @example
 # docker image rm beemovr -f
 # ---------------------------------------------------------------------
-FROM ghcr.io/pnpm/pnpm:11 AS base
+FROM ghcr.io/pnpm/pnpm:11
 
 LABEL com.beemovr.description="https://github.com/soobinrho/BeeMovr"
 LABEL com.beemovr.maintainer="Soobin Rho <soobin@nsustain.com>"
 
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME/bin:$PATH"
-RUN pnpm runtime set node 22 -g
-
-# ---------------------------------------------------------------------
-# Install dependencies.
-# ---------------------------------------------------------------------
-FROM base AS deps
-WORKDIR /app
-COPY . .
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
-
-# ---------------------------------------------------------------------
-# Run node through pnpm and Next.js
-# ---------------------------------------------------------------------
-FROM base as runner
-WORKDIR /app
-COPY . .
-COPY ./.env* ./
-COPY --from=deps /app/node_modules ./node_modules
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
-RUN pnpm run build
+
+RUN pnpm runtime set node 22 -g
+
+WORKDIR /app
+COPY . .
+RUN pnpm install --frozen-lockfile
 
 CMD ["pnpm", "start"]
