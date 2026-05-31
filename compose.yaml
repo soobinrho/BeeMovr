@@ -1,5 +1,5 @@
 # ---------------------------------------------------------------------
-# HOW WE RUN BEEMOVR.COM
+# HOW WE RUN BEEMOVR
 # @remarks
 # For development purposes, just running `cd ./BeeMovr && pnpm dev` is
 # perfect, and in fact that is how we run a development server all the
@@ -20,7 +20,7 @@
 # docker compose build
 # docker compose up -d
 #
-# HOW TO STOP BEEMOVR.COM
+# HOW TO STOP BEEMOVR
 # @example
 # docker compose down
 # ---------------------------------------------------------------------

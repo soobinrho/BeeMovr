@@ -29,7 +29,7 @@ That's how BeeMovr started.
 ## Getting Started
 
 [1.](#1-how-to-spin-up-a-development-server) How to spin up a development server<br>
-[2.](#2-how-we-deploy-to-beemovrcom) How we deploy to [beemovr.com](https://beemovr.com)<br>
+[2.](#2-how-we-deploy-beemovr) How we deploy Beemovr<br>
 [3.](#3-how-does-this-work) How does this work?<br>
 
 <br>
@@ -127,7 +127,7 @@ pnpm dev
 
 <br>
 
-## 2. How we deploy to [beemovr.com](https://beemovr.com)
+## 2. How we deploy BeeMovr
 
 ```bash
 # ---------------------------------------------------------------------
