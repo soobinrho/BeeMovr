@@ -20,14 +20,14 @@
 # @example
 # docker image rm beemovr -f
 # ---------------------------------------------------------------------
-FROM node:lts-alpine3.23 AS base
+FROM ghcr.io/pnpm/pnpm:11 AS base
 
 LABEL com.beemovr.description="https://github.com/soobinrho/BeeMovr"
 LABEL com.beemovr.maintainer="Soobin Rho <soobin@nsustain.com>"
 
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable
+RUN pnpm runtime set node 22 -g
 
 # ---------------------------------------------------------------------
 # Install dependencies.
@@ -49,22 +49,4 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN pnpm run build
 
-# Unlike RUN, which runs commands at the build time,
-# CMD is what the image runs when we use "docker run ..."
-# The difference between CMD and ENTRYPOINT is that
-# extra arguments at "docker run <HERE>" override CMD,
-# while ENTRYPOINT is still preserved.
-
-# "The best use for ENTRYPOINT is to set the image’s main command,
-# allowing that image to be run as though it was that command
-# (and then use CMD as the default flags)."
-# Example:
-#   ENTRYPOINT ["s3cmd"]
-#   CMD ["--help"]
-# Source:
-#   https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
-
-# server.js is created by next build from the standalone output
-# https://nextjs.org/docs/pages/api-reference/next-config-js/output
-ENTRYPOINT ["pnpm"]
-CMD ["start"]
+CMD ["pnpm", "start"]
